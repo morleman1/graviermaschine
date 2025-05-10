@@ -24,7 +24,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stdio.h"
-// #include <stdio.h>
 #include <stdlib.h>
 #include "Console.h"
 #include <stdio.h>
@@ -99,8 +98,7 @@ int StepperReset(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
 int SpindleStatus(void);
-void InitComponentsTask(void *pvParameters);  // Renamed from InitStepperTask
-
+void InitComponentsTask(void *pvParameters); // Renamed from InitStepperTask
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -145,9 +143,8 @@ static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned
   for (unsigned int i = 0; i < length; i++)
   {
     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_RESET);
-    if (HAL_SPI_TransmitReceive(pIO, pTX + i, pRX + i, 1, HAL_MAX_DELAY) != HAL_OK)
+    if (HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)pTX + i, (uint8_t *)pRX + i, 1, HAL_MAX_DELAY) != HAL_OK) // prüft ob Transmit erfolgreich war
     {
-      HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
       return -1;
     }
     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
@@ -167,10 +164,9 @@ static int StepDriverReset(void *pGPO, const int ena)
   return 0;
 }
 
-static int StepLibraryDelay(unsigned int ms)
+static void StepLibraryDelay(unsigned int ms)
 {
   vTaskDelay(pdMS_TO_TICKS(ms));
-  return 0;
 }
 
 static int Step(void *pPWM, int dir, unsigned int numPulses)
@@ -184,7 +180,6 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
     HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 0);
     StepLibraryDelay(1);
   }
-
   return 0;
 }
 
@@ -287,7 +282,7 @@ void InitComponentsTask(void *pvParameters)
   }
 
   // reset all and take all initialization steps
- int result = 0;
+  int result = 0;
   result |= L6474_ResetStandBy(stepperHandle);
   result |= L6474_SetBaseParameter(&param);
   result |= L6474_Initialize(stepperHandle, &param);
@@ -298,9 +293,9 @@ void InitComponentsTask(void *pvParameters)
     printf("Stepper initialization failed with error code: %d\r\n", result);
     Error_Handler();
   }
-  
+
   printf("Stepper initialization complete\r\n");
-  
+
   // Initialize Spindle
   SpindlePhysicalParams_t s;
   s.maxRPM = 9000.0f;
@@ -310,25 +305,25 @@ void InitComponentsTask(void *pvParameters)
   s.setDutyCycle = SPINDLE_SetDutyCycle;
   s.enaPWM = SPINDLE_EnaPWM;
   s.context = NULL;
-  
+
   // Create spindle instance (use consoleHandle that was created in main)
-  spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, 
-                                         configMAX_PRIORITIES - 3, 
+  spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
+                                         configMAX_PRIORITIES - 3,
                                          consoleHandle, &s);
-  
+
   if (spindleHandle == NULL)
   {
     printf("Failed to create spindle controller instance\r\n");
     Error_Handler();
   }
-  
+
   printf("Spindle initialization complete\r\n");
   printf("All components initialized successfully\r\n");
-  
+
   // Keep this task alive
   while (1)
   {
-    //vTaskDelay(pdMS_TO_TICKS(1000)); // Sleep periodically
+    // vTaskDelay(pdMS_TO_TICKS(1000)); // Sleep periodically
   }
 }
 
@@ -503,7 +498,7 @@ int StepperReference(int timeout)
   // Define variables
   bool referenceSwitchHit = false;
   int result = 0;
-    // Add timeout implementation
+  // Add timeout implementation
   TickType_t startTime = xTaskGetTickCount();
   TickType_t timeoutTicks = timeout * 1000 / portTICK_PERIOD_MS;
 
@@ -537,8 +532,9 @@ int StepperReference(int timeout)
   // Move one step at a time until reference switch is hit
   while (!referenceSwitchHit)
   {
-        // Check for timeout
-    if (timeout > 0 && (xTaskGetTickCount() - startTime) > timeoutTicks) {
+    // Check for timeout
+    if (timeout > 0 && (xTaskGetTickCount() - startTime) > timeoutTicks)
+    {
       printf("Reference run timeout\r\n");
       return -1;
     }
@@ -651,14 +647,17 @@ int SpindleStop(void)
   printf("Stopping spindle\r\n");
 
   // Only perform stop actions if the spindle is actually running
-  if (spindleEnabled) {
+  if (spindleEnabled)
+  {
     // Disable spindle
     SPINDLE_EnaPWM(spindleHandle, NULL, 0);
-    
+
     // Reset RPM tracking
     spindleCurrentRPM = 0.0f;
     spindleEnabled = 0;
-  } else {
+  }
+  else
+  {
     printf("Spindle already stopped\r\n");
   }
 
@@ -752,7 +751,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
-  if (consoleHandle == NULL) {
+  if (consoleHandle == NULL)
+  {
     printf("Failed to create console instance\r\n");
     Error_Handler();
   }
@@ -762,13 +762,15 @@ int main(void)
   result |= CONSOLE_RegisterCommand(consoleHandle, "stepper", "Standard stepper command followed by subcommands", StepperHandler, NULL);
   result |= CONSOLE_RegisterCommand(consoleHandle, "spindle", "Spindle control commands", SpindleHandler, NULL);
 
-    // Check if any command registration failed
-  if (result != 0) {
+  // Check if any command registration failed
+  if (result != 0)
+  {
     printf("Failed to register one or more commands\r\n");
     Error_Handler();
   }
 
-  if (xTaskCreate(&InitComponentsTask, "InitComponents", 2000, NULL, 2, &InitComponentsTaskHandle) != pdPASS) {
+  if (xTaskCreate(&InitComponentsTask, "InitComponents", 2000, NULL, 2, &InitComponentsTaskHandle) != pdPASS)
+  {
     printf("Failed to create initialization task\r\n");
     Error_Handler();
   }
