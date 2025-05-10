@@ -60,6 +60,15 @@ UART_HandleTypeDef huart3;
 TaskHandle_t InitMotorTaskHandle = NULL;
 L6474_Handle_t h;
 
+L6474_BaseParameter_t param = {
+    .stepMode = 0x01,     // Full step mode
+    .OcdTh = 0x02,        // Overcurrent threshold
+    .TimeOnMin = 5,       // Minimum on time
+    .TimeOffMin = 10,     // Minimum off time
+    .TorqueVal = 50,      // Torque setting
+    .TFast = 2            // Fast decay time
+};
+
 int currentPosition = 0;
 int referencePosition = 0;
 bool referenceComplete = false;
@@ -197,14 +206,6 @@ void InitMotorTask(void)
     printf("Failed to create motor driver instance\r\n");
     Error_Handler();
   }
-
-  L6474_BaseParameter_t param = {
-      .stepMode = 0x01,
-      .OcdTh = 0x02,
-      .TimeOnMin = 5,
-      .TimeOffMin = 10,
-      .TorqueVal = 50,
-      .TFast = 2};
 
   // reset all and take all initialization steps
   int result = 0;
@@ -448,16 +449,6 @@ int StepperReset(void)
   // Reset position tracking
   currentPosition = 0;
   referenceComplete = false;
-
-  // Reset and reinitialize the stepper
-  L6474_BaseParameter_t param = {
-    .stepMode = 0x01,
-    .OcdTh = 0x02,
-    .TimeOnMin = 5,
-    .TimeOffMin = 10,
-    .TorqueVal = 50,
-    .TFast = 2
-  };
 
   int result = 0;
   result |= L6474_ResetStandBy(h);
