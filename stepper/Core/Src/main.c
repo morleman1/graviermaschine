@@ -103,6 +103,9 @@ static void MX_TIM2_Init(void);
 static int stepAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h);
 static int cancelStep(void* pPWM);
 
+int StepperMoveRelative(int relPos);
+int StepperMoveWithSpeed(int absPos, int speedMmPerMin);
+int StepperConfigHandler(const char *param, int argc, char **argv, int startIndex);
 int StepperMove(int absPos);
 int StepperReference(int timeout);
 int StepperReset(void);
@@ -154,6 +157,7 @@ static void StepLibraryFree(const void *const ptr)
 
 static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned int length)
 {
+  (void)pIO; //intentionally unused
   for (unsigned int i = 0; i < length; i++)
   {
     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_RESET);
@@ -185,7 +189,7 @@ static void StepLibraryDelay(unsigned int ms)
 
 static int Step(void *pPWM, int dir, unsigned int numPulses)
 {
-
+  (void)pPWM; //intentionally unused
   HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, (dir > 0));
   for (unsigned int i = 0; i < numPulses; i++)
   {
@@ -199,6 +203,7 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
 
 static int cancelStep(void *pPWM)
 {
+  (void)pPWM;
   if (!stepperMoving)
   {
     return 0; // Nothing to cancel
@@ -360,7 +365,7 @@ void InitComponentsTask(void *pvParameters)
   }
 }
 
-void StepperHandler(int argc, char **argv, void *ctx)
+int StepperHandler(int argc, char **argv, void *ctx)
 {
   if (argc < 1)
   {
@@ -871,7 +876,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
 }
 
-void SpindleHandler(int argc, char **argv, void *ctx)
+int SpindleHandler(int argc, char **argv, void *ctx)
 {
   if (argc < 1)
   {
@@ -1251,7 +1256,7 @@ int StepperReference(int timeout)
 
   // Define variables
   bool referenceSwitchHit = false;
-  int result = 0;
+
   // Add timeout implementation
   TickType_t startTime = xTaskGetTickCount();
   TickType_t timeoutTicks = timeout * 1000 / portTICK_PERIOD_MS;
