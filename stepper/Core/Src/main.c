@@ -66,6 +66,9 @@ volatile bool stepperMoving = false; // for async movement
 volatile bool stepperCancelRequested = false;
 volatile int targetPosition = 0;
 
+static void (*stepperDoneCallback)(L6474_Handle_t) = NULL;
+static L6474_Handle_t stepperCallbackHandle = NULL;
+
 L6474_BaseParameter_t param = {
     .stepMode = 0x01, // Full step mode
     .OcdTh = 0x02,    // Overcurrent threshold
@@ -96,6 +99,9 @@ static void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
 
 /* USER CODE BEGIN PFP */
+
+static int stepAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h);
+static int cancelStep(void* pPWM);
 
 int StepperMove(int absPos);
 int StepperReference(int timeout);
@@ -191,26 +197,26 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
   return 0;
 }
 
-static void StepTimerCancelAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
+static int cancelStep(void *pPWM)
 {
-
-  if (stepperMoving)
+  if (!stepperMoving)
   {
-    // Signal the library that the operation was cancelled
-    doneClb(h);
-
-    stepperMoving = false;
-    stepperCancelRequested = false;
-
-    // If we have a task handle, delete it
-    if (stepperMoveTaskHandle != NULL)
-    {
-      vTaskDelete(stepperMoveTaskHandle);
-      stepperMoveTaskHandle = NULL;
-    }
-
-    printf("Asynchronous movement cancelled via library callback\r\n");
+    return 0; // Nothing to cancel
   }
+
+  printf("Cancelling movement via library callback\r\n");
+  int result = L6474_StopMovement(stepperHandle);
+
+  // Call the callback to signal completion if needed
+  if (stepperDoneCallback != NULL)
+  {
+    stepperDoneCallback(stepperCallbackHandle);
+  }
+
+  stepperMoving = false;
+  stepperCancelRequested = false;
+
+  return result;
 }
 
 // Set the spindle direction
@@ -295,8 +301,10 @@ void InitComponentsTask(void *pvParameters)
   p.transfer = StepDriverSpiTransfer;
   p.reset = StepDriverReset;
   p.sleep = StepLibraryDelay;
-  p.step = Step;
-  p.cancelStep = StepTimerCancelAsync;
+  // only if async is disabled
+  // p.step = Step;
+  p.stepAsync = stepAsync;
+  p.cancelStep = cancelStep;
 
   // Create stepper motor driver instance
   stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
@@ -422,8 +430,14 @@ void StepperHandler(int argc, char **argv, void *ctx)
     }
     else if (isAsync)
     {
-      // Asynchronous movement
-      result = StepperMoveAsync(pos);
+
+      // Asynchronous movement - calculate direction and steps
+      int stepsToMove = pos - currentPosition;
+      int dir = (stepsToMove > 0) ? 1 : 0;
+      unsigned int numSteps = abs(stepsToMove);
+
+      // Call the stepAsync function with the proper parameters
+      result = stepAsync(NULL, dir, numSteps, NULL, stepperHandle);
     }
     else
     {
@@ -624,7 +638,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
     if (writeMode)
     {
       // Set overcurrent threshold
-      if (value < 0 || value > 3) //ocdth1500mA = 0x03
+      if (value < 0 || value > 3) // ocdth1500mA = 0x03
       {
         printf("Invalid value for throvercurr - must be between 0 and 3\r\n");
         return -1;
@@ -935,16 +949,19 @@ int StepperMove(int absPos)
 
 static void StepperMovementComplete(L6474_Handle_t handle)
 {
-  // This function will be called by the library when asynchronous movement completes
   printf("Asynchronous movement completed\r\n");
 
-  // Update position tracking based on the target we were moving to
+  // Update position
   currentPosition = targetPosition;
 
-  // Reset our flags
+  // Call the library's callback if it was provided
+  if (stepperDoneCallback != NULL)
+  {
+    stepperDoneCallback(stepperCallbackHandle);
+    stepperDoneCallback = NULL; // Clear the callback
+  }
+
   stepperMoving = false;
-  stepperCancelRequested = false;
-  stepperMoveTaskHandle = NULL;
 }
 
 // Task to handle asynchronous stepper movement
@@ -1074,46 +1091,34 @@ int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
   return 0;
 }
 
-int StepperMoveAsync(int absPos)
+static int stepAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
-  // Implementation for asynchronous movement to absolute position
-  printf("Starting asynchronous movement to position: %d\r\n", absPos);
+  // Save the callback for when movement completes
+  stepperDoneCallback = doneClb;
+  stepperCallbackHandle = h;
 
-  // Check if reference has been completed
-  if (!referenceComplete)
-  {
-    printf("Error: Reference run required before absolute movement\r\n");
-    return -1;
-  }
+  // Set direction
+  HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
-  // Check if already moving
-  if (stepperMoving)
-  {
-    printf("Error: Stepper already moving\r\n");
-    return -1;
-  }
-
-  // Calculate number of steps to move
-  int stepsToMove = absPos - currentPosition;
-
-  if (stepsToMove == 0)
-  {
-    // Already at the target position
-    return 0;
-  }
-
-  // Set up for async movement
-  targetPosition = absPos;
+  // Update our global tracking variables
   stepperMoving = true;
+  stepperCancelRequested = false;
 
-  // Use the library's built-in asynchronous stepping capability
-  int result = L6474_StepIncremental(stepperHandle, stepsToMove);
+  // Calculate target position (needed by StepperMoveAsync)
+  int stepsToMove = dir ? numPulses : -numPulses;
+  targetPosition = currentPosition + stepsToMove;
+
+  printf("Starting movement: dir=%d, steps=%u\r\n", dir, numPulses);
+
+  // The library will generate the stepping pulses using appropriate timing
+  // The key is we're NOT creating a task here - we're using the library's built-in
+  // functionality to handle the stepping
+  int result = L6474_StepIncremental(h, stepsToMove);
 
   if (result != 0)
   {
-    printf("Failed to start asynchronous movement\r\n");
     stepperMoving = false;
-    return -1;
+    return result;
   }
 
   return 0;

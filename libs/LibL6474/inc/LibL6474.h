@@ -420,7 +420,7 @@ typedef struct L6474x_Platform
 	 *
      * @param[in,out] pPWM      optional user context pointer which has been passed by the L6474_CreateInstance call
 	 */
-	int   (*cancelStep)( void* pPWM                                                                                   );
+	int   (*cancelStep)( void* pPWM                                                                               );
 #endif
 
 #if defined(LIBL6474_HAS_LOCKING) && LIBL6474_HAS_LOCKING == 1

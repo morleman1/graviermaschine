@@ -31,4 +31,4 @@ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1183:5:L6474_GetStatus	24	static
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1227:5:L6474_GetState	16	static
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1242:5:L6474_StopMovement	16	static
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1283:5:L6474_StepIncremental	24	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1283:5:L6474_StepIncremental	40	static

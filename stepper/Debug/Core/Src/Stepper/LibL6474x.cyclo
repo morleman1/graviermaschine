@@ -7,9 +7,9 @@ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:316:12:L6474_SetParamCommand	14
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:376:12:L6474_EnableCommand	6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:407:12:L6474_DisableCommand	5
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:440:16:L6474_CreateInstance	9
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:440:16:L6474_CreateInstance	10
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:496:5:L6474_DestroyInstance	3
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:521:5:L6474_ResetStandBy	5
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:521:5:L6474_ResetStandBy	6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:563:5:L6474_SetBaseParameter	2
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:581:6:L6474_EncodePhaseCurrent	3
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:591:5:L6474_EncodePhaseCurrentParameter	2
@@ -30,5 +30,5 @@ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1151:5:L6474_SetAlarmEnables	5
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1183:5:L6474_GetStatus	6
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1227:5:L6474_GetState	3
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1242:5:L6474_StopMovement	5
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1283:5:L6474_StepIncremental	7
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1242:5:L6474_StopMovement	6
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c:1283:5:L6474_StepIncremental	8
