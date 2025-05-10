@@ -30,8 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include <stdbool.h>
+#include "Spindle.h"
 
 /* USER CODE END Includes */
 
@@ -59,20 +59,25 @@ UART_HandleTypeDef huart3;
 /* USER CODE BEGIN PV */
 TaskHandle_t InitStepperTaskHandle = NULL;
 L6474_Handle_t h;
+SpindleHandle_t spindleHandle = NULL;
 
 L6474_BaseParameter_t param = {
-    .stepMode = 0x01,     // Full step mode
-    .OcdTh = 0x02,        // Overcurrent threshold
-    .TimeOnMin = 5,       // Minimum on time
-    .TimeOffMin = 10,     // Minimum off time
-    .TorqueVal = 50,      // Torque setting
-    .TFast = 2            // Fast decay time
+    .stepMode = 0x01, // Full step mode
+    .OcdTh = 0x02,    // Overcurrent threshold
+    .TimeOnMin = 5,   // Minimum on time
+    .TimeOffMin = 10, // Minimum off time
+    .TorqueVal = 50,  // Torque setting
+    .TFast = 2        // Fast decay time
 };
+
+static int spindleEnabled = 0;
+static int spindleDirection = 0; // 0 = forward, 1 = backward
+static float spindleCurrentRPM = 0.0f;
 
 int currentPosition = 0;
 int referencePosition = 0;
 bool referenceComplete = false;
-#define STEPS_PER_MM 100 // Adjust based on your stepper motor and mechanics
+#define STEPS_PER_MM 100                // Adjust based on your stepper motor and mechanics
 #define MIN_DISTANCE_FROM_REFERENCE 200 // Minimum steps (2mm) to move away from reference
 
 /* USER CODE END PV */
@@ -94,7 +99,6 @@ int SpindleStart(int rpm);
 int SpindleStop(void);
 int SpindleStatus(void);
 void InitStepper();
-
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -142,7 +146,7 @@ static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned
     if (HAL_SPI_TransmitReceive(pIO, pTX + i, pRX + i, 1, HAL_MAX_DELAY) != HAL_OK)
     {
       HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
-      return -1;                                                              
+      return -1;
     }
     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
   }
@@ -186,6 +190,80 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
 {
 
 }*/
+
+// Set the spindle direction
+void SPINDLE_SetDirection(SpindleHandle_t h, void *context, int backward)
+{
+  (void)h;
+  (void)context;
+  spindleDirection = backward;
+
+  // GPIO polarity might need adjustment based on your H-bridge
+  if (backward)
+  {
+    printf("Setting spindle direction: backward (counter-clockwise)\r\n");
+  }
+  else
+  {
+    printf("Setting spindle direction: forward (clockwise)\r\n");
+  }
+}
+
+// Set the PWM duty cycle
+void SPINDLE_SetDutyCycle(SpindleHandle_t h, void *context, float dutyCycle)
+{
+  (void)h;
+  (void)context;
+
+  printf("Setting spindle duty cycle: %.2f%%\r\n", dutyCycle * 100.0f);
+
+  // Configure TIM2 for PWM
+  // Adjust channel based on your hardware setup
+  uint32_t pulse = (uint32_t)(dutyCycle * htim2.Init.Period);
+  __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, pulse);
+}
+
+// Enable/disable the spindle
+void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
+{
+  (void)h;
+  (void)context;
+
+  spindleEnabled = ena;
+
+  if (ena)
+  {
+    printf("Enabling spindle\r\n");
+
+    // Enable PWM output
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+
+    // Enable H-bridge based on direction
+    if (spindleDirection)
+    {
+      // Backward direction
+      HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_SET);
+    }
+    else
+    {
+      // Forward direction
+      HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_RESET);
+    }
+  }
+  else
+  {
+    printf("Disabling spindle\r\n");
+
+    // Disable PWM output
+    HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_3);
+
+    // Disable both H-bridge outputs
+    HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_RESET);
+  }
+}
 
 void InitStepperTask(void)
 {
@@ -234,16 +312,18 @@ void InitStepperTask(void)
   }
 }
 
-
 void StepperHandler(int argc, char **argv, void *ctx)
 {
-  if (argc < 1) {
+  if (argc < 1)
+  {
     printf("Invalid number of arguments\r\n");
     return -1;
   }
 
-  if (strcmp(argv[0], "move") == 0) {
-    if (argc < 2) {
+  if (strcmp(argv[0], "move") == 0)
+  {
+    if (argc < 2)
+    {
       printf("Missing position argument\r\n");
       return -1;
     }
@@ -253,60 +333,71 @@ void StepperHandler(int argc, char **argv, void *ctx)
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else if (strcmp(argv[0], "reference") == 0) {
+  else if (strcmp(argv[0], "reference") == 0)
+  {
     bool keepEnabled = false;
     bool skipReference = false;
     int timeout = 0;
-    
+
     // Parse flags
-    for (int i = 1; i < argc; i++) {
-      if (strcmp(argv[i], "-e") == 0) {
+    for (int i = 1; i < argc; i++)
+    {
+      if (strcmp(argv[i], "-e") == 0)
+      {
         keepEnabled = true;
       }
-      else if (strcmp(argv[i], "-s") == 0) {
+      else if (strcmp(argv[i], "-s") == 0)
+      {
         skipReference = true;
       }
-      else if (strcmp(argv[i], "-t") == 0) {
-        if (i + 1 < argc) {
+      else if (strcmp(argv[i], "-t") == 0)
+      {
+        if (i + 1 < argc)
+        {
           timeout = atoi(argv[i + 1]);
           i++; // Skip the next argument as it's the timeout value
         }
       }
     }
-    
+
     int result;
-    if (skipReference) {
+    if (skipReference)
+    {
       // Skip reference run and set current position as reference
       printf("Skipping reference run, using current position\r\n");
       currentPosition = 0;
       referencePosition = 0;
       referenceComplete = true;
       result = 0;
-    } else {
+    }
+    else
+    {
       // Perform reference run
       result = StepperReference();
     }
-    
+
     // Handle power output state after reference
-    if (result == 0 && !keepEnabled) {
+    if (result == 0 && !keepEnabled)
+    {
       // Turn off power if not keeping enabled
       L6474_SetPowerOutputs(h, 0);
     }
-    
+
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else if (strcmp(argv[0], "reset") == 0) {
+  else if (strcmp(argv[0], "reset") == 0)
+  {
     int result = StepperReset();
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else {
+  else
+  {
     printf("Unknown stepper command: %s\r\n", argv[0]);
     return -1;
   }
 }
-
 
 void SpindleHandler(int argc, char **argv, void *ctx)
 {
@@ -338,7 +429,7 @@ void SpindleHandler(int argc, char **argv, void *ctx)
   else if (strcmp(argv[0], "status") == 0)
   {
     int result = SpindleStatus();
-    // For status, additional return values will be printed in the function
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
   else
@@ -348,37 +439,39 @@ void SpindleHandler(int argc, char **argv, void *ctx)
   }
 }
 
-
 int StepperMove(int absPos)
 {
   // Implementation for moving stepper to absolute position
   printf("Moving stepper to position: %d\r\n", absPos);
-  
+
   // Check if reference has been completed
-  if (!referenceComplete) {
+  if (!referenceComplete)
+  {
     printf("Error: Reference run required before absolute movement\r\n");
     return -1;
   }
-  
+
   // Calculate number of steps to move
   int stepsToMove = absPos - currentPosition;
-  
-  if (stepsToMove == 0) {
+
+  if (stepsToMove == 0)
+  {
     // Already at the target position
     return 0;
   }
-  
+
   printf("Moving %d steps\r\n", stepsToMove);
-  
+
   // Move the stepper motor
-  if (L6474_StepIncremental(h, stepsToMove) != 0) {
+  if (L6474_StepIncremental(h, stepsToMove) != 0)
+  {
     printf("Movement failed\r\n");
     return -1;
   }
-  
+
   // Update current position
   currentPosition = absPos;
-  
+
   return 0;
 }
 
@@ -386,58 +479,63 @@ int StepperReference(void)
 {
   // Implementation for reference run
   printf("Performing reference run\r\n");
-  
+
   // Define variables
   bool referenceSwitchHit = false;
   int result = 0;
-  
+
   // Check if reference switch is already active
   referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
-  
+
   // If reference switch is already active, move away first
-  if (referenceSwitchHit) {
+  if (referenceSwitchHit)
+  {
     printf("Already at reference position, moving away first\r\n");
-    
+
     // Move away from reference switch (positive direction)
-    if (L6474_StepIncremental(h, MIN_DISTANCE_FROM_REFERENCE) != 0) {
+    if (L6474_StepIncremental(h, MIN_DISTANCE_FROM_REFERENCE) != 0)
+    {
       printf("Failed to move away from reference position\r\n");
       return -1;
     }
-    
+
     // Check if we successfully moved away from the switch
     referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
-    if (referenceSwitchHit) {
+    if (referenceSwitchHit)
+    {
       printf("Still at reference position after moving away, hardware error\r\n");
       return -1;
     }
   }
-  
+
   // Now move towards the reference switch (negative direction) slowly
   printf("Moving towards reference position\r\n");
-  
+
   // Move one step at a time until reference switch is hit
-  while (!referenceSwitchHit) {
+  while (!referenceSwitchHit)
+  {
     // Move one step in negative direction
-    if (L6474_StepIncremental(h, -1) != 0) {
+    if (L6474_StepIncremental(h, -1) != 0)
+    {
       printf("Failed during reference movement\r\n");
       return -1;
     }
-    
+
     // Small delay between steps for slow movement
     StepLibraryDelay(10);
-    
+
     // Check if reference switch is hit
     referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
   }
-  
+
   // Reference position found
   printf("Reference position found\r\n");
-  
+
   // Reset position tracking
   currentPosition = 0;
   referencePosition = 0;
   referenceComplete = true;
-  
+
   return 0;
 }
 
@@ -445,23 +543,23 @@ int StepperReset(void)
 {
   // Implementation for stepper reset
   printf("Resetting stepper\r\n");
-  
+
   // Reset position tracking
   currentPosition = 0;
   referenceComplete = false;
 
   // Reset hardware by asserting and releasing the reset pin
   HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_SET);   // Assert reset
-  StepLibraryDelay(10);  // Small delay to ensure reset is recognized
+  StepLibraryDelay(10);                                                  // Small delay to ensure reset is recognized
   HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_RESET); // Release reset
-  StepLibraryDelay(10);  // Small delay to ensure stable state after reset
- 
+  StepLibraryDelay(10);                                                  // Small delay to ensure stable state after reset
+
   int result = 0;
   result |= L6474_ResetStandBy(h);
   result |= L6474_SetBaseParameter(&param);
   result |= L6474_Initialize(h, &param);
   result |= L6474_SetPowerOutputs(h, 1);
-  
+
   return result == 0 ? 0 : -1;
 }
 
@@ -470,34 +568,85 @@ int SpindleStart(int rpm)
 {
   // Implementation for starting spindle at given RPM
   printf("Starting spindle at %d RPM\r\n", rpm);
-  
-  // TODO: Implement spindle control logic
-  // This would typically configure and enable the spindle motor
-  
-  return 0; // OK for now, replace with actual implementation
+
+  // Store the target RPM for status reporting
+  spindleCurrentRPM = (float)rpm;
+
+  // Set direction based on RPM sign
+  int direction = (rpm < 0) ? 1 : 0;
+  spindleDirection = direction;
+
+  // Call the platform functions that the spindle library would call
+  SPINDLE_SetDirection(spindleHandle, NULL, direction);
+
+  // Calculate duty cycle based on RPM
+  // We need to convert the RPM to a duty cycle between 0.0 and 1.0
+  float absRPM = (float)abs(rpm);
+
+  // Get the configured limits from our parameters
+  SpindlePhysicalParams_t *params = (SpindlePhysicalParams_t *)spindleHandle; // This is just for reference
+  float maxRPM = 9000.0f;                                                     // Use the same values as in main
+  float absMinRPM = 1600.0f;
+
+  // Cap the RPM to limits
+  if (absRPM < absMinRPM)
+  {
+    printf("Requested RPM below minimum - using minimum RPM: %.1f\r\n", absMinRPM);
+    absRPM = absMinRPM;
+    spindleCurrentRPM = direction ? -absMinRPM : absMinRPM;
+  }
+
+  if (absRPM > maxRPM)
+  {
+    printf("Requested RPM above maximum - using maximum RPM: %.1f\r\n", maxRPM);
+    absRPM = maxRPM;
+    spindleCurrentRPM = direction ? -maxRPM : maxRPM;
+  }
+
+  // Calculate duty cycle (linear mapping from min RPM to max RPM)
+  float dutyCycle = (absRPM - absMinRPM) / (maxRPM - absMinRPM);
+
+  // Apply the duty cycle
+  SPINDLE_SetDutyCycle(spindleHandle, NULL, dutyCycle);
+
+  // Enable the spindle
+  SPINDLE_EnaPWM(spindleHandle, NULL, 1);
+
+  spindleEnabled = 1;
+
+  return 0;
 }
 
 int SpindleStop(void)
 {
   // Implementation for stopping spindle
   printf("Stopping spindle\r\n");
-  
-  // TODO: Implement spindle stop logic
-  
-  return 0; // OK for now, replace with actual implementation
+
+  // Disable spindle
+  SPINDLE_EnaPWM(spindleHandle, NULL, 0);
+
+  // Reset RPM tracking
+  spindleCurrentRPM = 0.0f;
+  spindleEnabled = 0;
+
+  return 0;
 }
 
 int SpindleStatus(void)
 {
   // Implementation for getting spindle status
-  printf("Spindle status: ");
-  
-  // TODO: Implement spindle status logic and return appropriately
-  // This would typically read and report the current spindle state
-  
-  printf("STOPPED\r\n"); // Example status
-  
-  return 0; // OK for now, replace with actual implementation
+  if (spindleEnabled)
+  {
+    printf("RUNNING\r\n");
+    printf("Direction: %s\r\n", spindleDirection ? "BACKWARD" : "FORWARD");
+    printf("Current RPM: %.1f\r\n", spindleCurrentRPM);
+  }
+  else
+  {
+    printf("STOPPED\r\n");
+  }
+
+  return 0;
 }
 
 // --------------------------------------------------------------------------------------------------------------------
@@ -571,9 +720,27 @@ int main(void)
 
   ConsoleHandle_t c = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
+  SpindlePhysicalParams_t s;
+  s.maxRPM = 9000.0f;
+  s.minRPM = -9000.0f;
+  s.absMinRPM = 1600.0f;
+  s.setDirection = SPINDLE_SetDirection;
+  s.setDutyCycle = SPINDLE_SetDutyCycle;
+  s.enaPWM = SPINDLE_EnaPWM;
+  s.context = NULL;
+
+  // Create spindle instance
+  SpindleHandle_t spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 3, c, &s);
+
+  if (spindleHandle == NULL)
+  {
+    printf("Failed to create spindle controller instance\r\n");
+    Error_Handler();
+  }
+
   CONSOLE_RegisterCommand(c, "capability", "Shows what the program is cabable of", CapabilityFunc, NULL) == 0;
   CONSOLE_RegisterCommand(c, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
-
+  CONSOLE_RegisterCommand(c, "spindle", "spindle control commands", SpindleHandler, NULL);
 
   xTaskCreate(&InitStepperTask, "InitStepperTask", 2000, NULL, 2, InitStepperTaskHandle);
   printf("Moinsen bastard\r\n");
