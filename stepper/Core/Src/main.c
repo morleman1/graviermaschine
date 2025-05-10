@@ -62,7 +62,7 @@ SpindleHandle_t spindleHandle = NULL;
 ConsoleHandle_t consoleHandle = NULL;
 
 TaskHandle_t stepperMoveTaskHandle = NULL;
-volatile bool stepperMoving = false; // for async movement
+volatile bool stepperMoving = false; // für async movement
 volatile bool stepperCancelRequested = false;
 volatile int targetPosition = 0;
 
@@ -70,22 +70,22 @@ static void (*stepperDoneCallback)(L6474_Handle_t) = NULL;
 static L6474_Handle_t stepperCallbackHandle = NULL;
 
 L6474_BaseParameter_t param = {
-    .stepMode = 0x01, // Full step mode
-    .OcdTh = 0x02,    // Overcurrent threshold
-    .TimeOnMin = 5,   // Minimum on time
-    .TimeOffMin = 10, // Minimum off time
-    .TorqueVal = 50,  // Torque setting
-    .TFast = 2        // Fast decay time
+    .stepMode = 0x01, // full step mode
+    .OcdTh = 0x02,    // overcurrent threshold
+    .TimeOnMin = 5,   // minimum on time
+    .TimeOffMin = 10, // minimum off time
+    .TorqueVal = 50,  // torque setting
+    .TFast = 2        // fast decay time
 };
 
 static int spindleEnabled = 0;
-static int spindleDirection = 0; // 0 = forward, 1 = backward
+static int spindleDirection = 0; // 0 = forwärts, 1 = rückwärts
 static float spindleCurrentRPM = 0.0f;
 
 int currentPosition = 0;
 int referencePosition = 0;
 bool referenceComplete = false;
-#define STEPS_PER_MM 100                // Adjust based on your stepper motor and mechanics
+#define STEPS_PER_MM 100                // adjust depending on your stepper motor and gear ratio
 #define MIN_DISTANCE_FROM_REFERENCE 200 // Minimum steps (2mm) to move away from reference
 
 /* USER CODE END PV */
@@ -100,8 +100,8 @@ static void MX_TIM2_Init(void);
 
 /* USER CODE BEGIN PFP */
 
-static int stepAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h);
-static int cancelStep(void* pPWM);
+static int stepAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h);
+static int cancelStep(void *pPWM);
 
 int StepperMoveRelative(int relPos);
 int StepperMoveWithSpeed(int absPos, int speedMmPerMin);
@@ -115,7 +115,7 @@ int StepperPosition(void);
 int SpindleStatus(void);
 int StepperCancel(void);
 int StepperStatus(void);
-void InitComponentsTask(void *pvParameters); // Renamed from InitStepperTask
+void InitComponentsTask(void *pvParameters);
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -157,7 +157,7 @@ static void StepLibraryFree(const void *const ptr)
 
 static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned int length)
 {
-  (void)pIO; //intentionally unused
+  (void)pIO; // intentionally unused
   for (unsigned int i = 0; i < length; i++)
   {
     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_RESET);
@@ -175,9 +175,9 @@ static int StepDriverReset(void *pGPO, const int ena)
   (void)pGPO;
 
   if (ena)
-    HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_RESET); // Release reset
+    HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_RESET);
   else
-    HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_SET); // Assert reset
+    HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_SET);
 
   return 0;
 }
@@ -189,7 +189,7 @@ static void StepLibraryDelay(unsigned int ms)
 
 static int Step(void *pPWM, int dir, unsigned int numPulses)
 {
-  (void)pPWM; //intentionally unused
+  (void)pPWM;
   HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, (dir > 0));
   for (unsigned int i = 0; i < numPulses; i++)
   {
@@ -206,13 +206,12 @@ static int cancelStep(void *pPWM)
   (void)pPWM;
   if (!stepperMoving)
   {
-    return 0; // Nothing to cancel
+    return 0;
   }
 
   printf("Cancelling movement via library callback\r\n");
   int result = L6474_StopMovement(stepperHandle);
 
-  // Call the callback to signal completion if needed
   if (stepperDoneCallback != NULL)
   {
     stepperDoneCallback(stepperCallbackHandle);
@@ -224,14 +223,12 @@ static int cancelStep(void *pPWM)
   return result;
 }
 
-// Set the spindle direction
 void SPINDLE_SetDirection(SpindleHandle_t h, void *context, int backward)
 {
   (void)h;
   (void)context;
   spindleDirection = backward;
 
-  // GPIO polarity might need adjustment based on your H-bridge
   if (backward)
   {
     printf("Setting spindle direction: backward (counter-clockwise)\r\n");
@@ -242,7 +239,6 @@ void SPINDLE_SetDirection(SpindleHandle_t h, void *context, int backward)
   }
 }
 
-// Set the PWM duty cycle
 void SPINDLE_SetDutyCycle(SpindleHandle_t h, void *context, float dutyCycle)
 {
   (void)h;
@@ -250,13 +246,10 @@ void SPINDLE_SetDutyCycle(SpindleHandle_t h, void *context, float dutyCycle)
 
   printf("Setting spindle duty cycle: %.2f%%\r\n", dutyCycle * 100.0f);
 
-  // Configure TIM2 for PWM
-  // Adjust channel based on your hardware setup
   uint32_t pulse = (uint32_t)(dutyCycle * htim2.Init.Period);
   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, pulse);
 }
 
-// Enable/disable the spindle
 void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
 {
   (void)h;
@@ -268,19 +261,17 @@ void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
   {
     printf("Enabling spindle\r\n");
 
-    // Enable PWM output
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
 
-    // Enable H-bridge based on direction
     if (spindleDirection)
     {
-      // Backward direction
+      // rückwärts
       HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_RESET);
       HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_SET);
     }
     else
     {
-      // Forward direction
+      // forwärts
       HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_SET);
       HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_RESET);
     }
@@ -289,10 +280,9 @@ void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
   {
     printf("Disabling spindle\r\n");
 
-    // Disable PWM output
+    // PMW aus
     HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_3);
 
-    // Disable both H-bridge outputs
     HAL_GPIO_WritePin(SPINDLE_ENA_L_GPIO_Port, SPINDLE_ENA_L_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(SPINDLE_ENA_R_GPIO_Port, SPINDLE_ENA_R_Pin, GPIO_PIN_RESET);
   }
@@ -311,7 +301,6 @@ void InitComponentsTask(void *pvParameters)
   p.stepAsync = stepAsync;
   p.cancelStep = cancelStep;
 
-  // Create stepper motor driver instance
   stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
   if (stepperHandle == NULL)
   {
@@ -319,7 +308,6 @@ void InitComponentsTask(void *pvParameters)
     Error_Handler();
   }
 
-  // reset all and take all initialization steps
   int result = 0;
   result |= L6474_ResetStandBy(stepperHandle);
   result |= L6474_SetBaseParameter(&param);
@@ -334,7 +322,7 @@ void InitComponentsTask(void *pvParameters)
 
   printf("Stepper initialization complete\r\n");
 
-  // Initialize Spindle
+  // Spindel init 
   SpindlePhysicalParams_t s;
   s.maxRPM = 9000.0f;
   s.minRPM = -9000.0f;
@@ -344,7 +332,6 @@ void InitComponentsTask(void *pvParameters)
   s.enaPWM = SPINDLE_EnaPWM;
   s.context = NULL;
 
-  // Create spindle instance (use consoleHandle that was created in main)
   spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
                                          configMAX_PRIORITIES - 3,
                                          consoleHandle, &s);
@@ -358,10 +345,10 @@ void InitComponentsTask(void *pvParameters)
   printf("Spindle initialization complete\r\n");
   printf("All components initialized successfully\r\n");
 
-  // Keep this task alive
+  // keep task alive
   while (1)
   {
-    vTaskDelay(pdMS_TO_TICKS(100)); // Sleep periodically
+    vTaskDelay(pdMS_TO_TICKS(100)); // destress
   }
 }
 
@@ -402,12 +389,12 @@ int StepperHandler(int argc, char **argv, void *ctx)
         if (i + 1 < argc)
         {
           speed = atoi(argv[i + 1]);
-          i++; // Skip the next argument as it's the speed value
+          i++; // skip the next argument as its the speed value
         }
       }
     }
 
-    // If relative movement, convert to absolute
+    // relativ -> absolut
     if (isRelative)
     {
       pos = currentPosition + pos;
@@ -415,33 +402,28 @@ int StepperHandler(int argc, char **argv, void *ctx)
 
     int result = 0;
 
-    // Check if stepper is already moving
     if (stepperMoving)
     {
       printf("Error: Stepper already moving\r\n");
       return -1;
     }
 
-    // Execute the appropriate movement function
     if (isRelative)
     {
-      // Use the dedicated relative movement function
       result = StepperMoveRelative(pos);
     }
     else if (speed > 0)
     {
-      // Movement with specified speed
       result = StepperMoveWithSpeed(pos, speed);
     }
     else if (isAsync)
     {
 
-      // Asynchronous movement - calculate direction and steps
+      // Asynchronous movement
       int stepsToMove = pos - currentPosition;
       int dir = (stepsToMove > 0) ? 1 : 0;
       unsigned int numSteps = abs(stepsToMove);
 
-      // Call the stepAsync function with the proper parameters
       result = stepAsync(NULL, dir, numSteps, NULL, stepperHandle);
     }
     else
@@ -492,14 +474,13 @@ int StepperHandler(int argc, char **argv, void *ctx)
     }
     else
     {
-      // Perform reference run
+
       result = StepperReference(timeout);
     }
 
-    // Handle power output state after reference
+
     if (result == 0 && !keepEnabled)
     {
-      // Turn off power if not keeping enabled
       L6474_SetPowerOutputs(stepperHandle, 0);
     }
 
@@ -551,14 +532,14 @@ int StepperHandler(int argc, char **argv, void *ctx)
 
 int StepperConfigHandler(const char *param, int argc, char **argv, int startIndex)
 {
-  // Check if the parameter is valid
+
   if (!param)
   {
     printf("Missing config parameter\r\n");
     return -1;
   }
 
-  // Default: no value provided (read mode)
+  // Default: read mode
   bool writeMode = false;
   int value = 0;
   float floatValue = 0.0f;
@@ -576,7 +557,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
       return -1;
     }
 
-    // Parameters posmax, posmin, posref, and mmperturn are float values
+    // Parameters posmax, posmin, posref, and mmperturn are float values ?
     if (strcmp(param, "posmax") == 0 ||
         strcmp(param, "posmin") == 0 ||
         strcmp(param, "posref") == 0 ||
@@ -666,7 +647,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   {
     if (writeMode)
     {
-      // Set step mode
+
       if (value < 0 || value > 4)
       {
         printf("Invalid value for stepmode - must be between 0 and 4\r\n");
@@ -676,7 +657,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
     }
     else
     {
-      // Get step mode
+
       L6474x_StepMode_t mode;
       int result = L6474_GetStepMode(stepperHandle, &mode);
       if (result == 0)
@@ -688,7 +669,6 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
   else if (strcmp(param, "timeoff") == 0)
   {
-    // Check if output is enabled (can't change this parameter while enabled)
     L6474x_State_t state;
     L6474_GetState(stepperHandle, &state);
     if (writeMode && state == stENABLED)
@@ -721,7 +701,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
   else if (strcmp(param, "timeon") == 0)
   {
-    // Check if output is enabled (can't change this parameter while enabled)
+
     L6474x_State_t state;
     L6474_GetState(stepperHandle, &state);
     if (writeMode && state == stENABLED)
@@ -732,7 +712,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
 
     if (writeMode)
     {
-      // Set on time
+
       if (value < 0 || value > 255)
       {
         printf("Invalid value for timeon - must be between 0 and 255\r\n");
@@ -742,7 +722,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
     }
     else
     {
-      // Get on time
+
       int currentVal;
       int result = L6474_GetProperty(stepperHandle, L6474_PROP_TON, &currentVal);
       if (result == 0)
@@ -754,7 +734,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
   else if (strcmp(param, "timefast") == 0)
   {
-    // Check if output is enabled (can't change this parameter while enabled)
+    // Check if output is enabled
     L6474x_State_t state;
     L6474_GetState(stepperHandle, &state);
     if (writeMode && state == stENABLED)
@@ -765,7 +745,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
 
     if (writeMode)
     {
-      // Set fast decay time
+
       if (value < 0 || value > 255)
       {
         printf("Invalid value for timefast - must be between 0 and 255\r\n");
@@ -775,7 +755,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
     }
     else
     {
-      // Get fast decay time
+
       int currentVal;
       int result = L6474_GetProperty(stepperHandle, L6474_PROP_TFAST, &currentVal);
       if (result == 0)
@@ -787,8 +767,8 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
   else if (strcmp(param, "mmperturn") == 0)
   {
-    // This is a custom parameter that's not directly mapped to L6474
-    static float mmPerTurn = 1.0f; // Default: 1mm per turn
+
+    static float mmPerTurn = 1.0f; // adjust as needed
 
     if (writeMode)
     {
@@ -808,8 +788,8 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
   }
   else if (strcmp(param, "stepsperturn") == 0)
   {
-    // This is a custom parameter that's not directly mapped to L6474
-    static int stepsPerTurn = 200; // Default: 200 steps per turn for many steppers
+
+    static int stepsPerTurn = 200; // Default: 200 , adjust as needed
 
     if (writeMode)
     {
@@ -831,7 +811,7 @@ int StepperConfigHandler(const char *param, int argc, char **argv, int startInde
            strcmp(param, "posmin") == 0 ||
            strcmp(param, "posref") == 0)
   {
-    // These are custom parameters for position limits
+
     static float posMax = 100.0f;  // Default max position (mm)
     static float posMin = -100.0f; // Default min position (mm)
     static float posRef = 0.0f;    // Default reference position (mm)
@@ -918,22 +898,21 @@ int SpindleHandler(int argc, char **argv, void *ctx)
 
 int StepperMove(int absPos)
 {
-  // Implementation for moving stepper to absolute position
   printf("Moving stepper to position: %d\r\n", absPos);
 
-  // Check if reference has been completed
+
   if (!referenceComplete)
   {
     printf("Error: Reference run required before absolute movement\r\n");
     return -1;
   }
 
-  // Calculate number of steps to move
+
   int stepsToMove = absPos - currentPosition;
 
   if (stepsToMove == 0)
   {
-    // Already at the target position
+
     return 0;
   }
 
@@ -946,7 +925,7 @@ int StepperMove(int absPos)
     return -1;
   }
 
-  // Update current position
+
   currentPosition = absPos;
 
   return 0;
@@ -969,17 +948,17 @@ static void StepperMovementComplete(L6474_Handle_t handle)
   stepperMoving = false;
 }
 
-// Task to handle asynchronous stepper movement
+
 void StepperMoveTask(void *pvParameters)
 {
   int target = targetPosition;
 
-  // Calculate number of steps to move
+
   int stepsToMove = target - currentPosition;
 
   if (stepsToMove == 0 || stepperCancelRequested)
   {
-    // Already at the target position or cancelled
+
     stepperMoving = false;
     stepperCancelRequested = false;
     vTaskDelete(NULL);
@@ -998,7 +977,7 @@ void StepperMoveTask(void *pvParameters)
     return;
   }
 
-  // Move the stepper motor
+
   if (L6474_StepIncremental(stepperHandle, stepsToMove) != 0)
   {
     printf("Movement failed\r\n");
@@ -1008,7 +987,7 @@ void StepperMoveTask(void *pvParameters)
     return;
   }
 
-  // Check if cancelled during movement
+ 
   if (stepperCancelRequested)
   {
     printf("Movement was cancelled during execution\r\n");
@@ -1016,7 +995,7 @@ void StepperMoveTask(void *pvParameters)
   }
   else
   {
-    // Update current position only if not cancelled
+
     currentPosition = target;
     printf("Movement completed\r\n");
   }
@@ -1027,10 +1006,10 @@ void StepperMoveTask(void *pvParameters)
 
 int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
 {
-  // Implementation for moving with specific speed
+
   printf("Moving to position %d at speed %d mm/min\r\n", absPos, speedMmPerMin);
 
-  // Check if reference has been completed
+
   if (!referenceComplete)
   {
     printf("Error: Reference run required before absolute movement\r\n");
@@ -1044,25 +1023,25 @@ int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
     return -1;
   }
 
-  // Calculate number of steps to move
+
   int stepsToMove = absPos - currentPosition;
 
   if (stepsToMove == 0)
   {
-    // Already at the target position
+
     return 0;
   }
 
   // Convert speed from mm/min to steps/sec
   float speedStepsPerSec = (speedMmPerMin * STEPS_PER_MM) / 60.0f;
 
-  // Cap the speed if necessary
-  if (speedStepsPerSec < 10) // Minimum speed (adjust as needed)
+
+  if (speedStepsPerSec < 10) // min speed - adjust as needed
   {
     printf("Speed capped to minimum\r\n");
     speedStepsPerSec = 10;
   }
-  else if (speedStepsPerSec > 1000) // Maximum speed (adjust as needed)
+  else if (speedStepsPerSec > 1000) // max speed - adjust as needed
   {
     printf("Speed capped to maximum\r\n");
     speedStepsPerSec = 1000;
@@ -1073,7 +1052,7 @@ int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
 
   printf("Moving %d steps with %d ms delay between steps\r\n", stepsToMove, delayMs);
 
-  // Move the stepper motor one step at a time with controlled speed
+
   int stepDirection = (stepsToMove > 0) ? 1 : -1;
   int remainingSteps = abs(stepsToMove);
 
@@ -1085,11 +1064,10 @@ int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
       return -1;
     }
 
-    // Update position
+
     currentPosition += stepDirection;
     remainingSteps--;
 
-    // Delay for proper speed
     vTaskDelay(pdMS_TO_TICKS(delayMs));
   }
 
@@ -1098,26 +1076,20 @@ int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
 
 static int stepAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
-  // Save the callback for when movement completes
   stepperDoneCallback = doneClb;
   stepperCallbackHandle = h;
 
-  // Set direction
   HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir > 0 ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
-  // Update our global tracking variables
   stepperMoving = true;
   stepperCancelRequested = false;
 
-  // Calculate target position (needed by StepperMoveAsync)
+
   int stepsToMove = dir ? numPulses : -numPulses;
   targetPosition = currentPosition + stepsToMove;
 
   printf("Starting movement: dir=%d, steps=%u\r\n", dir, numPulses);
 
-  // The library will generate the stepping pulses using appropriate timing
-  // The key is we're NOT creating a task here - we're using the library's built-in
-  // functionality to handle the stepping
   int result = L6474_StepIncremental(h, stepsToMove);
 
   if (result != 0)
@@ -1125,16 +1097,16 @@ static int stepAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb
     stepperMoving = false;
     return result;
   }
-
+  StepperMovementComplete(h);
   return 0;
 }
 
 int StepperStatus(void)
 {
-  // Implementation for getting stepper status
 
-  // 1. Get the internal state machine state
-  // Map our application states to the required hex values:
+
+  // 1. Get internal state machine state
+  // Map application states to the required hex values:
   // 0x0: scsINIT - Initial state
   // 0x1: scsREF - Reference state
   // 0x2: scsDIS - Disabled state
@@ -1227,7 +1199,7 @@ int StepperStatus(void)
 
 int StepperCancel(void)
 {
-  // Implementation for cancelling stepper movement
+
   printf("Cancelling stepper movement\r\n");
 
   if (!stepperMoving)
@@ -1251,7 +1223,7 @@ int StepperCancel(void)
 
 int StepperReference(int timeout)
 {
-  // Implementation for reference run
+
   printf("Performing reference run\r\n");
 
   // Define variables
@@ -1262,7 +1234,7 @@ int StepperReference(int timeout)
   TickType_t timeoutTicks = timeout * 1000 / portTICK_PERIOD_MS;
 
   // Check if reference switch is already active
-  referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+  referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET);
 
   // If reference switch is already active, move away first
   if (referenceSwitchHit)
@@ -1277,7 +1249,7 @@ int StepperReference(int timeout)
     }
 
     // Check if we successfully moved away from the switch
-    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET);
     if (referenceSwitchHit)
     {
       printf("Still at reference position after moving away, hardware error\r\n");
@@ -1308,7 +1280,7 @@ int StepperReference(int timeout)
     StepLibraryDelay(10);
 
     // Check if reference switch is hit
-    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET);
   }
 
   // Reference position found
@@ -1324,7 +1296,7 @@ int StepperReference(int timeout)
 
 int StepperReset(void)
 {
-  // Implementation for stepper reset
+
   printf("Resetting stepper\r\n");
 
   // Reset position tracking
@@ -1367,7 +1339,7 @@ int StepperMoveRelative(int relPos)
 
 int StepperPosition(void)
 {
-  // Implementation for getting current position in mm
+
 
   // Convert the current position from steps to mm
   float positionMm = (float)currentPosition / STEPS_PER_MM;
@@ -1378,10 +1350,10 @@ int StepperPosition(void)
   return 0;
 }
 
-// Implementation of spindle functions
+
 int SpindleStart(int rpm)
 {
-  // Implementation for starting spindle at given RPM
+
   printf("Starting spindle at %d RPM\r\n", rpm);
 
   // Store the target RPM for status reporting
@@ -1434,7 +1406,7 @@ int SpindleStart(int rpm)
 
 int SpindleStop(void)
 {
-  // Implementation for stopping spindle
+
   printf("Stopping spindle\r\n");
 
   // Only perform stop actions if the spindle is actually running
@@ -1457,7 +1429,6 @@ int SpindleStop(void)
 
 int SpindleStatus(void)
 {
-  // Implementation for getting spindle status
   if (spindleEnabled)
   {
     printf("RUNNING\r\n");
@@ -1472,7 +1443,7 @@ int SpindleStatus(void)
   return 0;
 }
 
-// --------------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------------------
 static int CapabilityFunc(int argc, char **argv, void *ctx)
 // --------------------------------------------------------------------------------------------------------------------
 {
