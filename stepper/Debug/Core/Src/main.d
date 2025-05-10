@@ -32,7 +32,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../../libs/LibL6474/inc/LibL6474.h \
- C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
+ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \
@@ -43,7 +43,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/newlib-freertos.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/task.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/list.h \
- ../../libs/LibRTOSConsole/inc/Console.h
+ ../../libs/LibRTOSConsole/inc/Console.h \
+ ../../libs/LibSpindle/inc/Spindle.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -78,7 +79,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../../libs/LibL6474/inc/LibL6474.h:
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h:
@@ -90,3 +91,4 @@ C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/s
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/task.h:
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/list.h:
 ../../libs/LibRTOSConsole/inc/Console.h:
+../../libs/LibSpindle/inc/Spindle.h:

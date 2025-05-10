@@ -16,7 +16,7 @@ S_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Core/Startup/%.o: ../Core/Startup/%.s Core/Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DDEBUG -c -I../../../ibs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../libs/LibL6474/inc -I../../libs/LibRTOSConsole/inc -I"C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Console" -I"C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Stepper" -I"C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Spindle" -I../../libs/LibSpindle/inc -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DDEBUG -c -I../../../ibs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include -I../../libs/LibL6474/inc -I../../libs/LibRTOSConsole/inc -I"C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Console" -I"C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper" -I"C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Spindle" -I../../libs/LibSpindle/inc -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
 clean: clean-Core-2f-Startup
 

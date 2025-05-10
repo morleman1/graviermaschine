@@ -61,6 +61,11 @@ L6474_Handle_t stepperHandle = NULL;
 SpindleHandle_t spindleHandle = NULL;
 ConsoleHandle_t consoleHandle = NULL;
 
+TaskHandle_t stepperMoveTaskHandle = NULL;
+volatile bool stepperMoving = false; //for async movement
+volatile bool stepperCancelRequested = false;
+volatile int targetPosition = 0;
+
 L6474_BaseParameter_t param = {
     .stepMode = 0x01, // Full step mode
     .OcdTh = 0x02,    // Overcurrent threshold
@@ -97,7 +102,10 @@ int StepperReference(int timeout);
 int StepperReset(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
+int StepperPosition(void);
 int SpindleStatus(void);
+int StepperCancel(void);
+int StepperStatus(void);
 void InitComponentsTask(void *pvParameters); // Renamed from InitStepperTask
 
 extern void initialise_stdlib_abstraction(void);
@@ -183,10 +191,25 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
   return 0;
 }
 
-/*static void StepTimerCancelAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
+static void StepTimerCancelAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
 
-}*/
+  if (stepperMoving) {
+    // Signal the library that the operation was cancelled
+    doneClb(h);
+    
+    stepperMoving = false;
+    stepperCancelRequested = false;
+    
+    // If we have a task handle, delete it
+    if (stepperMoveTaskHandle != NULL) {
+      vTaskDelete(stepperMoveTaskHandle);
+      stepperMoveTaskHandle = NULL;
+    }
+    
+    printf("Asynchronous movement cancelled via library callback\r\n");
+  }
+}
 
 // Set the spindle direction
 void SPINDLE_SetDirection(SpindleHandle_t h, void *context, int backward)
@@ -271,7 +294,7 @@ void InitComponentsTask(void *pvParameters)
   p.reset = StepDriverReset;
   p.sleep = StepLibraryDelay;
   p.step = Step;
-  // p.cancelStep = StepTimerCancelAsync;
+  p.cancelStep = StepTimerCancelAsync;
 
   // Create stepper motor driver instance
   stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
@@ -323,7 +346,7 @@ void InitComponentsTask(void *pvParameters)
   // Keep this task alive
   while (1)
   {
-     vTaskDelay(pdMS_TO_TICKS(100)); // Sleep periodically
+    vTaskDelay(pdMS_TO_TICKS(100)); // Sleep periodically
   }
 }
 
@@ -343,8 +366,69 @@ void StepperHandler(int argc, char **argv, void *ctx)
       return -1;
     }
 
-    int absPos = atoi(argv[1]);
-    int result = StepperMove(absPos);
+    int pos = atoi(argv[1]);
+    bool isRelative = false;
+    bool isAsync = false;
+    int speed = 0;
+
+    // Parse flags
+    for (int i = 2; i < argc; i++)
+    {
+      if (strcmp(argv[i], "-r") == 0)
+      {
+        isRelative = true;
+      }
+      else if (strcmp(argv[i], "-a") == 0)
+      {
+        isAsync = true;
+      }
+      else if (strcmp(argv[i], "-s") == 0)
+      {
+        if (i + 1 < argc)
+        {
+          speed = atoi(argv[i + 1]);
+          i++; // Skip the next argument as it's the speed value
+        }
+      }
+    }
+
+    // If relative movement, convert to absolute
+    if (isRelative)
+    {
+      pos = currentPosition + pos;
+    }
+
+    int result = 0;
+
+    // Check if stepper is already moving
+    if (stepperMoving)
+    {
+      printf("Error: Stepper already moving\r\n");
+      return -1;
+    }
+
+    // Execute the appropriate movement function
+    if (isRelative)
+    {
+      // Use the dedicated relative movement function
+      result = StepperMoveRelative(pos);
+    }
+    else if (speed > 0)
+    {
+      // Movement with specified speed
+      result = StepperMoveWithSpeed(pos, speed);
+    }
+    else if (isAsync)
+    {
+      // Asynchronous movement
+      result = StepperMoveAsync(pos);
+    }
+    else
+    {
+      // Standard movement
+      result = StepperMove(pos);
+    }
+
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
@@ -407,6 +491,24 @@ void StepperHandler(int argc, char **argv, void *ctx)
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
+  else if (strcmp(argv[0], "position") == 0)
+  {
+    int result = StepperPosition();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "cancel") == 0)
+  {
+    int result = StepperCancel();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "status") == 0)
+{
+  int result = StepperStatus();
+  printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+  return result;
+}
   else
   {
     printf("Unknown stepper command: %s\r\n", argv[0]);
@@ -487,6 +589,315 @@ int StepperMove(int absPos)
   // Update current position
   currentPosition = absPos;
 
+  return 0;
+}
+
+static void StepperMovementComplete(L6474_Handle_t handle)
+{
+  // This function will be called by the library when asynchronous movement completes
+  printf("Asynchronous movement completed\r\n");
+  
+  // Update position tracking based on the target we were moving to
+  currentPosition = targetPosition;
+  
+  // Reset our flags
+  stepperMoving = false;
+  stepperCancelRequested = false;
+  stepperMoveTaskHandle = NULL;
+}
+
+// Task to handle asynchronous stepper movement
+void StepperMoveTask(void *pvParameters)
+{
+  int target = targetPosition;
+
+  // Calculate number of steps to move
+  int stepsToMove = target - currentPosition;
+
+  if (stepsToMove == 0 || stepperCancelRequested)
+  {
+    // Already at the target position or cancelled
+    stepperMoving = false;
+    stepperCancelRequested = false;
+    vTaskDelete(NULL);
+    return;
+  }
+
+  printf("Moving %d steps\r\n", stepsToMove);
+
+  // Check for cancellation one more time before starting movement
+  if (stepperCancelRequested)
+  {
+    printf("Movement cancelled before starting\r\n");
+    stepperMoving = false;
+    stepperCancelRequested = false;
+    vTaskDelete(NULL);
+    return;
+  }
+
+  // Move the stepper motor
+  if (L6474_StepIncremental(stepperHandle, stepsToMove) != 0)
+  {
+    printf("Movement failed\r\n");
+    stepperMoving = false;
+    stepperCancelRequested = false;
+    vTaskDelete(NULL);
+    return;
+  }
+
+  // Check if cancelled during movement
+  if (stepperCancelRequested)
+  {
+    printf("Movement was cancelled during execution\r\n");
+    stepperCancelRequested = false;
+  }
+  else
+  {
+    // Update current position only if not cancelled
+    currentPosition = target;
+    printf("Movement completed\r\n");
+  }
+
+  stepperMoving = false;
+  vTaskDelete(NULL);
+}
+
+int StepperMoveWithSpeed(int absPos, int speedMmPerMin)
+{
+  // Implementation for moving with specific speed
+  printf("Moving to position %d at speed %d mm/min\r\n", absPos, speedMmPerMin);
+
+  // Check if reference has been completed
+  if (!referenceComplete)
+  {
+    printf("Error: Reference run required before absolute movement\r\n");
+    return -1;
+  }
+
+  // Check if already moving
+  if (stepperMoving)
+  {
+    printf("Error: Stepper already moving\r\n");
+    return -1;
+  }
+
+  // Calculate number of steps to move
+  int stepsToMove = absPos - currentPosition;
+
+  if (stepsToMove == 0)
+  {
+    // Already at the target position
+    return 0;
+  }
+
+  // Convert speed from mm/min to steps/sec
+  float speedStepsPerSec = (speedMmPerMin * STEPS_PER_MM) / 60.0f;
+
+  // Cap the speed if necessary
+  if (speedStepsPerSec < 10) // Minimum speed (adjust as needed)
+  {
+    printf("Speed capped to minimum\r\n");
+    speedStepsPerSec = 10;
+  }
+  else if (speedStepsPerSec > 1000) // Maximum speed (adjust as needed)
+  {
+    printf("Speed capped to maximum\r\n");
+    speedStepsPerSec = 1000;
+  }
+
+  // Calculate delay between steps in milliseconds
+  int delayMs = (int)(1000.0f / speedStepsPerSec);
+
+  printf("Moving %d steps with %d ms delay between steps\r\n", stepsToMove, delayMs);
+
+  // Move the stepper motor one step at a time with controlled speed
+  int stepDirection = (stepsToMove > 0) ? 1 : -1;
+  int remainingSteps = abs(stepsToMove);
+
+  while (remainingSteps > 0)
+  {
+    if (L6474_StepIncremental(stepperHandle, stepDirection) != 0)
+    {
+      printf("Movement failed\r\n");
+      return -1;
+    }
+
+    // Update position
+    currentPosition += stepDirection;
+    remainingSteps--;
+
+    // Delay for proper speed
+    vTaskDelay(pdMS_TO_TICKS(delayMs));
+  }
+
+  return 0;
+}
+
+int StepperMoveAsync(int absPos)
+{
+  // Implementation for asynchronous movement to absolute position
+  printf("Starting asynchronous movement to position: %d\r\n", absPos);
+
+  // Check if reference has been completed
+  if (!referenceComplete)
+  {
+    printf("Error: Reference run required before absolute movement\r\n");
+    return -1;
+  }
+
+  // Check if already moving
+  if (stepperMoving)
+  {
+    printf("Error: Stepper already moving\r\n");
+    return -1;
+  }
+
+  // Set up for async movement
+  targetPosition = absPos;
+  stepperMoving = true;
+
+  // Create task to handle movement
+  BaseType_t result = xTaskCreate(
+      StepperMoveTask,
+      "StepperMove",
+      configMINIMAL_STACK_SIZE,
+      NULL,
+      tskIDLE_PRIORITY + 1,
+      &stepperMoveTaskHandle);
+
+  if (result != pdPASS)
+  {
+    printf("Failed to create stepper move task\r\n");
+    stepperMoving = false;
+    return -1;
+  }
+
+  return 0;
+}
+
+int StepperStatus(void)
+{
+  // Implementation for getting stepper status
+  
+  // 1. Get the internal state machine state
+  // Map our application states to the required hex values:
+  // 0x0: scsINIT - Initial state
+  // 0x1: scsREF - Reference state
+  // 0x2: scsDIS - Disabled state
+  // 0x4: scsENA - Enabled state
+  // 0x8: scsFLT - Fault state
+  int stateCode;
+  L6474x_State_t driverState = stINVALID;
+  L6474_Status_t driverStatus;
+  
+  if (!stepperHandle) {
+    // System not initialized
+    stateCode = 0x0; // scsINIT
+  } else {
+    // Get the L6474 library state and status in one go
+    L6474_GetState(stepperHandle, &driverState);
+    L6474_GetStatus(stepperHandle, &driverStatus);
+    
+    // Determine our application state based on L6474 state and our system state
+    if (driverStatus.OCD || driverStatus.TH_SD || driverStatus.UVLO) {
+      stateCode = 0x8; // scsFLT - Fault detected
+    } else if (driverState == stRESET) {
+      stateCode = 0x0; // scsINIT
+    } else if (!referenceComplete) {
+      stateCode = 0x1; // scsREF - Reference run needed
+    } else if (driverState == stENABLED) {
+      stateCode = 0x4; // scsENA - Enabled and ready
+    } else {
+      stateCode = 0x2; // scsDIS - Disabled but initialized
+    }
+  }
+  
+  // 2. Get the driver status (error bits)
+  int statusRegister = 0;
+  
+  if (stepperHandle) {
+    // We already have driverStatus from above, no need to call GetStatus again
+    
+    // Map each status bit according to the specification:
+    // bit 0: DIRECTION bit
+    statusRegister |= (driverStatus.DIR ? 0x01 : 0);
+    
+    // bit 1: HIGH-Z Driver Output bit
+    statusRegister |= (driverStatus.HIGHZ ? 0x02 : 0);
+    
+    // bit 2: NOTPERF_CMD bit
+    statusRegister |= (driverStatus.NOTPERF_CMD ? 0x04 : 0);
+    
+    // bit 3: OVERCURRENT_DETECTION bit
+    statusRegister |= (driverStatus.OCD ? 0x08 : 0);
+    
+    // bit 4: ONGOING bit
+    statusRegister |= (driverStatus.ONGOING ? 0x10 : 0);
+    
+    // bit 5: TH_SD bit (thermal shutdown)
+    statusRegister |= (driverStatus.TH_SD ? 0x20 : 0);
+    
+    // bit 6: TH_WARN bit (thermal warning)
+    statusRegister |= (driverStatus.TH_WARN ? 0x40 : 0);
+    
+    // bit 7: UVLO Undervoltage Lockout bit
+    statusRegister |= (driverStatus.UVLO ? 0x80 : 0);
+    
+    // bit 8: WRONG_CMD bit
+    statusRegister |= (driverStatus.WRONG_CMD ? 0x100 : 0);
+  }
+  
+  // 3. Get asynchronous operation flag (1 if movement is pending, 0 otherwise)
+  int asyncOp = stepperMoving ? 1 : 0;
+  
+  // Output status values in the required format
+  printf("0x%X\r\n", stateCode);
+  printf("0x%X\r\n", statusRegister);
+  printf("%d\r\n", asyncOp);
+  
+  return 0;
+}
+
+int StepperCancel(void)
+{
+  // Implementation for cancelling stepper movement
+  printf("Cancelling stepper movement\r\n");
+
+  if (!stepperMoving)
+  {
+    printf("No movement to cancel - stepper is already idle\r\n");
+    return 0; // Should succeed even if not moving
+  }
+
+  // Signal the stepper task to stop
+  stepperCancelRequested = true;
+
+  // Wait briefly for the task to stop itself
+  int timeout = 50; // 500ms timeout
+  while (stepperMoving && timeout > 0)
+  {
+    vTaskDelay(pdMS_TO_TICKS(10));
+    timeout--;
+  }
+
+  // If task is still running after timeout, force delete it
+  if (stepperMoving && stepperMoveTaskHandle != NULL)
+  {
+    printf("Forcing movement task termination\r\n");
+
+    // Save current task handle in case it's reset during delete
+    TaskHandle_t taskToDelete = stepperMoveTaskHandle;
+
+    // Delete the task
+    vTaskDelete(taskToDelete);
+
+    // Reset flags
+    stepperMoving = false;
+    stepperCancelRequested = false;
+    stepperMoveTaskHandle = NULL;
+  }
+
+  printf("Movement cancelled successfully\r\n");
   return 0;
 }
 
@@ -585,6 +996,38 @@ int StepperReset(void)
   result |= L6474_SetPowerOutputs(stepperHandle, 1);
 
   return result == 0 ? 0 : -1;
+}
+
+int StepperMoveRelative(int relPos)
+{
+  printf("Moving stepper relatively by: %d\r\n", relPos);
+
+  printf("Moving %d steps\r\n", relPos);
+
+  // Move the stepper motor
+  if (L6474_StepIncremental(stepperHandle, relPos) != 0)
+  {
+    printf("Movement failed\r\n");
+    return -1;
+  }
+
+  // Update current position
+  currentPosition += relPos;
+
+  return 0;
+}
+
+int StepperPosition(void)
+{
+  // Implementation for getting current position in mm
+
+  // Convert the current position from steps to mm
+  float positionMm = (float)currentPosition / STEPS_PER_MM;
+
+  // Output the position as a float
+  printf("%.3f\r\n", positionMm);
+
+  return 0;
 }
 
 // Implementation of spindle functions

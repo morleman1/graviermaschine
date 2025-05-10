@@ -1,5 +1,5 @@
 Core/Src/Console/Console.o: \
- C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibRTOSConsole/src/Console.c \
+ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibRTOSConsole/src/Console.c \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \
@@ -46,9 +46,9 @@ Core/Src/Console/Console.o: \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../../libs/LibL6474/inc/LibL6474.h \
- C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
+ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
  ../../libs/LibRTOSConsole/inc/Console.h \
- C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h
+ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h:
@@ -96,6 +96,6 @@ Core/Src/Console/Console.o: \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../../libs/LibL6474/inc/LibL6474.h:
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
 ../../libs/LibRTOSConsole/inc/Console.h:
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h:
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h:
