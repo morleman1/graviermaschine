@@ -57,9 +57,10 @@ TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
-TaskHandle_t InitStepperTaskHandle = NULL;
-L6474_Handle_t h;
+TaskHandle_t InitComponentsTaskHandle = NULL;
+L6474_Handle_t stepperHandle = NULL;
 SpindleHandle_t spindleHandle = NULL;
+ConsoleHandle_t consoleHandle = NULL;
 
 L6474_BaseParameter_t param = {
     .stepMode = 0x01, // Full step mode
@@ -98,7 +99,8 @@ int StepperReset(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
 int SpindleStatus(void);
-void InitStepper();
+void InitComponentsTask(void *pvParameters);  // Renamed from InitStepperTask
+
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -265,10 +267,9 @@ void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
   }
 }
 
-void InitStepperTask(void)
+void InitComponentsTask(void *pvParameters)
 {
   L6474x_Platform_t p;
-
   p.malloc = StepLibraryMalloc;
   p.free = StepLibraryFree;
   p.transfer = StepDriverSpiTransfer;
@@ -278,37 +279,56 @@ void InitStepperTask(void)
   // p.cancelStep = StepTimerCancelAsync;
 
   // Create stepper motor driver instance
-  h = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
-  if (h == NULL)
+  stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
+  if (stepperHandle == NULL)
   {
     printf("Failed to create stepper motor driver instance\r\n");
     Error_Handler();
   }
 
   // reset all and take all initialization steps
-  int result = 0;
-  result |= L6474_ResetStandBy(h);
+ int result = 0;
+  result |= L6474_ResetStandBy(stepperHandle);
   result |= L6474_SetBaseParameter(&param);
-  result |= L6474_Initialize(h, &param);
-  result |= L6474_SetPowerOutputs(h, 1);
+  result |= L6474_Initialize(stepperHandle, &param);
+  result |= L6474_SetPowerOutputs(stepperHandle, 1);
 
   if (result != 0)
   {
     printf("Stepper initialization failed with error code: %d\r\n", result);
     Error_Handler();
   }
-
-  if (result == 0)
+  
+  printf("Stepper initialization complete\r\n");
+  
+  // Initialize Spindle
+  SpindlePhysicalParams_t s;
+  s.maxRPM = 9000.0f;
+  s.minRPM = -9000.0f;
+  s.absMinRPM = 1600.0f;
+  s.setDirection = SPINDLE_SetDirection;
+  s.setDutyCycle = SPINDLE_SetDutyCycle;
+  s.enaPWM = SPINDLE_EnaPWM;
+  s.context = NULL;
+  
+  // Create spindle instance (use consoleHandle that was created in main)
+  spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, 
+                                         configMAX_PRIORITIES - 3, 
+                                         consoleHandle, &s);
+  
+  if (spindleHandle == NULL)
   {
-
-    while (1)
-    {
-      // result |= L6474_StepIncremental(h, -1);
-    }
+    printf("Failed to create spindle controller instance\r\n");
+    Error_Handler();
   }
-  else
+  
+  printf("Spindle initialization complete\r\n");
+  printf("All components initialized successfully\r\n");
+  
+  // Keep this task alive
+  while (1)
   {
-    // error handling
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // Sleep periodically
   }
 }
 
@@ -380,7 +400,7 @@ void StepperHandler(int argc, char **argv, void *ctx)
     if (result == 0 && !keepEnabled)
     {
       // Turn off power if not keeping enabled
-      L6474_SetPowerOutputs(h, 0);
+      L6474_SetPowerOutputs(stepperHandle, 0);
     }
 
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
@@ -463,7 +483,7 @@ int StepperMove(int absPos)
   printf("Moving %d steps\r\n", stepsToMove);
 
   // Move the stepper motor
-  if (L6474_StepIncremental(h, stepsToMove) != 0)
+  if (L6474_StepIncremental(stepperHandle, stepsToMove) != 0)
   {
     printf("Movement failed\r\n");
     return -1;
@@ -493,7 +513,7 @@ int StepperReference(void)
     printf("Already at reference position, moving away first\r\n");
 
     // Move away from reference switch (positive direction)
-    if (L6474_StepIncremental(h, MIN_DISTANCE_FROM_REFERENCE) != 0)
+    if (L6474_StepIncremental(stepperHandle, MIN_DISTANCE_FROM_REFERENCE) != 0)
     {
       printf("Failed to move away from reference position\r\n");
       return -1;
@@ -515,7 +535,7 @@ int StepperReference(void)
   while (!referenceSwitchHit)
   {
     // Move one step in negative direction
-    if (L6474_StepIncremental(h, -1) != 0)
+    if (L6474_StepIncremental(stepperHandle, -1) != 0)
     {
       printf("Failed during reference movement\r\n");
       return -1;
@@ -555,10 +575,10 @@ int StepperReset(void)
   StepLibraryDelay(10);                                                  // Small delay to ensure stable state after reset
 
   int result = 0;
-  result |= L6474_ResetStandBy(h);
+  result |= L6474_ResetStandBy(stepperHandle);
   result |= L6474_SetBaseParameter(&param);
-  result |= L6474_Initialize(h, &param);
-  result |= L6474_SetPowerOutputs(h, 1);
+  result |= L6474_Initialize(stepperHandle, &param);
+  result |= L6474_SetPowerOutputs(stepperHandle, 1);
 
   return result == 0 ? 0 : -1;
 }
@@ -622,14 +642,19 @@ int SpindleStop(void)
   // Implementation for stopping spindle
   printf("Stopping spindle\r\n");
 
-  // Disable spindle
-  SPINDLE_EnaPWM(spindleHandle, NULL, 0);
+  // Only perform stop actions if the spindle is actually running
+  if (spindleEnabled) {
+    // Disable spindle
+    SPINDLE_EnaPWM(spindleHandle, NULL, 0);
+    
+    // Reset RPM tracking
+    spindleCurrentRPM = 0.0f;
+    spindleEnabled = 0;
+  } else {
+    printf("Spindle already stopped\r\n");
+  }
 
-  // Reset RPM tracking
-  spindleCurrentRPM = 0.0f;
-  spindleEnabled = 0;
-
-  return 0;
+  return 0; // Always return success
 }
 
 int SpindleStatus(void)
@@ -718,32 +743,20 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
-  ConsoleHandle_t c = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
-
-  SpindlePhysicalParams_t s;
-  s.maxRPM = 9000.0f;
-  s.minRPM = -9000.0f;
-  s.absMinRPM = 1600.0f;
-  s.setDirection = SPINDLE_SetDirection;
-  s.setDutyCycle = SPINDLE_SetDutyCycle;
-  s.enaPWM = SPINDLE_EnaPWM;
-  s.context = NULL;
-
-  // Create spindle instance
-  SpindleHandle_t spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 3, c, &s);
-
-  if (spindleHandle == NULL)
-  {
-    printf("Failed to create spindle controller instance\r\n");
+  consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
+  if (consoleHandle == NULL) {
+    printf("Failed to create console instance\r\n");
     Error_Handler();
   }
 
-  CONSOLE_RegisterCommand(c, "capability", "Shows what the program is cabable of", CapabilityFunc, NULL) == 0;
-  CONSOLE_RegisterCommand(c, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
-  CONSOLE_RegisterCommand(c, "spindle", "spindle control commands", SpindleHandler, NULL);
+  CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is cabable of", CapabilityFunc, NULL) == 0;
+  CONSOLE_RegisterCommand(consoleHandle, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
+  CONSOLE_RegisterCommand(consoleHandle, "spindle", "spindle control commands", SpindleHandler, NULL);
 
-  xTaskCreate(&InitStepperTask, "InitStepperTask", 2000, NULL, 2, InitStepperTaskHandle);
-  printf("Moinsen bastard\r\n");
+  xTaskCreate(&InitComponentsTask, "InitStepperTask", 2000, NULL, 2, InitComponentsTaskHandle);
+
+  printf("System init start\r\n");
+
   (void)CapabilityFunc;
 
   vTaskStartScheduler();
