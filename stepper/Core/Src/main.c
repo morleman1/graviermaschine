@@ -59,6 +59,13 @@ UART_HandleTypeDef huart3;
 /* USER CODE BEGIN PV */
 TaskHandle_t InitMotorTaskHandle = NULL;
 L6474_Handle_t h;
+
+int currentPosition = 0;
+int referencePosition = 0;
+bool referenceComplete = false;
+#define STEPS_PER_MM 100 // Adjust based on your stepper motor and mechanics
+#define MIN_DISTANCE_FROM_REFERENCE 200 // Minimum steps (2mm) to move away from reference
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -227,18 +234,15 @@ void InitMotorTask(void)
 }
 
 
-void StepperHandler(int argc, char **argv, void *ctx) // argc is amount of subcommands, argv is the array of subcommands
+void StepperHandler(int argc, char **argv, void *ctx)
 {
-  if (argc < 1)
-  {
+  if (argc < 1) {
     printf("Invalid number of arguments\r\n");
     return -1;
   }
 
-  if (strcmp(argv[0], "move") == 0)
-  {
-    if (argc < 2)
-    {
+  if (strcmp(argv[0], "move") == 0) {
+    if (argc < 2) {
       printf("Missing position argument\r\n");
       return -1;
     }
@@ -248,20 +252,55 @@ void StepperHandler(int argc, char **argv, void *ctx) // argc is amount of subco
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else if (strcmp(argv[0], "reference") == 0)
-  {
-    int result = StepperReference();
+  else if (strcmp(argv[0], "reference") == 0) {
+    bool keepEnabled = false;
+    bool skipReference = false;
+    int timeout = 0;
+    
+    // Parse flags
+    for (int i = 1; i < argc; i++) {
+      if (strcmp(argv[i], "-e") == 0) {
+        keepEnabled = true;
+      }
+      else if (strcmp(argv[i], "-s") == 0) {
+        skipReference = true;
+      }
+      else if (strcmp(argv[i], "-t") == 0) {
+        if (i + 1 < argc) {
+          timeout = atoi(argv[i + 1]);
+          i++; // Skip the next argument as it's the timeout value
+        }
+      }
+    }
+    
+    int result;
+    if (skipReference) {
+      // Skip reference run and set current position as reference
+      printf("Skipping reference run, using current position\r\n");
+      currentPosition = 0;
+      referencePosition = 0;
+      referenceComplete = true;
+      result = 0;
+    } else {
+      // Perform reference run
+      result = StepperReference();
+    }
+    
+    // Handle power output state after reference
+    if (result == 0 && !keepEnabled) {
+      // Turn off power if not keeping enabled
+      L6474_SetPowerOutputs(h, 0);
+    }
+    
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else if (strcmp(argv[0], "reset") == 0)
-  {
+  else if (strcmp(argv[0], "reset") == 0) {
     int result = StepperReset();
     printf("%s\r\n", result == 0 ? "OK" : "FAIL");
     return result;
   }
-  else
-  {
+  else {
     printf("Unknown stepper command: %s\r\n", argv[0]);
     return -1;
   }
@@ -314,16 +353,32 @@ int StepperMove(int absPos)
   // Implementation for moving stepper to absolute position
   printf("Moving stepper to position: %d\r\n", absPos);
   
-  // Current implementation based on what was in the original StepperHandler
-  for (int i = absPos; i > 0; i--)
-  {
-    if (L6474_StepIncremental(h, absPos) != 0)
-    {
-      return -1; // Fail
-    }
+  // Check if reference has been completed
+  if (!referenceComplete) {
+    printf("Error: Reference run required before absolute movement\r\n");
+    return -1;
   }
   
-  return 0; // OK
+  // Calculate number of steps to move
+  int stepsToMove = absPos - currentPosition;
+  
+  if (stepsToMove == 0) {
+    // Already at the target position
+    return 0;
+  }
+  
+  printf("Moving %d steps\r\n", stepsToMove);
+  
+  // Move the stepper motor
+  if (L6474_StepIncremental(h, stepsToMove) != 0) {
+    printf("Movement failed\r\n");
+    return -1;
+  }
+  
+  // Update current position
+  currentPosition = absPos;
+  
+  return 0;
 }
 
 int StepperReference(void)
@@ -331,10 +386,58 @@ int StepperReference(void)
   // Implementation for reference run
   printf("Performing reference run\r\n");
   
-  // TODO: Implement reference run logic
-  // This would typically move the stepper until a reference switch is hit
+  // Define variables
+  bool referenceSwitchHit = false;
+  int result = 0;
   
-  return 0; // OK for now, replace with actual implementation
+  // Check if reference switch is already active
+  referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+  
+  // If reference switch is already active, move away first
+  if (referenceSwitchHit) {
+    printf("Already at reference position, moving away first\r\n");
+    
+    // Move away from reference switch (positive direction)
+    if (L6474_StepIncremental(h, MIN_DISTANCE_FROM_REFERENCE) != 0) {
+      printf("Failed to move away from reference position\r\n");
+      return -1;
+    }
+    
+    // Check if we successfully moved away from the switch
+    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+    if (referenceSwitchHit) {
+      printf("Still at reference position after moving away, hardware error\r\n");
+      return -1;
+    }
+  }
+  
+  // Now move towards the reference switch (negative direction) slowly
+  printf("Moving towards reference position\r\n");
+  
+  // Move one step at a time until reference switch is hit
+  while (!referenceSwitchHit) {
+    // Move one step in negative direction
+    if (L6474_StepIncremental(h, -1) != 0) {
+      printf("Failed during reference movement\r\n");
+      return -1;
+    }
+    
+    // Small delay between steps for slow movement
+    StepLibraryDelay(10);
+    
+    // Check if reference switch is hit
+    referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
+  }
+  
+  // Reference position found
+  printf("Reference position found\r\n");
+  
+  // Reset position tracking
+  currentPosition = 0;
+  referencePosition = 0;
+  referenceComplete = true;
+  
+  return 0;
 }
 
 int StepperReset(void)
@@ -342,6 +445,10 @@ int StepperReset(void)
   // Implementation for stepper reset
   printf("Resetting stepper\r\n");
   
+  // Reset position tracking
+  currentPosition = 0;
+  referenceComplete = false;
+
   // Reset and reinitialize the stepper
   L6474_BaseParameter_t param = {
     .stepMode = 0x01,
