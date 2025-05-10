@@ -30,6 +30,7 @@ extern "C" {
 #include "stm32f7xx_hal.h"
 #include "LibL6474.h"
 #include "LibL6474Config.h"
+#include "Spindle.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

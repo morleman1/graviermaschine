@@ -57,7 +57,7 @@ TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
-TaskHandle_t InitMotorTaskHandle = NULL;
+TaskHandle_t InitStepperTaskHandle = NULL;
 L6474_Handle_t h;
 
 L6474_BaseParameter_t param = {
@@ -93,7 +93,7 @@ int StepperReset(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
 int SpindleStatus(void);
-void InitMotor();
+void InitStepper();
 
 
 extern void initialise_stdlib_abstraction(void);
@@ -187,7 +187,7 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
 
 }*/
 
-void InitMotorTask(void)
+void InitStepperTask(void)
 {
   L6474x_Platform_t p;
 
@@ -199,11 +199,11 @@ void InitMotorTask(void)
   p.step = Step;
   // p.cancelStep = StepTimerCancelAsync;
 
-  // Create motor driver instance
+  // Create stepper motor driver instance
   h = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
   if (h == NULL)
   {
-    printf("Failed to create motor driver instance\r\n");
+    printf("Failed to create stepper motor driver instance\r\n");
     Error_Handler();
   }
 
@@ -216,7 +216,7 @@ void InitMotorTask(void)
 
   if (result != 0)
   {
-    printf("Motor initialization failed with error code: %d\r\n", result);
+    printf("Stepper initialization failed with error code: %d\r\n", result);
     Error_Handler();
   }
 
@@ -450,6 +450,12 @@ int StepperReset(void)
   currentPosition = 0;
   referenceComplete = false;
 
+  // Reset hardware by asserting and releasing the reset pin
+  HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_SET);   // Assert reset
+  StepLibraryDelay(10);  // Small delay to ensure reset is recognized
+  HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, GPIO_PIN_RESET); // Release reset
+  StepLibraryDelay(10);  // Small delay to ensure stable state after reset
+ 
   int result = 0;
   result |= L6474_ResetStandBy(h);
   result |= L6474_SetBaseParameter(&param);
@@ -569,7 +575,7 @@ int main(void)
   CONSOLE_RegisterCommand(c, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
 
 
-  xTaskCreate(&InitMotorTask, "InitMotorTask", 2000, NULL, 2, InitMotorTaskHandle);
+  xTaskCreate(&InitStepperTask, "InitStepperTask", 2000, NULL, 2, InitStepperTaskHandle);
   printf("Moinsen bastard\r\n");
   (void)CapabilityFunc;
 
