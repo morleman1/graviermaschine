@@ -94,7 +94,7 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 int StepperMove(int absPos);
-int StepperReference(void);
+int StepperReference(int timeout);
 int StepperReset(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
@@ -393,7 +393,7 @@ void StepperHandler(int argc, char **argv, void *ctx)
     else
     {
       // Perform reference run
-      result = StepperReference();
+      result = StepperReference(timeout);
     }
 
     // Handle power output state after reference
@@ -495,7 +495,7 @@ int StepperMove(int absPos)
   return 0;
 }
 
-int StepperReference(void)
+int StepperReference(int timeout)
 {
   // Implementation for reference run
   printf("Performing reference run\r\n");
@@ -503,6 +503,9 @@ int StepperReference(void)
   // Define variables
   bool referenceSwitchHit = false;
   int result = 0;
+    // Add timeout implementation
+  TickType_t startTime = xTaskGetTickCount();
+  TickType_t timeoutTicks = timeout * 1000 / portTICK_PERIOD_MS;
 
   // Check if reference switch is already active
   referenceSwitchHit = (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_SET);
@@ -534,6 +537,11 @@ int StepperReference(void)
   // Move one step at a time until reference switch is hit
   while (!referenceSwitchHit)
   {
+        // Check for timeout
+    if (timeout > 0 && (xTaskGetTickCount() - startTime) > timeoutTicks) {
+      printf("Reference run timeout\r\n");
+      return -1;
+    }
     // Move one step in negative direction
     if (L6474_StepIncremental(stepperHandle, -1) != 0)
     {
@@ -749,11 +757,21 @@ int main(void)
     Error_Handler();
   }
 
-  CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is cabable of", CapabilityFunc, NULL) == 0;
-  CONSOLE_RegisterCommand(consoleHandle, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
-  CONSOLE_RegisterCommand(consoleHandle, "spindle", "spindle control commands", SpindleHandler, NULL);
+  int result = 0;
+  result |= CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
+  result |= CONSOLE_RegisterCommand(consoleHandle, "stepper", "Standard stepper command followed by subcommands", StepperHandler, NULL);
+  result |= CONSOLE_RegisterCommand(consoleHandle, "spindle", "Spindle control commands", SpindleHandler, NULL);
 
-  xTaskCreate(&InitComponentsTask, "InitStepperTask", 2000, NULL, 2, InitComponentsTaskHandle);
+    // Check if any command registration failed
+  if (result != 0) {
+    printf("Failed to register one or more commands\r\n");
+    Error_Handler();
+  }
+
+  if (xTaskCreate(&InitComponentsTask, "InitComponents", 2000, NULL, 2, &InitComponentsTaskHandle) != pdPASS) {
+    printf("Failed to create initialization task\r\n");
+    Error_Handler();
+  }
 
   printf("System init start\r\n");
 
