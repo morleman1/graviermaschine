@@ -323,7 +323,7 @@ void InitComponentsTask(void *pvParameters)
   // Keep this task alive
   while (1)
   {
-    // vTaskDelay(pdMS_TO_TICKS(1000)); // Sleep periodically
+     vTaskDelay(pdMS_TO_TICKS(100)); // Sleep periodically
   }
 }
 
