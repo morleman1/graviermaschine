@@ -62,7 +62,7 @@ SpindleHandle_t spindleHandle = NULL;
 ConsoleHandle_t consoleHandle = NULL;
 
 TaskHandle_t stepperMoveTaskHandle = NULL;
-volatile bool stepperMoving = false; //for async movement
+volatile bool stepperMoving = false; // for async movement
 volatile bool stepperCancelRequested = false;
 volatile int targetPosition = 0;
 
@@ -191,22 +191,24 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
   return 0;
 }
 
-static void StepTimerCancelAsync(void* pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
+static void StepTimerCancelAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
 
-  if (stepperMoving) {
+  if (stepperMoving)
+  {
     // Signal the library that the operation was cancelled
     doneClb(h);
-    
+
     stepperMoving = false;
     stepperCancelRequested = false;
-    
+
     // If we have a task handle, delete it
-    if (stepperMoveTaskHandle != NULL) {
+    if (stepperMoveTaskHandle != NULL)
+    {
       vTaskDelete(stepperMoveTaskHandle);
       stepperMoveTaskHandle = NULL;
     }
-    
+
     printf("Asynchronous movement cancelled via library callback\r\n");
   }
 }
@@ -504,14 +506,353 @@ void StepperHandler(int argc, char **argv, void *ctx)
     return result;
   }
   else if (strcmp(argv[0], "status") == 0)
-{
-  int result = StepperStatus();
-  printf("%s\r\n", result == 0 ? "OK" : "FAIL");
-  return result;
-}
+  {
+    int result = StepperStatus();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "config") == 0)
+  {
+    if (argc < 2)
+    {
+      printf("Missing config parameter\r\n");
+      return -1;
+    }
+
+    int result = StepperConfigHandler(argv[1], argc, argv, 2);
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
   else
   {
     printf("Unknown stepper command: %s\r\n", argv[0]);
+    return -1;
+  }
+}
+
+int StepperConfigHandler(const char *param, int argc, char **argv, int startIndex)
+{
+  // Check if the parameter is valid
+  if (!param)
+  {
+    printf("Missing config parameter\r\n");
+    return -1;
+  }
+
+  // Default: no value provided (read mode)
+  bool writeMode = false;
+  int value = 0;
+  float floatValue = 0.0f;
+  bool isFloatParam = false;
+
+  // Check if -v flag is provided (write mode)
+  if (startIndex < argc && strcmp(argv[startIndex], "-v") == 0)
+  {
+    writeMode = true;
+
+    // Make sure we have a value after -v
+    if (startIndex + 1 >= argc)
+    {
+      printf("Missing value for parameter %s\r\n", param);
+      return -1;
+    }
+
+    // Parameters posmax, posmin, posref, and mmperturn are float values
+    if (strcmp(param, "posmax") == 0 ||
+        strcmp(param, "posmin") == 0 ||
+        strcmp(param, "posref") == 0 ||
+        strcmp(param, "mmperturn") == 0)
+    {
+      floatValue = atof(argv[startIndex + 1]);
+      isFloatParam = true;
+    }
+    else
+    {
+      // All other parameters are integers
+      value = atoi(argv[startIndex + 1]);
+    }
+  }
+
+  // Process the particular config parameter
+  if (strcmp(param, "powerena") == 0)
+  {
+    if (writeMode)
+    {
+      // Set power output state
+      if (value != 0 && value != 1)
+      {
+        printf("Invalid value for powerena - must be 0 or 1\r\n");
+        return -1;
+      }
+      return L6474_SetPowerOutputs(stepperHandle, value);
+    }
+    else
+    {
+      // Get power output state
+      L6474x_State_t state;
+      L6474_GetState(stepperHandle, &state);
+      printf("%d\r\n", (state == stENABLED) ? 1 : 0);
+      return 0;
+    }
+  }
+  else if (strcmp(param, "torque") == 0)
+  {
+    if (writeMode)
+    {
+      // Set torque value (current setting)
+      if (value < 0 || value > 255)
+      {
+        printf("Invalid value for torque - must be between 0 and 255\r\n");
+        return -1;
+      }
+      return L6474_SetProperty(stepperHandle, L6474_PROP_TORQUE, value);
+    }
+    else
+    {
+      // Get torque value
+      int currentVal;
+      int result = L6474_GetProperty(stepperHandle, L6474_PROP_TORQUE, &currentVal);
+      if (result == 0)
+      {
+        printf("%d\r\n", currentVal);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "throvercurr") == 0)
+  {
+    if (writeMode)
+    {
+      // Set overcurrent threshold
+      if (value < 0 || value > 3) //ocdth1500mA = 0x03
+      {
+        printf("Invalid value for throvercurr - must be between 0 and 3\r\n");
+        return -1;
+      }
+      return L6474_SetProperty(stepperHandle, L6474_PROP_OCDTH, value);
+    }
+    else
+    {
+      // Get overcurrent threshold
+      int currentVal;
+      int result = L6474_GetProperty(stepperHandle, L6474_PROP_OCDTH, &currentVal);
+      if (result == 0)
+      {
+        printf("%d\r\n", currentVal);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "stepmode") == 0)
+  {
+    if (writeMode)
+    {
+      // Set step mode
+      if (value < 0 || value > 4)
+      {
+        printf("Invalid value for stepmode - must be between 0 and 4\r\n");
+        return -1;
+      }
+      return L6474_SetStepMode(stepperHandle, (L6474x_StepMode_t)value);
+    }
+    else
+    {
+      // Get step mode
+      L6474x_StepMode_t mode;
+      int result = L6474_GetStepMode(stepperHandle, &mode);
+      if (result == 0)
+      {
+        printf("%d\r\n", mode);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "timeoff") == 0)
+  {
+    // Check if output is enabled (can't change this parameter while enabled)
+    L6474x_State_t state;
+    L6474_GetState(stepperHandle, &state);
+    if (writeMode && state == stENABLED)
+    {
+      printf("Cannot change timeoff while outputs are enabled\r\n");
+      return -1;
+    }
+
+    if (writeMode)
+    {
+      // Set off time
+      if (value < 0 || value > 255)
+      {
+        printf("Invalid value for timeoff - must be between 0 and 255\r\n");
+        return -1;
+      }
+      return L6474_SetProperty(stepperHandle, L6474_PROP_TOFF, value);
+    }
+    else
+    {
+      // Get off time
+      int currentVal;
+      int result = L6474_GetProperty(stepperHandle, L6474_PROP_TOFF, &currentVal);
+      if (result == 0)
+      {
+        printf("%d\r\n", currentVal);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "timeon") == 0)
+  {
+    // Check if output is enabled (can't change this parameter while enabled)
+    L6474x_State_t state;
+    L6474_GetState(stepperHandle, &state);
+    if (writeMode && state == stENABLED)
+    {
+      printf("Cannot change timeon while outputs are enabled\r\n");
+      return -1;
+    }
+
+    if (writeMode)
+    {
+      // Set on time
+      if (value < 0 || value > 255)
+      {
+        printf("Invalid value for timeon - must be between 0 and 255\r\n");
+        return -1;
+      }
+      return L6474_SetProperty(stepperHandle, L6474_PROP_TON, value);
+    }
+    else
+    {
+      // Get on time
+      int currentVal;
+      int result = L6474_GetProperty(stepperHandle, L6474_PROP_TON, &currentVal);
+      if (result == 0)
+      {
+        printf("%d\r\n", currentVal);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "timefast") == 0)
+  {
+    // Check if output is enabled (can't change this parameter while enabled)
+    L6474x_State_t state;
+    L6474_GetState(stepperHandle, &state);
+    if (writeMode && state == stENABLED)
+    {
+      printf("Cannot change timefast while outputs are enabled\r\n");
+      return -1;
+    }
+
+    if (writeMode)
+    {
+      // Set fast decay time
+      if (value < 0 || value > 255)
+      {
+        printf("Invalid value for timefast - must be between 0 and 255\r\n");
+        return -1;
+      }
+      return L6474_SetProperty(stepperHandle, L6474_PROP_TFAST, value);
+    }
+    else
+    {
+      // Get fast decay time
+      int currentVal;
+      int result = L6474_GetProperty(stepperHandle, L6474_PROP_TFAST, &currentVal);
+      if (result == 0)
+      {
+        printf("%d\r\n", currentVal);
+      }
+      return result;
+    }
+  }
+  else if (strcmp(param, "mmperturn") == 0)
+  {
+    // This is a custom parameter that's not directly mapped to L6474
+    static float mmPerTurn = 1.0f; // Default: 1mm per turn
+
+    if (writeMode)
+    {
+      if (floatValue <= 0)
+      {
+        printf("Invalid value for mmperturn - must be positive\r\n");
+        return -1;
+      }
+      mmPerTurn = floatValue;
+      return 0;
+    }
+    else
+    {
+      printf("%.3f\r\n", mmPerTurn);
+      return 0;
+    }
+  }
+  else if (strcmp(param, "stepsperturn") == 0)
+  {
+    // This is a custom parameter that's not directly mapped to L6474
+    static int stepsPerTurn = 200; // Default: 200 steps per turn for many steppers
+
+    if (writeMode)
+    {
+      if (value <= 0)
+      {
+        printf("Invalid value for stepsperturn - must be positive\r\n");
+        return -1;
+      }
+      stepsPerTurn = value;
+      return 0;
+    }
+    else
+    {
+      printf("%d\r\n", stepsPerTurn);
+      return 0;
+    }
+  }
+  else if (strcmp(param, "posmax") == 0 ||
+           strcmp(param, "posmin") == 0 ||
+           strcmp(param, "posref") == 0)
+  {
+    // These are custom parameters for position limits
+    static float posMax = 100.0f;  // Default max position (mm)
+    static float posMin = -100.0f; // Default min position (mm)
+    static float posRef = 0.0f;    // Default reference position (mm)
+
+    if (writeMode)
+    {
+      if (strcmp(param, "posmax") == 0)
+      {
+        posMax = floatValue;
+      }
+      else if (strcmp(param, "posmin") == 0)
+      {
+        posMin = floatValue;
+      }
+      else
+      { // posref
+        posRef = floatValue;
+      }
+      return 0;
+    }
+    else
+    {
+      if (strcmp(param, "posmax") == 0)
+      {
+        printf("%.3f\r\n", posMax);
+      }
+      else if (strcmp(param, "posmin") == 0)
+      {
+        printf("%.3f\r\n", posMin);
+      }
+      else
+      { // posref
+        printf("%.3f\r\n", posRef);
+      }
+      return 0;
+    }
+  }
+  else
+  {
+    printf("Unknown config parameter: %s\r\n", param);
     return -1;
   }
 }
@@ -596,10 +937,10 @@ static void StepperMovementComplete(L6474_Handle_t handle)
 {
   // This function will be called by the library when asynchronous movement completes
   printf("Asynchronous movement completed\r\n");
-  
+
   // Update position tracking based on the target we were moving to
   currentPosition = targetPosition;
-  
+
   // Reset our flags
   stepperMoving = false;
   stepperCancelRequested = false;
@@ -752,22 +1093,25 @@ int StepperMoveAsync(int absPos)
     return -1;
   }
 
+  // Calculate number of steps to move
+  int stepsToMove = absPos - currentPosition;
+
+  if (stepsToMove == 0)
+  {
+    // Already at the target position
+    return 0;
+  }
+
   // Set up for async movement
   targetPosition = absPos;
   stepperMoving = true;
 
-  // Create task to handle movement
-  BaseType_t result = xTaskCreate(
-      StepperMoveTask,
-      "StepperMove",
-      configMINIMAL_STACK_SIZE,
-      NULL,
-      tskIDLE_PRIORITY + 1,
-      &stepperMoveTaskHandle);
+  // Use the library's built-in asynchronous stepping capability
+  int result = L6474_StepIncremental(stepperHandle, stepsToMove);
 
-  if (result != pdPASS)
+  if (result != 0)
   {
-    printf("Failed to create stepper move task\r\n");
+    printf("Failed to start asynchronous movement\r\n");
     stepperMoving = false;
     return -1;
   }
@@ -778,7 +1122,7 @@ int StepperMoveAsync(int absPos)
 int StepperStatus(void)
 {
   // Implementation for getting stepper status
-  
+
   // 1. Get the internal state machine state
   // Map our application states to the required hex values:
   // 0x0: scsINIT - Initial state
@@ -789,72 +1133,85 @@ int StepperStatus(void)
   int stateCode;
   L6474x_State_t driverState = stINVALID;
   L6474_Status_t driverStatus;
-  
-  if (!stepperHandle) {
+
+  if (!stepperHandle)
+  {
     // System not initialized
     stateCode = 0x0; // scsINIT
-  } else {
+  }
+  else
+  {
     // Get the L6474 library state and status in one go
     L6474_GetState(stepperHandle, &driverState);
     L6474_GetStatus(stepperHandle, &driverStatus);
-    
+
     // Determine our application state based on L6474 state and our system state
-    if (driverStatus.OCD || driverStatus.TH_SD || driverStatus.UVLO) {
+    if (driverStatus.OCD || driverStatus.TH_SD || driverStatus.UVLO)
+    {
       stateCode = 0x8; // scsFLT - Fault detected
-    } else if (driverState == stRESET) {
+    }
+    else if (driverState == stRESET)
+    {
       stateCode = 0x0; // scsINIT
-    } else if (!referenceComplete) {
+    }
+    else if (!referenceComplete)
+    {
       stateCode = 0x1; // scsREF - Reference run needed
-    } else if (driverState == stENABLED) {
+    }
+    else if (driverState == stENABLED)
+    {
       stateCode = 0x4; // scsENA - Enabled and ready
-    } else {
+    }
+    else
+    {
       stateCode = 0x2; // scsDIS - Disabled but initialized
     }
   }
-  
+
   // 2. Get the driver status (error bits)
   int statusRegister = 0;
-  
-  if (stepperHandle) {
+
+  if (stepperHandle)
+  {
     // We already have driverStatus from above, no need to call GetStatus again
-    
+
     // Map each status bit according to the specification:
     // bit 0: DIRECTION bit
     statusRegister |= (driverStatus.DIR ? 0x01 : 0);
-    
+
     // bit 1: HIGH-Z Driver Output bit
     statusRegister |= (driverStatus.HIGHZ ? 0x02 : 0);
-    
+
     // bit 2: NOTPERF_CMD bit
     statusRegister |= (driverStatus.NOTPERF_CMD ? 0x04 : 0);
-    
+
     // bit 3: OVERCURRENT_DETECTION bit
     statusRegister |= (driverStatus.OCD ? 0x08 : 0);
-    
+
     // bit 4: ONGOING bit
     statusRegister |= (driverStatus.ONGOING ? 0x10 : 0);
-    
+
     // bit 5: TH_SD bit (thermal shutdown)
     statusRegister |= (driverStatus.TH_SD ? 0x20 : 0);
-    
+
     // bit 6: TH_WARN bit (thermal warning)
     statusRegister |= (driverStatus.TH_WARN ? 0x40 : 0);
-    
+
     // bit 7: UVLO Undervoltage Lockout bit
     statusRegister |= (driverStatus.UVLO ? 0x80 : 0);
-    
+
     // bit 8: WRONG_CMD bit
     statusRegister |= (driverStatus.WRONG_CMD ? 0x100 : 0);
   }
-  
+
   // 3. Get asynchronous operation flag (1 if movement is pending, 0 otherwise)
   int asyncOp = stepperMoving ? 1 : 0;
-  
+
   // Output status values in the required format
   printf("0x%X\r\n", stateCode);
   printf("0x%X\r\n", statusRegister);
   printf("%d\r\n", asyncOp);
-  
+
   return 0;
 }
 
@@ -869,32 +1226,13 @@ int StepperCancel(void)
     return 0; // Should succeed even if not moving
   }
 
-  // Signal the stepper task to stop
-  stepperCancelRequested = true;
+  // Use the library's built-in movement cancellation
+  int result = L6474_StopMovement(stepperHandle);
 
-  // Wait briefly for the task to stop itself
-  int timeout = 50; // 500ms timeout
-  while (stepperMoving && timeout > 0)
+  if (result != 0)
   {
-    vTaskDelay(pdMS_TO_TICKS(10));
-    timeout--;
-  }
-
-  // If task is still running after timeout, force delete it
-  if (stepperMoving && stepperMoveTaskHandle != NULL)
-  {
-    printf("Forcing movement task termination\r\n");
-
-    // Save current task handle in case it's reset during delete
-    TaskHandle_t taskToDelete = stepperMoveTaskHandle;
-
-    // Delete the task
-    vTaskDelete(taskToDelete);
-
-    // Reset flags
-    stepperMoving = false;
-    stepperCancelRequested = false;
-    stepperMoveTaskHandle = NULL;
+    printf("Error cancelling movement\r\n");
+    return -1;
   }
 
   printf("Movement cancelled successfully\r\n");
