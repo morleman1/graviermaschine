@@ -1,0 +1,6 @@
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	72	static
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	24	static
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	24	static
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	64	static
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	24	static
+C:/Users/tomke/OneDrive/DHBW/2. Studienjahr/4. Semester/Hardwarenahes Programmieren von Echtezeitsystemen-zweiter Teil/Project/Solution/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	56	static
