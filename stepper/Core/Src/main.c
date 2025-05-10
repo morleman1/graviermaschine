@@ -24,7 +24,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stdio.h"
-//#include <stdio.h>
+// #include <stdio.h>
 #include <stdlib.h>
 #include "Console.h"
 #include <stdio.h>
@@ -32,8 +32,6 @@
 #include <string.h>
 
 #include <stdbool.h>
-
-
 
 /* USER CODE END Includes */
 
@@ -55,16 +53,12 @@
 /* Private variables ---------------------------------------------------------*/
 
 SPI_HandleTypeDef hspi1;
-
 TIM_HandleTypeDef htim2;
-
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 TaskHandle_t InitMotorTaskHandle = NULL;
-
-L6474_Handle_t h; //motorhandle
-
+L6474_Handle_t h;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -74,12 +68,19 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
+
 /* USER CODE BEGIN PFP */
 
+int StepperMove(int absPos);
+int StepperReference(void);
+int StepperReset(void);
+int SpindleStart(int rpm);
+int SpindleStop(void);
+int SpindleStatus(void);
 void InitMotor();
 
-extern void initialise_stdlib_abstraction(void);
 
+extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
 {
   taskDISABLE_INTERRUPTS();
@@ -90,7 +91,6 @@ void vApplicationMallocFailedHook(void)
   }
 }
 /*-----------------------------------------------------------*/
-
 void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName)
 {
   (void)pcTaskName;
@@ -103,12 +103,11 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName)
     ;
   }
 }
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// --------------------------------------------------------------------------------------------------------------------
+
 static void *StepLibraryMalloc(unsigned int size)
 {
   return malloc(size);
@@ -119,21 +118,20 @@ static void StepLibraryFree(const void *const ptr)
   free((void *)ptr);
 }
 
-static int StepDriverSpiTransfer(void* pIO, char* pRX, const char* pTX, unsigned int length)
+static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned int length)
 {
-  for (unsigned int i = 0; i < length; i++) {
-     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_RESET); // Select the SPI device
-     if (HAL_SPI_TransmitReceive(pIO, pTX+i, pRX+i, 1, HAL_MAX_DELAY) != HAL_OK) {
-       HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET); // Deselect the SPI device
-       return -1; // Error during SPI transfer
-     }
-     HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET); // Deselect the SPI device
-
-   }
-    return 0;
+  for (unsigned int i = 0; i < length; i++)
+  {
+    HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_RESET);
+    if (HAL_SPI_TransmitReceive(pIO, pTX + i, pRX + i, 1, HAL_MAX_DELAY) != HAL_OK)
+    {
+      HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
+      return -1;                                                              
+    }
+    HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, GPIO_PIN_SET);
+  }
+  return 0;
 }
-
-
 
 static int StepDriverReset(void *pGPO, const int ena)
 {
@@ -156,13 +154,13 @@ static int StepLibraryDelay(unsigned int ms)
 static int Step(void *pPWM, int dir, unsigned int numPulses)
 {
 
-  HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, (dir>0));
+  HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, (dir > 0));
   for (unsigned int i = 0; i < numPulses; i++)
   {
-      HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 1);
-      StepLibraryDelay(1);
-      HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 0);
-      StepLibraryDelay(1);
+    HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 1);
+    StepLibraryDelay(1);
+    HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 0);
+    StepLibraryDelay(1);
   }
 
   return 0;
@@ -201,7 +199,6 @@ void InitMotorTask(void)
       .TorqueVal = 50,
       .TFast = 2};
 
-
   // reset all and take all initialization steps
   int result = 0;
   result |= L6474_ResetStandBy(h);
@@ -214,15 +211,14 @@ void InitMotorTask(void)
     printf("Motor initialization failed with error code: %d\r\n", result);
     Error_Handler();
   }
-  
+
   if (result == 0)
   {
 
-   while(1)
+    while (1)
     {
-      //result |= L6474_StepIncremental(h, -1);
+      // result |= L6474_StepIncremental(h, -1);
     }
-
   }
   else
   {
@@ -230,23 +226,175 @@ void InitMotorTask(void)
   }
 }
 
-void StepperHandler(int argc, char** argv, void* ctx) //argc is amount of subcommands, argv is the array of
-{
-  if(strcmp(argv[0], "move") == 0)
-  {
-    int absPos = atoi(argv[1]);
-    for(int i = absPos; i > 0; i--)
-    {
-      L6474_StepIncremental(h, atoi(argv[1]));
 
+void StepperHandler(int argc, char **argv, void *ctx) // argc is amount of subcommands, argv is the array of subcommands
+{
+  if (argc < 1)
+  {
+    printf("Invalid number of arguments\r\n");
+    return -1;
+  }
+
+  if (strcmp(argv[0], "move") == 0)
+  {
+    if (argc < 2)
+    {
+      printf("Missing position argument\r\n");
+      return -1;
     }
 
-
+    int absPos = atoi(argv[1]);
+    int result = StepperMove(absPos);
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "reference") == 0)
+  {
+    int result = StepperReference();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "reset") == 0)
+  {
+    int result = StepperReset();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else
+  {
+    printf("Unknown stepper command: %s\r\n", argv[0]);
+    return -1;
   }
 }
 
 
+void SpindleHandler(int argc, char **argv, void *ctx)
+{
+  if (argc < 1)
+  {
+    printf("Invalid number of arguments\r\n");
+    return -1;
+  }
 
+  if (strcmp(argv[0], "start") == 0)
+  {
+    if (argc < 2)
+    {
+      printf("Missing RPM argument\r\n");
+      return -1;
+    }
+
+    int rpm = atoi(argv[1]);
+    int result = SpindleStart(rpm);
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "stop") == 0)
+  {
+    int result = SpindleStop();
+    printf("%s\r\n", result == 0 ? "OK" : "FAIL");
+    return result;
+  }
+  else if (strcmp(argv[0], "status") == 0)
+  {
+    int result = SpindleStatus();
+    // For status, additional return values will be printed in the function
+    return result;
+  }
+  else
+  {
+    printf("Unknown spindle command: %s\r\n", argv[0]);
+    return -1;
+  }
+}
+
+
+int StepperMove(int absPos)
+{
+  // Implementation for moving stepper to absolute position
+  printf("Moving stepper to position: %d\r\n", absPos);
+  
+  // Current implementation based on what was in the original StepperHandler
+  for (int i = absPos; i > 0; i--)
+  {
+    if (L6474_StepIncremental(h, absPos) != 0)
+    {
+      return -1; // Fail
+    }
+  }
+  
+  return 0; // OK
+}
+
+int StepperReference(void)
+{
+  // Implementation for reference run
+  printf("Performing reference run\r\n");
+  
+  // TODO: Implement reference run logic
+  // This would typically move the stepper until a reference switch is hit
+  
+  return 0; // OK for now, replace with actual implementation
+}
+
+int StepperReset(void)
+{
+  // Implementation for stepper reset
+  printf("Resetting stepper\r\n");
+  
+  // Reset and reinitialize the stepper
+  L6474_BaseParameter_t param = {
+    .stepMode = 0x01,
+    .OcdTh = 0x02,
+    .TimeOnMin = 5,
+    .TimeOffMin = 10,
+    .TorqueVal = 50,
+    .TFast = 2
+  };
+
+  int result = 0;
+  result |= L6474_ResetStandBy(h);
+  result |= L6474_SetBaseParameter(&param);
+  result |= L6474_Initialize(h, &param);
+  result |= L6474_SetPowerOutputs(h, 1);
+  
+  return result == 0 ? 0 : -1;
+}
+
+// Implementation of spindle functions
+int SpindleStart(int rpm)
+{
+  // Implementation for starting spindle at given RPM
+  printf("Starting spindle at %d RPM\r\n", rpm);
+  
+  // TODO: Implement spindle control logic
+  // This would typically configure and enable the spindle motor
+  
+  return 0; // OK for now, replace with actual implementation
+}
+
+int SpindleStop(void)
+{
+  // Implementation for stopping spindle
+  printf("Stopping spindle\r\n");
+  
+  // TODO: Implement spindle stop logic
+  
+  return 0; // OK for now, replace with actual implementation
+}
+
+int SpindleStatus(void)
+{
+  // Implementation for getting spindle status
+  printf("Spindle status: ");
+  
+  // TODO: Implement spindle status logic and return appropriately
+  // This would typically read and report the current spindle state
+  
+  printf("STOPPED\r\n"); // Example status
+  
+  return 0; // OK for now, replace with actual implementation
+}
 
 // --------------------------------------------------------------------------------------------------------------------
 static int CapabilityFunc(int argc, char **argv, void *ctx)
@@ -256,37 +404,36 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
   (void)argv;
   (void)ctx;
   printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\nOK",
-         0,                                                                                           // has spindle
-         0,                                                                                           // has spindle status
-         0,                                                                                           // has stepper
-         0,                                                                                           // has stepper move relative
-         0,                                                                                           // has stepper move speed
-         0,                                                                                           // has stepper move async
-         0,                                                                                           // has stepper status
-         0,                                                                                           // has stepper refrun
-         0,                                                                                           // has stepper refrun timeout
-         0,                                                                                           // has stepper refrun skip
-         0,                                                                                           // has stepper refrun stay enabled
-         0,                                                                                           // has stepper reset
-         0,                                                                                           // has stepper position
-         0,                                                                                           // has stepper config
-         0,                                                                                           // has stepper config torque
-         0,                                                                                           // has stepper config throvercurr
-         0,                                                                                           // has stepper config powerena
-         0,                                                                                           // has stepper config stepmode
-         0,                                                                                           // has stepper config timeoff
-         0,                                                                                           // has stepper config timeon
-         0,                                                                                           // has stepper config timefast
-         0,                                                                                           // has stepper config mmperturn
-         0,                                                                                           // has stepper config posmax
-         0,                                                                                           // has stepper config posmin
-         0,                                                                                           // has stepper config posref
-         0,                                                                                           // has stepper config stepsperturn
-         0                                                                                            // has stepper cancel
+         0, // has spindle
+         0, // has spindle status
+         0, // has stepper
+         0, // has stepper move relative
+         0, // has stepper move speed
+         0, // has stepper move async
+         0, // has stepper status
+         0, // has stepper refrun
+         0, // has stepper refrun timeout
+         0, // has stepper refrun skip
+         0, // has stepper refrun stay enabled
+         0, // has stepper reset
+         0, // has stepper position
+         0, // has stepper config
+         0, // has stepper config torque
+         0, // has stepper config throvercurr
+         0, // has stepper config powerena
+         0, // has stepper config stepmode
+         0, // has stepper config timeoff
+         0, // has stepper config timeon
+         0, // has stepper config timefast
+         0, // has stepper config mmperturn
+         0, // has stepper config posmax
+         0, // has stepper config posmin
+         0, // has stepper config posref
+         0, // has stepper config stepsperturn
+         0  // has stepper cancel
   );
   return 0;
 }
-
 
 int main(void)
 {
@@ -297,19 +444,16 @@ int main(void)
 
   /* MPU Configuration--------------------------------------------------------*/
   MPU_Config();
-
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
-
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
@@ -320,10 +464,10 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  ConsoleHandle_t c = CONSOLE_CreateInstance(4*configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
+  ConsoleHandle_t c = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
-  CONSOLE_RegisterCommand(c, "cap", "cap", CapabilityFunc, NULL) == 0;
+  CONSOLE_RegisterCommand(c, "capability", "Shows what the program is cabable of", CapabilityFunc, NULL) == 0;
   CONSOLE_RegisterCommand(c, "stepper", "standard stepper command followed by subcommands", StepperHandler, NULL) == 0;
 
 
