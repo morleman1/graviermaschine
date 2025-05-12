@@ -1,0 +1,68 @@
+\doxysection{L6474\+\_\+\+Base\+Parameter\+\_\+t Struct Reference}
+\hypertarget{structL6474__BaseParameter__t}{}\label{structL6474__BaseParameter__t}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+
+
+{\ttfamily \#include $<$Lib\+L6474.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}} \mbox{\hyperlink{structL6474__BaseParameter__t_aa185fe303673fb5be437cb045d46ad57}{step\+Mode}}
+\item 
+\mbox{\hyperlink{LibL6474_8h_ab1c87367ce432f3754d12ceb390077c8}{L6474x\+\_\+\+OCD\+\_\+\+TH\+\_\+t}} \mbox{\hyperlink{structL6474__BaseParameter__t_a576d32c8e940ebc362ef39121fe1de73}{Ocd\+Th}}
+\item 
+char \mbox{\hyperlink{structL6474__BaseParameter__t_a872cd3775a4111c7f580b40a6afc1cab}{Time\+On\+Min}}
+\item 
+char \mbox{\hyperlink{structL6474__BaseParameter__t_ac8f83dc304aa725aab0b9f4c1eb370f2}{Time\+Off\+Min}}
+\item 
+char \mbox{\hyperlink{structL6474__BaseParameter__t_a0246b0c9d5dba04624057006f1926836}{Torque\+Val}}
+\item 
+char \mbox{\hyperlink{structL6474__BaseParameter__t_a67652a2e4f5aa2614173cb3435b11ab5}{TFast}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t} structure is used to set default initialization values for the library whenever a reset has been called or the library is used the first time. It can be filled with the global defaults by calling L6474\+\_\+\+Set\+Base\+Parameter and it then can be adapted or directly passed into L6474\+\_\+\+Initialize which always needs to be called after resetting the stepper driver or the library 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structL6474__BaseParameter__t_a576d32c8e940ebc362ef39121fe1de73}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!OcdTh@{OcdTh}}
+\index{OcdTh@{OcdTh}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{OcdTh}{OcdTh}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_a576d32c8e940ebc362ef39121fe1de73} 
+\mbox{\hyperlink{LibL6474_8h_ab1c87367ce432f3754d12ceb390077c8}{L6474x\+\_\+\+OCD\+\_\+\+TH\+\_\+t}} L6474\+\_\+\+Base\+Parameter\+\_\+t\+::\+Ocd\+Th}
+
+Ocd\+Th describes the overcurrent detection threshold, see \doxylink{LibL6474_8h_ab1c87367ce432f3754d12ceb390077c8}{L6474x\+\_\+\+OCD\+\_\+\+TH\+\_\+t} \Hypertarget{structL6474__BaseParameter__t_aa185fe303673fb5be437cb045d46ad57}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!stepMode@{stepMode}}
+\index{stepMode@{stepMode}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{stepMode}{stepMode}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_aa185fe303673fb5be437cb045d46ad57} 
+\mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}} L6474\+\_\+\+Base\+Parameter\+\_\+t\+::step\+Mode}
+
+step\+Mode describes the stepping operation mode, see \doxylink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t} \Hypertarget{structL6474__BaseParameter__t_a67652a2e4f5aa2614173cb3435b11ab5}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!TFast@{TFast}}
+\index{TFast@{TFast}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{TFast}{TFast}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_a67652a2e4f5aa2614173cb3435b11ab5} 
+char L6474\+\_\+\+Base\+Parameter\+\_\+t\+::\+TFast}
+
+L6474\+\_\+\+PROP\+\_\+\+TFAST is used to change switching times \Hypertarget{structL6474__BaseParameter__t_ac8f83dc304aa725aab0b9f4c1eb370f2}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!TimeOffMin@{TimeOffMin}}
+\index{TimeOffMin@{TimeOffMin}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{TimeOffMin}{TimeOffMin}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_ac8f83dc304aa725aab0b9f4c1eb370f2} 
+char L6474\+\_\+\+Base\+Parameter\+\_\+t\+::\+Time\+Off\+Min}
+
+Time\+Off\+Min is used to change the minimum time for the OFF-\/part of the current control loop \Hypertarget{structL6474__BaseParameter__t_a872cd3775a4111c7f580b40a6afc1cab}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!TimeOnMin@{TimeOnMin}}
+\index{TimeOnMin@{TimeOnMin}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{TimeOnMin}{TimeOnMin}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_a872cd3775a4111c7f580b40a6afc1cab} 
+char L6474\+\_\+\+Base\+Parameter\+\_\+t\+::\+Time\+On\+Min}
+
+Time\+On\+Min is used to change the minimum time for the ON-\/part of the current control loop \Hypertarget{structL6474__BaseParameter__t_a0246b0c9d5dba04624057006f1926836}\index{L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}!TorqueVal@{TorqueVal}}
+\index{TorqueVal@{TorqueVal}!L6474\_BaseParameter\_t@{L6474\_BaseParameter\_t}}
+\doxysubsubsection{\texorpdfstring{TorqueVal}{TorqueVal}}
+{\footnotesize\ttfamily \label{structL6474__BaseParameter__t_a0246b0c9d5dba04624057006f1926836} 
+char L6474\+\_\+\+Base\+Parameter\+\_\+t\+::\+Torque\+Val}
+
+Torque\+Val is used to change the current setpoint of the controller which follows directly the torque 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Home\+Git/\+STM32/libs/\+Lib\+L6474/inc/\mbox{\hyperlink{LibL6474_8h}{Lib\+L6474.\+h}}\end{DoxyCompactItemize}

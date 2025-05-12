@@ -1,0 +1,107 @@
+C:/HomeGit/STM32/libs/LibL6474/inc/LibL6474.h:1016: warning: multiple use of section label 'intro_sec' while adding section, (first occurrence: C:/HomeGit/STM32/libs/LibL6474/inc/LibL6474.h, line 856)
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:146: warning: Compound L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:134: warning: Compound L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/inc/LibL6474.h:11: warning: Member INC_LIBL6474_H_ (macro definition) of file LibL6474.h is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:15: warning: Member IN_MILLISEC(x) (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:19: warning: Member STEP_CMD_NOP_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:20: warning: Member STEP_CMD_NOP_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:22: warning: Member STEP_CMD_SET_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:23: warning: Member STEP_CMD_SET_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:24: warning: Member STEP_CMD_SET_MAX_PAYLOAD (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:26: warning: Member STEP_CMD_GET_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:27: warning: Member STEP_CMD_GET_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:28: warning: Member STEP_CMD_GET_MAX_PAYLOAD (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:30: warning: Member STEP_CMD_ENA_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:31: warning: Member STEP_CMD_ENA_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:33: warning: Member STEP_CMD_DIS_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:34: warning: Member STEP_CMD_DIS_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:36: warning: Member STEP_CMD_STA_PREFIX (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:37: warning: Member STEP_CMD_STA_LENGTH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:41: warning: Member STEP_REG_RANGE_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:44: warning: Member HIGH_POS_BIT (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:45: warning: Member HIGH_POS_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:48: warning: Member STEP_REG_ABS_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:49: warning: Member STEP_LEN_ABS_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:50: warning: Member STEP_MASK_ABS_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:51: warning: Member STEP_OFFSET_ABS_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:53: warning: Member STEP_REG_EL_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:54: warning: Member STEP_LEN_EL_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:55: warning: Member STEP_MASK_EL_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:56: warning: Member STEP_OFFSET_EL_POS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:58: warning: Member STEP_REG_MARK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:59: warning: Member STEP_LEN_MARK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:60: warning: Member STEP_MASK_MARK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:61: warning: Member STEP_OFFSET_MARK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:63: warning: Member STEP_REG_TVAL (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:64: warning: Member STEP_LEN_TVAL (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:65: warning: Member STEP_MASK_TVAL (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:66: warning: Member STEP_OFFSET_TVAL (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:68: warning: Member STEP_REG_T_FAST (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:69: warning: Member STEP_LEN_T_FAST (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:70: warning: Member STEP_MASK_T_FAST (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:71: warning: Member STEP_OFFSET_T_FAST (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:73: warning: Member STEP_REG_TON_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:74: warning: Member STEP_LEN_TON_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:75: warning: Member STEP_MASK_TON_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:76: warning: Member STEP_OFFSET_TON_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:78: warning: Member STEP_REG_TOFF_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:79: warning: Member STEP_LEN_TOFF_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:80: warning: Member STEP_MASK_TOFF_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:81: warning: Member STEP_OFFSET_TOFF_MIN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:83: warning: Member STEP_REG_ADC_OUT (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:84: warning: Member STEP_LEN_ADC_OUT (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:85: warning: Member STEP_MASK_ADC_OUT (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:86: warning: Member STEP_OFFSET_ADC_OUT (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:88: warning: Member STEP_REG_OCD_TH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:89: warning: Member STEP_LEN_OCD_TH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:90: warning: Member STEP_MASK_OCD_TH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:91: warning: Member STEP_OFFSET_OCD_TH (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:93: warning: Member STEP_REG_STEP_MODE (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:94: warning: Member STEP_LEN_STEP_MODE (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:95: warning: Member STEP_MASK_STEP_MODE (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:96: warning: Member STEP_OFFSET_STEP_MODE (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:98: warning: Member STEP_REG_ALARM_EN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:99: warning: Member STEP_LEN_ALARM_EN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:100: warning: Member STEP_MASK_ALARM_EN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:101: warning: Member STEP_OFFSET_ALARM_EN (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:103: warning: Member STEP_REG_CONFIG (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:104: warning: Member STEP_LEN_CONFIG (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:105: warning: Member STEP_MASK_CONFIG (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:106: warning: Member STEP_OFFSET_CONFIG (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:108: warning: Member STEP_REG_STATUS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:109: warning: Member STEP_LEN_STATUS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:110: warning: Member STEP_MASK_STATUS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:111: warning: Member STEP_OFFSET_STATUS (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:113: warning: Member STATUS_HIGHZ_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:114: warning: Member STATUS_DIRECTION_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:115: warning: Member STATUS_NOTPERF_CMD_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:116: warning: Member STATUS_WRONG_CMD_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:117: warning: Member STATUS_UNDERVOLT_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:118: warning: Member STATUS_THR_WARN_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:119: warning: Member STATUS_THR_SHORTD_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:120: warning: Member STATUS_OCD_MASK (macro definition) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:131: warning: Member L6474x_AccessFlags_t (typedef) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:143: warning: Member L6474x_ParameterDescriptor_t (typedef) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:124: warning: Member L6474x_AccessFlags (enumeration) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:178: warning: Member L6474_HelperLock(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:190: warning: Member L6474_HelperUnlock(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:203: warning: Member L6474_HelperReleaseStep(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:212: warning: Member L6474_GetStatusCommand(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:236: warning: Member L6474_NopCommand(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:257: warning: Member L6474_GetParamCommand(L6474_Handle_t h, int addr) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:316: warning: Member L6474_SetParamCommand(L6474_Handle_t h, int addr, int value) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:376: warning: Member L6474_EnableCommand(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:407: warning: Member L6474_DisableCommand(L6474_Handle_t h) (function) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:158: warning: Member L6474_Parameters[STEP_REG_RANGE_MASK] (variable) of file LibL6474x.c is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:149: warning: Member state (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:150: warning: Member pending (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:151: warning: Member pIO (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:152: warning: Member pGPO (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:153: warning: Member pPWM (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:154: warning: Member platform (variable) of struct L6474_Handle is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:137: warning: Member command (variable) of struct L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:138: warning: Member defined (variable) of struct L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:139: warning: Member length (variable) of struct L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:140: warning: Member mask (variable) of struct L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:141: warning: Member name (variable) of struct L6474x_ParameterDescriptor is not documented.
+C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c:142: warning: Member flags (variable) of struct L6474x_ParameterDescriptor is not documented.

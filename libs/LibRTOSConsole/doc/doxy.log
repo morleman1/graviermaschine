@@ -1,0 +1,70 @@
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:227: warning: multiple use of section label 'intro_sec' while adding section, (first occurrence: C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h, line 119)
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:173: warning: Compound ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:67: warning: Compound cmdEntry is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:85: warning: Compound cmdState is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:161: warning: Compound cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:34: warning: Unsupported xml/html tag <read> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:34: warning: Unsupported xml/html tag <int> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:35: warning: Unsupported xml/html tag <size_t> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:42: warning: Unsupported xml/html tag <write> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:42: warning: Unsupported xml/html tag <int> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:43: warning: Unsupported xml/html tag <size_t> found
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:103: warning: The following parameters of CONSOLE_RedirectStreams(ConsoleHandle_t h, ConsoleReadStream_t rdFunc, ConsoleWriteStream_t wrFunc, void *rdContext, void *wrContext) are not documented:
+  parameter 'rdContext'
+  parameter 'wrContext'
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:62: warning: Member CONSOLE_SAFETY_SPACE (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:64: warning: Member CONSOLE_MAX_NUM_ARGS (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:213: warning: Member CHECK_FOR_OVERFLOW(x) (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:660: warning: Member xstr(a) (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:661: warning: Member str(a) (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1400: warning: Member ON_NULL_GOTO_ERROR(x) (macro definition) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:82: warning: Member cmdEntry_t (typedef) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:90: warning: Member cmdState_t (typedef) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:93: warning: Member cspTYPE (enumeration) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:102: warning: Member ctrlCodes_t (enumeration) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:150: warning: Member ctrlpStates_t (enumeration) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:210: warning: Member ControlSequenceParserConsume(char input, cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:339: warning: Member ProcessCommand(char *command, int cmdLen, char **args, int numArgs, cmdState_t *c, int *isAlias, char *inputBuffer, int inbuffsz) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:428: warning: Member TransformAndProcessTheCommand(char *lineBuff, int line_size, cmdState_t *cState) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:521: warning: Member PrintConsoleControl(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:535: warning: Member ConsoleIsArrowLeft(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:542: warning: Member ConsoleIsArrowRight(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:549: warning: Member ConsoleIsArrowUp(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:556: warning: Member ConsoleIsArrowDown(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:563: warning: Member ConsoleIsEntf(cspState_t *s) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:570: warning: Member PrintConsoleArrowLeft(void) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:645: warning: Member ConsoleFunction(void *arg) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1055: warning: Member ConsolePrintHelp(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1101: warning: Member ConsoleExecReset(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1120: warning: Member ConsolePrintKernelTicks(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1169: warning: Member ConsolePrintKernelVersion(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1182: warning: Member ConsoleWhoAmI(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1202: warning: Member ConsoleExit(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1215: warning: Member ConsoleMallInfo(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1238: warning: Member ConsoleGetEnv(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1266: warning: Member ConsoleSetEnv(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1292: warning: Member ConsoleAliasConfig(int argc, char **argv, void *context) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:1367: warning: Member ConsoleRegisterBasicCommands(ConsoleHandle_t h) (function) of file Console.c is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:103: warning: The following parameters of CONSOLE_RedirectStreams(ConsoleHandle_t h, ConsoleReadStream_t rdFunc, ConsoleWriteStream_t wrFunc, void *rdContext, void *wrContext) are not documented:
+  parameter 'rdContext'
+  parameter 'wrContext'
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:239: warning: Found unknown command '@parameters'
+C:/HomeGit/STM32/libs/LibRTOSConsole/inc/Console.h:239: warning: Found unknown command '@parameters'
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:79: warning: Member content (variable) of struct cmdEntry is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:88: warning: Member lockGuard (variable) of struct cmdState is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:176: warning: Member cState (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:177: warning: Member pState (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:178: warning: Member tHandle (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:179: warning: Member cancel (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:185: warning: Member history (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:187: warning: Member pendingRedirect (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:188: warning: Member pendingRdStream (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:189: warning: Member pendingWrStream (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:190: warning: Member pendingRdCtx (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:191: warning: Member pendingWrCtx (variable) of struct ConsoleHandle is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:164: warning: Member state (variable) of struct cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:165: warning: Member type (variable) of struct cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:166: warning: Member ptr (variable) of struct cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:167: warning: Member length (variable) of struct cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:168: warning: Member maxLength (variable) of struct cspState_t is not documented.
+C:/HomeGit/STM32/libs/LibRTOSConsole/src/Console.c:169: warning: Member buff (variable) of struct cspState_t is not documented.

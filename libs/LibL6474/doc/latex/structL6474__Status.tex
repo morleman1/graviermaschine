@@ -1,0 +1,92 @@
+\doxysection{L6474\+\_\+\+Status Struct Reference}
+\hypertarget{structL6474__Status}{}\label{structL6474__Status}\index{L6474\_Status@{L6474\_Status}}
+
+
+{\ttfamily \#include $<$Lib\+L6474.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_af28ed29bcbaf1086d44339bbd118bc18}{HIGHZ}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_ae3ce6f35b0639be35f0c92b1dc8d06a7}{DIR}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_a8370012a99671ebddac22993853483a2}{NOTPERF\+\_\+\+CMD}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_a3f7f1a9d385b21da40834372f279bc72}{WRONG\+\_\+\+CMD}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_a61a90c681ac872d992c84f18e672ce3f}{UVLO}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_aefced0d2627306777fe2b9931bf7bcac}{TH\+\_\+\+WARN}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_a6da42174fd7a0fa9397036d67cf24765}{TH\+\_\+\+SD}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_ac3642b870fba76deb38754594cf0a6f8}{OCD}}
+\item 
+unsigned char \mbox{\hyperlink{structL6474__Status_a9cc686d7ebe05d86b62ac476fcdaed50}{ONGOING}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{LibL6474_8h_afe6a37602588d49b9ed5d1a308977d6a}{L6474\+\_\+\+Status\+\_\+t} enum describes the status register content of the stepper driver chip. It is reinterpreted so it can be naturally used in the code to get some of the error codes or state bits of the driver. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structL6474__Status_ae3ce6f35b0639be35f0c92b1dc8d06a7}\index{L6474\_Status@{L6474\_Status}!DIR@{DIR}}
+\index{DIR@{DIR}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{DIR}{DIR}}
+{\footnotesize\ttfamily \label{structL6474__Status_ae3ce6f35b0639be35f0c92b1dc8d06a7} 
+unsigned char L6474\+\_\+\+Status\+::\+DIR}
+
+direction is clock wise or counter clock wise \Hypertarget{structL6474__Status_af28ed29bcbaf1086d44339bbd118bc18}\index{L6474\_Status@{L6474\_Status}!HIGHZ@{HIGHZ}}
+\index{HIGHZ@{HIGHZ}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{HIGHZ}{HIGHZ}}
+{\footnotesize\ttfamily \label{structL6474__Status_af28ed29bcbaf1086d44339bbd118bc18} 
+unsigned char L6474\+\_\+\+Status\+::\+HIGHZ}
+
+high impedance state active \Hypertarget{structL6474__Status_a8370012a99671ebddac22993853483a2}\index{L6474\_Status@{L6474\_Status}!NOTPERF\_CMD@{NOTPERF\_CMD}}
+\index{NOTPERF\_CMD@{NOTPERF\_CMD}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{NOTPERF\_CMD}{NOTPERF\_CMD}}
+{\footnotesize\ttfamily \label{structL6474__Status_a8370012a99671ebddac22993853483a2} 
+unsigned char L6474\+\_\+\+Status\+::\+NOTPERF\+\_\+\+CMD}
+
+a command has not been performed \Hypertarget{structL6474__Status_ac3642b870fba76deb38754594cf0a6f8}\index{L6474\_Status@{L6474\_Status}!OCD@{OCD}}
+\index{OCD@{OCD}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{OCD}{OCD}}
+{\footnotesize\ttfamily \label{structL6474__Status_ac3642b870fba76deb38754594cf0a6f8} 
+unsigned char L6474\+\_\+\+Status\+::\+OCD}
+
+over current detection (short circuit) \Hypertarget{structL6474__Status_a9cc686d7ebe05d86b62ac476fcdaed50}\index{L6474\_Status@{L6474\_Status}!ONGOING@{ONGOING}}
+\index{ONGOING@{ONGOING}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{ONGOING}{ONGOING}}
+{\footnotesize\ttfamily \label{structL6474__Status_a9cc686d7ebe05d86b62ac476fcdaed50} 
+unsigned char L6474\+\_\+\+Status\+::\+ONGOING}
+
+movement is ongoing (pending) \Hypertarget{structL6474__Status_a6da42174fd7a0fa9397036d67cf24765}\index{L6474\_Status@{L6474\_Status}!TH\_SD@{TH\_SD}}
+\index{TH\_SD@{TH\_SD}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{TH\_SD}{TH\_SD}}
+{\footnotesize\ttfamily \label{structL6474__Status_a6da42174fd7a0fa9397036d67cf24765} 
+unsigned char L6474\+\_\+\+Status\+::\+TH\+\_\+\+SD}
+
+thermal shutdown \Hypertarget{structL6474__Status_aefced0d2627306777fe2b9931bf7bcac}\index{L6474\_Status@{L6474\_Status}!TH\_WARN@{TH\_WARN}}
+\index{TH\_WARN@{TH\_WARN}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{TH\_WARN}{TH\_WARN}}
+{\footnotesize\ttfamily \label{structL6474__Status_aefced0d2627306777fe2b9931bf7bcac} 
+unsigned char L6474\+\_\+\+Status\+::\+TH\+\_\+\+WARN}
+
+threshold warning \Hypertarget{structL6474__Status_a61a90c681ac872d992c84f18e672ce3f}\index{L6474\_Status@{L6474\_Status}!UVLO@{UVLO}}
+\index{UVLO@{UVLO}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{UVLO}{UVLO}}
+{\footnotesize\ttfamily \label{structL6474__Status_a61a90c681ac872d992c84f18e672ce3f} 
+unsigned char L6474\+\_\+\+Status\+::\+UVLO}
+
+under-\/voltage lock out \Hypertarget{structL6474__Status_a3f7f1a9d385b21da40834372f279bc72}\index{L6474\_Status@{L6474\_Status}!WRONG\_CMD@{WRONG\_CMD}}
+\index{WRONG\_CMD@{WRONG\_CMD}!L6474\_Status@{L6474\_Status}}
+\doxysubsubsection{\texorpdfstring{WRONG\_CMD}{WRONG\_CMD}}
+{\footnotesize\ttfamily \label{structL6474__Status_a3f7f1a9d385b21da40834372f279bc72} 
+unsigned char L6474\+\_\+\+Status\+::\+WRONG\+\_\+\+CMD}
+
+a command was invalid 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Home\+Git/\+STM32/libs/\+Lib\+L6474/inc/\mbox{\hyperlink{LibL6474_8h}{Lib\+L6474.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,165 @@
+\doxysection{L6474x\+\_\+\+Platform Struct Reference}
+\hypertarget{structL6474x__Platform}{}\label{structL6474x__Platform}\index{L6474x\_Platform@{L6474x\_Platform}}
+
+
+{\ttfamily \#include $<$Lib\+L6474.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_a47159af6df8de0ad4f9f52a2665f132f}{malloc}} )(unsigned int size)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_aa2a5aa62e3026dc6f2e30ba3396e95d6}{free}} )(const void \texorpdfstring{$\ast$}{*}const p\+Mem)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_a7fe507a91d9903700ea26979c99285d1}{transfer}} )(void \texorpdfstring{$\ast$}{*}p\+IO, char \texorpdfstring{$\ast$}{*}p\+RX, const char \texorpdfstring{$\ast$}{*}p\+TX, unsigned int length)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_ad025e0b1e005cd87e8694e057201ab46}{reset}} )(void \texorpdfstring{$\ast$}{*}p\+GPO, const int ena)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_a8c6f3ea2ea4060d8fa8e2569565528bd}{sleep}} )(unsigned int ms)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_ad572a0239acf4cd50a3e7463ef5ddc9b}{step\+Async}} )(void \texorpdfstring{$\ast$}{*}p\+PWM, int dir, unsigned int num\+Pulses, void(\texorpdfstring{$\ast$}{*}done\+Clb)(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}), \mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structL6474x__Platform_ae5551ae8e979685460c0183407287f18}{cancel\+Step}} )(void \texorpdfstring{$\ast$}{*}p\+PWM)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\+\_\+\+Platform\+\_\+t} structure is used to encapsulate platform specific parameters and to provide environment specific functions in a generalized format. Theses functions are malloc and free or some PWM and GPIO abstractions The lock guards and thread safety mechanisms are also abstracted by this structure 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structL6474x__Platform_ae5551ae8e979685460c0183407287f18}\index{L6474x\_Platform@{L6474x\_Platform}!cancelStep@{cancelStep}}
+\index{cancelStep@{cancelStep}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{cancelStep}{cancelStep}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_ae5551ae8e979685460c0183407287f18} 
+int(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::cancel\+Step) (void \texorpdfstring{$\ast$}{*}p\+PWM)}
+
+the cancel\+Step function is a synchronous blocking function which cancels the asynchronous previously started step operation in case it has not been finished
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+PWM} & optional user context pointer which has been passed by the L6474\+\_\+\+Create\+Instance call \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structL6474x__Platform_aa2a5aa62e3026dc6f2e30ba3396e95d6}\index{L6474x\_Platform@{L6474x\_Platform}!free@{free}}
+\index{free@{free}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{free}{free}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_aa2a5aa62e3026dc6f2e30ba3396e95d6} 
+void(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::free) (const void \texorpdfstring{$\ast$}{*}const p\+Mem)}
+
+classic free function pointer which releases memory previously allocated by malloc. The user must provide this function as part of the platform abstraction. The minimal functionality can be reached by providing a function which simply calls free in case The malloc abstraction function is a call to malloc.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Mem} & pointer of the memory space which shall be freed\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_2}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{structL6474x__Platform_a47159af6df8de0ad4f9f52a2665f132f}\index{L6474x\_Platform@{L6474x\_Platform}!malloc@{malloc}}
+\index{malloc@{malloc}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{malloc}{malloc}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_a47159af6df8de0ad4f9f52a2665f132f} 
+void \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::malloc) (unsigned int size)}
+
+classic malloc function pointer which returns null in case of an error or a memory void\texorpdfstring{$\ast$}{*} pointer with the given size by the first argument. The user must provide this function as part of the platform abstraction. The minimal functionality can be reached by providing a function which simply calls malloc.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & number of bytes requested by the memory allocation request\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_4}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{structL6474x__Platform_ad025e0b1e005cd87e8694e057201ab46}\index{L6474x\_Platform@{L6474x\_Platform}!reset@{reset}}
+\index{reset@{reset}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{reset}{reset}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_ad025e0b1e005cd87e8694e057201ab46} 
+void(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::reset) (void \texorpdfstring{$\ast$}{*}p\+GPO, const int ena)}
+
+the reset function is used to provide gpio access to the reset of the stepper driver chip. keep in mind that the chip has a reset not pin and so the ena signal must be inverted to set the correct reset level physically
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+GPO} & optional user context pointer which has been passed by the L6474\+\_\+\+Create\+Instance call \\
+\hline
+\mbox{\texttt{ in}}  & {\em ena} & output state to set without level inversion\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_6}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{structL6474x__Platform_a8c6f3ea2ea4060d8fa8e2569565528bd}\index{L6474x\_Platform@{L6474x\_Platform}!sleep@{sleep}}
+\index{sleep@{sleep}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{sleep}{sleep}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_a8c6f3ea2ea4060d8fa8e2569565528bd} 
+void(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::sleep) (unsigned int ms)}
+
+the sleep function implements a wait time with the argument in milliseconds
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ms} & time to sleep in milliseconds\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_8}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{structL6474x__Platform_ad572a0239acf4cd50a3e7463ef5ddc9b}\index{L6474x\_Platform@{L6474x\_Platform}!stepAsync@{stepAsync}}
+\index{stepAsync@{stepAsync}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{stepAsync}{stepAsync}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_ad572a0239acf4cd50a3e7463ef5ddc9b} 
+int(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::step\+Async) (void \texorpdfstring{$\ast$}{*}p\+PWM, int dir, unsigned int num\+Pulses, void(\texorpdfstring{$\ast$}{*}done\+Clb)(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}), \mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)}
+
+the step\+Async function is an asynchronous non-\/blocking function which e.\+g. enables a timer which then generates the required amount of pulses given by the num\+Pulses argument. The done\+CLB is a callback provided by the library which is called when the asynchronous operation has been done
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+PWM} & optional user context pointer which has been passed by the L6474\+\_\+\+Create\+Instance call \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & output signal to drive the stepper clock wise or counter clockwise \\
+\hline
+\mbox{\texttt{ in}}  & {\em num\+Pulses} & number of high and low transitions to generate a pulse for the stepper chip \\
+\hline
+\mbox{\texttt{ in}}  & {\em done\+Clb} & callback function pointer, which is required to be called after the async process has been finished \\
+\hline
+\mbox{\texttt{ in}}  & {\em h} & handle pointer which is at least required by the callback of done\+Clb argument\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_10}}
+\end{DoxyImageNoCaption}
+ \Hypertarget{structL6474x__Platform_a7fe507a91d9903700ea26979c99285d1}\index{L6474x\_Platform@{L6474x\_Platform}!transfer@{transfer}}
+\index{transfer@{transfer}!L6474x\_Platform@{L6474x\_Platform}}
+\doxysubsubsection{\texorpdfstring{transfer}{transfer}}
+{\footnotesize\ttfamily \label{structL6474x__Platform_a7fe507a91d9903700ea26979c99285d1} 
+int(\texorpdfstring{$\ast$}{*} L6474x\+\_\+\+Platform\+::transfer) (void \texorpdfstring{$\ast$}{*}p\+IO, char \texorpdfstring{$\ast$}{*}p\+RX, const char \texorpdfstring{$\ast$}{*}p\+TX, unsigned int length)}
+
+the transfer function is used to provide bus access to the stepper driver chip
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em p\+IO} & optional user context pointer which has been passed by the L6474\+\_\+\+Create\+Instance call \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+RX} & pointer to the receive data buffer \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+TX} & pointer to the transmit data buffer \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & number of bytes for RX and TX\\
+\hline
+\end{DoxyParams}
+The behavior is schematically as follows\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_umlgraph_12}}
+\end{DoxyImageNoCaption}
+ 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Home\+Git/\+STM32/libs/\+Lib\+L6474/inc/\mbox{\hyperlink{LibL6474_8h}{Lib\+L6474.\+h}}\end{DoxyCompactItemize}

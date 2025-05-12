@@ -1,0 +1,57 @@
+\doxysection{C\+:/\+Home\+Git/\+STM32/libs/\+Lib\+L6474/conf/\+Lib\+L6474\+Config.h File Reference}
+\hypertarget{LibL6474Config_8h}{}\label{LibL6474Config_8h}\index{C:/HomeGit/STM32/libs/LibL6474/conf/LibL6474Config.h@{C:/HomeGit/STM32/libs/LibL6474/conf/LibL6474Config.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{LibL6474Config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{LibL6474Config_8h_a470d0e2221767aeecf55b2a5e9c5863f}{INC\+\_\+\+LIBL6474\+\_\+\+CONFIG\+\_\+\+H\+\_\+}}~INC\+\_\+\+LIBL6474\+\_\+\+CONFIG\+\_\+\+H\+\_\+
+\item 
+\#define \mbox{\hyperlink{LibL6474Config_8h_ab62b280536877de598e7f04f2df679cf}{LIBL6474\+\_\+\+STEP\+\_\+\+ASYNC}}~1
+\item 
+\#define \mbox{\hyperlink{LibL6474Config_8h_a273e5b23796411e4fb252f9aaba3c084}{LIBL6474\+\_\+\+HAS\+\_\+\+LOCKING}}~0
+\item 
+\#define \mbox{\hyperlink{LibL6474Config_8h_a226ec97ee5cdc98a174476f740359beb}{LIBL6474\+\_\+\+DISABLE\+\_\+\+OCD}}~0
+\item 
+\#define \mbox{\hyperlink{LibL6474Config_8h_a727363242845ca556926e9772887ef37}{LIBL6474\+\_\+\+HAS\+\_\+\+FLAG}}~0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{LibL6474Config_8h_a470d0e2221767aeecf55b2a5e9c5863f}\index{LibL6474Config.h@{LibL6474Config.h}!INC\_LIBL6474\_CONFIG\_H\_@{INC\_LIBL6474\_CONFIG\_H\_}}
+\index{INC\_LIBL6474\_CONFIG\_H\_@{INC\_LIBL6474\_CONFIG\_H\_}!LibL6474Config.h@{LibL6474Config.h}}
+\doxysubsubsection{\texorpdfstring{INC\_LIBL6474\_CONFIG\_H\_}{INC\_LIBL6474\_CONFIG\_H\_}}
+{\footnotesize\ttfamily \label{LibL6474Config_8h_a470d0e2221767aeecf55b2a5e9c5863f} 
+\#define INC\+\_\+\+LIBL6474\+\_\+\+CONFIG\+\_\+\+H\+\_\+~INC\+\_\+\+LIBL6474\+\_\+\+CONFIG\+\_\+\+H\+\_\+}
+
+ATTENTION, this header is only a template, the user must provide its own implementation in the user project \Hypertarget{LibL6474Config_8h_a226ec97ee5cdc98a174476f740359beb}\index{LibL6474Config.h@{LibL6474Config.h}!LIBL6474\_DISABLE\_OCD@{LIBL6474\_DISABLE\_OCD}}
+\index{LIBL6474\_DISABLE\_OCD@{LIBL6474\_DISABLE\_OCD}!LibL6474Config.h@{LibL6474Config.h}}
+\doxysubsubsection{\texorpdfstring{LIBL6474\_DISABLE\_OCD}{LIBL6474\_DISABLE\_OCD}}
+{\footnotesize\ttfamily \label{LibL6474Config_8h_a226ec97ee5cdc98a174476f740359beb} 
+\#define LIBL6474\+\_\+\+DISABLE\+\_\+\+OCD~0}
+
+This DEFINE is used to disable the overcurrent detection feature in the library and the stepper driver \Hypertarget{LibL6474Config_8h_a727363242845ca556926e9772887ef37}\index{LibL6474Config.h@{LibL6474Config.h}!LIBL6474\_HAS\_FLAG@{LIBL6474\_HAS\_FLAG}}
+\index{LIBL6474\_HAS\_FLAG@{LIBL6474\_HAS\_FLAG}!LibL6474Config.h@{LibL6474Config.h}}
+\doxysubsubsection{\texorpdfstring{LIBL6474\_HAS\_FLAG}{LIBL6474\_HAS\_FLAG}}
+{\footnotesize\ttfamily \label{LibL6474Config_8h_a727363242845ca556926e9772887ef37} 
+\#define LIBL6474\+\_\+\+HAS\+\_\+\+FLAG~0}
+
+This DEFINE is used to enable the FLAG pin support, which requires additional abstraction functions \Hypertarget{LibL6474Config_8h_a273e5b23796411e4fb252f9aaba3c084}\index{LibL6474Config.h@{LibL6474Config.h}!LIBL6474\_HAS\_LOCKING@{LIBL6474\_HAS\_LOCKING}}
+\index{LIBL6474\_HAS\_LOCKING@{LIBL6474\_HAS\_LOCKING}!LibL6474Config.h@{LibL6474Config.h}}
+\doxysubsubsection{\texorpdfstring{LIBL6474\_HAS\_LOCKING}{LIBL6474\_HAS\_LOCKING}}
+{\footnotesize\ttfamily \label{LibL6474Config_8h_a273e5b23796411e4fb252f9aaba3c084} 
+\#define LIBL6474\+\_\+\+HAS\+\_\+\+LOCKING~0}
+
+This DEFINE is used to enable the lock guard and thread synchronization guard abstraction, which requires additional abstraction functions \Hypertarget{LibL6474Config_8h_ab62b280536877de598e7f04f2df679cf}\index{LibL6474Config.h@{LibL6474Config.h}!LIBL6474\_STEP\_ASYNC@{LIBL6474\_STEP\_ASYNC}}
+\index{LIBL6474\_STEP\_ASYNC@{LIBL6474\_STEP\_ASYNC}!LibL6474Config.h@{LibL6474Config.h}}
+\doxysubsubsection{\texorpdfstring{LIBL6474\_STEP\_ASYNC}{LIBL6474\_STEP\_ASYNC}}
+{\footnotesize\ttfamily \label{LibL6474Config_8h_ab62b280536877de598e7f04f2df679cf} 
+\#define LIBL6474\+\_\+\+STEP\+\_\+\+ASYNC~1}
+
+This DEFINE is used to switch from blocking synchronous mode to asynchronous non-\/blocking step mode. This changes the API behavior 

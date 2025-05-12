@@ -1,0 +1,32 @@
+warning: source '../conf' is not a readable file or directory... skipping.
+C:/HomeGit/STM32/libs/LibSpindle/inc/Spindle.h:210: warning: multiple use of section label 'intro_sec' while adding section, (first occurrence: C:/HomeGit/STM32/libs/LibSpindle/inc/Spindle.h, line 151)
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:56: warning: Compound CtrlCommand is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:92: warning: Compound SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:40: warning: Compound StepCommandResponse is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:79: warning: Compound stepSyncEventElement is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:355: warning: Member ON_NULL_GOTO_ERROR(x) (macro definition) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:53: warning: Member StepCommandResponse_t (typedef) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:76: warning: Member CtrlCommand_t (typedef) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:89: warning: Member stepSyncEventElement_t (typedef) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:30: warning: Member CtrlCommandType_t (enumeration) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:110: warning: Member SpindleFunction(void *arg) (function) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:216: warning: Member GetCommandEvent(SpindleHandle_t h) (function) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:240: warning: Member ReleaseCommandEvent(SpindleHandle_t h, SemaphoreHandle_t s) (function) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:261: warning: Member SpindleConsoleFunction(int argc, char **argv, void *ctx) (function) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:344: warning: Member SpindleRegisterBasicCommands(SpindleHandle_t h, ConsoleHandle_t cH) (function) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:27: warning: Member SpindleInstancePointer (variable) of file Spindle.c is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:63: warning: Member head (variable) of struct CtrlCommand is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:74: warning: Member request (variable) of struct CtrlCommand is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:75: warning: Member response (variable) of struct CtrlCommand is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:95: warning: Member nextRequestID (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:96: warning: Member consoleH (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:97: warning: Member tHandle (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:98: warning: Member cmdQueue (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:99: warning: Member cancel (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:100: warning: Member physical (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:101: warning: Member currentSpeed (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:106: warning: Member syncEventPool (variable) of struct SpindleHandle is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:43: warning: Member code (variable) of struct StepCommandResponse is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:44: warning: Member requestID (variable) of struct StepCommandResponse is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:52: warning: Member args (variable) of struct StepCommandResponse is not documented.
+C:/HomeGit/STM32/libs/LibSpindle/src/Spindle.c:86: warning: Member content (variable) of struct stepSyncEventElement is not documented.

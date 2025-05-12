@@ -1,0 +1,261 @@
+\doxysection{Lib\+L6474.\+h}
+\hypertarget{LibL6474_8h_source}{}\label{LibL6474_8h_source}\index{C:/HomeGit/STM32/libs/LibL6474/inc/LibL6474.h@{C:/HomeGit/STM32/libs/LibL6474/inc/LibL6474.h}}
+\mbox{\hyperlink{LibL6474_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ LibL6474.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Dec\ 2,\ 2024}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ Thorsten}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ INC\_LIBL6474\_H\_}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ INC\_LIBL6474\_H\_\ INC\_LIBL6474\_H\_}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{LibL6474Config_8h}{LibL6474Config.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{LibL6474_8h_ac0c141006464185b5e25e20794737205}{L6474x\_State}}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_ac0c141006464185b5e25e20794737205a576e46e9b76d8638efad09499b272547}{stRESET}}\ \ \ \ \ =\ 0x00,}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_ac0c141006464185b5e25e20794737205ab33bf4e863de1ff463ac63502f8c667c}{stDISABLED}}\ \ =\ 0x01,}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_ac0c141006464185b5e25e20794737205ab8f8e4177a77cd29c2e3b89872b9d9b4}{stENABLED}}\ \ \ =\ 0x02,}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_ac0c141006464185b5e25e20794737205ac61c2d407550d5c3a881f44bb5ba87c3}{stINVALID}}\ \ \ =\ 0x04}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\ \mbox{\hyperlink{LibL6474_8h_ae918168038a867ae74023c36e0e5faad}{L6474x\_State\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8d}{L6474x\_StepMode}}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8daae0a2b7890ada0233bf18bfd01a4d858}{smFULL}}\ \ \ \ \ =\ 0x00,}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8da1828e5c142b0310cca2dbbb40c38e50a}{smHALF}}\ \ \ \ \ =\ 0x01,}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8da67510ff93567212cc7dc038411b6d996}{smMICRO4}}\ \ \ =\ 0x02,}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8da08e26b297b3455c747c4000c0d7374ac}{smMICRO8}}\ \ \ =\ 0x03,}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aeb572e4b787e8746f0d5e9475b0ffb8da818e6ddb4c69f3d47eb3e97b27cccf73}{smMICRO16}}\ \ =\ 0x04}
+\DoxyCodeLine{00091\ \}\ \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\_StepMode\_t}};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00097\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{LibL6474_8h_aaae3fcfa5e86dceb09b3befb997241a1}{L6474x\_Direction}}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aaae3fcfa5e86dceb09b3befb997241a1a9b2b3de6fba4086254d01d9c190f001c}{dirFOREWARD}}\ \ \ \ \ =\ 0x00,}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aaae3fcfa5e86dceb09b3befb997241a1a23676e3ddc39d6b66b646978c3f57ab9}{dirBACKWARD}}\ \ \ \ \ =\ 0x01}
+\DoxyCodeLine{00109\ \}\ \mbox{\hyperlink{LibL6474_8h_a74d57e36e55d111079c64174e961f619}{L6474x\_Direction\_t}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebb}{L6474x\_ErrorCode}}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00118\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebba65d3c9089e9c458d114a5ff65a93cdd5}{errcNONE}}\ \ \ \ \ \ \ \ \ =\ \ 0,}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebba6ad539de84e07698a37f5b78733715d7}{errcINV\_ARG}}\ \ \ \ \ \ =\ -\/1,}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbadd837fbbec5502b2f8c74213db4cd2c0}{errcNULL\_ARG}}\ \ \ \ \ =\ -\/2,}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbad6b856cca8b1bd633fe4441eebfd1220}{errcINV\_STATE}}\ \ \ \ =\ -\/3,}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbaa2afa9f9beb6e0e57ad44b469ef60762}{errcINTERNAL}}\ \ \ \ \ =\ -\/4,}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebba542a8aafecef8c52d42e537e6b7dfb48}{errcLOCKING}}\ \ \ \ \ \ =\ -\/5,}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbad22ec437f96367b7938a52c999578db7}{errcDEVICE\_STATE}}\ =\ -\/6,}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbac707cff173b23da9ae8ef627b177bfb3}{errcPENDING}}\ \ \ \ \ \ =\ -\/7,}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_aafb11f316ec72214c03013555014eebbae4ead3ad9188404d7cdd1c4d0c2b340d}{errcFORBIDDEN}}\ \ \ \ =\ -\/8}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \}\ \mbox{\hyperlink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\_ErrorCode\_t}};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00176\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structL6474__Status}{L6474\_Status}}}
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_af28ed29bcbaf1086d44339bbd118bc18}{HIGHZ}}\ \ \ \ \ \ ;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_ae3ce6f35b0639be35f0c92b1dc8d06a7}{DIR}}\ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_a8370012a99671ebddac22993853483a2}{NOTPERF\_CMD}};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_a3f7f1a9d385b21da40834372f279bc72}{WRONG\_CMD}}\ \ ;}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_a61a90c681ac872d992c84f18e672ce3f}{UVLO}}\ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_aefced0d2627306777fe2b9931bf7bcac}{TH\_WARN}}\ \ \ \ ;}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_a6da42174fd7a0fa9397036d67cf24765}{TH\_SD}}\ \ \ \ \ \ ;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_ac3642b870fba76deb38754594cf0a6f8}{OCD}}\ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structL6474__Status_a9cc686d7ebe05d86b62ac476fcdaed50}{ONGOING}}\ \ \ \ ;}
+\DoxyCodeLine{00223\ \}\ \mbox{\hyperlink{LibL6474_8h_afe6a37602588d49b9ed5d1a308977d6a}{L6474\_Status\_t}};}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00231\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{LibL6474_8h_ae9c0b900e2373b01b2ca16d49f0e8907}{L6474x\_OCD\_TH}}}
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ ocdth375mA\ \ =\ 0x00,}
+\DoxyCodeLine{00235\ \ \ \ \ ocdth750mA\ \ =\ 0x01,}
+\DoxyCodeLine{00236\ \ \ \ \ ocdth1125mA\ =\ 0x02,}
+\DoxyCodeLine{00237\ \ \ \ \ ocdth1500mA\ =\ 0x03,}
+\DoxyCodeLine{00238\ \ \ \ \ ocdth1875mA\ =\ 0x04,}
+\DoxyCodeLine{00239\ \ \ \ \ ocdth2250mA\ =\ 0x05,}
+\DoxyCodeLine{00240\ \ \ \ \ ocdth2625mA\ =\ 0x06,}
+\DoxyCodeLine{00241\ \ \ \ \ ocdth3000mA\ =\ 0x07,}
+\DoxyCodeLine{00242\ \ \ \ \ ocdth3375mA\ =\ 0x08,}
+\DoxyCodeLine{00243\ \ \ \ \ ocdth3750mA\ =\ 0x09,}
+\DoxyCodeLine{00244\ \ \ \ \ ocdth4125mA\ =\ 0x0A,}
+\DoxyCodeLine{00245\ \ \ \ \ ocdth4500mA\ =\ 0x0B,}
+\DoxyCodeLine{00246\ \ \ \ \ ocdth4875mA\ =\ 0x0C,}
+\DoxyCodeLine{00247\ \ \ \ \ ocdth5250mA\ =\ 0x0D,}
+\DoxyCodeLine{00248\ \ \ \ \ ocdth5625mA\ =\ 0x0E,}
+\DoxyCodeLine{00249\ \ \ \ \ ocdth6000mA\ =\ 0x0F}
+\DoxyCodeLine{00250\ \}\ \mbox{\hyperlink{LibL6474_8h_ab1c87367ce432f3754d12ceb390077c8}{L6474x\_OCD\_TH\_t}};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00258\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structL6474__Handle}{L6474\_Handle}}*\ \mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00266\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00267\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structL6474x__Platform}{L6474x\_Platform}}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00269\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{void}*\ (*malloc)\ \ \ \ (\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00303\ \ \ \ \ void\ \ (*\mbox{\hyperlink{structL6474x__Platform_aa2a5aa62e3026dc6f2e30ba3396e95d6}{free}})\ \ \ \ \ \ (\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{const}\ pMem\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00327\ \ \ \ \ int\ \ \ (*\mbox{\hyperlink{structL6474x__Platform_a7fe507a91d9903700ea26979c99285d1}{transfer}})\ \ (\ \textcolor{keywordtype}{void}*\ pIO,\ \textcolor{keywordtype}{char}*\ pRX,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ pTX,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ length\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00345\ \ \ \ \ void\ \ (*\mbox{\hyperlink{structL6474x__Platform_ad025e0b1e005cd87e8694e057201ab46}{reset}})\ \ \ \ \ (\ \textcolor{keywordtype}{void}*\ pGPO,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ena\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00360\ \ \ \ \ void\ \ (*\mbox{\hyperlink{structL6474x__Platform_a8c6f3ea2ea4060d8fa8e2569565528bd}{sleep}})\ \ \ \ \ (\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ ms\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#if\ defined(LIBL6474\_STEP\_ASYNC)\ \&\&\ (\ LIBL6474\_STEP\_ASYNC\ ==\ 0\ )}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00387\ \ \ \ \ int\ \ \ (*step)\ \ \ \ \ \ (\ \textcolor{keywordtype}{void}*\ pPWM,\ \textcolor{keywordtype}{int}\ dir,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ numPulses\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#else}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00415\ \ \ \ \ int\ \ \ (*\mbox{\hyperlink{structL6474x__Platform_ad572a0239acf4cd50a3e7463ef5ddc9b}{stepAsync}})\ (\ \textcolor{keywordtype}{void}*\ pPWM,\ \textcolor{keywordtype}{int}\ dir,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ numPulses,\ void\ (*doneClb)(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}),\ \mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h\ );}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00423\ \ \ \ \ int\ \ \ (*\mbox{\hyperlink{structL6474x__Platform_ae5551ae8e979685460c0183407287f18}{cancelStep}})(\ \textcolor{keywordtype}{void}*\ pPWM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#if\ defined(LIBL6474\_HAS\_LOCKING)\ \&\&\ LIBL6474\_HAS\_LOCKING\ ==\ 1}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00430\ \ \ \ \ int\ \ \ (*lock)\ \ \ \ \ \ (\ void\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00436\ \ \ \ \ void\ \ (*unlock)\ \ \ \ (\ void\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#if\ defined(LIBL6474\_HAS\_FLAG)\ \&\&\ LIBL6474\_HAS\_FLAG\ ==\ 1}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00447\ \ \ \ \ int\ \ \ (*getFlag)\ \ \ (\ \textcolor{keywordtype}{void}*\ pIO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ \}\ \mbox{\hyperlink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\_Platform\_t}};}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00458\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00459\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00460\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00461\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22abccdf1a94c5d1a194f423948fcc35f8a}{L6474\_PROP\_TORQUE}}\ \ =\ 0x09,}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00470\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22afc595836a950e6620f1cb371937a35b7}{L6474\_PROP\_TON}}\ \ \ \ \ =\ 0x0F,}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00475\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22aa16add8513a7cf75c29145c4b8dcccaf}{L6474\_PROP\_TOFF}}\ \ \ \ =\ 0x10,}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00480\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22a31afb1f2ce5b021ffbb8bc750b7c75de}{L6474\_PROP\_ADC\_OUT}}\ =\ 0x12,}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00485\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22a898527fab1d519699d217acca881c40d}{L6474\_PROP\_OCDTH}}\ \ \ =\ 0x13,}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00490\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22aa8e33c286f409be906405a261d70b2f1}{L6474\_PROP\_TFAST}}\ \ \ =\ 0x0E,}
+\DoxyCodeLine{00491\ \}\ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\_Property\_t}};}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00499\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00500\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00501\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00502\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\_StepMode\_t}}\ \mbox{\hyperlink{structL6474__BaseParameter__t_aa185fe303673fb5be437cb045d46ad57}{stepMode}};}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00511\ \ \ \ \ \mbox{\hyperlink{LibL6474_8h_ab1c87367ce432f3754d12ceb390077c8}{L6474x\_OCD\_TH\_t}}\ \ \ \mbox{\hyperlink{structL6474__BaseParameter__t_a576d32c8e940ebc362ef39121fe1de73}{OcdTh}};}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structL6474__BaseParameter__t_a872cd3775a4111c7f580b40a6afc1cab}{TimeOnMin}};}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structL6474__BaseParameter__t_ac8f83dc304aa725aab0b9f4c1eb370f2}{TimeOffMin}};}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structL6474__BaseParameter__t_a0246b0c9d5dba04624057006f1926836}{TorqueVal}};}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00531\ \ \ \ \ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structL6474__BaseParameter__t_a67652a2e4f5aa2614173cb3435b11ab5}{TFast}};}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \}\ \mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\_BaseParameter\_t}};}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00544\ \mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ \mbox{\hyperlink{LibL6474_8h_a86f889135167d8b4e889c620d0bf9990}{L6474\_CreateInstance}}(\mbox{\hyperlink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\_Platform\_t}}*\ p,\ \textcolor{keywordtype}{void}*\ pIO,\ \textcolor{keywordtype}{void}*\ pGPO,\ \textcolor{keywordtype}{void}*\ pPWM);}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00552\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a50d6d2ccc49478ff0ee3f42a24a8f496}{L6474\_DestroyInstance}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h);}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00568\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a9104da6893519c5eb0b33d56778fee2f}{L6474\_ResetStandBy}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h);}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00577\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a09a265e08fc1c8e4ec0c1c40ede3aa41}{L6474\_SetBaseParameter}}(\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\_BaseParameter\_t}}*\ p);}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00585\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{LibL6474_8h_ab7a90876abaf436e55942909df4c3430}{L6474\_EncodePhaseCurrent}}(\textcolor{keywordtype}{float}\ mA);}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00595\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_aa09b09b606dae725681f47cb44208df0}{L6474\_EncodePhaseCurrentParameter}}(\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\_BaseParameter\_t}}*\ p,\ \textcolor{keywordtype}{float}\ mA);}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00608\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a7b7f8efa1a972e53487d5cdfc8282784}{L6474\_Initialize}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\_BaseParameter\_t}}*\ p);}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00622\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a9b9c50f6d131a6acc788725354941bf1}{L6474\_SetStepMode}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\_StepMode\_t}}\ mode);}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00635\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a3570aff9f639c99f46549923cebdd511}{L6474\_GetStepMode}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\_StepMode\_t}}*\ mode);}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00649\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a18d8fb31625d8e3ee10fb37ff2054416}{L6474\_SetPowerOutputs}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ ena);}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00662\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a72614a564fe727aefceab5121943d66f}{L6474\_GetStatus}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_afe6a37602588d49b9ed5d1a308977d6a}{L6474\_Status\_t}}*\ status);}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00676\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_abd4a11ba27a26c9addb848e3aa3ad5c5}{L6474\_GetState}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_ae918168038a867ae74023c36e0e5faad}{L6474x\_State\_t}}*\ state);}
+\DoxyCodeLine{00677\ }
+\DoxyCodeLine{00690\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_aa4589feae28120554b6bdc708ee4e2e4}{L6474\_StepIncremental}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ steps\ );}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00702\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_ac04e97cbc212711d7fc321abd0d3f5aa}{L6474\_StopMovement}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h);}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00715\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a0c018c06758c809898408d249b3723b3}{L6474\_IsMoving}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}*\ moving);}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00730\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_ae15c095b47ecccc41e7dbecc4761c14d}{L6474\_SetProperty}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\_Property\_t}}\ prop,\ \textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00745\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a772c5810e20ed1056abaedf614f8adb3}{L6474\_GetProperty}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\_Property\_t}}\ prop,\ \textcolor{keywordtype}{int}*\ value);}
+\DoxyCodeLine{00746\ }
+\DoxyCodeLine{00758\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a28e38522674ae36aadb4c880eae3a1e7}{L6474\_GetAbsolutePosition}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}*\ position);}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00771\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a0edaf248fe144722aaed9a7b315651fa}{L6474\_SetAbsolutePosition}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ position);}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00785\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a76f2ad47b2c1b923186a3881e5cc97ba}{L6474\_GetElectricalPosition}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}*\ position);}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00799\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a1aa8e3250bc70809859a71f8a0e68dfe}{L6474\_SetElectricalPosition}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ position);}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00812\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a693afe2b1029683cbfb988b4e95dbed6}{L6474\_GetPositionMark}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}*\ position);}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00825\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a1f1c7b4f6c47bc5fe82ca9d7cde2606d}{L6474\_SetPositionMark}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ position);}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00838\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_a4b5bfb89269e877f95fa6c003e685f71}{L6474\_GetAlarmEnables}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}*\ bits);}
+\DoxyCodeLine{00839\ }
+\DoxyCodeLine{00851\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{LibL6474_8h_aa3f26a5707e354391c5a90bf3e035a27}{L6474\_SetAlarmEnables}}(\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h,\ \textcolor{keywordtype}{int}\ bits);}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{01013\ \ }
+\DoxyCodeLine{01033\ \ }
+\DoxyCodeLine{01034\ \textcolor{preprocessor}{\ \#endif\ }\textcolor{comment}{/*\ INC\_LIBL6474\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

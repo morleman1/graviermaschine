@@ -1,0 +1,686 @@
+\doxysection{C\+:/\+Home\+Git/\+STM32/libs/\+Lib\+L6474/src/\+Lib\+L6474x.c File Reference}
+\hypertarget{LibL6474x_8c}{}\label{LibL6474x_8c}\index{C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c@{C:/HomeGit/STM32/libs/LibL6474/src/LibL6474x.c}}
+{\ttfamily \#include "{}Lib\+L6474.\+h"{}}\newline
+{\ttfamily \#include "{}Lib\+L6474\+Config.\+h"{}}\newline
+Include dependency graph for Lib\+L6474x.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{LibL6474x_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structL6474x__ParameterDescriptor}{L6474x\+\_\+\+Parameter\+Descriptor}}
+\item 
+struct \mbox{\hyperlink{structL6474__Handle}{L6474\+\_\+\+Handle}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{LibL6474x_8c_a939ad60d62050331cb69c6f3d261b394}{IN\+\_\+\+MILLISEC}}(x)
+\item 
+\Hypertarget{LibL6474x_8c_a5bd90d018b133feeab52627431c9d0ca}\label{LibL6474x_8c_a5bd90d018b133feeab52627431c9d0ca} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+NOP\+\_\+\+PREFIX}~((char)0x00)
+\item 
+\Hypertarget{LibL6474x_8c_a0ccdab78a99303ea805085ae8bbf1374}\label{LibL6474x_8c_a0ccdab78a99303ea805085ae8bbf1374} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+NOP\+\_\+\+LENGTH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_ade93f99e35497d6eb313096450a3b904}\label{LibL6474x_8c_ade93f99e35497d6eb313096450a3b904} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+SET\+\_\+\+PREFIX}~((char)0x00)
+\item 
+\Hypertarget{LibL6474x_8c_ace4fee1d76d26590d65210b7500a6feb}\label{LibL6474x_8c_ace4fee1d76d26590d65210b7500a6feb} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+SET\+\_\+\+LENGTH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a7a9139e8d0748aa738903dd686509298}\label{LibL6474x_8c_a7a9139e8d0748aa738903dd686509298} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+SET\+\_\+\+MAX\+\_\+\+PAYLOAD}~0x04
+\item 
+\Hypertarget{LibL6474x_8c_a52a7453b9568a38091ba6c843b9d7803}\label{LibL6474x_8c_a52a7453b9568a38091ba6c843b9d7803} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+GET\+\_\+\+PREFIX}~((char)0x20)
+\item 
+\Hypertarget{LibL6474x_8c_aeaadd1e01aa88c6c98532d70a99846db}\label{LibL6474x_8c_aeaadd1e01aa88c6c98532d70a99846db} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+GET\+\_\+\+LENGTH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a9e0aa4b5677fbfa2ffc1e0613d7cf34a}\label{LibL6474x_8c_a9e0aa4b5677fbfa2ffc1e0613d7cf34a} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+GET\+\_\+\+MAX\+\_\+\+PAYLOAD}~0x04
+\item 
+\Hypertarget{LibL6474x_8c_acd87009e4b86d00cb5c8561b5a2206e5}\label{LibL6474x_8c_acd87009e4b86d00cb5c8561b5a2206e5} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+ENA\+\_\+\+PREFIX}~((char)0x\+B8)
+\item 
+\Hypertarget{LibL6474x_8c_a1e0fb09fc2b09c42c818048fa14228f9}\label{LibL6474x_8c_a1e0fb09fc2b09c42c818048fa14228f9} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+ENA\+\_\+\+LENGTH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_aef1833b422452ab89e04faf13d979612}\label{LibL6474x_8c_aef1833b422452ab89e04faf13d979612} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+DIS\+\_\+\+PREFIX}~((char)0x\+A8)
+\item 
+\Hypertarget{LibL6474x_8c_a85680fe695f3c70455c6210afdcfb2d5}\label{LibL6474x_8c_a85680fe695f3c70455c6210afdcfb2d5} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+DIS\+\_\+\+LENGTH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_aeb6f1eac972f15c3b82b5eb69a08a2e6}\label{LibL6474x_8c_aeb6f1eac972f15c3b82b5eb69a08a2e6} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+STA\+\_\+\+PREFIX}~((char)0x\+D0)
+\item 
+\Hypertarget{LibL6474x_8c_addbd6f95158a3ca7a313fb4ff052f1b3}\label{LibL6474x_8c_addbd6f95158a3ca7a313fb4ff052f1b3} 
+\#define {\bfseries STEP\+\_\+\+CMD\+\_\+\+STA\+\_\+\+LENGTH}~0x03
+\item 
+\Hypertarget{LibL6474x_8c_ac99b520aa4cb1923e6688bbe73bc9741}\label{LibL6474x_8c_ac99b520aa4cb1923e6688bbe73bc9741} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+RANGE\+\_\+\+MASK}~0x1F
+\item 
+\Hypertarget{LibL6474x_8c_a46e17fc9fbf73ab956eb2e386ade4853}\label{LibL6474x_8c_a46e17fc9fbf73ab956eb2e386ade4853} 
+\#define {\bfseries HIGH\+\_\+\+POS\+\_\+\+BIT}~(1 $<$$<$ 21)
+\item 
+\Hypertarget{LibL6474x_8c_aec367cc1003e76caee74edda69225515}\label{LibL6474x_8c_aec367cc1003e76caee74edda69225515} 
+\#define {\bfseries HIGH\+\_\+\+POS\+\_\+\+MASK}~((HIGH\+\_\+\+POS\+\_\+\+BIT\texorpdfstring{$\ast$}{*}2)-\/1)
+\item 
+\Hypertarget{LibL6474x_8c_ae560024aa438bc96a8123462fdbd2965}\label{LibL6474x_8c_ae560024aa438bc96a8123462fdbd2965} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+ABS\+\_\+\+POS}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_adca406394d6a189ac2f26b5d8c0aab59}\label{LibL6474x_8c_adca406394d6a189ac2f26b5d8c0aab59} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+ABS\+\_\+\+POS}~0x03
+\item 
+\Hypertarget{LibL6474x_8c_a0c5d9d5ad7d844c37466f969d367fba7}\label{LibL6474x_8c_a0c5d9d5ad7d844c37466f969d367fba7} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+ABS\+\_\+\+POS}~0x3\+FFFFF
+\item 
+\Hypertarget{LibL6474x_8c_a06d18bccef202af3b529e62752c2376b}\label{LibL6474x_8c_a06d18bccef202af3b529e62752c2376b} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+ABS\+\_\+\+POS}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a2450944eb35537ca2d72311563397c75}\label{LibL6474x_8c_a2450944eb35537ca2d72311563397c75} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+EL\+\_\+\+POS}~0x02
+\item 
+\Hypertarget{LibL6474x_8c_a9c2df2232ee105eec4d0b5ca18b803bb}\label{LibL6474x_8c_a9c2df2232ee105eec4d0b5ca18b803bb} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+EL\+\_\+\+POS}~0x02
+\item 
+\Hypertarget{LibL6474x_8c_ad040b7044cdff542b69457a9d380031c}\label{LibL6474x_8c_ad040b7044cdff542b69457a9d380031c} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+EL\+\_\+\+POS}~0x1\+FF
+\item 
+\Hypertarget{LibL6474x_8c_a8fe31cbf8a851d0f20b137d247038e14}\label{LibL6474x_8c_a8fe31cbf8a851d0f20b137d247038e14} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+EL\+\_\+\+POS}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a33c2b302ff55c150c81077caa6fe14a3}\label{LibL6474x_8c_a33c2b302ff55c150c81077caa6fe14a3} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+MARK}~0x03
+\item 
+\Hypertarget{LibL6474x_8c_a59747390e4b35e2d4fbea1af2bd9d474}\label{LibL6474x_8c_a59747390e4b35e2d4fbea1af2bd9d474} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+MARK}~0x03
+\item 
+\Hypertarget{LibL6474x_8c_a23c9fa0c8e7c8a30217a0d359901012f}\label{LibL6474x_8c_a23c9fa0c8e7c8a30217a0d359901012f} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+MARK}~0x3\+FFFFF
+\item 
+\Hypertarget{LibL6474x_8c_ad9ed1c430f082b0caf951a952578e1bf}\label{LibL6474x_8c_ad9ed1c430f082b0caf951a952578e1bf} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+MARK}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_ae1d738616c83787f2ef09ceddd17828d}\label{LibL6474x_8c_ae1d738616c83787f2ef09ceddd17828d} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+TVAL}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22abccdf1a94c5d1a194f423948fcc35f8a}{L6474\+\_\+\+PROP\+\_\+\+TORQUE}}
+\item 
+\Hypertarget{LibL6474x_8c_ab00592217f35970dccbf1c3c869404e3}\label{LibL6474x_8c_ab00592217f35970dccbf1c3c869404e3} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+TVAL}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_acf54edcad11e13f91941c6a62c9fc2f7}\label{LibL6474x_8c_acf54edcad11e13f91941c6a62c9fc2f7} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+TVAL}~0x7F
+\item 
+\Hypertarget{LibL6474x_8c_a08e3e10c22558ad43938afb8a945659d}\label{LibL6474x_8c_a08e3e10c22558ad43938afb8a945659d} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+TVAL}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_ad7f24434021172df2a4c0829b25ba824}\label{LibL6474x_8c_ad7f24434021172df2a4c0829b25ba824} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+T\+\_\+\+FAST}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22aa8e33c286f409be906405a261d70b2f1}{L6474\+\_\+\+PROP\+\_\+\+TFAST}}
+\item 
+\Hypertarget{LibL6474x_8c_ab3948d2e8f06c1a1fe744d410acc56e6}\label{LibL6474x_8c_ab3948d2e8f06c1a1fe744d410acc56e6} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+T\+\_\+\+FAST}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_af0dbecedd759c4f96f77dc56009940aa}\label{LibL6474x_8c_af0dbecedd759c4f96f77dc56009940aa} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+T\+\_\+\+FAST}~0x\+FF
+\item 
+\Hypertarget{LibL6474x_8c_a4743d21ec16a7fb5f506bf5e5eeccc8a}\label{LibL6474x_8c_a4743d21ec16a7fb5f506bf5e5eeccc8a} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+T\+\_\+\+FAST}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a46947cb10c71c437ab6ff778c2a39ada}\label{LibL6474x_8c_a46947cb10c71c437ab6ff778c2a39ada} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+TON\+\_\+\+MIN}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22afc595836a950e6620f1cb371937a35b7}{L6474\+\_\+\+PROP\+\_\+\+TON}}
+\item 
+\Hypertarget{LibL6474x_8c_a6441e46503627ed041cd2da4b49f2c13}\label{LibL6474x_8c_a6441e46503627ed041cd2da4b49f2c13} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+TON\+\_\+\+MIN}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a10f05b672bae5fcf775d3eb5ff317c49}\label{LibL6474x_8c_a10f05b672bae5fcf775d3eb5ff317c49} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+TON\+\_\+\+MIN}~0x7F
+\item 
+\Hypertarget{LibL6474x_8c_a5d618c3d2e09fffe2b04e396b44cc240}\label{LibL6474x_8c_a5d618c3d2e09fffe2b04e396b44cc240} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+TON\+\_\+\+MIN}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a1ee756f6624e8f54d776b263203f1f51}\label{LibL6474x_8c_a1ee756f6624e8f54d776b263203f1f51} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+TOFF\+\_\+\+MIN}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22aa16add8513a7cf75c29145c4b8dcccaf}{L6474\+\_\+\+PROP\+\_\+\+TOFF}}
+\item 
+\Hypertarget{LibL6474x_8c_a29d8d6674cce398547708c7cc39b77ed}\label{LibL6474x_8c_a29d8d6674cce398547708c7cc39b77ed} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+TOFF\+\_\+\+MIN}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a6264af076eae0ea02a48bbc78ff074fa}\label{LibL6474x_8c_a6264af076eae0ea02a48bbc78ff074fa} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+TOFF\+\_\+\+MIN}~0x7F
+\item 
+\Hypertarget{LibL6474x_8c_a54cb5b77cbf0e939fbe74ef880b055f2}\label{LibL6474x_8c_a54cb5b77cbf0e939fbe74ef880b055f2} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+TOFF\+\_\+\+MIN}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a4f90bcb9de639f0817ca026cdc73b5a4}\label{LibL6474x_8c_a4f90bcb9de639f0817ca026cdc73b5a4} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+ADC\+\_\+\+OUT}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22a31afb1f2ce5b021ffbb8bc750b7c75de}{L6474\+\_\+\+PROP\+\_\+\+ADC\+\_\+\+OUT}}
+\item 
+\Hypertarget{LibL6474x_8c_aba2c30590fd7f4767a301250e780df0c}\label{LibL6474x_8c_aba2c30590fd7f4767a301250e780df0c} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+ADC\+\_\+\+OUT}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_aa1df17b19367e20267ae9e689b4611b3}\label{LibL6474x_8c_aa1df17b19367e20267ae9e689b4611b3} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+ADC\+\_\+\+OUT}~0x1F
+\item 
+\Hypertarget{LibL6474x_8c_ab95c0cab7c0cd232308e012a0f5dd78b}\label{LibL6474x_8c_ab95c0cab7c0cd232308e012a0f5dd78b} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+ADC\+\_\+\+OUT}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a9ccc642b9709b776ad16aead9e125cb2}\label{LibL6474x_8c_a9ccc642b9709b776ad16aead9e125cb2} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+OCD\+\_\+\+TH}~\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22a898527fab1d519699d217acca881c40d}{L6474\+\_\+\+PROP\+\_\+\+OCDTH}}
+\item 
+\Hypertarget{LibL6474x_8c_a672f845c156fd7b2cee0d19eec564c2c}\label{LibL6474x_8c_a672f845c156fd7b2cee0d19eec564c2c} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+OCD\+\_\+\+TH}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a18c1b7a880229dc3464fd6776ed9c7b7}\label{LibL6474x_8c_a18c1b7a880229dc3464fd6776ed9c7b7} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+OCD\+\_\+\+TH}~0x0F
+\item 
+\Hypertarget{LibL6474x_8c_a674a7867d39d49b1f141b271886ed04a}\label{LibL6474x_8c_a674a7867d39d49b1f141b271886ed04a} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+OCD\+\_\+\+TH}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_ae41e85072fba1ba8983f756009eee774}\label{LibL6474x_8c_ae41e85072fba1ba8983f756009eee774} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+STEP\+\_\+\+MODE}~0x16
+\item 
+\Hypertarget{LibL6474x_8c_a6ca9e3d0b9980e1759a0f89e723c24e2}\label{LibL6474x_8c_a6ca9e3d0b9980e1759a0f89e723c24e2} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+STEP\+\_\+\+MODE}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a1cd789e53cc8ec960fd03daa8a47ec90}\label{LibL6474x_8c_a1cd789e53cc8ec960fd03daa8a47ec90} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+STEP\+\_\+\+MODE}~0x\+FF
+\item 
+\Hypertarget{LibL6474x_8c_afae121ed64599c616c8a37cc47af6a20}\label{LibL6474x_8c_afae121ed64599c616c8a37cc47af6a20} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+STEP\+\_\+\+MODE}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a2370ed5d751b059c178ee29acdf78c65}\label{LibL6474x_8c_a2370ed5d751b059c178ee29acdf78c65} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+ALARM\+\_\+\+EN}~0x17
+\item 
+\Hypertarget{LibL6474x_8c_a082f729a9f141d4f32b179a00c2c57b6}\label{LibL6474x_8c_a082f729a9f141d4f32b179a00c2c57b6} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+ALARM\+\_\+\+EN}~0x01
+\item 
+\Hypertarget{LibL6474x_8c_a06657ae008e223d31ebeb3917ba2c32e}\label{LibL6474x_8c_a06657ae008e223d31ebeb3917ba2c32e} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+ALARM\+\_\+\+EN}~0x\+FF
+\item 
+\Hypertarget{LibL6474x_8c_a38834945b45af0f27384623f58ab78f4}\label{LibL6474x_8c_a38834945b45af0f27384623f58ab78f4} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+ALARM\+\_\+\+EN}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_af9cab97923175872260cd3a598d2bbc4}\label{LibL6474x_8c_af9cab97923175872260cd3a598d2bbc4} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+CONFIG}~0x18
+\item 
+\Hypertarget{LibL6474x_8c_ac3f50e02c6206154a5a721b207d7ccf2}\label{LibL6474x_8c_ac3f50e02c6206154a5a721b207d7ccf2} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+CONFIG}~0x02
+\item 
+\Hypertarget{LibL6474x_8c_aba82f7c3438acdbd6ad3b6c975aad336}\label{LibL6474x_8c_aba82f7c3438acdbd6ad3b6c975aad336} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+CONFIG}~0x\+FFFF
+\item 
+\Hypertarget{LibL6474x_8c_a080920807e544ed2c6072cba4b9be1ac}\label{LibL6474x_8c_a080920807e544ed2c6072cba4b9be1ac} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+CONFIG}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_adf0028a5adc2fef7a71578e64eff1694}\label{LibL6474x_8c_adf0028a5adc2fef7a71578e64eff1694} 
+\#define {\bfseries STEP\+\_\+\+REG\+\_\+\+STATUS}~0x19
+\item 
+\Hypertarget{LibL6474x_8c_ad68a398bf893a30ebeea0aa734d381ee}\label{LibL6474x_8c_ad68a398bf893a30ebeea0aa734d381ee} 
+\#define {\bfseries STEP\+\_\+\+LEN\+\_\+\+STATUS}~0x02
+\item 
+\Hypertarget{LibL6474x_8c_a5c02d92474cf7a81ecc9cd62788f7c38}\label{LibL6474x_8c_a5c02d92474cf7a81ecc9cd62788f7c38} 
+\#define {\bfseries STEP\+\_\+\+MASK\+\_\+\+STATUS}~0x\+FFFF
+\item 
+\Hypertarget{LibL6474x_8c_a5fde77e7154b952b2d5d78c771fcbbe0}\label{LibL6474x_8c_a5fde77e7154b952b2d5d78c771fcbbe0} 
+\#define {\bfseries STEP\+\_\+\+OFFSET\+\_\+\+STATUS}~0x0
+\item 
+\Hypertarget{LibL6474x_8c_a8c0c3da3b7df911f479e5c2eaad4113a}\label{LibL6474x_8c_a8c0c3da3b7df911f479e5c2eaad4113a} 
+\#define {\bfseries STATUS\+\_\+\+HIGHZ\+\_\+\+MASK}~( 1 $<$$<$  0 )
+\item 
+\Hypertarget{LibL6474x_8c_a66894eaabaad90b07cdc72feb57e63b6}\label{LibL6474x_8c_a66894eaabaad90b07cdc72feb57e63b6} 
+\#define {\bfseries STATUS\+\_\+\+DIRECTION\+\_\+\+MASK}~( 1 $<$$<$  4 )
+\item 
+\Hypertarget{LibL6474x_8c_a79fcf849d8b0b1aa6df66bd8621d502c}\label{LibL6474x_8c_a79fcf849d8b0b1aa6df66bd8621d502c} 
+\#define {\bfseries STATUS\+\_\+\+NOTPERF\+\_\+\+CMD\+\_\+\+MASK}~( 1 $<$$<$  7 )
+\item 
+\Hypertarget{LibL6474x_8c_ac64329d60c9656b9912474dbf3aac4b9}\label{LibL6474x_8c_ac64329d60c9656b9912474dbf3aac4b9} 
+\#define {\bfseries STATUS\+\_\+\+WRONG\+\_\+\+CMD\+\_\+\+MASK}~( 1 $<$$<$  8 )
+\item 
+\Hypertarget{LibL6474x_8c_a7c0623ca0754afd8fbba5ba7284d3083}\label{LibL6474x_8c_a7c0623ca0754afd8fbba5ba7284d3083} 
+\#define {\bfseries STATUS\+\_\+\+UNDERVOLT\+\_\+\+MASK}~( 1 $<$$<$  9 )
+\item 
+\Hypertarget{LibL6474x_8c_aecde41a9646fe05bc1bc89682b3c9634}\label{LibL6474x_8c_aecde41a9646fe05bc1bc89682b3c9634} 
+\#define {\bfseries STATUS\+\_\+\+THR\+\_\+\+WARN\+\_\+\+MASK}~( 1 $<$$<$ 10 )
+\item 
+\Hypertarget{LibL6474x_8c_a05167fe7d3b588533ce6884badca31b0}\label{LibL6474x_8c_a05167fe7d3b588533ce6884badca31b0} 
+\#define {\bfseries STATUS\+\_\+\+THR\+\_\+\+SHORTD\+\_\+\+MASK}~( 1 $<$$<$ 11 )
+\item 
+\Hypertarget{LibL6474x_8c_acb4a6a33ea1756d5730254ba43f95637}\label{LibL6474x_8c_acb4a6a33ea1756d5730254ba43f95637} 
+\#define {\bfseries STATUS\+\_\+\+OCD\+\_\+\+MASK}~( 1 $<$$<$ 12 )
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{LibL6474x_8c_a8579069436750f5b3c9485bba3b951f9}\label{LibL6474x_8c_a8579069436750f5b3c9485bba3b951f9} 
+typedef enum L6474x\+\_\+\+Access\+Flags {\bfseries L6474x\+\_\+\+Access\+Flags\+\_\+t}
+\item 
+\Hypertarget{LibL6474x_8c_ab0663cd5c44c98adbcbb6f9ee102816b}\label{LibL6474x_8c_ab0663cd5c44c98adbcbb6f9ee102816b} 
+typedef struct \mbox{\hyperlink{structL6474x__ParameterDescriptor}{L6474x\+\_\+\+Parameter\+Descriptor}} {\bfseries L6474x\+\_\+\+Parameter\+Descriptor\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{LibL6474x_8c_a80fd58b389d9dcba2ab2c22739521f1e}\label{LibL6474x_8c_a80fd58b389d9dcba2ab2c22739521f1e} 
+enum {\bfseries L6474x\+\_\+\+Access\+Flags} \{ {\bfseries af\+NONE} = 0x00
+, {\bfseries af\+READ} = 0x01
+, {\bfseries af\+WRITE} = 0x02
+, {\bfseries af\+WRITE\+\_\+\+HighZ} = 0x04
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{LibL6474x_8c_af35468449ba6fbbe6714496b4166ff55}\label{LibL6474x_8c_af35468449ba6fbbe6714496b4166ff55} 
+static int {\bfseries L6474\+\_\+\+Helper\+Lock} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_aa2f98dd8029b342757b59df23bcd8f20}\label{LibL6474x_8c_aa2f98dd8029b342757b59df23bcd8f20} 
+static void {\bfseries L6474\+\_\+\+Helper\+Unlock} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_a88c6dde4a339dc27d7dd9a6e474315c3}\label{LibL6474x_8c_a88c6dde4a339dc27d7dd9a6e474315c3} 
+static void {\bfseries L6474\+\_\+\+Helper\+Release\+Step} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_a904c74f46586d87378ef81d02502bc07}\label{LibL6474x_8c_a904c74f46586d87378ef81d02502bc07} 
+static int {\bfseries L6474\+\_\+\+Get\+Status\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_a1c2393af594c67a4d4ea3d295d7a97f5}\label{LibL6474x_8c_a1c2393af594c67a4d4ea3d295d7a97f5} 
+static int {\bfseries L6474\+\_\+\+Nop\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_a7689b28c5b95da8354b3557f0e826016}\label{LibL6474x_8c_a7689b28c5b95da8354b3557f0e826016} 
+static int {\bfseries L6474\+\_\+\+Get\+Param\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int addr)
+\item 
+\Hypertarget{LibL6474x_8c_a1ff930687db6ec2772dbfdf7c017cebb}\label{LibL6474x_8c_a1ff930687db6ec2772dbfdf7c017cebb} 
+static int {\bfseries L6474\+\_\+\+Set\+Param\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int addr, int value)
+\item 
+\Hypertarget{LibL6474x_8c_a6c439d67533538387107c29e26bf2c23}\label{LibL6474x_8c_a6c439d67533538387107c29e26bf2c23} 
+static int {\bfseries L6474\+\_\+\+Enable\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\Hypertarget{LibL6474x_8c_a5c0f47883237ff9dd2126556e35bb6d1}\label{LibL6474x_8c_a5c0f47883237ff9dd2126556e35bb6d1} 
+static int {\bfseries L6474\+\_\+\+Disable\+Command} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} \mbox{\hyperlink{LibL6474x_8c_a86f889135167d8b4e889c620d0bf9990}{L6474\+\_\+\+Create\+Instance}} (\mbox{\hyperlink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\+\_\+\+Platform\+\_\+t}} \texorpdfstring{$\ast$}{*}p, void \texorpdfstring{$\ast$}{*}p\+IO, void \texorpdfstring{$\ast$}{*}p\+GPO, void \texorpdfstring{$\ast$}{*}p\+PWM)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a50d6d2ccc49478ff0ee3f42a24a8f496}{L6474\+\_\+\+Destroy\+Instance}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a9104da6893519c5eb0b33d56778fee2f}{L6474\+\_\+\+Reset\+Stand\+By}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a09a265e08fc1c8e4ec0c1c40ede3aa41}{L6474\+\_\+\+Set\+Base\+Parameter}} (\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}p)
+\item 
+char \mbox{\hyperlink{LibL6474x_8c_ab7a90876abaf436e55942909df4c3430}{L6474\+\_\+\+Encode\+Phase\+Current}} (float mA)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_aa09b09b606dae725681f47cb44208df0}{L6474\+\_\+\+Encode\+Phase\+Current\+Parameter}} (\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}p, float mA)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a7b7f8efa1a972e53487d5cdfc8282784}{L6474\+\_\+\+Initialize}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}p)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a0c018c06758c809898408d249b3723b3}{L6474\+\_\+\+Is\+Moving}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int \texorpdfstring{$\ast$}{*}moving)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a9b9c50f6d131a6acc788725354941bf1}{L6474\+\_\+\+Set\+Step\+Mode}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}} mode)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a3570aff9f639c99f46549923cebdd511}{L6474\+\_\+\+Get\+Step\+Mode}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}} \texorpdfstring{$\ast$}{*}mode)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a18d8fb31625d8e3ee10fb37ff2054416}{L6474\+\_\+\+Set\+Power\+Outputs}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int ena)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a28e38522674ae36aadb4c880eae3a1e7}{L6474\+\_\+\+Get\+Absolute\+Position}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int \texorpdfstring{$\ast$}{*}position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a0edaf248fe144722aaed9a7b315651fa}{L6474\+\_\+\+Set\+Absolute\+Position}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a76f2ad47b2c1b923186a3881e5cc97ba}{L6474\+\_\+\+Get\+Electrical\+Position}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int \texorpdfstring{$\ast$}{*}position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a1aa8e3250bc70809859a71f8a0e68dfe}{L6474\+\_\+\+Set\+Electrical\+Position}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a693afe2b1029683cbfb988b4e95dbed6}{L6474\+\_\+\+Get\+Position\+Mark}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int \texorpdfstring{$\ast$}{*}position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a1f1c7b4f6c47bc5fe82ca9d7cde2606d}{L6474\+\_\+\+Set\+Position\+Mark}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int position)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a4b5bfb89269e877f95fa6c003e685f71}{L6474\+\_\+\+Get\+Alarm\+Enables}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int \texorpdfstring{$\ast$}{*}bits)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_ae15c095b47ecccc41e7dbecc4761c14d}{L6474\+\_\+\+Set\+Property}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}} prop, int value)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a772c5810e20ed1056abaedf614f8adb3}{L6474\+\_\+\+Get\+Property}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}} prop, int \texorpdfstring{$\ast$}{*}value)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_aa3f26a5707e354391c5a90bf3e035a27}{L6474\+\_\+\+Set\+Alarm\+Enables}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int bits)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_a72614a564fe727aefceab5121943d66f}{L6474\+\_\+\+Get\+Status}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_afe6a37602588d49b9ed5d1a308977d6a}{L6474\+\_\+\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_abd4a11ba27a26c9addb848e3aa3ad5c5}{L6474\+\_\+\+Get\+State}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, \mbox{\hyperlink{LibL6474_8h_ae918168038a867ae74023c36e0e5faad}{L6474x\+\_\+\+State\+\_\+t}} \texorpdfstring{$\ast$}{*}state)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_ac04e97cbc212711d7fc321abd0d3f5aa}{L6474\+\_\+\+Stop\+Movement}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h)
+\item 
+int \mbox{\hyperlink{LibL6474x_8c_aa4589feae28120554b6bdc708ee4e2e4}{L6474\+\_\+\+Step\+Incremental}} (\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} h, int steps)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{structL6474x__ParameterDescriptor}{L6474x\+\_\+\+Parameter\+Descriptor\+\_\+t}} \mbox{\hyperlink{LibL6474x_8c_a4ad3de3d6138ea82b47fa4f9b4e84df6}{L6474\+\_\+\+Parameters}} \mbox{[}STEP\+\_\+\+REG\+\_\+\+RANGE\+\_\+\+MASK\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{LibL6474x_8c_a939ad60d62050331cb69c6f3d261b394}\index{LibL6474x.c@{LibL6474x.c}!IN\_MILLISEC@{IN\_MILLISEC}}
+\index{IN\_MILLISEC@{IN\_MILLISEC}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{IN\_MILLISEC}{IN\_MILLISEC}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a939ad60d62050331cb69c6f3d261b394} 
+\#define IN\+\_\+\+MILLISEC(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{LibL6474x_8c_a86f889135167d8b4e889c620d0bf9990}\index{LibL6474x.c@{LibL6474x.c}!L6474\_CreateInstance@{L6474\_CreateInstance}}
+\index{L6474\_CreateInstance@{L6474\_CreateInstance}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_CreateInstance()}{L6474\_CreateInstance()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a86f889135167d8b4e889c620d0bf9990} 
+\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}} L6474\+\_\+\+Create\+Instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\+\_\+\+Platform\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{p\+IO}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{p\+GPO}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{p\+PWM}{}\end{DoxyParamCaption})}
+
+L6474\+\_\+\+Create\+Instance is used once to create a library instance which encapsulates the handling for one stepper driver chip It needs a \doxylink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\+\_\+\+Platform\+\_\+t} abstraction pointer and optionally some context pointers which are platform specific. The context pointers are passed to the abstraction functions which are provided by the platform structure.
+
+In case it fails, a null pointer is returned. In case it was successful, a handle pointer is returned which is always required for all other API calls \Hypertarget{LibL6474x_8c_a50d6d2ccc49478ff0ee3f42a24a8f496}\index{LibL6474x.c@{LibL6474x.c}!L6474\_DestroyInstance@{L6474\_DestroyInstance}}
+\index{L6474\_DestroyInstance@{L6474\_DestroyInstance}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_DestroyInstance()}{L6474\_DestroyInstance()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a50d6d2ccc49478ff0ee3f42a24a8f496} 
+int L6474\+\_\+\+Destroy\+Instance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{}\end{DoxyParamCaption})}
+
+L6474\+\_\+\+Destroy\+Instance is used to destroy a library instance which has been previously created by a call to L6474\+\_\+\+Create\+Instance
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error \Hypertarget{LibL6474x_8c_ab7a90876abaf436e55942909df4c3430}\index{LibL6474x.c@{LibL6474x.c}!L6474\_EncodePhaseCurrent@{L6474\_EncodePhaseCurrent}}
+\index{L6474\_EncodePhaseCurrent@{L6474\_EncodePhaseCurrent}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_EncodePhaseCurrent()}{L6474\_EncodePhaseCurrent()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_ab7a90876abaf436e55942909df4c3430} 
+char L6474\+\_\+\+Encode\+Phase\+Current (\begin{DoxyParamCaption}\item[{float}]{mA}{}\end{DoxyParamCaption})}
+
+Calling L6474\+\_\+\+Encode\+Phase\+Current converts the requested phase current into the register value which is required in the base parameter structure. The member for this value is named Torque\+Val
+
+The function returns a register value which represents the given current value \Hypertarget{LibL6474x_8c_aa09b09b606dae725681f47cb44208df0}\index{LibL6474x.c@{LibL6474x.c}!L6474\_EncodePhaseCurrentParameter@{L6474\_EncodePhaseCurrentParameter}}
+\index{L6474\_EncodePhaseCurrentParameter@{L6474\_EncodePhaseCurrentParameter}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_EncodePhaseCurrentParameter()}{L6474\_EncodePhaseCurrentParameter()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_aa09b09b606dae725681f47cb44208df0} 
+int L6474\+\_\+\+Encode\+Phase\+Current\+Parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{float}]{mA}{}\end{DoxyParamCaption})}
+
+Calling L6474\+\_\+\+Encode\+Phase\+Current\+Parameter converts the requested phase current into the register value which is required in the base parameter structure. The member for this value is named Torque\+Val. This function directly inserts the converted value into the given base parameter structure.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error \Hypertarget{LibL6474x_8c_a28e38522674ae36aadb4c880eae3a1e7}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetAbsolutePosition@{L6474\_GetAbsolutePosition}}
+\index{L6474\_GetAbsolutePosition@{L6474\_GetAbsolutePosition}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetAbsolutePosition()}{L6474\_GetAbsolutePosition()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a28e38522674ae36aadb4c880eae3a1e7} 
+int L6474\+\_\+\+Get\+Absolute\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+Absolute\+Position is used to read the current stepper position. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. It returns the position \Hypertarget{LibL6474x_8c_a4b5bfb89269e877f95fa6c003e685f71}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetAlarmEnables@{L6474\_GetAlarmEnables}}
+\index{L6474\_GetAlarmEnables@{L6474\_GetAlarmEnables}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetAlarmEnables()}{L6474\_GetAlarmEnables()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a4b5bfb89269e877f95fa6c003e685f71} 
+int L6474\+\_\+\+Get\+Alarm\+Enables (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{bits}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+Alarm\+Enables is used to read the current enable bits for the ERROR ALARM and FLAG Pin. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param bits is required. The bitmask can be found in the datasheet \Hypertarget{LibL6474x_8c_a76f2ad47b2c1b923186a3881e5cc97ba}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetElectricalPosition@{L6474\_GetElectricalPosition}}
+\index{L6474\_GetElectricalPosition@{L6474\_GetElectricalPosition}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetElectricalPosition()}{L6474\_GetElectricalPosition()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a76f2ad47b2c1b923186a3881e5cc97ba} 
+int L6474\+\_\+\+Get\+Electrical\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+Electrical\+Position is used to read the current stepper electrical position. The library must not be in st\+RESET state to perform this operation. The electrical Position returns the step state and micro step component of the driver.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. \Hypertarget{LibL6474x_8c_a693afe2b1029683cbfb988b4e95dbed6}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetPositionMark@{L6474\_GetPositionMark}}
+\index{L6474\_GetPositionMark@{L6474\_GetPositionMark}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetPositionMark()}{L6474\_GetPositionMark()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a693afe2b1029683cbfb988b4e95dbed6} 
+int L6474\+\_\+\+Get\+Position\+Mark (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+Position\+Mark is used to read the current stepper position mark. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. \Hypertarget{LibL6474x_8c_a772c5810e20ed1056abaedf614f8adb3}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetProperty@{L6474\_GetProperty}}
+\index{L6474\_GetProperty@{L6474\_GetProperty}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetProperty()}{L6474\_GetProperty()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a772c5810e20ed1056abaedf614f8adb3} 
+int L6474\+\_\+\+Get\+Property (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}}}]{prop}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{value}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Property is used to read a property of the type of \doxylink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param prop is required.
+
+param value is required. The value formats can be found in the datasheet \Hypertarget{LibL6474x_8c_abd4a11ba27a26c9addb848e3aa3ad5c5}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetState@{L6474\_GetState}}
+\index{L6474\_GetState@{L6474\_GetState}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetState()}{L6474\_GetState()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_abd4a11ba27a26c9addb848e3aa3ad5c5} 
+int L6474\+\_\+\+Get\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_ae918168038a867ae74023c36e0e5faad}{L6474x\+\_\+\+State\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{state}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+State is used to read back the current libraries state. The library can be in state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param state is required. And must not be null \Hypertarget{LibL6474x_8c_a72614a564fe727aefceab5121943d66f}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetStatus@{L6474\_GetStatus}}
+\index{L6474\_GetStatus@{L6474\_GetStatus}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetStatus()}{L6474\_GetStatus()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a72614a564fe727aefceab5121943d66f} 
+int L6474\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_afe6a37602588d49b9ed5d1a308977d6a}{L6474\+\_\+\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{status}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Get\+Status is used to read back the current libraries and devices status. The library must not be in st\+RESET to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param status is required. And must not be null \Hypertarget{LibL6474x_8c_a3570aff9f639c99f46549923cebdd511}\index{LibL6474x.c@{LibL6474x.c}!L6474\_GetStepMode@{L6474\_GetStepMode}}
+\index{L6474\_GetStepMode@{L6474\_GetStepMode}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_GetStepMode()}{L6474\_GetStepMode()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a3570aff9f639c99f46549923cebdd511} 
+int L6474\+\_\+\+Get\+Step\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{mode}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Step\+Mode is used to read back the step mode and therefore the resolution. The library must not be in st\+RESET to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param mode is required and is one out of \doxylink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t} \Hypertarget{LibL6474x_8c_a7b7f8efa1a972e53487d5cdfc8282784}\index{LibL6474x.c@{LibL6474x.c}!L6474\_Initialize@{L6474\_Initialize}}
+\index{L6474\_Initialize@{L6474\_Initialize}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_Initialize()}{L6474\_Initialize()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a7b7f8efa1a972e53487d5cdfc8282784} 
+int L6474\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Initialize is used to set all basic parameters and take the required steps to bring up the driver into an idle state. It sets the library to st\+DISABLED in case no error happens.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param p is required and can not be null. the struct can be filled by calling L6474\+\_\+\+Set\+Base\+Parameter before. \Hypertarget{LibL6474x_8c_a0c018c06758c809898408d249b3723b3}\index{LibL6474x.c@{LibL6474x.c}!L6474\_IsMoving@{L6474\_IsMoving}}
+\index{L6474\_IsMoving@{L6474\_IsMoving}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_IsMoving()}{L6474\_IsMoving()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a0c018c06758c809898408d249b3723b3} 
+int L6474\+\_\+\+Is\+Moving (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{moving}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Is\+Moving is used to read the state of movement. In case the stepper moves, it returns true. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param moving is required. It returns 0 when no movement is pending or 1 when there is a movement. \Hypertarget{LibL6474x_8c_a9104da6893519c5eb0b33d56778fee2f}\index{LibL6474x.c@{LibL6474x.c}!L6474\_ResetStandBy@{L6474\_ResetStandBy}}
+\index{L6474\_ResetStandBy@{L6474\_ResetStandBy}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_ResetStandBy()}{L6474\_ResetStandBy()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a9104da6893519c5eb0b33d56778fee2f} 
+int L6474\+\_\+\+Reset\+Stand\+By (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{}\end{DoxyParamCaption})}
+
+Calling L6474\+\_\+\+Reset\+Stand\+By sets the driver in deep power down or reset state and the library will be set to default startup state again. All initialization steps must be done again by at least calling L6474\+\_\+\+Initialize. The library is set to st\+RESET from any other state before.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error
+
+note that in case the stepper is enabled an moving, the operation will be safely disabled but depending on the speed, the position can not be tracked properly anymore. So a new reference run after re-\/initialization is required!
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before. \Hypertarget{LibL6474x_8c_a0edaf248fe144722aaed9a7b315651fa}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetAbsolutePosition@{L6474\_SetAbsolutePosition}}
+\index{L6474\_SetAbsolutePosition@{L6474\_SetAbsolutePosition}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetAbsolutePosition()}{L6474\_SetAbsolutePosition()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a0edaf248fe144722aaed9a7b315651fa} 
+int L6474\+\_\+\+Set\+Absolute\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Absolute\+Position is used to write the current stepper position. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. It sets the position \Hypertarget{LibL6474x_8c_aa3f26a5707e354391c5a90bf3e035a27}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetAlarmEnables@{L6474\_SetAlarmEnables}}
+\index{L6474\_SetAlarmEnables@{L6474\_SetAlarmEnables}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetAlarmEnables()}{L6474\_SetAlarmEnables()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_aa3f26a5707e354391c5a90bf3e035a27} 
+int L6474\+\_\+\+Set\+Alarm\+Enables (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{bits}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Alarm\+Enables is used to write the current enable bits for the ERROR ALARM and FLAG Pin. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param bits is required. The bitmask can be found in the datasheet \Hypertarget{LibL6474x_8c_a09a265e08fc1c8e4ec0c1c40ede3aa41}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetBaseParameter@{L6474\_SetBaseParameter}}
+\index{L6474\_SetBaseParameter@{L6474\_SetBaseParameter}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetBaseParameter()}{L6474\_SetBaseParameter()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a09a265e08fc1c8e4ec0c1c40ede3aa41} 
+int L6474\+\_\+\+Set\+Base\+Parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})}
+
+Calling L6474\+\_\+\+Set\+Base\+Parameter sets the basic global default parameters for all properties in the \doxylink{structL6474__BaseParameter__t}{L6474\+\_\+\+Base\+Parameter\+\_\+t} structure. These parameters are required when calling L6474\+\_\+\+Initialize
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error \Hypertarget{LibL6474x_8c_a1aa8e3250bc70809859a71f8a0e68dfe}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetElectricalPosition@{L6474\_SetElectricalPosition}}
+\index{L6474\_SetElectricalPosition@{L6474\_SetElectricalPosition}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetElectricalPosition()}{L6474\_SetElectricalPosition()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a1aa8e3250bc70809859a71f8a0e68dfe} 
+int L6474\+\_\+\+Set\+Electrical\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Electrical\+Position is used to write the current stepper electrical position. The library must not be in st\+RESET state to perform this operation. The electrical Position consists of the step state and micro step component of the driver.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. \Hypertarget{LibL6474x_8c_a1f1c7b4f6c47bc5fe82ca9d7cde2606d}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetPositionMark@{L6474\_SetPositionMark}}
+\index{L6474\_SetPositionMark@{L6474\_SetPositionMark}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetPositionMark()}{L6474\_SetPositionMark()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a1f1c7b4f6c47bc5fe82ca9d7cde2606d} 
+int L6474\+\_\+\+Set\+Position\+Mark (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{position}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Position\+Mark is used to write the current stepper position mark. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param position is required. \Hypertarget{LibL6474x_8c_a18d8fb31625d8e3ee10fb37ff2054416}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetPowerOutputs@{L6474\_SetPowerOutputs}}
+\index{L6474\_SetPowerOutputs@{L6474\_SetPowerOutputs}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetPowerOutputs()}{L6474\_SetPowerOutputs()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a18d8fb31625d8e3ee10fb37ff2054416} 
+int L6474\+\_\+\+Set\+Power\+Outputs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{ena}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Power\+Outputs is used to enable or disable the driver output stages. The library must not be in st\+RESET to perform this operation. The libraries state will be changed to st\+ENABLED or st\+DISABLED depending on the ena parameter.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param ena is required and is either 0 when disabling or 1 when enabling is requested \Hypertarget{LibL6474x_8c_ae15c095b47ecccc41e7dbecc4761c14d}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetProperty@{L6474\_SetProperty}}
+\index{L6474\_SetProperty@{L6474\_SetProperty}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetProperty()}{L6474\_SetProperty()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_ae15c095b47ecccc41e7dbecc4761c14d} 
+int L6474\+\_\+\+Set\+Property (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}}}]{prop}{, }\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Property is used to write a property of the type of \doxylink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22}{L6474\+\_\+\+Property\+\_\+t}. The library must not be in st\+RESET state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param prop is required.
+
+param value is required. The value formats can be found in the datasheet \Hypertarget{LibL6474x_8c_a9b9c50f6d131a6acc788725354941bf1}\index{LibL6474x.c@{LibL6474x.c}!L6474\_SetStepMode@{L6474\_SetStepMode}}
+\index{L6474\_SetStepMode@{L6474\_SetStepMode}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_SetStepMode()}{L6474\_SetStepMode()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a9b9c50f6d131a6acc788725354941bf1} 
+int L6474\+\_\+\+Set\+Step\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{\mbox{\hyperlink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t}}}]{mode}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Set\+Step\+Mode is used to change the step mode and therefore the resolution. It is required to execute a new reference run because the position value of the lib does not match the stepping mode anymore. The library must not be in st\+RESET to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param mode is required and is one out of \doxylink{LibL6474_8h_a8cbcefa1aa04c85bacfbe16591593661}{L6474x\+\_\+\+Step\+Mode\+\_\+t} \Hypertarget{LibL6474x_8c_aa4589feae28120554b6bdc708ee4e2e4}\index{LibL6474x.c@{LibL6474x.c}!L6474\_StepIncremental@{L6474\_StepIncremental}}
+\index{L6474\_StepIncremental@{L6474\_StepIncremental}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_StepIncremental()}{L6474\_StepIncremental()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_aa4589feae28120554b6bdc708ee4e2e4} 
+int L6474\+\_\+\+Step\+Incremental (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{, }\item[{int}]{steps}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Step\+Incremental is used to issue a movement with the given amount of steps. The library has to be in st\+ENABLED state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before.
+
+param steps is required. negative values lead to a counter clock wise movement, 0 does not lead to any movement but returns errc\+NONE in case no other issue is present. \Hypertarget{LibL6474x_8c_ac04e97cbc212711d7fc321abd0d3f5aa}\index{LibL6474x.c@{LibL6474x.c}!L6474\_StopMovement@{L6474\_StopMovement}}
+\index{L6474\_StopMovement@{L6474\_StopMovement}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_StopMovement()}{L6474\_StopMovement()}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_ac04e97cbc212711d7fc321abd0d3f5aa} 
+int L6474\+\_\+\+Stop\+Movement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\+\_\+\+Handle\+\_\+t}}}]{h}{}\end{DoxyParamCaption})}
+
+func L6474\+\_\+\+Stop\+Movement is used to stop a pending movement in case it has been configured as async. If not, it always return errc\+NONE in case no other issue is present. The library has to be in st\+ENABLED state to perform this operation.
+
+The function returns errc\+NONE in case no error happens or any other error code from \doxylink{LibL6474_8h_a309c3dbe6f05306b1a0a8201979595a8}{L6474x\+\_\+\+Error\+Code\+\_\+t} enum in case of an error.
+
+param h is required and can not be null. the handle can be created by calling L6474\+\_\+\+Create\+Instance before. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{LibL6474x_8c_a4ad3de3d6138ea82b47fa4f9b4e84df6}\index{LibL6474x.c@{LibL6474x.c}!L6474\_Parameters@{L6474\_Parameters}}
+\index{L6474\_Parameters@{L6474\_Parameters}!LibL6474x.c@{LibL6474x.c}}
+\doxysubsubsection{\texorpdfstring{L6474\_Parameters}{L6474\_Parameters}}
+{\footnotesize\ttfamily \label{LibL6474x_8c_a4ad3de3d6138ea82b47fa4f9b4e84df6} 
+const \mbox{\hyperlink{structL6474x__ParameterDescriptor}{L6474x\+\_\+\+Parameter\+Descriptor\+\_\+t}} L6474\+\_\+\+Parameters\mbox{[}STEP\+\_\+\+REG\+\_\+\+RANGE\+\_\+\+MASK\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_ABS\_POS]\ \ \ =\ \{\ .command\ =\ STEP\_REG\_ABS\_POS,\ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_ABS\_POS,\ \ \ .mask\ =\ STEP\_MASK\_ABS\_POS,\ \ \ .name\ =\ \textcolor{stringliteral}{"{}ABS\_POS"{}},\ \ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_EL\_POS]\ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_EL\_POS,\ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_EL\_POS,\ \ \ \ .mask\ =\ STEP\_MASK\_EL\_POS,\ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}EL\_POS"{}},\ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_MARK]\ \ \ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_MARK,\ \ \ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_MARK,\ \ \ \ \ \ .mask\ =\ STEP\_MASK\_MARK,\ \ \ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}MARK"{}},\ \ \ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_TVAL]\ \ \ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_TVAL,\ \ \ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_TVAL,\ \ \ \ \ \ .mask\ =\ STEP\_MASK\_TVAL,\ \ \ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}TVAL"{}},\ \ \ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_T\_FAST]\ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_T\_FAST,\ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_T\_FAST,\ \ \ \ .mask\ =\ STEP\_MASK\_T\_FAST,\ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}T\_FAST"{}},\ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\_HighZ\ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_TON\_MIN]\ \ \ =\ \{\ .command\ =\ STEP\_REG\_TON\_MIN,\ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_TON\_MIN,\ \ \ .mask\ =\ STEP\_MASK\_TON\_MIN,\ \ \ .name\ =\ \textcolor{stringliteral}{"{}TON\_MIN"{}},\ \ \ .flags\ =\ afREAD\ |\ afWRITE\_HighZ\ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_TOFF\_MIN]\ \ =\ \{\ .command\ =\ STEP\_REG\_TOFF\_MIN,\ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_TOFF\_MIN,\ \ .mask\ =\ STEP\_MASK\_TOFF\_MIN,\ \ .name\ =\ \textcolor{stringliteral}{"{}TOFF\_MIN"{}},\ \ .flags\ =\ afREAD\ |\ afWRITE\_HighZ\ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_ADC\_OUT]\ \ \ =\ \{\ .command\ =\ STEP\_REG\_ADC\_OUT,\ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_ADC\_OUT,\ \ \ .mask\ =\ STEP\_MASK\_ADC\_OUT,\ \ \ .name\ =\ \textcolor{stringliteral}{"{}ADC\_OUT"{}},\ \ \ .flags\ =\ afREAD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_OCD\_TH]\ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_OCD\_TH,\ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_OCD\_TH,\ \ \ \ .mask\ =\ STEP\_MASK\_OCD\_TH,\ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}OCD\_TH"{}},\ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_STEP\_MODE]\ =\ \{\ .command\ =\ STEP\_REG\_STEP\_MODE,\ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_STEP\_MODE,\ .mask\ =\ STEP\_MASK\_STEP\_MODE,\ .name\ =\ \textcolor{stringliteral}{"{}STEP\_MODE"{}},\ .flags\ =\ afREAD\ |\ afWRITE\_HighZ\ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_ALARM\_EN]\ \ =\ \{\ .command\ =\ STEP\_REG\_ALARM\_EN,\ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_ALARM\_EN,\ \ .mask\ =\ STEP\_MASK\_ALARM\_EN,\ \ .name\ =\ \textcolor{stringliteral}{"{}ALARM\_EN"{}},\ \ .flags\ =\ afREAD\ |\ afWRITE\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_CONFIG]\ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_CONFIG,\ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_CONFIG,\ \ \ \ .mask\ =\ STEP\_MASK\_CONFIG,\ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}CONFIG"{}},\ \ \ \ .flags\ =\ afREAD\ |\ afWRITE\_HighZ\ \},}
+\DoxyCodeLine{\ \ \ \ [STEP\_REG\_STATUS]\ \ \ \ =\ \{\ .command\ =\ STEP\_REG\_STATUS,\ \ \ \ .defined\ =\ 1,\ .length\ =\ STEP\_LEN\_STATUS,\ \ \ \ .mask\ =\ STEP\_MASK\_STATUS,\ \ \ \ .name\ =\ \textcolor{stringliteral}{"{}STATUS"{}},\ \ \ \ .flags\ =\ afREAD\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

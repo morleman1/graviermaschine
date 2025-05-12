@@ -1,0 +1,116 @@
+\chapter{Stepper Library Lib6474}
+\hypertarget{index}{}\label{index}\index{Stepper Library Lib6474@{Stepper Library Lib6474}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
+The following code documentation is a set of tips and diagrams as well as function and structure descriptions which help when using the library. It is used to increase the implementation speed. Some examples are attached in this documentation as well\hypertarget{index_install_sec}{}\doxysection{\texorpdfstring{Static compile flags}{Static compile flags}}\label{index_install_sec}
+LIBL6474\+\_\+\+STEP\+\_\+\+ASYNC\+: This DEFINE is used to switch from blocking synchronous mode to asynchronous non-\/blocking step mode. This changes the API behavior
+
+LIBL6474\+\_\+\+HAS\+\_\+\+LOCKING\+: This DEFINE is used to enable the lock guard and thread synchronization guard abstraction, which requires additional abstraction functions
+
+LIBL6474\+\_\+\+DISABLE\+\_\+\+OCD\+: Should only be used for debugging purposes and not for productive code! This DEFINE is used to disable the overcurrent detection feature in the library and the stepper driver
+
+LIBL6474\+\_\+\+HAS\+\_\+\+FLAG\+: enables the support of the flag pin This DEFINE is used to enable the FLAG pin support, which requires additional abstraction functions\hypertarget{index_state_sec}{}\doxysection{\texorpdfstring{State diagram}{State diagram}}\label{index_state_sec}
+The following state diagram shows the internal state machine handling which follows or represents the state of the stepper driver chip. The fault conditions are not depicted in the diagram but in all regular cases the error handling is done by resetting and reinitialization of the stepper driver by the library.
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+\hypertarget{index_state_example}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{index_state_example}
+The following example shows a part of the abstraction functions which are required for the usage of the Stepper library. It also shows how to create a instance of the stepper library. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ StepLibraryMalloc(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size\ )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ StepLibraryFree(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{const}\ ptr\ )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \ free((\textcolor{keywordtype}{void}*)ptr);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ StepDriverSpiTransfer(\ \textcolor{keywordtype}{void}*\ pIO,\ \textcolor{keywordtype}{char}*\ pRX,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ pTX,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ length\ )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ byte\ based\ access,\ so\ keep\ in\ mind\ that\ only\ single\ byte\ transfers\ are\ performed!}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ length;\ i++\ )}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ pass\ all\ function\ pointers\ required\ by\ the\ stepper\ library}}
+\DoxyCodeLine{\textcolor{comment}{//\ to\ a\ separate\ platform\ abstraction\ structure}}
+\DoxyCodeLine{L6474x\_Platform\_t\ p;}
+\DoxyCodeLine{p.malloc\ \ \ \ \ =\ StepLibraryMalloc;}
+\DoxyCodeLine{p.free\ \ \ \ \ \ \ =\ StepLibraryFree;}
+\DoxyCodeLine{p.transfer\ \ \ =\ StepDriverSpiTransfer;}
+\DoxyCodeLine{p.reset\ \ \ \ \ \ =\ StepDriverReset;}
+\DoxyCodeLine{p.sleep\ \ \ \ \ \ =\ StepLibraryDelay;}
+\DoxyCodeLine{p.stepAsync\ \ =\ StepTimerAsync;}
+\DoxyCodeLine{p.cancelStep\ =\ StepTimerCancelAsync;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ now\ create\ the\ handle}}
+\DoxyCodeLine{\mbox{\hyperlink{LibL6474_8h_a31a0c627342d952d0dddf3fbe0643cac}{L6474\_Handle\_t}}\ h\ =\ \mbox{\hyperlink{LibL6474x_8c_a86f889135167d8b4e889c620d0bf9990}{L6474\_CreateInstance}}(\&p,\ null,\ null,\ null);\ }
+
+\end{DoxyCode}
+
+
+The following example shows a really simple instantiation and usage of the library with a simple default and straight forward configuration and no calculation of any step widths or resolutions
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{int\ result\ =\ 0;}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ reset\ all\ and\ take\ all\ initialization\ steps}}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_a9104da6893519c5eb0b33d56778fee2f}{L6474\_ResetStandBy}}(h);}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_a7b7f8efa1a972e53487d5cdfc8282784}{L6474\_Initialize}}(h,\ \&param);}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_a18d8fb31625d8e3ee10fb37ff2054416}{L6474\_SetPowerOutputs}}(h,\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ in\ case\ we\ have\ no\ error,\ we\ can\ enable\ the\ drivers}}
+\DoxyCodeLine{\textcolor{comment}{//\ and\ then\ we\ step\ a\ bit}}
+\DoxyCodeLine{if\ (\ result\ ==\ 0\ )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ result\ |=\ \mbox{\hyperlink{LibL6474x_8c_aa4589feae28120554b6bdc708ee4e2e4}{L6474\_StepIncremental}}(h,\ 1000\ );}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ error\ handling}}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+The following example shows how to change the phase current (max torque) of the stepper. This can be achieved by reinitializing the library or by changing the parameter by calling L6474\+\_\+\+Set\+Property;
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{int\ result\ =\ 0;}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ first\ way:\ set\ the\ torque\ on\ initialization}}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_a9104da6893519c5eb0b33d56778fee2f}{L6474\_ResetStandBy}}(h);}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_aa09b09b606dae725681f47cb44208df0}{L6474\_EncodePhaseCurrentParameter}}(\&param,\ 1200.0f);}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_a7b7f8efa1a972e53487d5cdfc8282784}{L6474\_Initialize}}(h,\ \&param);}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ second\ way:\ set\ the\ torque\ after\ initialization}}
+\DoxyCodeLine{char\ torqueval\ =\ \mbox{\hyperlink{LibL6474x_8c_ab7a90876abaf436e55942909df4c3430}{L6474\_EncodePhaseCurrent}}(1500.0f);}
+\DoxyCodeLine{result\ |=\ \mbox{\hyperlink{LibL6474x_8c_ae15c095b47ecccc41e7dbecc4761c14d}{L6474\_SetProperty}}(h,\ \mbox{\hyperlink{LibL6474_8h_a7dade050e47f1fea02eff190de585d22abccdf1a94c5d1a194f423948fcc35f8a}{L6474\_PROP\_TORQUE}},\ torqueval);}
+\DoxyCodeLine{}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,14 @@
+\chapter{Library porting}
+\hypertarget{lib_port_page}{}\label{lib_port_page}\index{Library porting@{Library porting}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
+The library is written with a minimum set of compiler dependencies to make it portable on most toolchains and most compilers which are able to compile C. There are no GCC attributes or MSVC pragmas included in the code furthermore there are no weak functions or other non ISO-\/C language keywords which are not parsable from all compilers. To include the library in a project, the following page helps to do the job and can be used as a step by step quick porting guide.\hypertarget{lib_port_page_step_by_step_sec}{}\doxysection{\texorpdfstring{required steps to include the library}{required steps to include the library}}\label{lib_port_page_step_by_step_sec}
+
+\begin{DoxyEnumerate}
+\item include all include paths of the library folder (inc-\/folder) to your project or copy them into your project as needed
+\item link all C files (src-\/folder) to your project or copy them to your project as needed
+\item adapt your makefile in case you have one. When using eclipse project this is not required
+\item copy the template header \doxylink{LibL6474Config_8h}{Lib\+L6474\+Config.\+h} file to your project or create your own and adapt the compile time parameters as needed.
+\item compile the source code once to make sure everything builds without issues and your include paths are correct.
+\item now implement the platform functions which are required be the \doxylink{LibL6474_8h_abd8789d767c61f493658bc6c964d141a}{L6474x\+\_\+\+Platform\+\_\+t} structure when calling L6474\+\_\+\+Create\+Instance.
+\item when all functions are defined, no error should be returned after the call of L6474\+\_\+\+Create\+Instance. Porting is done. 
+\end{DoxyEnumerate}
