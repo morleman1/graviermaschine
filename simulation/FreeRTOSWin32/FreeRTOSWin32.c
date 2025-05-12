@@ -105,6 +105,7 @@ int StepperPosition(void);
 int StepperStatus(void);
 int SpindleStart(int rpm);
 int SpindleStop(void);
+int Step(void* pPWM, int dir, unsigned int numPulses);
 int SpindleStatus(void);
 int StepperConfigHandler(const char *param, int argc, char **argv, int startIndex);
 static int CapabilityFunc(int argc, char **argv, void *ctx);
@@ -372,9 +373,9 @@ void InitComponentsTask(void *pvParameters)
   p.reset = StepDriverReset;
   p.sleep = StepLibraryDelay;
   // only if async is disabled
-  // p.step = Step;
-  p.stepAsync = stepAsync;
-  p.cancelStep = cancelStep;
+   p.step = Step;
+  //p.stepAsync = stepAsync;
+  //p.cancelStep = cancelStep;
 
   // Create stepper motor driver instance
   stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
@@ -1016,6 +1017,46 @@ int StepperMove(int absPos)
 
   return 0;
 }
+
+int StepSynchronous(void* pPWM, int dir, unsigned int numPulses) {
+    (void)pPWM; // Unused in this implementation
+
+    // Set direction pin
+    HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    // Generate pulses
+    for (unsigned int i = 0; i < numPulses; ++i) {
+        // Set STEP_PULSE pin high
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_SET);
+        StepLibraryDelay(1); // 1 ms High
+
+        // Set STEP_PULSE pin low
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_RESET);
+        StepLibraryDelay(1); // 1 ms Low
+    }
+
+    return 0; // Success
+}
+
+/*int Step(void* pPWM, int dir, unsigned int numPulses) {
+    (void)pPWM; // Unused in this implementation
+
+    // Set direction pin
+    HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    // Generate pulses
+    for (unsigned int i = 0; i < numPulses; ++i) {
+        // Set STEP_PULSE pin high
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_SET);
+        StepLibraryDelay(1); // 1 ms High
+
+        // Set STEP_PULSE pin low
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_RESET);
+        StepLibraryDelay(1); // 1 ms Low
+    }
+
+    return 0; // Success
+}*/
 
 static void StepperMovementComplete(L6474_Handle_t handle)
 {

@@ -66,6 +66,8 @@ volatile bool stepperMoving = false; // für async movement
 volatile bool stepperCancelRequested = false;
 volatile int targetPosition = 0;
 
+StepperContext stepper_ctx;
+
 static void (*stepperDoneCallback)(L6474_Handle_t) = NULL;
 static L6474_Handle_t stepperCallbackHandle = NULL;
 
@@ -115,6 +117,7 @@ int StepperPosition(void);
 int SpindleStatus(void);
 int StepperCancel(void);
 int StepperStatus(void);
+int Step(void* pPWM, int dir, unsigned int numPulses);
 void InitComponentsTask(void *pvParameters);
 
 extern void initialise_stdlib_abstraction(void);
@@ -1293,7 +1296,25 @@ int StepperReference(int timeout)
 
   return 0;
 }
+int Step(void* pPWM, int dir, unsigned int numPulses) {
+  (void)pPWM; // Unused in this implementation
 
+  // Set direction pin
+  HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+  // Generate pulses
+  for (unsigned int i = 0; i < numPulses; ++i) {
+    // Set STEP_PULSE pin high
+    HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_SET);
+    StepLibraryDelay(1); // 1 ms High
+
+    // Set STEP_PULSE pin low
+    HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, GPIO_PIN_RESET);
+    StepLibraryDelay(1); // 1 ms Low
+  }
+
+  return 0; // Success
+}
 int StepperReset(void)
 {
 

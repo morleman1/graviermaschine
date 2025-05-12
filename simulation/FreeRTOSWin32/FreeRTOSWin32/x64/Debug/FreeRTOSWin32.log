@@ -1,20 +1,20 @@
 ﻿  FreeRTOSWin32.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(29,9): warning C4005: "TIM_CHANNEL_1": Makro-Neudefinition
-      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(38,9):
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(29,9): warning C4005: "TIM_CHANNEL_1": Makro-Neudefinition
+      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(38,9):
       siehe vorherige Definition von "TIM_CHANNEL_1"
   
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(30,9): warning C4005: "TIM_CHANNEL_2": Makro-Neudefinition
-      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(39,9):
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(30,9): warning C4005: "TIM_CHANNEL_2": Makro-Neudefinition
+      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(39,9):
       siehe vorherige Definition von "TIM_CHANNEL_2"
   
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(31,9): warning C4005: "TIM_CHANNEL_3": Makro-Neudefinition
-      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(40,9):
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(31,9): warning C4005: "TIM_CHANNEL_3": Makro-Neudefinition
+      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(40,9):
       siehe vorherige Definition von "TIM_CHANNEL_3"
   
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(32,9): warning C4005: "TIM_CHANNEL_4": Makro-Neudefinition
-      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(41,9):
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(32,9): warning C4005: "TIM_CHANNEL_4": Makro-Neudefinition
+      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(41,9):
       siehe vorherige Definition von "TIM_CHANNEL_4"
   
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(321,3): warning C4311: "Typumwandlung": Zeigerverkürzung von "TIM_TypeDef *" zu "int"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(650,20): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-  FreeRTOSWin32.vcxproj -> C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\x64\Debug\FreeRTOSWin32.exe
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(322,3): warning C4311: "Typumwandlung": Zeigerverkürzung von "TIM_TypeDef *" zu "int"
+C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(651,20): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+  FreeRTOSWin32.vcxproj -> C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\x64\Debug\FreeRTOSWin32.exe
