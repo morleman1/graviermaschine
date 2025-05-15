@@ -52,7 +52,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 SPI_HandleTypeDef hspi1;
+TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
@@ -121,8 +123,9 @@ void InitTask(void *pvParameters)
   consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
   CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
-  InitSpindle(consoleHandle, &hspi1, &htim2, &htim4);
-  InitStepper(consoleHandle, &hspi1, &htim2, &htim4);
+  InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
+  InitSpindle(consoleHandle, &htim2);
+
 
 }
 
@@ -205,6 +208,7 @@ int main(void)
 
   (void)CapabilityFunc;
 
+  InitTask();
   vTaskStartScheduler();
   /* USER CODE END 2 */
 

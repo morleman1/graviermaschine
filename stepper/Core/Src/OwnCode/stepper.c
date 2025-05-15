@@ -1148,7 +1148,7 @@ int StepperPosition(void)
 }
 
 
-void InitSpindle()
+void InitStepper(ConsoleHandle_t consoleHandle, SPI_HandleTypeDef* hspi1, TIM_HandleTypeDef* htim1, TIM_HandleTypeDef* tim4_handle)
 {
      L6474x_Platform_t p;
   p.malloc = StepLibraryMalloc;
@@ -1161,8 +1161,8 @@ void InitSpindle()
   p.stepAsync = stepAsync;
   p.cancelStep = cancelStep;
 
-  stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim2);
+  stepperHandle = L6474_CreateInstance(&p, &hspi1, NULL, &htim1);
 
-    CONSOLE_RegisterCommand(consoleHandle, "stepper", "Standard stepper command followed by subcommands", StepperHandler, NULL);
+  CONSOLE_RegisterCommand(consoleHandle, "stepper", "Standard stepper command followed by subcommands", StepperHandler, NULL);
 
 }
