@@ -57,12 +57,9 @@ UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 TaskHandle_t InitComponentsTaskHandle = NULL;
-SpindleHandle_t spindleHandle = NULL;
 ConsoleHandle_t consoleHandle = NULL;
 
-static int spindleEnabled = 0;
-static int spindleDirection = 0; // 0 = forwärts, 1 = rückwärts
-static float spindleCurrentRPM = 0.0f;
+
 
 /* USER CODE END PV */
 

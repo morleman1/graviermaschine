@@ -1,4 +1,13 @@
+#include "Spindle.h"
+#include "Console.h"
+#include "FreeRTOSConfig.h"
+#include "main.h"
 
+SpindleHandle_t spindleHandle = NULL;
+
+static int spindleEnabled = 0;
+static int spindleDirection = 0; // 0 = forwärts, 1 = rückwärts
+static float spindleCurrentRPM = 0.0f;
 
 int SpindleStart(int rpm);
 int SpindleStop(void);
