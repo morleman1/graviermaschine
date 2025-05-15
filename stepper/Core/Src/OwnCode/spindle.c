@@ -2,12 +2,15 @@
 #include "Console.h"
 #include "FreeRTOSConfig.h"
 #include "main.h"
+#include "stdio.h"
 
-SpindleHandle_t spindleHandle = NULL;
+typedef struct {
+	int direction;
+	TIM_HandleTypeDef timer;
+	SpindleHandle_t handle;
+} SpindleContext_t;
 
-SpindlePhysicalParams_t s;
-TIM_HandleTypeDef* htim;
-int spindleDirection = 0;
+SpindleContext_t spindleContext;
 
 int SpindleStart(int rpm);
 int SpindleStop(void);
@@ -18,7 +21,7 @@ void SPINDLE_SetDirection(SpindleHandle_t h, void *context, int backward)
 {
   (void)h;
   (void)context;
-  spindleDirection = backward;
+  spindleContext.direction = backward;
 
   if (backward)
   {
@@ -35,7 +38,7 @@ void SPINDLE_SetDutyCycle(SpindleHandle_t h, void *context, float dutyCycle)
   (void)h;
   (void)context;
   int arr = TIM2->ARR;
-  if (spindleDirection)
+  if (spindleContext.direction)
    {
       TIM2->CCR3 = 0;
       TIM2->CCR4 = (int)((float)arr * dutyCycle);
@@ -58,15 +61,15 @@ void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
 
   if (ena)
   {
-      HAL_TIM_PWM_Start(htim, TIM_CHANNEL_3);
-      HAL_TIM_PWM_Start(htim, TIM_CHANNEL_4);
+      HAL_TIM_PWM_Start(&spindleContext.timer, TIM_CHANNEL_3);
+      HAL_TIM_PWM_Start(&spindleContext.timer, TIM_CHANNEL_4);
   }
 }
 
 void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim)
 {
-   htim = htim;
   // Initialize the spindle parameters
+  SpindlePhysicalParams_t s;
   s.maxRPM = 9000.0f;
   s.minRPM = -9000.0f;
   s.absMinRPM = 1600.0f;
@@ -75,13 +78,15 @@ void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim)
   s.enaPWM = SPINDLE_EnaPWM;
   s.context = NULL;
 
-  spindleHandle = SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
+  spindleContext.handle= SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
                                          configMAX_PRIORITIES - 3,
-                                         consoleHandle, &s);
+                                         *consoleHandle, &s);
 
-  if (spindleHandle == NULL)
+  if (spindleContext.handle == NULL)
   {
     printf("Failed to create spindle controller instance\r\n");
     Error_Handler();
   }
+  spindleContext.direction = 0;
+  spindleContext.timer = *htim;
 }

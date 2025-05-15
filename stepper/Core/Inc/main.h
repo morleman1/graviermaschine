@@ -30,6 +30,7 @@ extern "C" {
 #include "stm32f7xx_hal.h"
 #include "LibL6474.h"
 #include "LibL6474Config.h"
+#include "console.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -55,6 +56,8 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+//void InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
+void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim2);
 
 /* USER CODE BEGIN EFP */
 

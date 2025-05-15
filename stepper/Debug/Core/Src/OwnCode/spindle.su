@@ -1,4 +1,4 @@
-../Core/Src/OwnCode/spindle.c:17:6:SPINDLE_SetDirection	24	static
-../Core/Src/OwnCode/spindle.c:33:6:SPINDLE_SetDutyCycle	32	static
-../Core/Src/OwnCode/spindle.c:51:6:SPINDLE_EnaPWM	24	static
-../Core/Src/OwnCode/spindle.c:66:6:InitSpindle	16	static
+../Core/Src/OwnCode/spindle.c:20:6:SPINDLE_SetDirection	24	static
+../Core/Src/OwnCode/spindle.c:36:6:SPINDLE_SetDutyCycle	32	static
+../Core/Src/OwnCode/spindle.c:54:6:SPINDLE_EnaPWM	24	static
+../Core/Src/OwnCode/spindle.c:69:6:InitSpindle	48	static

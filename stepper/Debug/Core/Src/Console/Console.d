@@ -1,5 +1,5 @@
 Core/Src/Console/Console.o: \
- C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibRTOSConsole/src/Console.c \
+ C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/libs/LibRTOSConsole/src/Console.c \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \
@@ -46,9 +46,9 @@ Core/Src/Console/Console.o: \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../../libs/LibL6474/inc/LibL6474.h \
- C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
- ../../libs/LibRTOSConsole/inc/Console.h \
- C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h
+ C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
+ ../../libs/LibRTOSConsole/inc/console.h \
+ C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h:
@@ -96,6 +96,6 @@ Core/Src/Console/Console.o: \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../../libs/LibL6474/inc/LibL6474.h:
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
-../../libs/LibRTOSConsole/inc/Console.h:
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h:
+C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
+../../libs/LibRTOSConsole/inc/console.h:
+C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h:

@@ -1,5 +1,5 @@
 FreeRTOS-Kernel/portable/Common/mpu_wrappers.o: \
- C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/portable/Common/mpu_wrappers.c \
+ C:/Users/tomke/Documents/3_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/portable/Common/mpu_wrappers.c \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \

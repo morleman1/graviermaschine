@@ -73,10 +73,11 @@ static void MX_SPI1_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
 static int CapabilityFunc(int argc, char **argv, void *ctx);
+void InitTask();
 
 /* USER CODE BEGIN PFP */
 
-void InitTask();
+
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -112,8 +113,8 @@ void InitTask()
   consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
   CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
-  InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
-  InitSpindle(consoleHandle, htim2);
+  //InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
+  InitSpindle(&consoleHandle, &htim2);
 
 
 }
@@ -197,7 +198,7 @@ int main(void)
 
   (void)CapabilityFunc;
 
-  InitTask();
+  //InitTask();
   vTaskStartScheduler();
   /* USER CODE END 2 */
 
