@@ -72,10 +72,11 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
+static int CapabilityFunc(int argc, char **argv, void *ctx);
 
 /* USER CODE BEGIN PFP */
 
-void InitTask(void *pvParameters);
+void InitTask();
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -105,7 +106,7 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName)
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void InitTask(void *pvParameters)
+void InitTask()
 {
 
 
@@ -113,7 +114,7 @@ void InitTask(void *pvParameters)
 
   CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
   InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
-  InitSpindle(consoleHandle, &htim2);
+  InitSpindle(consoleHandle, htim2);
 
 
 }

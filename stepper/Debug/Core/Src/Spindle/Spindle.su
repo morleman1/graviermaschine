@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	72	static
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	24	static
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	24	static
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	64	static
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	24	static
 C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	56	static
+=======
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	72	static
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	24	static
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	24	static
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	64	static
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	24	static
+C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	56	static
+>>>>>>> ffdde72ac9ab55556c7181c7d453721a4c6d8d6d

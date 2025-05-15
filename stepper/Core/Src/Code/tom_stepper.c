@@ -1,4 +1,4 @@
-#include "main.h"
+/*#include "main.h"
 #include "init.h"
 #include "LibL6474.h"
 #include "stdio.h"
@@ -433,6 +433,4 @@ void init_stepper(ConsoleHandle_t console_handle, SPI_HandleTypeDef* hspi1, TIM_
 	stepper_ctx.htim4_handle = tim4_handle;
 
 	CONSOLE_RegisterCommand(console_handle, "stepper", "Stepper main Command", stepperConsoleFunction, &stepper_ctx);
-
-
-}
+}*/

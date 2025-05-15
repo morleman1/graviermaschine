@@ -4,7 +4,10 @@
 "./Core/Src/Console/Console.o"
 "./Core/Src/OwnCode/spindle.o"
 "./Core/Src/OwnCode/stepper.o"
+<<<<<<< HEAD
 "./Core/Src/OwnCode/temp_stepper.o"
+=======
+>>>>>>> ffdde72ac9ab55556c7181c7d453721a4c6d8d6d
 "./Core/Src/Spindle/Spindle.o"
 "./Core/Src/main.o"
 "./Core/Src/newlib_abs.o"

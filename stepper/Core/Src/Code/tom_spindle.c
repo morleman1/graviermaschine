@@ -4,7 +4,7 @@
  *  Created on: Mar 19, 2025
  *      Author: es23018
  */
-#include "Spindle.h"
+/*#include "Spindle.h"
 #include "Console.h"
 #include "FreeRTOSConfig.h"
 #include "main.h"
@@ -74,4 +74,4 @@ void init_spindle(ConsoleHandle_t console_handle, TIM_HandleTypeDef tim_handle) 
 	spindle_params.context            = &ctx;
 
 	SPINDLE_CreateInstance( 4*configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 3, console_handle, &spindle_params);
-}
+}*/
