@@ -1,5 +1,5 @@
-#include "main.h"
-#include "init.h"
+/*#include "main.h"
+//#include "init.h"
 #include "LibL6474.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -1165,4 +1165,4 @@ void InitStepper(ConsoleHandle_t consoleHandle, SPI_HandleTypeDef* hspi1, TIM_Ha
 
   CONSOLE_RegisterCommand(consoleHandle, "stepper", "Standard stepper command followed by subcommands", StepperHandler, NULL);
 
-}
+}*/

@@ -1,0 +1,4 @@
+../Core/Src/OwnCode/spindle.c:17:6:SPINDLE_SetDirection	2
+../Core/Src/OwnCode/spindle.c:33:6:SPINDLE_SetDutyCycle	2
+../Core/Src/OwnCode/spindle.c:51:6:SPINDLE_EnaPWM	2
+../Core/Src/OwnCode/spindle.c:66:6:InitSpindle	2

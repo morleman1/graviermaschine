@@ -5,7 +5,7 @@
  *      Author: es23018
  */
 
-#include "FreeRTOS.h"
+/*#include "FreeRTOS.h"
 #include "task.h"
 #include "stdio.h"
 #include "Console.h"
@@ -61,3 +61,4 @@ void init(TIM_HandleTypeDef tim_handle, SPI_HandleTypeDef* hspi1, TIM_HandleType
 	  init_spindle(console_handle, tim_handle);
 	  init_stepper(console_handle, hspi1, tim1_handle, tim4_handle);
 }
+*/
