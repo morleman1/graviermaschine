@@ -1,5 +1,5 @@
 FreeRTOS-Kernel/stream_buffer.o: \
- C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/stream_buffer.c \
+ C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/stream_buffer.c \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \

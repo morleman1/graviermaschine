@@ -5,6 +5,7 @@
 .project
 .xml
 settings.xml
+/Debug/
 
 # Compiled Object files
 *.slo

@@ -84,7 +84,6 @@ typedef struct {
 	L6474_Handle_t h;
 } StepTaskParams;
 
-
 static int reset(StepperContext* stepper_ctx){
 	L6474_BaseParameter_t param;
 	param.stepMode = smMICRO16;
@@ -191,7 +190,6 @@ static int reference(StepperContext* stepper_ctx, int argc, char** argv) {
 	return result;
 }
 
-
 static int config(StepperContext* stepper_ctx, int argc, char** argv) {
 	if (argc < 2) {
 		printf("Invalid number of arguments\r\n");
@@ -205,6 +203,7 @@ static int config(StepperContext* stepper_ctx, int argc, char** argv) {
 		return -1;
 	}
 }
+
 void set_speed(StepperContext* stepper_ctx, int steps_per_second) {
 	int clk = HAL_RCC_GetHCLKFreq();
 
@@ -434,4 +433,6 @@ void init_stepper(ConsoleHandle_t console_handle, SPI_HandleTypeDef* hspi1, TIM_
 	stepper_ctx.htim4_handle = tim4_handle;
 
 	CONSOLE_RegisterCommand(console_handle, "stepper", "Stepper main Command", stepperConsoleFunction, &stepper_ctx);
+
+
 }

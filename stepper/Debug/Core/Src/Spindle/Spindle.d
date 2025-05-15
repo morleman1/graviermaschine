@@ -1,5 +1,5 @@
 Core/Src/Spindle/Spindle.o: \
- C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c \
+ C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c \
  ../../libs/LibSpindle/inc/Spindle.h \
  ../../libs/LibRTOSConsole/inc/Console.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \

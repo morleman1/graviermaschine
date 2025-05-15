@@ -108,17 +108,6 @@ void vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName)
 void InitTask(void *pvParameters)
 {
 
-  int result = 0;
-  result |= L6474_ResetStandBy(stepperHandle);
-  result |= L6474_SetBaseParameter(&param);
-  result |= L6474_Initialize(stepperHandle, &param);
-  result |= L6474_SetPowerOutputs(stepperHandle, 1);
-
-  if (result != 0)
-  {
-    printf("Stepper initialization failed with error code: %d\r\n", result);
-    Error_Handler();
-  }
 
   consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
@@ -198,15 +187,10 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
-  if (xTaskCreate(&InitTask, "Initialisation", 2000, NULL, 2, &InitTaskHandle) != pdPASS)
-  {
-    printf("Failed to create initialization task\r\n");
-    Error_Handler();
-  }
 
   printf("System init start\r\n");
 
-  (void)CapabilityFunc;
+  //(void)CapabilityFunc;
 
   InitTask();
   vTaskStartScheduler();
