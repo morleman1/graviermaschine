@@ -58,7 +58,7 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
-TaskHandle_t InitComponentsTaskHandle = NULL;
+TaskHandle_t InitTaskHandle = NULL;
 ConsoleHandle_t consoleHandle = NULL;
 
 
