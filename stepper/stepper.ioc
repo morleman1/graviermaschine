@@ -328,4 +328,3 @@ VP_TIM4_VS_ControllerModeGated.Mode=Gated Mode
 VP_TIM4_VS_ControllerModeGated.Signal=TIM4_VS_ControllerModeGated
 board=custom
 isbadioc=false
-isbadioc=false

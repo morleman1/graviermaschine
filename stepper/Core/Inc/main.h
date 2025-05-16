@@ -28,13 +28,12 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
-#include "LibL6474.h"
-#include "LibL6474Config.h"
-#include "console.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "LibL6474.h"
+#include "LibL6474Config.h"
+#include "console.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -56,11 +55,10 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-//void InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
-void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim2);
 
 /* USER CODE BEGIN EFP */
-
+//void InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
+void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim2);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -98,8 +96,6 @@ void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim2);
 #define DEBUG_UART_RX_GPIO_Port GPIOD
 #define STEP_SPI_CS_Pin GPIO_PIN_14
 #define STEP_SPI_CS_GPIO_Port GPIOD
-#define STEP_PULSE_Pin GPIO_PIN_15
-#define STEP_PULSE_GPIO_Port GPIOD
 #define LED_BLUE_Pin GPIO_PIN_7
 #define LED_BLUE_GPIO_Port GPIOB
 #define REFERENCE_MARK_Pin GPIO_PIN_8
