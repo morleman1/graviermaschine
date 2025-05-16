@@ -116,7 +116,7 @@ void InitTask()
 
   CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
   InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
-  //InitSpindle(consoleHandle, htim2);
+  InitSpindle(consoleHandle, &htim2);
 
 
 }

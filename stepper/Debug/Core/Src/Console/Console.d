@@ -47,7 +47,7 @@ Core/Src/Console/Console.o: \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../../libs/LibL6474/inc/LibL6474.h \
  C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h \
- ../../libs/LibRTOSConsole/inc/Console.h \
+ ../../libs/LibRTOSConsole/inc/console.h \
  C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h
 ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
@@ -97,5 +97,5 @@ Core/Src/Console/Console.o: \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
 ../../libs/LibL6474/inc/LibL6474.h:
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Stepper/LibL6474Config.h:
-../../libs/LibRTOSConsole/inc/Console.h:
+../../libs/LibRTOSConsole/inc/console.h:
 C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/stepper/Core/Inc/Console/ConsoleConfig.h:
