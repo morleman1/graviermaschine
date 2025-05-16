@@ -1,20 +1,47 @@
-﻿  FreeRTOSWin32.c
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(29,9): warning C4005: "TIM_CHANNEL_1": Makro-Neudefinition
-      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(38,9):
+﻿  croutine.c
+  event_groups.c
+  list.c
+  mpu_wrappers.c
+  mpu_wrappers_v2.c
+  port.c
+  queue.c
+  stream_buffer.c
+  tasks.c
+  timers.c
+  stm32f7xx_hal.c
+  LibL6474x.c
+  Console.c
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(167,153): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(168,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(169,150): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(178,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(179,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(724,25): warning C4244: "=": Konvertierung von "uint16_t" in "uint8_t", möglicher Datenverlust
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibL6474\src\LibL6474x.c(586,14): warning C4244: "return": Konvertierung von "float" in "char", möglicher Datenverlust
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(371,23): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(492,21): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(1142,29): warning C4244: "Initialisierung": Konvertierung von "UBaseType_t" in "unsigned int", möglicher Datenverlust
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(1326,18): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+  Spindle.c
+  FreeRTOSWin32.c
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(29,9): warning C4005: "TIM_CHANNEL_1": Makro-Neudefinition
+      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(38,9):
       siehe vorherige Definition von "TIM_CHANNEL_1"
   
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(30,9): warning C4005: "TIM_CHANNEL_2": Makro-Neudefinition
-      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(39,9):
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(30,9): warning C4005: "TIM_CHANNEL_2": Makro-Neudefinition
+      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(39,9):
       siehe vorherige Definition von "TIM_CHANNEL_2"
   
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(31,9): warning C4005: "TIM_CHANNEL_3": Makro-Neudefinition
-      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(40,9):
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(31,9): warning C4005: "TIM_CHANNEL_3": Makro-Neudefinition
+      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(40,9):
       siehe vorherige Definition von "TIM_CHANNEL_3"
   
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(32,9): warning C4005: "TIM_CHANNEL_4": Makro-Neudefinition
-      C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(41,9):
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(32,9): warning C4005: "TIM_CHANNEL_4": Makro-Neudefinition
+      C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\inc\stm32f7xx_hal.h(41,9):
       siehe vorherige Definition von "TIM_CHANNEL_4"
   
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(322,3): warning C4311: "Typumwandlung": Zeigerverkürzung von "TIM_TypeDef *" zu "int"
-C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(651,20): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-  FreeRTOSWin32.vcxproj -> C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\simulation\FreeRTOSWin32\x64\Debug\FreeRTOSWin32.exe
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(322,3): warning C4311: "Typumwandlung": Zeigerverkürzung von "TIM_TypeDef *" zu "int"
+C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\FreeRTOSWin32.c(651,20): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
+  Code wird generiert...
+  LINK : C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\x64\Debug\FreeRTOSWin32.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+  FreeRTOSWin32.vcxproj -> C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\x64\Debug\FreeRTOSWin32.exe

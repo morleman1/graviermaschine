@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\",
+  "WorkspaceRootPath": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|solutionrelative:FreeRTOSWin32.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|solutionrelative:include\\main.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{E358F0E1-40E8-41B3-9157-955CD7F886FE}|FreeRTOSWin32.vcxproj|solutionrelative:include\\FreeRTOSConfig.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,24 +29,23 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LibL6474Config.h",
               "DocumentMoniker": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
-              "RelativeDocumentMoniker": "..\\..\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
               "ToolTip": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
-              "RelativeToolTip": "..\\..\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\stepper\\Core\\Inc\\Stepper\\LibL6474Config.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-12T07:06:01.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-12T07:06:01.256Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "main.h",
-              "DocumentMoniker": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h",
+              "DocumentMoniker": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h",
               "RelativeDocumentMoniker": "include\\main.h",
-              "ToolTip": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h",
+              "ToolTip": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\main.h",
               "RelativeToolTip": "include\\main.h",
               "ViewState": "AgIAABEAAAAAAAAAAAAawB8AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -56,22 +55,22 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "FreeRTOSWin32.c",
-              "DocumentMoniker": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c",
+              "DocumentMoniker": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c",
               "RelativeDocumentMoniker": "FreeRTOSWin32.c",
-              "ToolTip": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c*",
-              "RelativeToolTip": "FreeRTOSWin32.c*",
-              "ViewState": "AgIAABEEAAAAAAAAAAAowCQEAAAQAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\FreeRTOSWin32.c",
+              "RelativeToolTip": "FreeRTOSWin32.c",
+              "ViewState": "AgIAAPwDAAAAAAAAAAAowAsEAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-04-25T07:14:05.499Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "FreeRTOSConfig.h",
-              "DocumentMoniker": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h",
+              "DocumentMoniker": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h",
               "RelativeDocumentMoniker": "include\\FreeRTOSConfig.h",
-              "ToolTip": "C:\\Users\\maxor\\Documents\\local_projects\\HW-nahes_Programmieren\\Graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h",
+              "ToolTip": "C:\\Users\\Max\\Documents\\local_projects\\graviermaschine\\graviermaschine\\simulation\\FreeRTOSWin32\\include\\FreeRTOSConfig.h",
               "RelativeToolTip": "include\\FreeRTOSConfig.h",
               "ViewState": "AgIAAHUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
