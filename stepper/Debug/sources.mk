@@ -26,7 +26,6 @@ Core/Src/Code \
 Core/Src/Console \
 Core/Src/OwnCode \
 Core/Src/Spindle \
-Core/Src/Stepper \
 Core/Src \
 Core/Startup \
 Drivers/STM32F7xx_HAL_Driver/Src \

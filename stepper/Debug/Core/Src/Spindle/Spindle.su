@@ -1,0 +1,6 @@
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	72	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	24	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	24	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	64	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	24	static
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	56	static
