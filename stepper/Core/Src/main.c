@@ -74,10 +74,11 @@ static void MX_SPI1_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_TIM2_Init(void);
 static int CapabilityFunc(int argc, char **argv, void *ctx);
+void InitTask();
 
 /* USER CODE BEGIN PFP */
 
-void InitTask();
+
 
 extern void initialise_stdlib_abstraction(void);
 void vApplicationMallocFailedHook(void)
@@ -194,7 +195,7 @@ int main(void)
 
   //(void)CapabilityFunc;
 
-  InitTask();
+  //InitTask();
   vTaskStartScheduler();
   /* USER CODE END 2 */
 
