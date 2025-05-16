@@ -1,4 +1,5 @@
 #include "stepper.h"
+#include "LibL6474.h"
 
 #define STEPS_PER_TURN 200
 #define RESOLUTION 16

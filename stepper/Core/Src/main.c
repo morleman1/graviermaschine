@@ -206,7 +206,7 @@ int main(void)
 
   //(void)CapabilityFunc;
 
-  //InitTask();
+  InitTask();
   vTaskStartScheduler();
   /* USER CODE END 2 */
 

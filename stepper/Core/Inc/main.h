@@ -31,8 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "LibL6474.h"
-#include "LibL6474Config.h"
+//#include "LibL6474.h"
+//#include "LibL6474Config.h"
 #include "console.h"
 /* USER CODE END Includes */
 
