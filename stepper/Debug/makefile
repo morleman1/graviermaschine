@@ -14,6 +14,7 @@ RM := rm -rf
 -include FreeRTOS-Kernel/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
+-include Core/Src/Stepper/subdir.mk
 -include Core/Src/Spindle/subdir.mk
 -include Core/Src/OwnCode/subdir.mk
 -include Core/Src/Console/subdir.mk
