@@ -46,6 +46,8 @@ typedef struct {
 
 static int StepTimerCancelAsync(void* pPWM);
 void set_speed(StepperContext_t* StepperContext, int steps_per_second);
+int powerena(StepperContext_t* StepperContext, int argc, char** argv);
+void start_tim1(unsigned int pulses);
 
 L6474x_Platform_t p;
 StepperContext_t StepperContext;
@@ -201,6 +203,7 @@ static int Position( StepperContext_t* StepperContext, int argc, char** argv) {
             int position;
         L6474_GetAbsolutePosition(StepperContext->h, &position);
         printf("Current position: %d\n\r", (position * MM_PER_TURN) / (STEPS_PER_TURN * RESOLUTION));
+        return 0;
 }
 
 static int Status(StepperContext_t* StepperContext, int argc, char** argv) {
@@ -374,7 +377,7 @@ static int StepperHandler(int argc, char** argv, void* ctx) {
     return result;
 }
 
-void start_tim1(int pulses) {
+void start_tim1(unsigned int pulses) {
     int current_pulses = (pulses >= 65535) ? 65535 : pulses;
     StepperContext.remaining_pulses = pulses - current_pulses;
     if (current_pulses != 1) {
