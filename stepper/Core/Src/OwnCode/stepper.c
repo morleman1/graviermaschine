@@ -1,3 +1,7 @@
+//implement updates from gelhorns
+//understand the functions, rewrite them
+//reformat everything
+
 #include "stepper.h"
 #include "LibL6474.h"
 
