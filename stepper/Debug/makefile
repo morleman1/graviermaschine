@@ -14,6 +14,7 @@ RM := rm -rf
 -include FreeRTOS-Kernel/subdir.mk
 -include Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
+-include Core/Src/Stepper/subdir.mk
 -include Core/Src/Spindle/subdir.mk
 -include Core/Src/OwnCode/subdir.mk
 -include Core/Src/Console/subdir.mk
@@ -67,13 +68,8 @@ all: main-build
 main-build: stepper.elf secondary-outputs
 
 # Tool invocations
-<<<<<<< HEAD
-stepper.elf stepper.map: $(OBJS) $(USER_OBJS) C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\stepper\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "stepper.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\maxor\Documents\local_projects\HW-nahes_Programmieren\Graviermaschine\stepper\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stepper.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-=======
-stepper.elf stepper.map: $(OBJS) $(USER_OBJS) C:\Users\tomke\Documents\2_Hardwarenahes_Prog\graviermaschine\stepper\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "stepper.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\tomke\Documents\2_Hardwarenahes_Prog\graviermaschine\stepper\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stepper.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
->>>>>>> ffdde72ac9ab55556c7181c7d453721a4c6d8d6d
+stepper.elf stepper.map: $(OBJS) $(USER_OBJS) C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\stepper\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "stepper.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\stepper\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stepper.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

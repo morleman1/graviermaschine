@@ -1,9 +1,5 @@
 FreeRTOS-Kernel/list.o: \
-<<<<<<< HEAD
- C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c \
-=======
- C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c \
->>>>>>> ffdde72ac9ab55556c7181c7d453721a4c6d8d6d
+ C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../../libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/include/projdefs.h \

@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:49:6:vListInitialise	1
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:89:6:vListInitialiseItem	1
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:105:6:vListInsertEnd	1
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:139:6:vListInsert	3
-C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:215:13:uxListRemove	2
-=======
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:49:6:vListInitialise	1
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:89:6:vListInitialiseItem	1
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:105:6:vListInsertEnd	1
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:139:6:vListInsert	3
-C:/Users/tomke/Documents/2_Hardwarenahes_Prog/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:215:13:uxListRemove	2
->>>>>>> ffdde72ac9ab55556c7181c7d453721a4c6d8d6d
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:49:6:vListInitialise	1
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:89:6:vListInitialiseItem	1
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:105:6:vListInsertEnd	1
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:139:6:vListInsert	3
+C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/FreeRTOS-LTS/FreeRTOS/FreeRTOS-Kernel/list.c:215:13:uxListRemove	2
