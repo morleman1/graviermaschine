@@ -8130,7 +8130,7 @@ LOAD G:/Programs/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.id
  .debug_rnglists
                 0x00001337       0x5d ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
 
-.debug_macro    0x00000000    0x2ab14
+.debug_macro    0x00000000    0x2ab1e
  .debug_macro   0x00000000      0x472 ./Core/Src/Console/Console.o
  .debug_macro   0x00000472      0x190 ./Core/Src/Console/Console.o
  .debug_macro   0x00000602       0x22 ./Core/Src/Console/Console.o
@@ -8222,123 +8222,123 @@ LOAD G:/Programs/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.id
  .debug_macro   0x00025a97      0x14d ./Core/Src/Console/Console.o
  .debug_macro   0x00025be4      0x100 ./Core/Src/Console/Console.o
  .debug_macro   0x00025ce4       0x2e ./Core/Src/Console/Console.o
- .debug_macro   0x00025d12      0x305 ./Core/Src/OwnCode/spindle.o
- .debug_macro   0x00026017      0x14c ./Core/Src/OwnCode/spindle.o
- .debug_macro   0x00026163       0x63 ./Core/Src/OwnCode/spindle.o
- .debug_macro   0x000261c6       0x16 ./Core/Src/OwnCode/spindle.o
- .debug_macro   0x000261dc       0x16 ./Core/Src/OwnCode/spindle.o
- .debug_macro   0x000261f2      0x43b ./Core/Src/OwnCode/stepper.o
- .debug_macro   0x0002662d       0x22 ./Core/Src/OwnCode/stepper.o
- .debug_macro   0x0002664f      0x152 ./Core/Src/OwnCode/stepper.o
- .debug_macro   0x000267a1       0x98 ./Core/Src/OwnCode/stepper.o
- .debug_macro   0x00026839      0x2bd ./Core/Src/Spindle/Spindle.o
- .debug_macro   0x00026af6       0x9e ./Core/Src/Spindle/Spindle.o
- .debug_macro   0x00026b94      0x1f8 ./Core/Src/Stepper/LibL6474x.o
- .debug_macro   0x00026d8c      0x43c ./Core/Src/main.o
- .debug_macro   0x000271c8       0x22 ./Core/Src/main.o
- .debug_macro   0x000271ea      0x3f6 ./Core/Src/newlib_abs.o
- .debug_macro   0x000275e0       0x5b ./Core/Src/newlib_abs.o
- .debug_macro   0x0002763b       0x94 ./Core/Src/newlib_abs.o
- .debug_macro   0x000276cf       0x57 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027726       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027736       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027746       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027756       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027766       0x1c ./Core/Src/newlib_abs.o
- .debug_macro   0x00027782       0x52 ./Core/Src/newlib_abs.o
- .debug_macro   0x000277d4       0x22 ./Core/Src/newlib_abs.o
- .debug_macro   0x000277f6       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027806       0x52 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027858       0xcf ./Core/Src/newlib_abs.o
- .debug_macro   0x00027927       0x1c ./Core/Src/newlib_abs.o
- .debug_macro   0x00027943       0x3d ./Core/Src/newlib_abs.o
- .debug_macro   0x00027980       0x35 ./Core/Src/newlib_abs.o
- .debug_macro   0x000279b5      0x12c ./Core/Src/newlib_abs.o
- .debug_macro   0x00027ae1       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027af1      0x242 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027d33       0x10 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027d43       0x16 ./Core/Src/newlib_abs.o
- .debug_macro   0x00027d59      0x51a ./Core/Src/newlib_abs.o
- .debug_macro   0x00028273      0x18a ./Core/Src/newlib_abs.o
- .debug_macro   0x000283fd       0x16 ./Core/Src/newlib_abs.o
- .debug_macro   0x00028413       0xce ./Core/Src/newlib_abs.o
- .debug_macro   0x000284e1       0x16 ./Core/Src/newlib_abs.o
- .debug_macro   0x000284f7      0x210 ./Core/Src/stm32f7xx_hal_msp.o
- .debug_macro   0x00028707      0x21a ./Core/Src/stm32f7xx_it.o
- .debug_macro   0x00028921      0x1f7 ./Core/Src/system_stm32f7xx.o
- .debug_macro   0x00028b18      0x21b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
- .debug_macro   0x00028d33      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
- .debug_macro   0x00028f2a      0x1fd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
- .debug_macro   0x00029127      0x1fd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
- .debug_macro   0x00029324      0x21b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
- .debug_macro   0x0002953f      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
- .debug_macro   0x00029736      0x206 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
- .debug_macro   0x0002993c      0x1f8 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
- .debug_macro   0x00029b34      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
- .debug_macro   0x00029d2b      0x214 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_macro   0x00029f3f      0x1c3 ./FreeRTOS-Kernel/list.o
- .debug_macro   0x0002a102      0x25a ./FreeRTOS-Kernel/queue.o
- .debug_macro   0x0002a35c      0x314 ./FreeRTOS-Kernel/tasks.o
- .debug_macro   0x0002a670       0x16 ./FreeRTOS-Kernel/tasks.o
- .debug_macro   0x0002a686      0x212 ./FreeRTOS-Kernel/timers.o
- .debug_macro   0x0002a898      0x27c ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
+ .debug_macro   0x00025d12      0x30f ./Core/Src/OwnCode/spindle.o
+ .debug_macro   0x00026021      0x14c ./Core/Src/OwnCode/spindle.o
+ .debug_macro   0x0002616d       0x63 ./Core/Src/OwnCode/spindle.o
+ .debug_macro   0x000261d0       0x16 ./Core/Src/OwnCode/spindle.o
+ .debug_macro   0x000261e6       0x16 ./Core/Src/OwnCode/spindle.o
+ .debug_macro   0x000261fc      0x43b ./Core/Src/OwnCode/stepper.o
+ .debug_macro   0x00026637       0x22 ./Core/Src/OwnCode/stepper.o
+ .debug_macro   0x00026659      0x152 ./Core/Src/OwnCode/stepper.o
+ .debug_macro   0x000267ab       0x98 ./Core/Src/OwnCode/stepper.o
+ .debug_macro   0x00026843      0x2bd ./Core/Src/Spindle/Spindle.o
+ .debug_macro   0x00026b00       0x9e ./Core/Src/Spindle/Spindle.o
+ .debug_macro   0x00026b9e      0x1f8 ./Core/Src/Stepper/LibL6474x.o
+ .debug_macro   0x00026d96      0x43c ./Core/Src/main.o
+ .debug_macro   0x000271d2       0x22 ./Core/Src/main.o
+ .debug_macro   0x000271f4      0x3f6 ./Core/Src/newlib_abs.o
+ .debug_macro   0x000275ea       0x5b ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027645       0x94 ./Core/Src/newlib_abs.o
+ .debug_macro   0x000276d9       0x57 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027730       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027740       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027750       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027760       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027770       0x1c ./Core/Src/newlib_abs.o
+ .debug_macro   0x0002778c       0x52 ./Core/Src/newlib_abs.o
+ .debug_macro   0x000277de       0x22 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027800       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027810       0x52 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027862       0xcf ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027931       0x1c ./Core/Src/newlib_abs.o
+ .debug_macro   0x0002794d       0x3d ./Core/Src/newlib_abs.o
+ .debug_macro   0x0002798a       0x35 ./Core/Src/newlib_abs.o
+ .debug_macro   0x000279bf      0x12c ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027aeb       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027afb      0x242 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027d3d       0x10 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027d4d       0x16 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00027d63      0x51a ./Core/Src/newlib_abs.o
+ .debug_macro   0x0002827d      0x18a ./Core/Src/newlib_abs.o
+ .debug_macro   0x00028407       0x16 ./Core/Src/newlib_abs.o
+ .debug_macro   0x0002841d       0xce ./Core/Src/newlib_abs.o
+ .debug_macro   0x000284eb       0x16 ./Core/Src/newlib_abs.o
+ .debug_macro   0x00028501      0x210 ./Core/Src/stm32f7xx_hal_msp.o
+ .debug_macro   0x00028711      0x21a ./Core/Src/stm32f7xx_it.o
+ .debug_macro   0x0002892b      0x1f7 ./Core/Src/system_stm32f7xx.o
+ .debug_macro   0x00028b22      0x21b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
+ .debug_macro   0x00028d3d      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
+ .debug_macro   0x00028f34      0x1fd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
+ .debug_macro   0x00029131      0x1fd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
+ .debug_macro   0x0002932e      0x21b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
+ .debug_macro   0x00029549      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
+ .debug_macro   0x00029740      0x206 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
+ .debug_macro   0x00029946      0x1f8 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
+ .debug_macro   0x00029b3e      0x1f7 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
+ .debug_macro   0x00029d35      0x214 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
+ .debug_macro   0x00029f49      0x1c3 ./FreeRTOS-Kernel/list.o
+ .debug_macro   0x0002a10c      0x25a ./FreeRTOS-Kernel/queue.o
+ .debug_macro   0x0002a366      0x314 ./FreeRTOS-Kernel/tasks.o
+ .debug_macro   0x0002a67a       0x16 ./FreeRTOS-Kernel/tasks.o
+ .debug_macro   0x0002a690      0x212 ./FreeRTOS-Kernel/timers.o
+ .debug_macro   0x0002a8a2      0x27c ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
 
-.debug_line     0x00000000    0x22de7
+.debug_line     0x00000000    0x22e57
  .debug_line    0x00000000     0x1f8a ./Core/Src/Console/Console.o
- .debug_line    0x00001f8a      0xb08 ./Core/Src/OwnCode/spindle.o
- .debug_line    0x00002a92     0x12b1 ./Core/Src/OwnCode/stepper.o
- .debug_line    0x00003d43      0xda5 ./Core/Src/Spindle/Spindle.o
- .debug_line    0x00004ae8      0xdfb ./Core/Src/Stepper/LibL6474x.o
- .debug_line    0x000058e3     0x120f ./Core/Src/main.o
- .debug_line    0x00006af2      0xf3d ./Core/Src/newlib_abs.o
- .debug_line    0x00007a2f      0x942 ./Core/Src/stm32f7xx_hal_msp.o
- .debug_line    0x00008371      0x893 ./Core/Src/stm32f7xx_it.o
- .debug_line    0x00008c04      0x819 ./Core/Src/system_stm32f7xx.o
- .debug_line    0x0000941d       0x7a ./Core/Startup/startup_stm32f746zgtx.o
- .debug_line    0x00009497      0xad1 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
- .debug_line    0x00009f68      0xf5a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
- .debug_line    0x0000aec2     0x11c6 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
- .debug_line    0x0000c088      0xe6a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
- .debug_line    0x0000cef2     0x119a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
- .debug_line    0x0000e08c     0x12e9 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
- .debug_line    0x0000f375     0x230e ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
- .debug_line    0x00011683     0x669a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
- .debug_line    0x00017d1d     0x21dd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
- .debug_line    0x00019efa     0x2f06 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_line    0x0001ce00      0x8f8 ./FreeRTOS-Kernel/list.o
- .debug_line    0x0001d6f8     0x17bc ./FreeRTOS-Kernel/queue.o
- .debug_line    0x0001eeb4     0x24ca ./FreeRTOS-Kernel/tasks.o
- .debug_line    0x0002137e      0xf0e ./FreeRTOS-Kernel/timers.o
- .debug_line    0x0002228c      0xb5b ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
+ .debug_line    0x00001f8a      0xb77 ./Core/Src/OwnCode/spindle.o
+ .debug_line    0x00002b01     0x12b2 ./Core/Src/OwnCode/stepper.o
+ .debug_line    0x00003db3      0xda5 ./Core/Src/Spindle/Spindle.o
+ .debug_line    0x00004b58      0xdfb ./Core/Src/Stepper/LibL6474x.o
+ .debug_line    0x00005953     0x120f ./Core/Src/main.o
+ .debug_line    0x00006b62      0xf3d ./Core/Src/newlib_abs.o
+ .debug_line    0x00007a9f      0x942 ./Core/Src/stm32f7xx_hal_msp.o
+ .debug_line    0x000083e1      0x893 ./Core/Src/stm32f7xx_it.o
+ .debug_line    0x00008c74      0x819 ./Core/Src/system_stm32f7xx.o
+ .debug_line    0x0000948d       0x7a ./Core/Startup/startup_stm32f746zgtx.o
+ .debug_line    0x00009507      0xad1 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
+ .debug_line    0x00009fd8      0xf5a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
+ .debug_line    0x0000af32     0x11c6 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
+ .debug_line    0x0000c0f8      0xe6a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
+ .debug_line    0x0000cf62     0x119a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
+ .debug_line    0x0000e0fc     0x12e9 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
+ .debug_line    0x0000f3e5     0x230e ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
+ .debug_line    0x000116f3     0x669a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
+ .debug_line    0x00017d8d     0x21dd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
+ .debug_line    0x00019f6a     0x2f06 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
+ .debug_line    0x0001ce70      0x8f8 ./FreeRTOS-Kernel/list.o
+ .debug_line    0x0001d768     0x17bc ./FreeRTOS-Kernel/queue.o
+ .debug_line    0x0001ef24     0x24ca ./FreeRTOS-Kernel/tasks.o
+ .debug_line    0x000213ee      0xf0e ./FreeRTOS-Kernel/timers.o
+ .debug_line    0x000222fc      0xb5b ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
 
-.debug_str      0x00000000   0x10b974
- .debug_str     0x00000000   0x10b974 ./Core/Src/Console/Console.o
+.debug_str      0x00000000   0x10b98f
+ .debug_str     0x00000000   0x10b98f ./Core/Src/Console/Console.o
                               0xff276 (size before relaxing)
- .debug_str     0x0010b974    0xeefde ./Core/Src/OwnCode/spindle.o
- .debug_str     0x0010b974    0xfaf17 ./Core/Src/OwnCode/stepper.o
- .debug_str     0x0010b974    0x1868b ./Core/Src/Spindle/Spindle.o
- .debug_str     0x0010b974     0x3f1d ./Core/Src/Stepper/LibL6474x.o
- .debug_str     0x0010b974    0xfb494 ./Core/Src/main.o
- .debug_str     0x0010b974    0x16e71 ./Core/Src/newlib_abs.o
- .debug_str     0x0010b974    0xebd4d ./Core/Src/stm32f7xx_hal_msp.o
- .debug_str     0x0010b974    0xeb17f ./Core/Src/stm32f7xx_it.o
- .debug_str     0x0010b974    0xea6e3 ./Core/Src/system_stm32f7xx.o
- .debug_str     0x0010b974       0x98 ./Core/Startup/startup_stm32f746zgtx.o
- .debug_str     0x0010b974    0xeb06c ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
- .debug_str     0x0010b974    0xeb08b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
- .debug_str     0x0010b974    0xeaa30 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
- .debug_str     0x0010b974    0xea7af ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
- .debug_str     0x0010b974    0xeaa53 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
- .debug_str     0x0010b974    0xea98b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
- .debug_str     0x0010b974    0xeaf31 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
- .debug_str     0x0010b974    0xeba26 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
- .debug_str     0x0010b974    0xeb26c ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
- .debug_str     0x0010b974    0xeb3a0 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_str     0x0010b974    0x10dd7 ./FreeRTOS-Kernel/list.o
- .debug_str     0x0010b974    0x13688 ./FreeRTOS-Kernel/queue.o
- .debug_str     0x0010b974    0x1534a ./FreeRTOS-Kernel/tasks.o
- .debug_str     0x0010b974    0x139e2 ./FreeRTOS-Kernel/timers.o
- .debug_str     0x0010b974    0x1299f ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
+ .debug_str     0x0010b98f    0xeeff9 ./Core/Src/OwnCode/spindle.o
+ .debug_str     0x0010b98f    0xfaf17 ./Core/Src/OwnCode/stepper.o
+ .debug_str     0x0010b98f    0x1868b ./Core/Src/Spindle/Spindle.o
+ .debug_str     0x0010b98f     0x3f1d ./Core/Src/Stepper/LibL6474x.o
+ .debug_str     0x0010b98f    0xfb494 ./Core/Src/main.o
+ .debug_str     0x0010b98f    0x16e71 ./Core/Src/newlib_abs.o
+ .debug_str     0x0010b98f    0xebd4d ./Core/Src/stm32f7xx_hal_msp.o
+ .debug_str     0x0010b98f    0xeb17f ./Core/Src/stm32f7xx_it.o
+ .debug_str     0x0010b98f    0xea6e3 ./Core/Src/system_stm32f7xx.o
+ .debug_str     0x0010b98f       0x98 ./Core/Startup/startup_stm32f746zgtx.o
+ .debug_str     0x0010b98f    0xeb06c ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
+ .debug_str     0x0010b98f    0xeb08b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
+ .debug_str     0x0010b98f    0xeaa30 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
+ .debug_str     0x0010b98f    0xea7af ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
+ .debug_str     0x0010b98f    0xeaa53 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
+ .debug_str     0x0010b98f    0xea98b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
+ .debug_str     0x0010b98f    0xeaf31 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.o
+ .debug_str     0x0010b98f    0xeba26 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
+ .debug_str     0x0010b98f    0xeb26c ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
+ .debug_str     0x0010b98f    0xeb3a0 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
+ .debug_str     0x0010b98f    0x10dd7 ./FreeRTOS-Kernel/list.o
+ .debug_str     0x0010b98f    0x13688 ./FreeRTOS-Kernel/queue.o
+ .debug_str     0x0010b98f    0x1534a ./FreeRTOS-Kernel/tasks.o
+ .debug_str     0x0010b98f    0x139e2 ./FreeRTOS-Kernel/timers.o
+ .debug_str     0x0010b98f    0x1299f ./FreeRTOS-Kernel/portable/GCC/ARM_CM7/r0p1/port.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./Core/Src/Console/Console.o

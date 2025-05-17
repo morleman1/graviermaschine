@@ -116,6 +116,7 @@ void InitTask()
   consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
 
   CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
+  
   InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
   InitSpindle(consoleHandle, &htim2);
 

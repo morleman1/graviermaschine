@@ -3,6 +3,8 @@
       "spindle.h": "c",
       "stm32f7xx_hal_spi.h": "c",
       "libl6474.h": "c",
-      "libl6474config.h": "c"
+      "libl6474config.h": "c",
+      "stdbool.h": "c",
+      "string.h": "c"
    }
 }

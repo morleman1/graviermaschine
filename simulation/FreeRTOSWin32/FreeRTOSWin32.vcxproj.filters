@@ -60,6 +60,72 @@
     <ClCompile Include="..\..\libs\LibSpindle\src\Spindle.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\spindle.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stepper.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_cortex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_dma_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_exti.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_flash_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_gpio.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_i2c_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_pwr_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_rcc_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_spi_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_tim_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="STM32F7xx_HAL_Driver\Src\stm32f7xx_hal_uart_ex.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\libs\FreeRTOS-LTS\FreeRTOS\FreeRTOS-Kernel\include\queue.h">
@@ -150,6 +216,114 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="..\..\libs\LibSpindle\inc\Spindle.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_spindle.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stepper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cortex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_def.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_exti.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2c.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2c_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pwr.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pwr_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_uart.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_uart_ex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_bus.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_cortex.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_dma.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_exti.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_gpio.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_pwr.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_rcc.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_spi.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_system.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_tim.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_usart.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_utils.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,44 +9,14 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-// ---------------------------custom includes-----------------------------------------------------------------------------------------
-#include "FreeRTOS.h"
-#include "task.h"
-#include "stdio.h"
-#include <stdlib.h>
-#include "Console.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "Spindle.h"
-#include "stepper.h"
+// --------------------------------------------------------------------------------------------------------------------
+
 
 // --------------------------------------------------------------------------------------------------------------------
 SPI_HandleTypeDef hspi1 = { .Instance = SPI1, .ErrorCode = 0, .Lock = HAL_UNLOCKED, .hdmarx = 0, .hdmatx = 0 };
 TIM_HandleTypeDef htim1 = { .Instance = TIM1, .hdma = 0, .Lock = HAL_UNLOCKED, .Channel = 0 };
 TIM_HandleTypeDef htim2 = { .Instance = TIM2, .hdma = 0, .Lock = HAL_UNLOCKED, .Channel = 0 };
 TIM_HandleTypeDef htim4 = { .Instance = TIM4, .hdma = 0, .Lock = HAL_UNLOCKED, .Channel = 0 };
-
-// ---------------------------self made functions-----------------------------------------------------------------------------------------
-TaskHandle_t InitTaskHandle = NULL;
-ConsoleHandle_t consoleHandle = NULL;
-
-void InitTask();
-
-
-void InitTask()
-{
-
-
-    consoleHandle = CONSOLE_CreateInstance(4 * configMINIMAL_STACK_SIZE, configMAX_PRIORITIES - 5);
-
-    CONSOLE_RegisterCommand(consoleHandle, "capability", "Shows what the program is capable of", CapabilityFunc, NULL);
-    InitStepper(consoleHandle, &hspi1, &htim1, &htim4);
-    InitSpindle(consoleHandle, &htim2);
-
-
-}
 
 // --------------------------------------------------------------------------------------------------------------------
 void* pvPortMalloc(size_t xSize)
@@ -173,7 +143,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef* htim)
 
 
 // --------------------------------------------------------------------------------------------------------------------
-int main(int argc, char** argv)
+int main( int argc, char** argv )
 // --------------------------------------------------------------------------------------------------------------------
 {
     printf("Hello World\r\n");
