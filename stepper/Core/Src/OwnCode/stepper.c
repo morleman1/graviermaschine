@@ -338,88 +338,136 @@ static int Status(StepperContext_t *StepperContext, int argc, char **argv)
 // WIP
 static int Move(StepperContext_t *StepperContext, int argc, char **argv)
 {
+    // Preconditions
     if (StepperContext->state != scs.ENA)
     {
-        printf("Stepper not enabled (state=%d)\r\n", StepperContext->state);
+        printf("Error: Stepper not enabled (state=%d)\r\n", StepperContext->state);
         return -1;
     }
     if (StepperContext->is_powered != 1)
     {
-        printf("Stepper not powered\r\n");
+        printf("Error: Stepper not powered\r\n");
         return -1;
     }
     if (StepperContext->is_referenced != 1)
     {
-        printf("Stepper not referenced\r\n");
+        printf("Error: Stepper not referenced\r\n");
         return -1;
     }
     if (argc < 2)
     {
-        printf("Invalid number of arguments\r\n");
+        printf("Error: Invalid number of arguments\r\n");
         return -1;
     }
 
-    int position = atoi(argv[1]);
-    int speed = 1000;
-    int is_async = 0;
+    // Parse arguments
+    float target_position = atof(argv[1]);
+    int speed = 1000; // Default speed in mm/min
     int is_relative = 0;
+    int is_async = 0;
 
     for (int i = 2; i < argc;)
     {
-        if (strcmp(argv[i], "-a") == 0)
+        if (strcmp(argv[i], "-s") == 0)
         {
-            is_async = 1;
-            i++;
+            if (i == argc - 1)
+            {
+                printf("Error: Missing speed value after -s flag\r\n");
+                return -1;
+            }
+            speed = atoi(argv[i + 1]);
+            i += 2;
         }
         else if (strcmp(argv[i], "-r") == 0)
         {
             is_relative = 1;
             i++;
         }
-        else if (strcmp(argv[i], "-s") == 0)
+        else if (strcmp(argv[i], "-a") == 0)
         {
-            if (i == argc - 1)
-            {
-                printf("Invalid number of arguments\r\n");
-                return -1;
-            }
-            speed = atoi(argv[i + 1]);
-            i += 2;
+            is_async = 1;
+            i++;
         }
         else
         {
-            printf("Invalid Flag\r\n");
+            printf("Error: Invalid flag '%s'\r\n", argv[i]);
             return -1;
         }
     }
 
-    int steps_per_sec = (speed * StepperContext->steps_per_turn) / (60 * MM_PER_TURN);
-    if (steps_per_sec < 1)
+    // Cap speed to valid mechanical limits
+    if (speed < 1)
     {
-        printf("Speed too small\r\n");
+        printf("Error: Speed too low\r\n");
         return -1;
     }
-    set_speed(StepperContext, steps_per_sec);
-
-    int steps = (position * StepperContext->steps_per_turn) / MM_PER_TURN;
-    if (!is_relative)
+    int max_speed = (int)(StepperContext->mm_per_sec * 60); // Convert mm/sec to mm/min
+    if (speed > max_speed)
     {
-        int absolute_position;
-        L6474_GetAbsolutePosition(StepperContext->h, &absolute_position);
-        steps -= absolute_position;
+        printf("Warning: Speed capped to maximum (%d mm/min)\r\n", max_speed);
+        speed = max_speed;
     }
 
+    // Calculate steps per second
+    float steps_per_second = (speed * StepperContext->steps_per_turn) / (60.0f * StepperContext->mm_per_turn);
+    set_speed(StepperContext, (int)steps_per_second);
+
+    // Get current position
+    int current_steps;
+    L6474_GetAbsolutePosition(StepperContext->h, &current_steps);
+    float current_position = (current_steps * StepperContext->mm_per_turn) / StepperContext->steps_per_turn;
+
+    // Calculate target position
+    float final_position = is_relative ? current_position + target_position : target_position;
+    if (final_position < StepperContext->pos_min || final_position > StepperContext->pos_max)
+    {
+        printf("Error: Target position out of range\r\n");
+        return -1;
+    }
+
+    // Calculate steps to move
+    int target_steps = (int)((final_position * StepperContext->steps_per_turn) / StepperContext->mm_per_turn);
+    int steps_to_move = target_steps - current_steps;
+
+    if (steps_to_move == 0)
+    {
+        printf("No movement required\r\n");
+        return 0;
+    }
+
+    // Prevent multiple asynchronous commands
+    if (is_async && StepperContext->is_running)
+    {
+        printf("Error: Stepper is already moving asynchronously\r\n");
+        return -1;
+    }
+
+    // Perform movement
+    int result = 0;
+    StepperContext->is_running = 1; // Mark stepper as running
     if (is_async)
     {
-        return L6474_StepIncremental(StepperContext->h, steps);
+        result = L6474_StepIncremental(StepperContext->h, steps_to_move);
     }
     else
     {
-        int result = L6474_StepIncremental(StepperContext->h, steps);
+        result = L6474_StepIncremental(StepperContext->h, steps_to_move);
         while (StepperContext->is_running)
-            ;
-        return result;
+        {
+            stepLibraryDelay(1); // Wait for movement to complete
+        }
     }
+
+    // Check for errors
+    if (result != 0)
+    {
+        printf("Error: Movement failed\r\n");
+        StepperContext->state = scsFLT;
+        return -1;
+    }
+
+    printf("Movement completed. Final position: %.2f mm\r\n", final_position);
+    return 0;
 }
 // WIP
 static int Config(StepperContext_t *StepperContext, int argc, char **argv)
