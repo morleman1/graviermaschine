@@ -61,7 +61,7 @@ typedef struct
 } StepTaskParams;
 
 static int StepTimerCancelAsync(void *pPWM);
-void set_speed(StepperContext_t *StepperContext, int steps_per_sec);
+void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec);
 int Powerena(StepperContext_t *StepperContext, int argc, char **argv);
 void TimerStart(unsigned int pulses);
 
@@ -410,7 +410,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
 
     // Calculate steps per second
     float steps_per_second = (speed * StepperContext->steps_per_turn) / (60.0f * StepperContext->mm_per_turn);
-    set_speed(StepperContext, (int)steps_per_second);
+    SetSpeed(StepperContext, (int)steps_per_second);
 
     // Get current position
     int current_steps;
@@ -454,7 +454,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
         result = L6474_StepIncremental(StepperContext->h, steps_to_move);
         while (StepperContext->is_running)
         {
-            stepLibraryDelay(1); // Wait for movement to complete
+            StepLibraryDelay(1); // Wait for movement to complete
         }
     }
 
@@ -671,7 +671,7 @@ int SetPower(int ena)
     return L6474_SetPowerOutputs(StepperContext.h, ena);
 }
 // WIP kind of done
-void set_speed(StepperContext_t *StepperContext, int steps_per_sec)
+void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec)
 {
     // Get the system clock frequency (e.g., 72 MHz)
     int clk = HAL_RCC_GetHCLKFreq();
