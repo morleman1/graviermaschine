@@ -162,10 +162,16 @@ static int Reset(StepperContext_t *StepperContext)
     param.TFast = 0x19;
 
     int result = 0;
+    result |= L6474_SetBaseParameter(&param);
     result |= L6474_ResetStandBy(StepperContext->h);
     result |= L6474_Initialize(StepperContext->h, &param);
     result |= L6474_SetPowerOutputs(StepperContext->h, 0);
 
+    if (result != 0){
+        printf("Failed to reset\r\n");
+        return -1;
+        StepperContext->state = scs.FLT;
+    }    
     StepperContext->is_powered = 0;
     StepperContext->is_referenced = 0;
     StepperContext->is_running = 0;
@@ -174,7 +180,7 @@ static int Reset(StepperContext_t *StepperContext)
 
     return result;
 }
-// WIP kind of done -.-
+//Finished but maybe look at it again
 static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 {
     // Allow reference from REF state only
@@ -227,12 +233,11 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     // is switch already pressed?
     if (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
     {
-        // if yes, move away from it as long as it is pressed
-        set_speed(StepperContext, 500);
-        L6474_StepIncremental(StepperContext->h, 100000000);
+        //if yes, move away from it as long as it is pressed
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
         {
-            // if still pressed, wait
+            //if still pressed, wait
+            L6474_StepIncremental(StepperContext->h, 1);
             if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
             {
                 StepTimerCancelAsync(NULL);
@@ -244,10 +249,10 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
         StepTimerCancelAsync(NULL);
     }
-    // move to reference switch
-    L6474_StepIncremental(StepperContext->h, -1000000000);
+    //move to reference switch
     while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) != GPIO_PIN_RESET)
     {
+        L6474_StepIncremental(StepperContext->h, -1);
         if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
         {
             StepTimerCancelAsync(NULL);
@@ -258,10 +263,11 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-    // move to limit switch from reference switch
-    L6474_StepIncremental(StepperContext->h, 1000000000);
+        //move to limit switch from reference switch
+    const uint32_t track_timer_start = HAL_GetTick();
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
     {
+        L6474_StepIncremental(StepperContext->h, 1);
         step_amt += 1;
         if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
         {
@@ -277,7 +283,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 
     // calc parameters from full run
     StepperContext->mm_per_step = (TRACKLENGTH / step_amt);
-    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - start_time) * 1000));
+    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - track_timer_start )*1000));
     StepperContext->is_referenced = 1;
 
     L6474_SetAbsolutePosition(StepperContext->h, 0);
