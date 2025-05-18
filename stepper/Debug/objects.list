@@ -1,6 +1,3 @@
-"./Core/Src/Code/tom_init.o"
-"./Core/Src/Code/tom_spindle.o"
-"./Core/Src/Code/tom_stepper.o"
 "./Core/Src/Console/Console.o"
 "./Core/Src/OwnCode/spindle.o"
 "./Core/Src/OwnCode/stepper.o"

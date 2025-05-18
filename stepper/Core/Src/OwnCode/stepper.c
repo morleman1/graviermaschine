@@ -9,7 +9,6 @@
 
 #define TRACKLENGTH 295 // mm
 #define MM_PER_TURN 4
-#define STEPS_PER_TURN (1 << (STEPMODE + 2)) // resolution
 
 typedef enum
 {
@@ -136,6 +135,7 @@ static int StepTimerCancelAsync(void *pPWM)
 //---------basic-functions-end-------------
 
 //-----Command-specific-functions---------
+/*
 static int Step(void *pPWM, int dir, unsigned int numPulses)
 {
     HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir); // set direction
@@ -150,6 +150,7 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
 
     return 0;
 }
+*/
 // WIP kind of done, parameters need to  be looked at
 static int Reset(StepperContext_t *StepperContext)
 {
@@ -392,7 +393,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
 
-    int steps_per_sec = (speed * STEPS_PER_TURN * RESOLUTION) / (60 * MM_PER_TURN);
+    int steps_per_sec = (speed * StepperContext->steps_per_turn) / (60 * MM_PER_TURN);
     if (steps_per_sec < 1)
     {
         printf("Speed too small\r\n");
@@ -400,7 +401,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
     }
     set_speed(StepperContext, steps_per_sec);
 
-    int steps = (position * STEPS_PER_TURN * RESOLUTION) / MM_PER_TURN;
+    int steps = (position * StepperContext->steps_per_turn) / MM_PER_TURN;
     if (!is_relative)
     {
         int absolute_position;
@@ -430,7 +431,16 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
 
     int result = 0;
-    int pos = WheresV(argc, argv, "-v");
+    int pos = -1;
+
+    for (int i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-v") == 0)
+        {
+            pos = i;
+            break;
+        }
+    }
 
     if (strcmp(argv[1], "powerena") == 0)
     {

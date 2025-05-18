@@ -18,7 +18,6 @@ RM := rm -rf
 -include Core/Src/Spindle/subdir.mk
 -include Core/Src/OwnCode/subdir.mk
 -include Core/Src/Console/subdir.mk
--include Core/Src/Code/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
 
