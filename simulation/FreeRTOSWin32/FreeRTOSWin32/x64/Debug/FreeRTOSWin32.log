@@ -1,5 +1,5 @@
-﻿G:\Programs\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1122,5): warning MSB8027: Mehrere Dateien mit dem Namen stm32f7xx_hal.c führen zu Ausgaben am selben Speicherort. Dadurch kann ein falsches Buildergebnis entstehen. Die betroffenen Dateien sind ..\..\libs\LibHALMockup\src\stm32f7xx_hal.c, STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c.
-G:\Programs\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1122,5): warning MSB8027: Mehrere Dateien mit dem Namen Spindle.c führen zu Ausgaben am selben Speicherort. Dadurch kann ein falsches Buildergebnis entstehen. Die betroffenen Dateien sind ..\..\libs\LibSpindle\src\Spindle.c, src\spindle.c.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1129,5): warning MSB8027: Mehrere Dateien mit dem Namen stm32f7xx_hal.c führen zu Ausgaben am selben Speicherort. Dadurch kann ein falsches Buildergebnis entstehen. Die betroffenen Dateien sind ..\..\libs\LibHALMockup\src\stm32f7xx_hal.c, STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1129,5): warning MSB8027: Mehrere Dateien mit dem Namen Spindle.c führen zu Ausgaben am selben Speicherort. Dadurch kann ein falsches Buildergebnis entstehen. Die betroffenen Dateien sind ..\..\libs\LibSpindle\src\Spindle.c, src\spindle.c.
   croutine.c
   event_groups.c
   list.c
@@ -11,126 +11,126 @@ G:\Programs\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Mic
   tasks.c
   timers.c
   stm32f7xx_hal.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(167,153): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(168,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(169,150): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(178,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(179,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(724,25): warning C4244: "=": Konvertierung von "uint16_t" in "uint8_t", möglicher Datenverlust
   LibL6474x.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibL6474\src\LibL6474x.c(586,14): warning C4244: "return": Konvertierung von "float" in "char", möglicher Datenverlust
   Console.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(371,23): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(492,21): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(1142,29): warning C4244: "Initialisierung": Konvertierung von "UBaseType_t" in "unsigned int", möglicher Datenverlust
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\libs\LibRTOSConsole\src\Console.c(1326,18): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(167,153): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(168,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(169,150): warning C4133: "Initialisierung": Inkompatible Typen - von "uint32_t *" zu "char *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(178,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(179,152): warning C4133: "Initialisierung": Inkompatible Typen - von "uint16_t *" zu "char *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibHALMockup\src\stm32f7xx_hal.c(724,25): warning C4244: "=": Konvertierung von "uint16_t" in "uint8_t", möglicher Datenverlust
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibL6474\src\LibL6474x.c(586,14): warning C4244: "return": Konvertierung von "float" in "char", möglicher Datenverlust
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibRTOSConsole\src\Console.c(371,23): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibRTOSConsole\src\Console.c(492,21): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibRTOSConsole\src\Console.c(1142,29): warning C4244: "Initialisierung": Konvertierung von "UBaseType_t" in "unsigned int", möglicher Datenverlust
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\libs\LibRTOSConsole\src\Console.c(1326,18): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "int", Datenverlust möglich
   Spindle.c
   FreeRTOSWin32.c
   spindle.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\src\spindle.c(84,5): warning C4013: "Error_Handler" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\src\spindle.c(84,5): warning C4013: "Error_Handler" undefiniert; Annahme: extern mit Rückgabetyp int
   stepper.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(77,9): warning C4013: "HAL_Delay" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(169,33): warning C4013: "HAL_GetTick" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(331,15): warning C4013: "HAL_RCC_GetHCLKFreq" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(419,18): warning C4113: "void (__cdecl *)()" weicht in der Parameterliste von "void (__cdecl *)(unsigned int)" ab
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(77,9): warning C4013: "HAL_Delay" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(169,33): warning C4013: "HAL_GetTick" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(331,15): warning C4013: "HAL_RCC_GetHCLKFreq" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\src\stepper.c(419,18): warning C4113: "void (__cdecl *)()" weicht in der Parameterliste von "void (__cdecl *)(unsigned int)" ab
   stm32f7xx_hal.c
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(75,33): error C2065: "__NVIC_PRIO_BITS": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(75,10): error C2099: Initialisierung ist keine Konstante
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,21): error C2061: Syntaxfehler: Bezeichner "uwTickFreq"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,21): error C2059: Syntaxfehler: ";"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,32): error C2513: " ": Keine Variable vor "=" deklariert
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,34): error C2065: "HAL_TICK_FREQ_DEFAULT": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(151,3): warning C4013: "HAL_NVIC_SetPriorityGrouping" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(151,32): error C2065: "NVIC_PRIORITYGROUP_4": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(154,3): warning C4013: "HAL_InitTick" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(154,16): error C2065: "TICK_INT_PRIORITY": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(157,3): warning C4013: "HAL_MspInit" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(171,3): warning C4013: "__HAL_RCC_APB1_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(172,3): warning C4013: "__HAL_RCC_APB1_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(174,3): warning C4013: "__HAL_RCC_APB2_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(175,3): warning C4013: "__HAL_RCC_APB2_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(177,3): warning C4013: "__HAL_RCC_AHB1_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(178,3): warning C4013: "__HAL_RCC_AHB1_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(180,3): warning C4013: "__HAL_RCC_AHB2_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(181,3): warning C4013: "__HAL_RCC_AHB2_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(183,3): warning C4013: "__HAL_RCC_AHB3_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(184,3): warning C4013: "__HAL_RCC_AHB3_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(187,3): warning C4013: "HAL_MspDeInit" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(197,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(197,13): error C2082: Neudefinition des formalen Parameters "HAL_MspInit"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(198,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(208,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(208,13): error C2082: Neudefinition des formalen Parameters "HAL_MspDeInit"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(209,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(231,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(231,26): error C2082: Neudefinition des formalen Parameters "HAL_InitTick"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(232,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(290,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(290,13): error C2085: "HAL_IncTick": Nicht in der formalen Parameterliste enthalten
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(291,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(301,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(301,17): error C2085: "HAL_GetTick": Nicht in der formalen Parameterliste enthalten
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(302,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2146: Syntaxfehler: Fehlendes ")" vor Bezeichner "Freq"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2061: Syntaxfehler: Bezeichner "Freq"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2059: Syntaxfehler: ";"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,59): error C2059: Syntaxfehler: ")"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(320,1): error C2449: "{" auf Dateiebene gefunden - fehlt der Funktionsheader?
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(345,1): error C2059: Syntaxfehler: "}"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(368,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(368,13): error C2085: "HAL_Delay": Nicht in der formalen Parameterliste enthalten
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(369,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(394,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(394,13): error C2085: "HAL_SuspendTick": Nicht in der formalen Parameterliste enthalten
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(395,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(410,1): error C2054: Nach "__weak" muss "(" folgen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(410,13): error C2085: "HAL_ResumeTick": Nicht in der formalen Parameterliste enthalten
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(411,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,12): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,20): error C2223: Der linke Teil von "->IDCODE" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,4): warning C4033: "HAL_GetREVID" muss einen Wert zurückgeben
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,12): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,20): error C2223: Der linke Teil von "->IDCODE" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,4): warning C4033: "HAL_GetDEVID" muss einen Wert zurückgeben
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,10): warning C4013: "READ_REG" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,33): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,21): warning C4312: "Typumwandlung": Konvertierung von "int" in größeren Typ "uint32_t *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(458,34): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(458,21): warning C4312: "Typumwandlung": Konvertierung von "unsigned int" in größeren Typ "uint32_t *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(467,34): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(467,21): warning C4312: "Typumwandlung": Konvertierung von "unsigned int" in größeren Typ "uint32_t *"
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,3): warning C4013: "SET_BIT" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,23): error C2065: "DBGMCU_CR_DBG_SLEEP": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,3): warning C4013: "CLEAR_BIT" undefiniert; Annahme: extern mit Rückgabetyp int
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,25): error C2065: "DBGMCU_CR_DBG_SLEEP": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,23): error C2065: "DBGMCU_CR_DBG_STOP": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,25): error C2065: "DBGMCU_CR_DBG_STOP": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,23): error C2065: "DBGMCU_CR_DBG_STANDBY": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,25): error C2065: "DBGMCU_CR_DBG_STANDBY": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,11): error C2223: Der linke Teil von "->CMPCR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,20): error C2065: "SYSCFG_CMPCR_CMP_PD": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,11): error C2223: Der linke Teil von "->CMPCR" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,42): error C2065: "SYSCFG_CMPCR_CMP_PD": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,11): error C2223: Der linke Teil von "->MEMRMP" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,21): error C2065: "SYSCFG_MEMRMP_SWP_FMC_0": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,11): error C2223: Der linke Teil von "->MEMRMP" muss auf eine Struktur/Union zeigen
-C:\Users\Max\Documents\local_projects\graviermaschine\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,43): error C2065: "SYSCFG_MEMRMP_SWP_FMC": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(75,33): error C2065: "__NVIC_PRIO_BITS": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(75,10): error C2099: Initialisierung ist keine Konstante
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,21): error C2061: Syntaxfehler: Bezeichner "uwTickFreq"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,21): error C2059: Syntaxfehler: ";"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,32): error C2513: " ": Keine Variable vor "=" deklariert
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(76,34): error C2065: "HAL_TICK_FREQ_DEFAULT": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(151,3): warning C4013: "HAL_NVIC_SetPriorityGrouping" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(151,32): error C2065: "NVIC_PRIORITYGROUP_4": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(154,3): warning C4013: "HAL_InitTick" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(154,16): error C2065: "TICK_INT_PRIORITY": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(157,3): warning C4013: "HAL_MspInit" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(171,3): warning C4013: "__HAL_RCC_APB1_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(172,3): warning C4013: "__HAL_RCC_APB1_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(174,3): warning C4013: "__HAL_RCC_APB2_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(175,3): warning C4013: "__HAL_RCC_APB2_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(177,3): warning C4013: "__HAL_RCC_AHB1_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(178,3): warning C4013: "__HAL_RCC_AHB1_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(180,3): warning C4013: "__HAL_RCC_AHB2_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(181,3): warning C4013: "__HAL_RCC_AHB2_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(183,3): warning C4013: "__HAL_RCC_AHB3_FORCE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(184,3): warning C4013: "__HAL_RCC_AHB3_RELEASE_RESET" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(187,3): warning C4013: "HAL_MspDeInit" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(197,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(197,13): error C2082: Neudefinition des formalen Parameters "HAL_MspInit"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(198,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(208,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(208,13): error C2082: Neudefinition des formalen Parameters "HAL_MspDeInit"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(209,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(231,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(231,26): error C2082: Neudefinition des formalen Parameters "HAL_InitTick"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(232,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(290,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(290,13): error C2085: "HAL_IncTick": Nicht in der formalen Parameterliste enthalten
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(291,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(301,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(301,17): error C2085: "HAL_GetTick": Nicht in der formalen Parameterliste enthalten
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(302,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2146: Syntaxfehler: Fehlendes ")" vor Bezeichner "Freq"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2061: Syntaxfehler: Bezeichner "Freq"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,55): error C2059: Syntaxfehler: ";"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(319,59): error C2059: Syntaxfehler: ")"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(320,1): error C2449: "{" auf Dateiebene gefunden - fehlt der Funktionsheader?
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(345,1): error C2059: Syntaxfehler: "}"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(368,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(368,13): error C2085: "HAL_Delay": Nicht in der formalen Parameterliste enthalten
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(369,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(394,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(394,13): error C2085: "HAL_SuspendTick": Nicht in der formalen Parameterliste enthalten
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(395,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(410,1): error C2054: Nach "__weak" muss "(" folgen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(410,13): error C2085: "HAL_ResumeTick": Nicht in der formalen Parameterliste enthalten
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(411,1): error C2143: Syntaxfehler: Es fehlt ";" vor "{"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,12): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,20): error C2223: Der linke Teil von "->IDCODE" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(431,4): warning C4033: "HAL_GetREVID" muss einen Wert zurückgeben
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,12): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,20): error C2223: Der linke Teil von "->IDCODE" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(440,4): warning C4033: "HAL_GetDEVID" muss einen Wert zurückgeben
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,10): warning C4013: "READ_REG" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,33): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(449,21): warning C4312: "Typumwandlung": Konvertierung von "int" in größeren Typ "uint32_t *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(458,34): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(458,21): warning C4312: "Typumwandlung": Konvertierung von "unsigned int" in größeren Typ "uint32_t *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(467,34): error C2065: "UID_BASE": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(467,21): warning C4312: "Typumwandlung": Konvertierung von "unsigned int" in größeren Typ "uint32_t *"
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,3): warning C4013: "SET_BIT" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(476,23): error C2065: "DBGMCU_CR_DBG_SLEEP": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,3): warning C4013: "CLEAR_BIT" undefiniert; Annahme: extern mit Rückgabetyp int
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(485,25): error C2065: "DBGMCU_CR_DBG_SLEEP": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(494,23): error C2065: "DBGMCU_CR_DBG_STOP": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(503,25): error C2065: "DBGMCU_CR_DBG_STOP": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,11): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,19): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(512,23): error C2065: "DBGMCU_CR_DBG_STANDBY": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,13): error C2065: "DBGMCU": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,21): error C2223: Der linke Teil von "->CR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(521,25): error C2065: "DBGMCU_CR_DBG_STANDBY": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,11): error C2223: Der linke Teil von "->CMPCR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(532,20): error C2065: "SYSCFG_CMPCR_CMP_PD": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,11): error C2223: Der linke Teil von "->CMPCR" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(543,42): error C2065: "SYSCFG_CMPCR_CMP_PD": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,11): error C2223: Der linke Teil von "->MEMRMP" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(556,21): error C2065: "SYSCFG_MEMRMP_SWP_FMC_0": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,3): error C2065: "SYSCFG": nichtdeklarierter Bezeichner
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,11): error C2223: Der linke Teil von "->MEMRMP" muss auf eine Struktur/Union zeigen
+C:\Users\tomke\Documents\3_Hardwarenahes_Prog\graviermaschine\simulation\FreeRTOSWin32\STM32F7xx_HAL_Driver\Src\stm32f7xx_hal.c(569,43): error C2065: "SYSCFG_MEMRMP_SWP_FMC": nichtdeklarierter Bezeichner
   stm32f7xx_hal_cortex.c
   stm32f7xx_hal_dma.c
   Code wird generiert...
