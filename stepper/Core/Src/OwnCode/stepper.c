@@ -2,14 +2,14 @@
 // understand the functions, rewrite them
 // reformat everything
 // figure out the mm, steps and time per turn so it is dynamic and correct
-//Steppercontext as -> or . ?
+// Steppercontext as -> or . ?
 
 #include "stepper.h"
 #include "LibL6474.h"
 
 #define TRACKLENGTH 295 // mm
-#define STEPMODE 4
-#define STEPS_PER_TURN (1 << (STEPMODE + 2))
+#define MM_PER_TURN 4
+#define STEPS_PER_TURN (1 << (STEPMODE + 2)) // resolution
 
 typedef enum
 {
@@ -106,7 +106,7 @@ static void StepLibraryDelay(unsigned int ms)
 {
     vTaskDelay(pdMS_TO_TICKS(ms));
 }
-// WIP
+
 static int StepTimerAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
     (void)pPWM;
@@ -160,27 +160,32 @@ static int Reset(StepperContext_t *StepperContext)
     param.TimeOffMin = 0x29;
     param.TorqueVal = 0x11;
     param.TFast = 0x19;
-
     int result = 0;
-    result |= L6474_SetBaseParameter(&param);
+
+    result |= L6474_SetBaseParameter(&param); // changable
     result |= L6474_ResetStandBy(StepperContext->h);
     result |= L6474_Initialize(StepperContext->h, &param);
     result |= L6474_SetPowerOutputs(StepperContext->h, 0);
 
-    if (result != 0){
+    if (result != 0)
+    {
         printf("Failed to reset\r\n");
         return -1;
         StepperContext->state = scs.FLT;
-    }    
+    }
     StepperContext->is_powered = 0;
     StepperContext->is_referenced = 0;
     StepperContext->is_running = 0;
     StepperContext->error_code = 0;
     StepperContext->state = scs.REF; // Transition INIT -> REF
 
+    StepperContext->mm_per_turn = MM_PER_TURN;
+    StepperContext->steps_per_turn = (float)(1 << (StepperContext->step_mode + 2));
+    StepperContext->mm_per_step = StepperContext->mm_per_turn / StepperContext->steps_per_turn;
+
     return result;
 }
-//Finished but maybe look at it again
+// Finished but maybe look at it again
 static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 {
     // Allow reference from REF state only
@@ -233,10 +238,10 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     // is switch already pressed?
     if (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
     {
-        //if yes, move away from it as long as it is pressed
+        // if yes, move away from it as long as it is pressed
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
         {
-            //if still pressed, wait
+            // if still pressed, wait
             L6474_StepIncremental(StepperContext->h, 1);
             if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
             {
@@ -249,7 +254,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
         StepTimerCancelAsync(NULL);
     }
-    //move to reference switch
+    // move to reference switch
     while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) != GPIO_PIN_RESET)
     {
         L6474_StepIncremental(StepperContext->h, -1);
@@ -263,7 +268,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-        //move to limit switch from reference switch
+    // move to limit switch from reference switch
     const uint32_t track_timer_start = HAL_GetTick();
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
     {
@@ -283,7 +288,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 
     // calc parameters from full run
     StepperContext->mm_per_step = (TRACKLENGTH / step_amt);
-    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - track_timer_start )*1000));
+    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - track_timer_start) * 1000.0f));
     StepperContext->is_referenced = 1;
 
     L6474_SetAbsolutePosition(StepperContext->h, 0);
@@ -500,6 +505,13 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
                 return -1;
             }
             result = L6474_SetStepMode(StepperContext->h, step_mode_l);
+            if (result == 0)
+            {
+                StepperContext->step_mode = step_mode_l;
+                StepperContext->is_referenced = 0; // Force a new reference run
+                StepperContext->state = scsREF;
+                printf("Step mode updated. Please perform a reference run.\r\n");
+            }
         }
         else
         {
@@ -514,9 +526,19 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             return -1;
         }
 
-        int property = (strcmp(argv[1], "timeon") == 0) ? L6474_PROP_TON : (strcmp(argv[1], "timeoff") == 0) ? L6474_PROP_TOFF
-                                                                                                             : L6474_PROP_TFAST;
-
+        int property;
+        if (strcmp(argv[1], "timeon") == 0)
+        {
+            property = L6474_PROP_TON;
+        }
+        else if (strcmp(argv[1], "timeoff") == 0)
+        {
+            property = L6474_PROP_TOFF;
+        }
+        else
+        {
+            property = L6474_PROP_TFAST;
+        }
         if (pos != -1)
         {
             result = L6474_SetProperty(StepperContext->h, property, atoi(argv[pos + 1]));
@@ -541,17 +563,28 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "posmin") == 0 || strcmp(argv[1], "posmax") == 0 || strcmp(argv[1], "posref") == 0)
     {
-        int *position_steps = (strcmp(argv[1], "posmin") == 0) ? &StepperContext->pos_min : (strcmp(argv[1], "posmax") == 0) ? &StepperContext->pos_max
-                                                                                                                             : &StepperContext->position_ref_steps;
-
-        if (pos != -1)
+        int *position_steps;
+        if (strcmp(argv[1], "posmin") == 0)
         {
-            float value_float = atof(argv[pos + 1]);
-            *position_steps = (value_float * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn;
+            position_steps = &StepperContext->pos_min;
+        }
+        else if (strcmp(argv[1], "posmax") == 0)
+        {
+            position_steps = &StepperContext->pos_max;
         }
         else
         {
-            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / (StepperContext->steps_per_turn * StepperContext->resolution));
+            position_steps = &StepperContext->position_ref_steps;
+        }
+
+        if (pos != -1)
+        {
+            float input = atof(argv[pos + 1]);
+            *position_steps = (input * StepperContext->steps_per_turn) / StepperContext->mm_per_turn;
+        }
+        else
+        {
+            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / StepperContext->steps_per_turn);
         }
     }
     else
@@ -722,6 +755,11 @@ void InitStepper(ConsoleHandle_t hconsole, SPI_HandleTypeDef *hspi1,
     StepperContext.htim4 = htim4;
     StepperContext.state = scs.INIT;
     StepperContext.error_code = 0;
+
+    StepperContext.step_mode = smMICRO16;
+    StepperContext.mm_per_turn = 4.0f;
+    StepperContext.steps_per_turn = (float)(1 << (StepperContext.step_mode + 2));
+    StepperContext.mm_per_step = StepperContext.mm_per_turn / StepperContext.steps_per_turn;
 
     CONSOLE_RegisterCommand(hconsole, "stepper", "Stepper main Command", StepperHandler, &StepperContext);
 }
