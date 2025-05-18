@@ -600,15 +600,6 @@ void set_speed(StepperContext_t *StepperContext, int steps_per_sec)
     // ARR = Auto-reload register, we set it to 50% duty cycle
     StepperContext->htim4->Instance->CCR4 = StepperContext->htim4->Instance->ARR / 2;
 }
-// WIP
-static int Initialize(StepperContext_t *StepperContext)
-{
-    Reset(StepperContext);
-    StepperContext->is_powered = 1;
-    StepperContext->is_referenced = 1;
-    StepperContext->state = scs.INIT;
-    return L6474_SetPowerOutputs(StepperContext->h, 1);
-}
 // WIP kind of done
 void TimerStart(unsigned int pulse_count)
 {
@@ -679,10 +670,6 @@ static int StepperHandler(int argc, char **argv, void *ctx)
     else if (strcmp(argv[0], "cancel") == 0)
     {
         result = StepTimerCancelAsync(NULL);
-    }
-    else if (strcmp(argv[0], "init") == 0)
-    {
-        result = Initialize(StepperContext);
     }
     else if (strcmp(argv[0], "position") == 0)
     {
