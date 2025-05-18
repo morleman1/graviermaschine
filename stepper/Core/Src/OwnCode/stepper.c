@@ -294,7 +294,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 
     L6474_SetAbsolutePosition(StepperContext->h, 0);
     result |= L6474_SetPowerOutputs(StepperContext->h, poweroutput); // set power output if -e flag was set
-
+    StepperContext->is_powered = poweroutput;
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
     return result;
