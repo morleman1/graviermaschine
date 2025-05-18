@@ -1,7 +1,8 @@
 // implement updates from gelhorns
 // understand the functions, rewrite them
 // reformat everything
-//figure out the mm, steps and time per turn so it is dynamic and correct
+// figure out the mm, steps and time per turn so it is dynamic and correct
+//Steppercontext as -> or . ?
 
 #include "stepper.h"
 #include "LibL6474.h"
@@ -62,8 +63,8 @@ typedef struct
 
 static int StepTimerCancelAsync(void *pPWM);
 void set_speed(StepperContext_t *StepperContext, int steps_per_sec);
-int powerena(StepperContext_t *StepperContext, int argc, char **argv);
-void start_tim1(unsigned int pulses);
+int Powerena(StepperContext_t *StepperContext, int argc, char **argv);
+void TimerStart(unsigned int pulses);
 
 L6474x_Platform_t p;
 StepperContext_t StepperContext;
@@ -113,7 +114,7 @@ static int StepTimerAsync(void *pPWM, int dir, unsigned int numPulses, void (*do
     StepperContext.is_running = 1;
     StepperContext.done_callback = doneClb;
     HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, !!dir);
-    start_tim1(numPulses);
+    TimerStart(numPulses);
     return 0;
 }
 
@@ -135,25 +136,26 @@ static int StepTimerCancelAsync(void *pPWM)
 //---------basic-functions-end-------------
 
 //-----Command-specific-functions---------
- static int Step(void* pPWM, int dir, unsigned int numPulses)
+static int Step(void *pPWM, int dir, unsigned int numPulses)
+{
+    HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir); // set direction
+    // generate pulses
+    for (unsigned int i = 0; i < numPulses; i++)
     {
-        HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, dir); // set direction
-        //generate pulses
-        for (unsigned int i = 0; i < numPulses; i++){
-            HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 1);
-            stepLibraryDelay(1);
-            HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 0);
-            stepLibraryDelay(1);
-        }
-
-        return 0;
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 1);
+        stepLibraryDelay(1);
+        HAL_GPIO_WritePin(STEP_PULSE_GPIO_Port, STEP_PULSE_Pin, 0);
+        stepLibraryDelay(1);
     }
-//WIP kind of done, parameters need to  be looked at
+
+    return 0;
+}
+// WIP kind of done, parameters need to  be looked at
 static int Reset(StepperContext_t *StepperContext)
 {
     L6474_BaseParameter_t param;
     param.stepMode = smMICRO16;
-    param.OcdTh = ocdth6000mA; //3000mA ? cause requirements
+    param.OcdTh = ocdth6000mA; // 3000mA ? cause requirements
     param.TimeOnMin = 0x29;
     param.TimeOffMin = 0x29;
     param.TorqueVal = 0x11;
@@ -172,7 +174,7 @@ static int Reset(StepperContext_t *StepperContext)
 
     return result;
 }
-//WIP kind of done -.-
+// WIP kind of done -.-
 static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 {
     // Allow reference from REF state only
@@ -219,19 +221,18 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
 
-
     const uint32_t start_time = HAL_GetTick();
     result |= L6474_SetPowerOutputs(StepperContext->h, 1);
 
-        //is switch already pressed?
+    // is switch already pressed?
     if (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
     {
-        //if yes, move away from it as long as it is pressed
+        // if yes, move away from it as long as it is pressed
         set_speed(StepperContext, 500);
         L6474_StepIncremental(StepperContext->h, 100000000);
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
         {
-            //if still pressed, wait
+            // if still pressed, wait
             if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
             {
                 StepTimerCancelAsync(NULL);
@@ -243,7 +244,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
         StepTimerCancelAsync(NULL);
     }
-    //move to reference switch
+    // move to reference switch
     L6474_StepIncremental(StepperContext->h, -1000000000);
     while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) != GPIO_PIN_RESET)
     {
@@ -257,7 +258,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-        //move to limit switch from reference switch
+    // move to limit switch from reference switch
     L6474_StepIncremental(StepperContext->h, 1000000000);
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
     {
@@ -274,22 +275,22 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     track_timer_stop = HAL_GetTick();
     StepTimerCancelAsync(NULL);
 
-    //calc parameters from full run
+    // calc parameters from full run
     StepperContext->mm_per_step = (TRACKLENGTH / step_amt);
-    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - start_time )*1000));
+    StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - start_time) * 1000));
     StepperContext->is_referenced = 1;
 
     L6474_SetAbsolutePosition(StepperContext->h, 0);
-    result |= L6474_SetPowerOutputs(StepperContext->h, poweroutput); //set power output if -e flag was set
+    result |= L6474_SetPowerOutputs(StepperContext->h, poweroutput); // set power output if -e flag was set
 
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
     return result;
 }
-//WIP kind of done
+// WIP kind of done
 static int Position(StepperContext_t *StepperContext, int argc, char **argv)
 {
-    if(StepperContext->state == scs.FLT)
+    if (StepperContext->state == scs.FLT)
     {
         printf("Stepper in fault state\r\n");
         return -1;
@@ -299,22 +300,22 @@ static int Position(StepperContext_t *StepperContext, int argc, char **argv)
     printf("Current position: %d\n\r", (position));
     return 0;
 }
-//WIP kind of done
+// WIP kind of done
 static int Status(StepperContext_t *StepperContext, int argc, char **argv)
 {
     L6474_Status_t driverStatus;
     L6474_GetStatus(StepperContext->h, &driverStatus);
 
     unsigned int statusBits = 0;
-statusBits |= (driverStatus.DIR ? (1 << 0) : 0);
-statusBits |= (driverStatus.HIGHZ ? (1 << 1) : 0);
-statusBits |= (driverStatus.NOTPERF_CMD ? (1 << 2) : 0);
-statusBits |= (driverStatus.OCD ? (1 << 3) : 0);
-statusBits |= (driverStatus.ONGOING ? (1 << 4) : 0);
-statusBits |= (driverStatus.TH_SD ? (1 << 5) : 0);
-statusBits |= (driverStatus.TH_WARN ? (1 << 6) : 0);
-statusBits |= (driverStatus.UVLO ? (1 << 7) : 0);
-statusBits |= (driverStatus.WRONG_CMD ? (1 << 8) : 0);
+    statusBits |= (driverStatus.DIR ? (1 << 0) : 0);
+    statusBits |= (driverStatus.HIGHZ ? (1 << 1) : 0);
+    statusBits |= (driverStatus.NOTPERF_CMD ? (1 << 2) : 0);
+    statusBits |= (driverStatus.OCD ? (1 << 3) : 0);
+    statusBits |= (driverStatus.ONGOING ? (1 << 4) : 0);
+    statusBits |= (driverStatus.TH_SD ? (1 << 5) : 0);
+    statusBits |= (driverStatus.TH_WARN ? (1 << 6) : 0);
+    statusBits |= (driverStatus.UVLO ? (1 << 7) : 0);
+    statusBits |= (driverStatus.WRONG_CMD ? (1 << 8) : 0);
 
     printf("0x%01X\r\n", StepperContext->state);
     printf("0x%04X\r\n", statusBits);
@@ -322,7 +323,7 @@ statusBits |= (driverStatus.WRONG_CMD ? (1 << 8) : 0);
 
     return 0;
 }
-//WIP
+// WIP
 static int Move(StepperContext_t *StepperContext, int argc, char **argv)
 {
     if (StepperContext->state != scs.ENA)
@@ -408,7 +409,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
         return result;
     }
 }
-//WIP
+// WIP
 static int Config(StepperContext_t *StepperContext, int argc, char **argv)
 {
     if (argc < 2)
@@ -422,7 +423,23 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
 
     if (strcmp(argv[1], "powerena") == 0)
     {
-        return powerena(StepperContext, argc, argv);
+        if (pos != -1)
+        {
+            int ena = atoi(argv[pos + 1]);
+            result = SetPower(ena);
+            if (ena)
+            {
+                StepperContext->state = scs.ENA; // DIS -> ENA
+            }
+            else
+            {
+                StepperContext->state = scs.DIS; // ENA -> DIS
+            }
+        }
+        else
+        {
+            printf("Current Powerstate: %d\r\n", StepperContext->is_powered);
+        }
     }
     else if (strcmp(argv[1], "torque") == 0)
     {
@@ -457,14 +474,24 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             L6474x_StepMode_t step_mode_l;
             switch (atoi(argv[pos + 1]))
             {
-                case 1: step_mode_l = smFULL; break;
-                case 2: step_mode_l = smHALF; break;
-                case 4: step_mode_l = smMICRO4; break;
-                case 8: step_mode_l = smMICRO8; break;
-                case 16: step_mode_l = smMICRO16; break;
-                default:
-                    printf("Error: Invalid step mode\r\n");
-                    return -1;
+            case 1:
+                step_mode_l = smFULL;
+                break;
+            case 2:
+                step_mode_l = smHALF;
+                break;
+            case 4:
+                step_mode_l = smMICRO4;
+                break;
+            case 8:
+                step_mode_l = smMICRO8;
+                break;
+            case 16:
+                step_mode_l = smMICRO16;
+                break;
+            default:
+                printf("Error: Invalid step mode\r\n");
+                return -1;
             }
             result = L6474_SetStepMode(StepperContext->h, step_mode_l);
         }
@@ -481,8 +508,8 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             return -1;
         }
 
-        int property = (strcmp(argv[1], "timeon") == 0) ? L6474_PROP_TON :
-                       (strcmp(argv[1], "timeoff") == 0) ? L6474_PROP_TOFF : L6474_PROP_TFAST;
+        int property = (strcmp(argv[1], "timeon") == 0) ? L6474_PROP_TON : (strcmp(argv[1], "timeoff") == 0) ? L6474_PROP_TOFF
+                                                                                                             : L6474_PROP_TFAST;
 
         if (pos != -1)
         {
@@ -495,17 +522,21 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             printf("%d\r\n", value);
         }
     }
-    else if (strcmp(argv[1], "mmperturn") == 0) {
-        if (pos != -1) {
-            StepperContext->mm_per_step = atof(argv[pos+1]) / (float)pow(2, StepperContext->mm_per_step + 2);
-        } else {
+    else if (strcmp(argv[1], "mmperturn") == 0)
+    {
+        if (pos != -1)
+        {
+            StepperContext->mm_per_step = atof(argv[pos + 1]) / (float)pow(2, StepperContext->mm_per_step + 2);
+        }
+        else
+        {
             printf("%f\r\n", (StepperContext->mm_per_step * (float)pow(2, StepperContext->mm_per_step + 2)));
-        } 
+        }
     }
     else if (strcmp(argv[1], "posmin") == 0 || strcmp(argv[1], "posmax") == 0 || strcmp(argv[1], "posref") == 0)
     {
-        int *position_steps = (strcmp(argv[1], "posmin") == 0) ? &StepperContext->pos_min :
-                              (strcmp(argv[1], "posmax") == 0) ? &StepperContext->pos_max : &StepperContext->position_ref_steps;
+        int *position_steps = (strcmp(argv[1], "posmin") == 0) ? &StepperContext->pos_min : (strcmp(argv[1], "posmax") == 0) ? &StepperContext->pos_max
+                                                                                                                             : &StepperContext->position_ref_steps;
 
         if (pos != -1)
         {
@@ -526,40 +557,23 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     return result;
 }
 
-//WIP
-int powerena(StepperContext_t *StepperContext, int argc, char **argv)
+// WIP kind of very done
+int SetPower(int ena)
 {
-    if (argc == 2)
+    if ((StepperContext.state != scs.ENA) && (StepperContext.state != scs.DIS))
     {
-        printf("Current Powerstate: %d\r\n", StepperContext->is_powered);
-        return 0;
-    }
-    else if (argc == 4 && strcmp(argv[2], "-v") == 0)
-    {
-        int ena = atoi(argv[3]);
-        if (ena != 0 && ena != 1)
-        {
-            printf("Invalid argument for powerena\r\n");
-            return -1;
-        }
-        StepperContext->is_powered = ena;
-        if (ena)
-        {
-            StepperContext->state = scs.ENA; // DIS -> ENA
-        }
-        else
-        {
-            StepperContext->state = scs.DIS; // ENA -> DIS
-        }
-        return L6474_SetPowerOutputs(StepperContext->h, ena);
-    }
-    else
-    {
-        printf("Invalid number of arguments\r\n");
+        printf("Power can only be set in state ENA or DIS\r\n");
         return -1;
     }
+    if (ena != 0 && ena != 1)
+    {
+        printf("Invalid argument for ena\r\n");
+        return -1;
+    }
+    StepperContext.is_powered = ena;
+    return L6474_SetPowerOutputs(StepperContext.h, ena);
 }
-//WIP kind of done
+// WIP kind of done
 void set_speed(StepperContext_t *StepperContext, int steps_per_sec)
 {
     // Get the system clock frequency (e.g., 72 MHz)
@@ -586,7 +600,7 @@ void set_speed(StepperContext_t *StepperContext, int steps_per_sec)
     // ARR = Auto-reload register, we set it to 50% duty cycle
     StepperContext->htim4->Instance->CCR4 = StepperContext->htim4->Instance->ARR / 2;
 }
-//WIP
+// WIP
 static int Initialize(StepperContext_t *StepperContext)
 {
     Reset(StepperContext);
@@ -595,35 +609,41 @@ static int Initialize(StepperContext_t *StepperContext)
     StepperContext->state = scs.INIT;
     return L6474_SetPowerOutputs(StepperContext->h, 1);
 }
-//WIP
-void start_tim1(unsigned int pulses)
+// WIP kind of done
+void TimerStart(unsigned int pulse_count)
 {
-    int current_pulses = (pulses >= 65535) ? 65535 : pulses;
-    StepperContext.remaining_pulses = pulses - current_pulses;
-    if (current_pulses != 1)
+    // Limit the number of pulses to a maximum of 16 bit
+    int active_pulses = (pulse_count >= 65535) ? 65535 : pulse_count;
+    StepperContext.remaining_pulses = pulse_count - active_pulses;
+    if (active_pulses > 1)
     {
+        // set timer params and start it
         HAL_TIM_OnePulse_Stop_IT(StepperContext.htim1, TIM_CHANNEL_1);
-        __HAL_TIM_SET_AUTORELOAD(StepperContext.htim1, current_pulses);
+        __HAL_TIM_SET_AUTORELOAD(StepperContext.htim1, active_pulses);
         HAL_TIM_GenerateEvent(StepperContext.htim1, TIM_EVENTSOURCE_UPDATE);
         HAL_TIM_OnePulse_Start_IT(StepperContext.htim1, TIM_CHANNEL_1);
         __HAL_TIM_ENABLE(StepperContext.htim1);
     }
     else
     {
+        // signal completion
         StepperContext.done_callback(StepperContext.h);
     }
 }
-//WIP
+// WIP kind of done
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
+    // check if pulse is finished
     if ((StepperContext.done_callback != 0) && ((htim->Instance->SR & (1 << 2)) == 0))
     {
+        // process remaining pulses
         if (StepperContext.remaining_pulses > 0)
         {
-            start_tim1(StepperContext.remaining_pulses);
+            TimerStart(StepperContext.remaining_pulses);
         }
         else
         {
+            // finished
             StepperContext.done_callback(StepperContext.h);
             StepperContext.is_running = 0;
         }
@@ -700,7 +720,7 @@ void InitStepper(ConsoleHandle_t hconsole, SPI_HandleTypeDef *hspi1,
     p.transfer = StepDriverSpiTransfer;
     p.reset = StepDriverReset;
     p.sleep = StepLibraryDelay;
-    //p.step = Step;
+    // p.step = Step;
     p.stepAsync = StepTimerAsync;
     p.cancelStep = StepTimerCancelAsync;
 
