@@ -143,7 +143,7 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
          1, // has stepper refrun skip
          1, // has stepper refrun stay enabled
          1, // has stepper reset
-         0, // has stepper position
+         1, // has stepper position
          1, // has stepper config
          1, // has stepper config torque
          1, // has stepper config throvercurr
@@ -153,9 +153,9 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
          1, // has stepper config timeon
          1, // has stepper config timefast
          1, // has stepper config mmperturn
-         0, // has stepper config posmax
-         0, // has stepper config posmin
-         0, // has stepper config posref
+         1, // has stepper config posmax
+         1, // has stepper config posmin
+         1, // has stepper config posref
          1, // has stepper config stepsperturn
          1  // has stepper cancel
   );

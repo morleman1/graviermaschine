@@ -696,11 +696,11 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
         if (pos != -1)
         {
             float input = atof(argv[pos + 1]);
-            printf("%f\r\n", (float)(StepperContext->pos_max * StepperContext->mm_per_turn) / (float)(StepperContext->steps_per_turn * StepperContext->resolution));
+            *position_steps = (int)((input * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn);
         }
         else
         {
-            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / StepperContext->steps_per_turn);
+            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / (StepperContext->steps_per_turn* StepperContext->resolution));
         }
     }
     else
