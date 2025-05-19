@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00017fc4  080001d0  080001d0  000011d0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00002340  08018198  08018198  00019198  2**3
+  2 .rodata       00002320  08018198  08018198  00019198  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0801a4d8  0801a4d8  0001c224  2**0
+  3 .ARM.extab    00000000  0801a4b8  0801a4b8  0001c224  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  0801a4d8  0801a4d8  0001b4d8  2**2
+  4 .ARM          00000008  0801a4b8  0801a4b8  0001b4b8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  0801a4e0  0801a4e0  0001c224  2**0
+  5 .preinit_array 00000000  0801a4c0  0801a4c0  0001c224  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000008  0801a4e0  0801a4e0  0001b4e0  2**2
+  6 .init_array   00000008  0801a4c0  0801a4c0  0001b4c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0801a4e8  0801a4e8  0001b4e8  2**2
+  7 .fini_array   00000004  0801a4c8  0801a4c8  0001b4c8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000224  20000000  0801a4ec  0001c000  2**2
+  8 .data         00000224  20000000  0801a4cc  0001c000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000005b8  20000224  0801a710  0001c224  2**2
+  9 .bss          000005b8  20000224  0801a6f0  0001c224  2**2
                   ALLOC
- 10 ._user_heap_stack 00038004  200007dc  0801a710  0001c7dc  2**0
+ 10 ._user_heap_stack 00038004  200007dc  0801a6f0  0001c7dc  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0001c224  2**0
                   CONTENTS, READONLY
@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0002b5f6  00000000  00000000  0004169e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000232c5  00000000  00000000  0006cc94  2**0
+ 17 .debug_line   0002290c  00000000  00000000  0006cc94  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0010baa2  00000000  00000000  0008ff59  2**0
+ 18 .debug_str    0010ba5a  00000000  00000000  0008f5a0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0019b9fb  2**0
+ 19 .comment      00000043  00000000  00000000  0019affa  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00008600  00000000  00000000  0019ba40  2**2
+ 20 .debug_frame  00008600  00000000  00000000  0019b040  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007c  00000000  00000000  001a4040  2**0
+ 21 .debug_line_str 00000074  00000000  00000000  001a3640  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3441,7 +3441,7 @@ static void ConsoleFunction( void * arg )
 					lineBuff[lbPtr] = ctrlC0_NUL;
  8001eca:	e7f2      	b.n	8001eb2 <ConsoleFunction+0x27e>
  8001ecc:	080181e8 	.word	0x080181e8
- 8001ed0:	08019b4c 	.word	0x08019b4c
+ 8001ed0:	08019b2c 	.word	0x08019b2c
  8001ed4:	08018228 	.word	0x08018228
  8001ed8:	08018238 	.word	0x08018238
  8001edc:	08018244 	.word	0x08018244
@@ -6564,1607 +6564,1607 @@ void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim)
   // Initialize the spindle parameters
   SpindlePhysicalParams_t s;
   s.maxRPM = 9000.0f;
- 800344e:	4b19      	ldr	r3, [pc, #100]	@ (80034b4 <InitSpindle+0x70>)
+ 800344e:	4b18      	ldr	r3, [pc, #96]	@ (80034b0 <InitSpindle+0x6c>)
  8003450:	61bb      	str	r3, [r7, #24]
   s.minRPM = -9000.0f;
- 8003452:	4b19      	ldr	r3, [pc, #100]	@ (80034b8 <InitSpindle+0x74>)
+ 8003452:	4b18      	ldr	r3, [pc, #96]	@ (80034b4 <InitSpindle+0x70>)
  8003454:	623b      	str	r3, [r7, #32]
   s.absMinRPM = 1600.0f;
- 8003456:	4b19      	ldr	r3, [pc, #100]	@ (80034bc <InitSpindle+0x78>)
+ 8003456:	4b18      	ldr	r3, [pc, #96]	@ (80034b8 <InitSpindle+0x74>)
  8003458:	61fb      	str	r3, [r7, #28]
   s.setDirection = SPINDLE_SetDirection;
- 800345a:	4b19      	ldr	r3, [pc, #100]	@ (80034c0 <InitSpindle+0x7c>)
+ 800345a:	4b18      	ldr	r3, [pc, #96]	@ (80034bc <InitSpindle+0x78>)
  800345c:	60fb      	str	r3, [r7, #12]
   s.setDutyCycle = SPINDLE_SetDutyCycle;
- 800345e:	4b19      	ldr	r3, [pc, #100]	@ (80034c4 <InitSpindle+0x80>)
+ 800345e:	4b18      	ldr	r3, [pc, #96]	@ (80034c0 <InitSpindle+0x7c>)
  8003460:	613b      	str	r3, [r7, #16]
   s.enaPWM = SPINDLE_EnaPWM;
- 8003462:	4b19      	ldr	r3, [pc, #100]	@ (80034c8 <InitSpindle+0x84>)
+ 8003462:	4b18      	ldr	r3, [pc, #96]	@ (80034c4 <InitSpindle+0x80>)
  8003464:	617b      	str	r3, [r7, #20]
   s.context = NULL;
  8003466:	2300      	movs	r3, #0
  8003468:	627b      	str	r3, [r7, #36]	@ 0x24
 
   spindleContext.handle= SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
- 800346a:	687b      	ldr	r3, [r7, #4]
- 800346c:	681a      	ldr	r2, [r3, #0]
- 800346e:	f107 030c 	add.w	r3, r7, #12
- 8003472:	2104      	movs	r1, #4
- 8003474:	f44f 5080 	mov.w	r0, #4096	@ 0x1000
- 8003478:	f001 fd66 	bl	8004f48 <SPINDLE_CreateInstance>
- 800347c:	4603      	mov	r3, r0
- 800347e:	4a13      	ldr	r2, [pc, #76]	@ (80034cc <InitSpindle+0x88>)
- 8003480:	6513      	str	r3, [r2, #80]	@ 0x50
+ 800346a:	f107 030c 	add.w	r3, r7, #12
+ 800346e:	687a      	ldr	r2, [r7, #4]
+ 8003470:	2104      	movs	r1, #4
+ 8003472:	f44f 5080 	mov.w	r0, #4096	@ 0x1000
+ 8003476:	f001 fd67 	bl	8004f48 <SPINDLE_CreateInstance>
+ 800347a:	4603      	mov	r3, r0
+ 800347c:	4a12      	ldr	r2, [pc, #72]	@ (80034c8 <InitSpindle+0x84>)
+ 800347e:	6513      	str	r3, [r2, #80]	@ 0x50
                                          configMAX_PRIORITIES - 3,
-                                         *consoleHandle, &s);
+                                         consoleHandle, &s);
 
   if (spindleContext.handle == NULL)
- 8003482:	4b12      	ldr	r3, [pc, #72]	@ (80034cc <InitSpindle+0x88>)
- 8003484:	6d1b      	ldr	r3, [r3, #80]	@ 0x50
- 8003486:	2b00      	cmp	r3, #0
- 8003488:	d104      	bne.n	8003494 <InitSpindle+0x50>
+ 8003480:	4b11      	ldr	r3, [pc, #68]	@ (80034c8 <InitSpindle+0x84>)
+ 8003482:	6d1b      	ldr	r3, [r3, #80]	@ 0x50
+ 8003484:	2b00      	cmp	r3, #0
+ 8003486:	d104      	bne.n	8003492 <InitSpindle+0x4e>
   {
     printf("Failed to create spindle controller instance\r\n");
- 800348a:	4811      	ldr	r0, [pc, #68]	@ (80034d0 <InitSpindle+0x8c>)
- 800348c:	f011 f822 	bl	80144d4 <puts>
+ 8003488:	4810      	ldr	r0, [pc, #64]	@ (80034cc <InitSpindle+0x88>)
+ 800348a:	f011 f823 	bl	80144d4 <puts>
     Error_Handler();
- 8003490:	f003 fa85 	bl	800699e <Error_Handler>
+ 800348e:	f003 fa86 	bl	800699e <Error_Handler>
   }
   spindleContext.direction = 0;
- 8003494:	4b0d      	ldr	r3, [pc, #52]	@ (80034cc <InitSpindle+0x88>)
- 8003496:	2200      	movs	r2, #0
- 8003498:	601a      	str	r2, [r3, #0]
+ 8003492:	4b0d      	ldr	r3, [pc, #52]	@ (80034c8 <InitSpindle+0x84>)
+ 8003494:	2200      	movs	r2, #0
+ 8003496:	601a      	str	r2, [r3, #0]
   spindleContext.timer = *htim;
- 800349a:	4b0c      	ldr	r3, [pc, #48]	@ (80034cc <InitSpindle+0x88>)
- 800349c:	683a      	ldr	r2, [r7, #0]
- 800349e:	3304      	adds	r3, #4
- 80034a0:	4611      	mov	r1, r2
- 80034a2:	224c      	movs	r2, #76	@ 0x4c
- 80034a4:	4618      	mov	r0, r3
- 80034a6:	f011 fb61 	bl	8014b6c <memcpy>
- 80034aa:	bf00      	nop
- 80034ac:	3728      	adds	r7, #40	@ 0x28
- 80034ae:	46bd      	mov	sp, r7
- 80034b0:	bd80      	pop	{r7, pc}
- 80034b2:	bf00      	nop
- 80034b4:	460ca000 	.word	0x460ca000
- 80034b8:	c60ca000 	.word	0xc60ca000
- 80034bc:	44c80000 	.word	0x44c80000
- 80034c0:	08003335 	.word	0x08003335
- 80034c4:	08003371 	.word	0x08003371
- 80034c8:	080033f1 	.word	0x080033f1
- 80034cc:	20000240 	.word	0x20000240
- 80034d0:	08018e1c 	.word	0x08018e1c
+ 8003498:	4b0b      	ldr	r3, [pc, #44]	@ (80034c8 <InitSpindle+0x84>)
+ 800349a:	683a      	ldr	r2, [r7, #0]
+ 800349c:	3304      	adds	r3, #4
+ 800349e:	4611      	mov	r1, r2
+ 80034a0:	224c      	movs	r2, #76	@ 0x4c
+ 80034a2:	4618      	mov	r0, r3
+ 80034a4:	f011 fb62 	bl	8014b6c <memcpy>
+}
+ 80034a8:	bf00      	nop
+ 80034aa:	3728      	adds	r7, #40	@ 0x28
+ 80034ac:	46bd      	mov	sp, r7
+ 80034ae:	bd80      	pop	{r7, pc}
+ 80034b0:	460ca000 	.word	0x460ca000
+ 80034b4:	c60ca000 	.word	0xc60ca000
+ 80034b8:	44c80000 	.word	0x44c80000
+ 80034bc:	08003335 	.word	0x08003335
+ 80034c0:	08003371 	.word	0x08003371
+ 80034c4:	080033f1 	.word	0x080033f1
+ 80034c8:	20000240 	.word	0x20000240
+ 80034cc:	08018e1c 	.word	0x08018e1c
 
-080034d4 <StepLibraryMalloc>:
+080034d0 <StepLibraryMalloc>:
 L6474x_Platform_t p;
 StepperContext_t StepperContext;
 
 //---------Basic---Functions--------------
 static void *StepLibraryMalloc(unsigned int size)
 {
- 80034d4:	b580      	push	{r7, lr}
- 80034d6:	b082      	sub	sp, #8
- 80034d8:	af00      	add	r7, sp, #0
- 80034da:	6078      	str	r0, [r7, #4]
+ 80034d0:	b580      	push	{r7, lr}
+ 80034d2:	b082      	sub	sp, #8
+ 80034d4:	af00      	add	r7, sp, #0
+ 80034d6:	6078      	str	r0, [r7, #4]
     return malloc(size);
- 80034dc:	6878      	ldr	r0, [r7, #4]
- 80034de:	f00e fee1 	bl	80122a4 <malloc>
- 80034e2:	4603      	mov	r3, r0
+ 80034d8:	6878      	ldr	r0, [r7, #4]
+ 80034da:	f00e fee3 	bl	80122a4 <malloc>
+ 80034de:	4603      	mov	r3, r0
 }
- 80034e4:	4618      	mov	r0, r3
- 80034e6:	3708      	adds	r7, #8
- 80034e8:	46bd      	mov	sp, r7
- 80034ea:	bd80      	pop	{r7, pc}
+ 80034e0:	4618      	mov	r0, r3
+ 80034e2:	3708      	adds	r7, #8
+ 80034e4:	46bd      	mov	sp, r7
+ 80034e6:	bd80      	pop	{r7, pc}
 
-080034ec <StepLibraryFree>:
+080034e8 <StepLibraryFree>:
 
 static void StepLibraryFree(const void *const ptr)
 {
- 80034ec:	b580      	push	{r7, lr}
- 80034ee:	b082      	sub	sp, #8
- 80034f0:	af00      	add	r7, sp, #0
- 80034f2:	6078      	str	r0, [r7, #4]
+ 80034e8:	b580      	push	{r7, lr}
+ 80034ea:	b082      	sub	sp, #8
+ 80034ec:	af00      	add	r7, sp, #0
+ 80034ee:	6078      	str	r0, [r7, #4]
     free((void *)ptr);
- 80034f4:	6878      	ldr	r0, [r7, #4]
- 80034f6:	f00e fedd 	bl	80122b4 <free>
+ 80034f0:	6878      	ldr	r0, [r7, #4]
+ 80034f2:	f00e fedf 	bl	80122b4 <free>
 }
- 80034fa:	bf00      	nop
- 80034fc:	3708      	adds	r7, #8
- 80034fe:	46bd      	mov	sp, r7
- 8003500:	bd80      	pop	{r7, pc}
+ 80034f6:	bf00      	nop
+ 80034f8:	3708      	adds	r7, #8
+ 80034fa:	46bd      	mov	sp, r7
+ 80034fc:	bd80      	pop	{r7, pc}
 	...
 
-08003504 <StepDriverSpiTransfer>:
+08003500 <StepDriverSpiTransfer>:
 
 static int StepDriverSpiTransfer(void *pIO, char *pRX, const char *pTX, unsigned int length)
 {
- 8003504:	b580      	push	{r7, lr}
- 8003506:	b088      	sub	sp, #32
- 8003508:	af02      	add	r7, sp, #8
- 800350a:	60f8      	str	r0, [r7, #12]
- 800350c:	60b9      	str	r1, [r7, #8]
- 800350e:	607a      	str	r2, [r7, #4]
- 8003510:	603b      	str	r3, [r7, #0]
+ 8003500:	b580      	push	{r7, lr}
+ 8003502:	b088      	sub	sp, #32
+ 8003504:	af02      	add	r7, sp, #8
+ 8003506:	60f8      	str	r0, [r7, #12]
+ 8003508:	60b9      	str	r1, [r7, #8]
+ 800350a:	607a      	str	r2, [r7, #4]
+ 800350c:	603b      	str	r3, [r7, #0]
     HAL_StatusTypeDef status = 0;
- 8003512:	2300      	movs	r3, #0
- 8003514:	75fb      	strb	r3, [r7, #23]
+ 800350e:	2300      	movs	r3, #0
+ 8003510:	75fb      	strb	r3, [r7, #23]
     for (unsigned int i = 0; i < length; i++)
- 8003516:	2300      	movs	r3, #0
- 8003518:	613b      	str	r3, [r7, #16]
- 800351a:	e023      	b.n	8003564 <StepDriverSpiTransfer+0x60>
+ 8003512:	2300      	movs	r3, #0
+ 8003514:	613b      	str	r3, [r7, #16]
+ 8003516:	e023      	b.n	8003560 <StepDriverSpiTransfer+0x60>
     {
         HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, 0);
- 800351c:	2200      	movs	r2, #0
- 800351e:	f44f 4180 	mov.w	r1, #16384	@ 0x4000
- 8003522:	4818      	ldr	r0, [pc, #96]	@ (8003584 <StepDriverSpiTransfer+0x80>)
- 8003524:	f004 fe32 	bl	800818c <HAL_GPIO_WritePin>
+ 8003518:	2200      	movs	r2, #0
+ 800351a:	f44f 4180 	mov.w	r1, #16384	@ 0x4000
+ 800351e:	4818      	ldr	r0, [pc, #96]	@ (8003580 <StepDriverSpiTransfer+0x80>)
+ 8003520:	f004 fe34 	bl	800818c <HAL_GPIO_WritePin>
         status |= HAL_SPI_TransmitReceive(pIO, (uint8_t *)pTX + i, (uint8_t *)pRX + i, 1, HAL_MAX_DELAY);
- 8003528:	687a      	ldr	r2, [r7, #4]
- 800352a:	693b      	ldr	r3, [r7, #16]
- 800352c:	18d1      	adds	r1, r2, r3
- 800352e:	68ba      	ldr	r2, [r7, #8]
- 8003530:	693b      	ldr	r3, [r7, #16]
- 8003532:	441a      	add	r2, r3
- 8003534:	f04f 33ff 	mov.w	r3, #4294967295
- 8003538:	9300      	str	r3, [sp, #0]
- 800353a:	2301      	movs	r3, #1
- 800353c:	68f8      	ldr	r0, [r7, #12]
- 800353e:	f006 fe3d 	bl	800a1bc <HAL_SPI_TransmitReceive>
- 8003542:	4603      	mov	r3, r0
- 8003544:	461a      	mov	r2, r3
- 8003546:	7dfb      	ldrb	r3, [r7, #23]
- 8003548:	4313      	orrs	r3, r2
- 800354a:	75fb      	strb	r3, [r7, #23]
+ 8003524:	687a      	ldr	r2, [r7, #4]
+ 8003526:	693b      	ldr	r3, [r7, #16]
+ 8003528:	18d1      	adds	r1, r2, r3
+ 800352a:	68ba      	ldr	r2, [r7, #8]
+ 800352c:	693b      	ldr	r3, [r7, #16]
+ 800352e:	441a      	add	r2, r3
+ 8003530:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003534:	9300      	str	r3, [sp, #0]
+ 8003536:	2301      	movs	r3, #1
+ 8003538:	68f8      	ldr	r0, [r7, #12]
+ 800353a:	f006 fe3f 	bl	800a1bc <HAL_SPI_TransmitReceive>
+ 800353e:	4603      	mov	r3, r0
+ 8003540:	461a      	mov	r2, r3
+ 8003542:	7dfb      	ldrb	r3, [r7, #23]
+ 8003544:	4313      	orrs	r3, r2
+ 8003546:	75fb      	strb	r3, [r7, #23]
         HAL_GPIO_WritePin(STEP_SPI_CS_GPIO_Port, STEP_SPI_CS_Pin, 1);
- 800354c:	2201      	movs	r2, #1
- 800354e:	f44f 4180 	mov.w	r1, #16384	@ 0x4000
- 8003552:	480c      	ldr	r0, [pc, #48]	@ (8003584 <StepDriverSpiTransfer+0x80>)
- 8003554:	f004 fe1a 	bl	800818c <HAL_GPIO_WritePin>
+ 8003548:	2201      	movs	r2, #1
+ 800354a:	f44f 4180 	mov.w	r1, #16384	@ 0x4000
+ 800354e:	480c      	ldr	r0, [pc, #48]	@ (8003580 <StepDriverSpiTransfer+0x80>)
+ 8003550:	f004 fe1c 	bl	800818c <HAL_GPIO_WritePin>
         HAL_Delay(1);
- 8003558:	2001      	movs	r0, #1
- 800355a:	f003 ff73 	bl	8007444 <HAL_Delay>
+ 8003554:	2001      	movs	r0, #1
+ 8003556:	f003 ff75 	bl	8007444 <HAL_Delay>
     for (unsigned int i = 0; i < length; i++)
- 800355e:	693b      	ldr	r3, [r7, #16]
- 8003560:	3301      	adds	r3, #1
- 8003562:	613b      	str	r3, [r7, #16]
- 8003564:	693a      	ldr	r2, [r7, #16]
- 8003566:	683b      	ldr	r3, [r7, #0]
- 8003568:	429a      	cmp	r2, r3
- 800356a:	d3d7      	bcc.n	800351c <StepDriverSpiTransfer+0x18>
+ 800355a:	693b      	ldr	r3, [r7, #16]
+ 800355c:	3301      	adds	r3, #1
+ 800355e:	613b      	str	r3, [r7, #16]
+ 8003560:	693a      	ldr	r2, [r7, #16]
+ 8003562:	683b      	ldr	r3, [r7, #0]
+ 8003564:	429a      	cmp	r2, r3
+ 8003566:	d3d7      	bcc.n	8003518 <StepDriverSpiTransfer+0x18>
     }
     if (status != HAL_OK)
- 800356c:	7dfb      	ldrb	r3, [r7, #23]
- 800356e:	2b00      	cmp	r3, #0
- 8003570:	d002      	beq.n	8003578 <StepDriverSpiTransfer+0x74>
+ 8003568:	7dfb      	ldrb	r3, [r7, #23]
+ 800356a:	2b00      	cmp	r3, #0
+ 800356c:	d002      	beq.n	8003574 <StepDriverSpiTransfer+0x74>
         return -1;
- 8003572:	f04f 33ff 	mov.w	r3, #4294967295
- 8003576:	e000      	b.n	800357a <StepDriverSpiTransfer+0x76>
+ 800356e:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003572:	e000      	b.n	8003576 <StepDriverSpiTransfer+0x76>
     return 0;
- 8003578:	2300      	movs	r3, #0
+ 8003574:	2300      	movs	r3, #0
 }
- 800357a:	4618      	mov	r0, r3
- 800357c:	3718      	adds	r7, #24
- 800357e:	46bd      	mov	sp, r7
- 8003580:	bd80      	pop	{r7, pc}
- 8003582:	bf00      	nop
- 8003584:	40020c00 	.word	0x40020c00
+ 8003576:	4618      	mov	r0, r3
+ 8003578:	3718      	adds	r7, #24
+ 800357a:	46bd      	mov	sp, r7
+ 800357c:	bd80      	pop	{r7, pc}
+ 800357e:	bf00      	nop
+ 8003580:	40020c00 	.word	0x40020c00
 
-08003588 <StepDriverReset>:
+08003584 <StepDriverReset>:
 
 static void StepDriverReset(void *pGPO, int ena)
 {
- 8003588:	b580      	push	{r7, lr}
- 800358a:	b082      	sub	sp, #8
- 800358c:	af00      	add	r7, sp, #0
- 800358e:	6078      	str	r0, [r7, #4]
- 8003590:	6039      	str	r1, [r7, #0]
+ 8003584:	b580      	push	{r7, lr}
+ 8003586:	b082      	sub	sp, #8
+ 8003588:	af00      	add	r7, sp, #0
+ 800358a:	6078      	str	r0, [r7, #4]
+ 800358c:	6039      	str	r1, [r7, #0]
     (void)pGPO;
     HAL_GPIO_WritePin(STEP_RSTN_GPIO_Port, STEP_RSTN_Pin, !ena);
- 8003592:	683b      	ldr	r3, [r7, #0]
- 8003594:	2b00      	cmp	r3, #0
- 8003596:	bf0c      	ite	eq
- 8003598:	2301      	moveq	r3, #1
- 800359a:	2300      	movne	r3, #0
- 800359c:	b2db      	uxtb	r3, r3
- 800359e:	461a      	mov	r2, r3
- 80035a0:	f44f 5180 	mov.w	r1, #4096	@ 0x1000
- 80035a4:	4803      	ldr	r0, [pc, #12]	@ (80035b4 <StepDriverReset+0x2c>)
- 80035a6:	f004 fdf1 	bl	800818c <HAL_GPIO_WritePin>
+ 800358e:	683b      	ldr	r3, [r7, #0]
+ 8003590:	2b00      	cmp	r3, #0
+ 8003592:	bf0c      	ite	eq
+ 8003594:	2301      	moveq	r3, #1
+ 8003596:	2300      	movne	r3, #0
+ 8003598:	b2db      	uxtb	r3, r3
+ 800359a:	461a      	mov	r2, r3
+ 800359c:	f44f 5180 	mov.w	r1, #4096	@ 0x1000
+ 80035a0:	4803      	ldr	r0, [pc, #12]	@ (80035b0 <StepDriverReset+0x2c>)
+ 80035a2:	f004 fdf3 	bl	800818c <HAL_GPIO_WritePin>
     return;
- 80035aa:	bf00      	nop
+ 80035a6:	bf00      	nop
 }
- 80035ac:	3708      	adds	r7, #8
- 80035ae:	46bd      	mov	sp, r7
- 80035b0:	bd80      	pop	{r7, pc}
- 80035b2:	bf00      	nop
- 80035b4:	40021400 	.word	0x40021400
+ 80035a8:	3708      	adds	r7, #8
+ 80035aa:	46bd      	mov	sp, r7
+ 80035ac:	bd80      	pop	{r7, pc}
+ 80035ae:	bf00      	nop
+ 80035b0:	40021400 	.word	0x40021400
 
-080035b8 <StepLibraryDelay>:
+080035b4 <StepLibraryDelay>:
 
 static void StepLibraryDelay(unsigned int ms)
 {
- 80035b8:	e92d 4fb0 	stmdb	sp!, {r4, r5, r7, r8, r9, sl, fp, lr}
- 80035bc:	b082      	sub	sp, #8
- 80035be:	af00      	add	r7, sp, #0
- 80035c0:	6078      	str	r0, [r7, #4]
+ 80035b4:	e92d 4fb0 	stmdb	sp!, {r4, r5, r7, r8, r9, sl, fp, lr}
+ 80035b8:	b082      	sub	sp, #8
+ 80035ba:	af00      	add	r7, sp, #0
+ 80035bc:	6078      	str	r0, [r7, #4]
     vTaskDelay(pdMS_TO_TICKS(ms));
- 80035c2:	6879      	ldr	r1, [r7, #4]
- 80035c4:	2000      	movs	r0, #0
- 80035c6:	460c      	mov	r4, r1
- 80035c8:	4605      	mov	r5, r0
- 80035ca:	4620      	mov	r0, r4
- 80035cc:	4629      	mov	r1, r5
- 80035ce:	f04f 0a00 	mov.w	sl, #0
- 80035d2:	f04f 0b00 	mov.w	fp, #0
- 80035d6:	ea4f 1b41 	mov.w	fp, r1, lsl #5
- 80035da:	ea4b 6bd0 	orr.w	fp, fp, r0, lsr #27
- 80035de:	ea4f 1a40 	mov.w	sl, r0, lsl #5
- 80035e2:	4650      	mov	r0, sl
- 80035e4:	4659      	mov	r1, fp
- 80035e6:	1b02      	subs	r2, r0, r4
- 80035e8:	eb61 0305 	sbc.w	r3, r1, r5
- 80035ec:	f04f 0000 	mov.w	r0, #0
- 80035f0:	f04f 0100 	mov.w	r1, #0
- 80035f4:	0099      	lsls	r1, r3, #2
- 80035f6:	ea41 7192 	orr.w	r1, r1, r2, lsr #30
- 80035fa:	0090      	lsls	r0, r2, #2
- 80035fc:	4602      	mov	r2, r0
- 80035fe:	460b      	mov	r3, r1
- 8003600:	eb12 0804 	adds.w	r8, r2, r4
- 8003604:	eb43 0905 	adc.w	r9, r3, r5
- 8003608:	f04f 0200 	mov.w	r2, #0
- 800360c:	f04f 0300 	mov.w	r3, #0
- 8003610:	ea4f 03c9 	mov.w	r3, r9, lsl #3
- 8003614:	ea43 7358 	orr.w	r3, r3, r8, lsr #29
- 8003618:	ea4f 02c8 	mov.w	r2, r8, lsl #3
- 800361c:	4690      	mov	r8, r2
- 800361e:	4699      	mov	r9, r3
- 8003620:	4640      	mov	r0, r8
- 8003622:	4649      	mov	r1, r9
- 8003624:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 8003628:	f04f 0300 	mov.w	r3, #0
- 800362c:	f7fd fb5c 	bl	8000ce8 <__aeabi_uldivmod>
- 8003630:	4602      	mov	r2, r0
- 8003632:	460b      	mov	r3, r1
- 8003634:	4613      	mov	r3, r2
- 8003636:	4618      	mov	r0, r3
- 8003638:	f00c fd4e 	bl	80100d8 <vTaskDelay>
+ 80035be:	6879      	ldr	r1, [r7, #4]
+ 80035c0:	2000      	movs	r0, #0
+ 80035c2:	460c      	mov	r4, r1
+ 80035c4:	4605      	mov	r5, r0
+ 80035c6:	4620      	mov	r0, r4
+ 80035c8:	4629      	mov	r1, r5
+ 80035ca:	f04f 0a00 	mov.w	sl, #0
+ 80035ce:	f04f 0b00 	mov.w	fp, #0
+ 80035d2:	ea4f 1b41 	mov.w	fp, r1, lsl #5
+ 80035d6:	ea4b 6bd0 	orr.w	fp, fp, r0, lsr #27
+ 80035da:	ea4f 1a40 	mov.w	sl, r0, lsl #5
+ 80035de:	4650      	mov	r0, sl
+ 80035e0:	4659      	mov	r1, fp
+ 80035e2:	1b02      	subs	r2, r0, r4
+ 80035e4:	eb61 0305 	sbc.w	r3, r1, r5
+ 80035e8:	f04f 0000 	mov.w	r0, #0
+ 80035ec:	f04f 0100 	mov.w	r1, #0
+ 80035f0:	0099      	lsls	r1, r3, #2
+ 80035f2:	ea41 7192 	orr.w	r1, r1, r2, lsr #30
+ 80035f6:	0090      	lsls	r0, r2, #2
+ 80035f8:	4602      	mov	r2, r0
+ 80035fa:	460b      	mov	r3, r1
+ 80035fc:	eb12 0804 	adds.w	r8, r2, r4
+ 8003600:	eb43 0905 	adc.w	r9, r3, r5
+ 8003604:	f04f 0200 	mov.w	r2, #0
+ 8003608:	f04f 0300 	mov.w	r3, #0
+ 800360c:	ea4f 03c9 	mov.w	r3, r9, lsl #3
+ 8003610:	ea43 7358 	orr.w	r3, r3, r8, lsr #29
+ 8003614:	ea4f 02c8 	mov.w	r2, r8, lsl #3
+ 8003618:	4690      	mov	r8, r2
+ 800361a:	4699      	mov	r9, r3
+ 800361c:	4640      	mov	r0, r8
+ 800361e:	4649      	mov	r1, r9
+ 8003620:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 8003624:	f04f 0300 	mov.w	r3, #0
+ 8003628:	f7fd fb5e 	bl	8000ce8 <__aeabi_uldivmod>
+ 800362c:	4602      	mov	r2, r0
+ 800362e:	460b      	mov	r3, r1
+ 8003630:	4613      	mov	r3, r2
+ 8003632:	4618      	mov	r0, r3
+ 8003634:	f00c fd50 	bl	80100d8 <vTaskDelay>
 }
- 800363c:	bf00      	nop
- 800363e:	3708      	adds	r7, #8
- 8003640:	46bd      	mov	sp, r7
- 8003642:	e8bd 8fb0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, sl, fp, pc}
+ 8003638:	bf00      	nop
+ 800363a:	3708      	adds	r7, #8
+ 800363c:	46bd      	mov	sp, r7
+ 800363e:	e8bd 8fb0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, sl, fp, pc}
 	...
 
-08003648 <StepTimerAsync>:
+08003644 <StepTimerAsync>:
 
 static int StepTimerAsync(void *pPWM, int dir, unsigned int numPulses, void (*doneClb)(L6474_Handle_t), L6474_Handle_t h)
 {
- 8003648:	b580      	push	{r7, lr}
- 800364a:	b084      	sub	sp, #16
- 800364c:	af00      	add	r7, sp, #0
- 800364e:	60f8      	str	r0, [r7, #12]
- 8003650:	60b9      	str	r1, [r7, #8]
- 8003652:	607a      	str	r2, [r7, #4]
- 8003654:	603b      	str	r3, [r7, #0]
+ 8003644:	b580      	push	{r7, lr}
+ 8003646:	b084      	sub	sp, #16
+ 8003648:	af00      	add	r7, sp, #0
+ 800364a:	60f8      	str	r0, [r7, #12]
+ 800364c:	60b9      	str	r1, [r7, #8]
+ 800364e:	607a      	str	r2, [r7, #4]
+ 8003650:	603b      	str	r3, [r7, #0]
     (void)pPWM;
     (void)h;
     StepperContext.is_running = 1;
- 8003656:	4b0d      	ldr	r3, [pc, #52]	@ (800368c <StepTimerAsync+0x44>)
- 8003658:	2201      	movs	r2, #1
- 800365a:	60da      	str	r2, [r3, #12]
+ 8003652:	4b0d      	ldr	r3, [pc, #52]	@ (8003688 <StepTimerAsync+0x44>)
+ 8003654:	2201      	movs	r2, #1
+ 8003656:	60da      	str	r2, [r3, #12]
     StepperContext.done_callback = doneClb;
- 800365c:	4a0b      	ldr	r2, [pc, #44]	@ (800368c <StepTimerAsync+0x44>)
- 800365e:	683b      	ldr	r3, [r7, #0]
- 8003660:	6153      	str	r3, [r2, #20]
+ 8003658:	4a0b      	ldr	r2, [pc, #44]	@ (8003688 <StepTimerAsync+0x44>)
+ 800365a:	683b      	ldr	r3, [r7, #0]
+ 800365c:	6153      	str	r3, [r2, #20]
     HAL_GPIO_WritePin(STEP_DIR_GPIO_Port, STEP_DIR_Pin, !!dir);
- 8003662:	68bb      	ldr	r3, [r7, #8]
- 8003664:	2b00      	cmp	r3, #0
- 8003666:	bf14      	ite	ne
- 8003668:	2301      	movne	r3, #1
- 800366a:	2300      	moveq	r3, #0
- 800366c:	b2db      	uxtb	r3, r3
- 800366e:	461a      	mov	r2, r3
- 8003670:	f44f 5100 	mov.w	r1, #8192	@ 0x2000
- 8003674:	4806      	ldr	r0, [pc, #24]	@ (8003690 <StepTimerAsync+0x48>)
- 8003676:	f004 fd89 	bl	800818c <HAL_GPIO_WritePin>
+ 800365e:	68bb      	ldr	r3, [r7, #8]
+ 8003660:	2b00      	cmp	r3, #0
+ 8003662:	bf14      	ite	ne
+ 8003664:	2301      	movne	r3, #1
+ 8003666:	2300      	moveq	r3, #0
+ 8003668:	b2db      	uxtb	r3, r3
+ 800366a:	461a      	mov	r2, r3
+ 800366c:	f44f 5100 	mov.w	r1, #8192	@ 0x2000
+ 8003670:	4806      	ldr	r0, [pc, #24]	@ (800368c <StepTimerAsync+0x48>)
+ 8003672:	f004 fd8b 	bl	800818c <HAL_GPIO_WritePin>
     TimerStart(numPulses);
- 800367a:	6878      	ldr	r0, [r7, #4]
- 800367c:	f000 fff6 	bl	800466c <TimerStart>
+ 8003676:	6878      	ldr	r0, [r7, #4]
+ 8003678:	f000 fff8 	bl	800466c <TimerStart>
     return 0;
- 8003680:	2300      	movs	r3, #0
+ 800367c:	2300      	movs	r3, #0
 }
- 8003682:	4618      	mov	r0, r3
- 8003684:	3710      	adds	r7, #16
- 8003686:	46bd      	mov	sp, r7
- 8003688:	bd80      	pop	{r7, pc}
- 800368a:	bf00      	nop
- 800368c:	200002b0 	.word	0x200002b0
- 8003690:	40021400 	.word	0x40021400
+ 800367e:	4618      	mov	r0, r3
+ 8003680:	3710      	adds	r7, #16
+ 8003682:	46bd      	mov	sp, r7
+ 8003684:	bd80      	pop	{r7, pc}
+ 8003686:	bf00      	nop
+ 8003688:	200002b0 	.word	0x200002b0
+ 800368c:	40021400 	.word	0x40021400
 
-08003694 <StepTimerCancelAsync>:
+08003690 <StepTimerCancelAsync>:
 
 static int StepTimerCancelAsync(void *pPWM)
 {
- 8003694:	b580      	push	{r7, lr}
- 8003696:	b082      	sub	sp, #8
- 8003698:	af00      	add	r7, sp, #0
- 800369a:	6078      	str	r0, [r7, #4]
+ 8003690:	b580      	push	{r7, lr}
+ 8003692:	b082      	sub	sp, #8
+ 8003694:	af00      	add	r7, sp, #0
+ 8003696:	6078      	str	r0, [r7, #4]
     (void)pPWM;
     if (StepperContext.is_running)
- 800369c:	4b10      	ldr	r3, [pc, #64]	@ (80036e0 <StepTimerCancelAsync+0x4c>)
- 800369e:	68db      	ldr	r3, [r3, #12]
- 80036a0:	2b00      	cmp	r3, #0
- 80036a2:	d017      	beq.n	80036d4 <StepTimerCancelAsync+0x40>
+ 8003698:	4b10      	ldr	r3, [pc, #64]	@ (80036dc <StepTimerCancelAsync+0x4c>)
+ 800369a:	68db      	ldr	r3, [r3, #12]
+ 800369c:	2b00      	cmp	r3, #0
+ 800369e:	d017      	beq.n	80036d0 <StepTimerCancelAsync+0x40>
     {
         if (HAL_TIM_OnePulse_Stop_IT(StepperContext.htim1, TIM_CHANNEL_1) != HAL_OK)
- 80036a4:	4b0e      	ldr	r3, [pc, #56]	@ (80036e0 <StepTimerCancelAsync+0x4c>)
- 80036a6:	69db      	ldr	r3, [r3, #28]
- 80036a8:	2100      	movs	r1, #0
- 80036aa:	4618      	mov	r0, r3
- 80036ac:	f008 f93a 	bl	800b924 <HAL_TIM_OnePulse_Stop_IT>
- 80036b0:	4603      	mov	r3, r0
- 80036b2:	2b00      	cmp	r3, #0
- 80036b4:	d005      	beq.n	80036c2 <StepTimerCancelAsync+0x2e>
+ 80036a0:	4b0e      	ldr	r3, [pc, #56]	@ (80036dc <StepTimerCancelAsync+0x4c>)
+ 80036a2:	69db      	ldr	r3, [r3, #28]
+ 80036a4:	2100      	movs	r1, #0
+ 80036a6:	4618      	mov	r0, r3
+ 80036a8:	f008 f93c 	bl	800b924 <HAL_TIM_OnePulse_Stop_IT>
+ 80036ac:	4603      	mov	r3, r0
+ 80036ae:	2b00      	cmp	r3, #0
+ 80036b0:	d005      	beq.n	80036be <StepTimerCancelAsync+0x2e>
         {
             printf("Error: Failed to stop the timer\r\n");
- 80036b6:	480b      	ldr	r0, [pc, #44]	@ (80036e4 <StepTimerCancelAsync+0x50>)
- 80036b8:	f010 ff0c 	bl	80144d4 <puts>
+ 80036b2:	480b      	ldr	r0, [pc, #44]	@ (80036e0 <StepTimerCancelAsync+0x50>)
+ 80036b4:	f010 ff0e 	bl	80144d4 <puts>
             return -1;
- 80036bc:	f04f 33ff 	mov.w	r3, #4294967295
- 80036c0:	e009      	b.n	80036d6 <StepTimerCancelAsync+0x42>
+ 80036b8:	f04f 33ff 	mov.w	r3, #4294967295
+ 80036bc:	e009      	b.n	80036d2 <StepTimerCancelAsync+0x42>
         }
         StepperContext.done_callback(StepperContext.h);
- 80036c2:	4b07      	ldr	r3, [pc, #28]	@ (80036e0 <StepTimerCancelAsync+0x4c>)
- 80036c4:	695b      	ldr	r3, [r3, #20]
- 80036c6:	4a06      	ldr	r2, [pc, #24]	@ (80036e0 <StepTimerCancelAsync+0x4c>)
- 80036c8:	6812      	ldr	r2, [r2, #0]
- 80036ca:	4610      	mov	r0, r2
- 80036cc:	4798      	blx	r3
+ 80036be:	4b07      	ldr	r3, [pc, #28]	@ (80036dc <StepTimerCancelAsync+0x4c>)
+ 80036c0:	695b      	ldr	r3, [r3, #20]
+ 80036c2:	4a06      	ldr	r2, [pc, #24]	@ (80036dc <StepTimerCancelAsync+0x4c>)
+ 80036c4:	6812      	ldr	r2, [r2, #0]
+ 80036c6:	4610      	mov	r0, r2
+ 80036c8:	4798      	blx	r3
         StepperContext.is_running = 0;
- 80036ce:	4b04      	ldr	r3, [pc, #16]	@ (80036e0 <StepTimerCancelAsync+0x4c>)
- 80036d0:	2200      	movs	r2, #0
- 80036d2:	60da      	str	r2, [r3, #12]
+ 80036ca:	4b04      	ldr	r3, [pc, #16]	@ (80036dc <StepTimerCancelAsync+0x4c>)
+ 80036cc:	2200      	movs	r2, #0
+ 80036ce:	60da      	str	r2, [r3, #12]
     }
     return 0;
- 80036d4:	2300      	movs	r3, #0
+ 80036d0:	2300      	movs	r3, #0
 }
- 80036d6:	4618      	mov	r0, r3
- 80036d8:	3708      	adds	r7, #8
- 80036da:	46bd      	mov	sp, r7
- 80036dc:	bd80      	pop	{r7, pc}
- 80036de:	bf00      	nop
- 80036e0:	200002b0 	.word	0x200002b0
- 80036e4:	08018e4c 	.word	0x08018e4c
+ 80036d2:	4618      	mov	r0, r3
+ 80036d4:	3708      	adds	r7, #8
+ 80036d6:	46bd      	mov	sp, r7
+ 80036d8:	bd80      	pop	{r7, pc}
+ 80036da:	bf00      	nop
+ 80036dc:	200002b0 	.word	0x200002b0
+ 80036e0:	08018e4c 	.word	0x08018e4c
 
-080036e8 <Reset>:
+080036e4 <Reset>:
     return 0;
 }
 */
 // WIP kind of done, parameters need to  be looked at
 static int Reset(StepperContext_t *StepperContext)
 {
- 80036e8:	b580      	push	{r7, lr}
- 80036ea:	b086      	sub	sp, #24
- 80036ec:	af00      	add	r7, sp, #0
- 80036ee:	6078      	str	r0, [r7, #4]
+ 80036e4:	b580      	push	{r7, lr}
+ 80036e6:	b086      	sub	sp, #24
+ 80036e8:	af00      	add	r7, sp, #0
+ 80036ea:	6078      	str	r0, [r7, #4]
     L6474_BaseParameter_t param;
     param.stepMode = smMICRO16;
- 80036f0:	2304      	movs	r3, #4
- 80036f2:	733b      	strb	r3, [r7, #12]
+ 80036ec:	2304      	movs	r3, #4
+ 80036ee:	733b      	strb	r3, [r7, #12]
     param.OcdTh = ocdth6000mA; // 3000mA ? cause requirements
- 80036f4:	230f      	movs	r3, #15
- 80036f6:	737b      	strb	r3, [r7, #13]
+ 80036f0:	230f      	movs	r3, #15
+ 80036f2:	737b      	strb	r3, [r7, #13]
     param.TimeOnMin = 0x29;
- 80036f8:	2329      	movs	r3, #41	@ 0x29
- 80036fa:	73bb      	strb	r3, [r7, #14]
+ 80036f4:	2329      	movs	r3, #41	@ 0x29
+ 80036f6:	73bb      	strb	r3, [r7, #14]
     param.TimeOffMin = 0x29;
- 80036fc:	2329      	movs	r3, #41	@ 0x29
- 80036fe:	73fb      	strb	r3, [r7, #15]
+ 80036f8:	2329      	movs	r3, #41	@ 0x29
+ 80036fa:	73fb      	strb	r3, [r7, #15]
     param.TorqueVal = 0x11;
- 8003700:	2311      	movs	r3, #17
- 8003702:	743b      	strb	r3, [r7, #16]
+ 80036fc:	2311      	movs	r3, #17
+ 80036fe:	743b      	strb	r3, [r7, #16]
     param.TFast = 0x19;
- 8003704:	2319      	movs	r3, #25
- 8003706:	747b      	strb	r3, [r7, #17]
+ 8003700:	2319      	movs	r3, #25
+ 8003702:	747b      	strb	r3, [r7, #17]
     int result = 0;
- 8003708:	2300      	movs	r3, #0
- 800370a:	617b      	str	r3, [r7, #20]
+ 8003704:	2300      	movs	r3, #0
+ 8003706:	617b      	str	r3, [r7, #20]
 
     result |= L6474_SetBaseParameter(&param); // changable
- 800370c:	f107 030c 	add.w	r3, r7, #12
- 8003710:	4618      	mov	r0, r3
- 8003712:	f002 f850 	bl	80057b6 <L6474_SetBaseParameter>
- 8003716:	4602      	mov	r2, r0
- 8003718:	697b      	ldr	r3, [r7, #20]
- 800371a:	4313      	orrs	r3, r2
- 800371c:	617b      	str	r3, [r7, #20]
+ 8003708:	f107 030c 	add.w	r3, r7, #12
+ 800370c:	4618      	mov	r0, r3
+ 800370e:	f002 f852 	bl	80057b6 <L6474_SetBaseParameter>
+ 8003712:	4602      	mov	r2, r0
+ 8003714:	697b      	ldr	r3, [r7, #20]
+ 8003716:	4313      	orrs	r3, r2
+ 8003718:	617b      	str	r3, [r7, #20]
     result |= L6474_ResetStandBy(StepperContext->h);
- 800371e:	687b      	ldr	r3, [r7, #4]
- 8003720:	681b      	ldr	r3, [r3, #0]
- 8003722:	4618      	mov	r0, r3
- 8003724:	f001 fff8 	bl	8005718 <L6474_ResetStandBy>
- 8003728:	4602      	mov	r2, r0
- 800372a:	697b      	ldr	r3, [r7, #20]
- 800372c:	4313      	orrs	r3, r2
- 800372e:	617b      	str	r3, [r7, #20]
+ 800371a:	687b      	ldr	r3, [r7, #4]
+ 800371c:	681b      	ldr	r3, [r3, #0]
+ 800371e:	4618      	mov	r0, r3
+ 8003720:	f001 fffa 	bl	8005718 <L6474_ResetStandBy>
+ 8003724:	4602      	mov	r2, r0
+ 8003726:	697b      	ldr	r3, [r7, #20]
+ 8003728:	4313      	orrs	r3, r2
+ 800372a:	617b      	str	r3, [r7, #20]
     result |= L6474_Initialize(StepperContext->h, &param);
- 8003730:	687b      	ldr	r3, [r7, #4]
- 8003732:	681b      	ldr	r3, [r3, #0]
- 8003734:	f107 020c 	add.w	r2, r7, #12
- 8003738:	4611      	mov	r1, r2
- 800373a:	4618      	mov	r0, r3
- 800373c:	f002 f85e 	bl	80057fc <L6474_Initialize>
- 8003740:	4602      	mov	r2, r0
- 8003742:	697b      	ldr	r3, [r7, #20]
- 8003744:	4313      	orrs	r3, r2
- 8003746:	617b      	str	r3, [r7, #20]
+ 800372c:	687b      	ldr	r3, [r7, #4]
+ 800372e:	681b      	ldr	r3, [r3, #0]
+ 8003730:	f107 020c 	add.w	r2, r7, #12
+ 8003734:	4611      	mov	r1, r2
+ 8003736:	4618      	mov	r0, r3
+ 8003738:	f002 f860 	bl	80057fc <L6474_Initialize>
+ 800373c:	4602      	mov	r2, r0
+ 800373e:	697b      	ldr	r3, [r7, #20]
+ 8003740:	4313      	orrs	r3, r2
+ 8003742:	617b      	str	r3, [r7, #20]
     result |= L6474_SetPowerOutputs(StepperContext->h, 0);
- 8003748:	687b      	ldr	r3, [r7, #4]
- 800374a:	681b      	ldr	r3, [r3, #0]
- 800374c:	2100      	movs	r1, #0
- 800374e:	4618      	mov	r0, r3
- 8003750:	f002 f9de 	bl	8005b10 <L6474_SetPowerOutputs>
- 8003754:	4602      	mov	r2, r0
- 8003756:	697b      	ldr	r3, [r7, #20]
- 8003758:	4313      	orrs	r3, r2
- 800375a:	617b      	str	r3, [r7, #20]
+ 8003744:	687b      	ldr	r3, [r7, #4]
+ 8003746:	681b      	ldr	r3, [r3, #0]
+ 8003748:	2100      	movs	r1, #0
+ 800374a:	4618      	mov	r0, r3
+ 800374c:	f002 f9e0 	bl	8005b10 <L6474_SetPowerOutputs>
+ 8003750:	4602      	mov	r2, r0
+ 8003752:	697b      	ldr	r3, [r7, #20]
+ 8003754:	4313      	orrs	r3, r2
+ 8003756:	617b      	str	r3, [r7, #20]
 
     if (result != 0)
- 800375c:	697b      	ldr	r3, [r7, #20]
- 800375e:	2b00      	cmp	r3, #0
- 8003760:	d005      	beq.n	800376e <Reset+0x86>
+ 8003758:	697b      	ldr	r3, [r7, #20]
+ 800375a:	2b00      	cmp	r3, #0
+ 800375c:	d005      	beq.n	800376a <Reset+0x86>
     {
         printf("Failed to reset\r\n");
- 8003762:	481d      	ldr	r0, [pc, #116]	@ (80037d8 <Reset+0xf0>)
- 8003764:	f010 feb6 	bl	80144d4 <puts>
+ 800375e:	481d      	ldr	r0, [pc, #116]	@ (80037d4 <Reset+0xf0>)
+ 8003760:	f010 feb8 	bl	80144d4 <puts>
         return -1;
- 8003768:	f04f 33ff 	mov.w	r3, #4294967295
- 800376c:	e02f      	b.n	80037ce <Reset+0xe6>
+ 8003764:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003768:	e02f      	b.n	80037ca <Reset+0xe6>
         StepperContext->state = scs.FLT;
     }
     StepperContext->is_powered = 0;
- 800376e:	687b      	ldr	r3, [r7, #4]
- 8003770:	2200      	movs	r2, #0
- 8003772:	605a      	str	r2, [r3, #4]
+ 800376a:	687b      	ldr	r3, [r7, #4]
+ 800376c:	2200      	movs	r2, #0
+ 800376e:	605a      	str	r2, [r3, #4]
     StepperContext->is_referenced = 0;
- 8003774:	687b      	ldr	r3, [r7, #4]
- 8003776:	2200      	movs	r2, #0
- 8003778:	609a      	str	r2, [r3, #8]
+ 8003770:	687b      	ldr	r3, [r7, #4]
+ 8003772:	2200      	movs	r2, #0
+ 8003774:	609a      	str	r2, [r3, #8]
     StepperContext->is_running = 0;
- 800377a:	687b      	ldr	r3, [r7, #4]
- 800377c:	2200      	movs	r2, #0
- 800377e:	60da      	str	r2, [r3, #12]
+ 8003776:	687b      	ldr	r3, [r7, #4]
+ 8003778:	2200      	movs	r2, #0
+ 800377a:	60da      	str	r2, [r3, #12]
     StepperContext->error_code = 0;
- 8003780:	687b      	ldr	r3, [r7, #4]
- 8003782:	2200      	movs	r2, #0
- 8003784:	611a      	str	r2, [r3, #16]
+ 800377c:	687b      	ldr	r3, [r7, #4]
+ 800377e:	2200      	movs	r2, #0
+ 8003780:	611a      	str	r2, [r3, #16]
     StepperContext->state = scs.REF; // Transition INIT -> REF
- 8003786:	4b15      	ldr	r3, [pc, #84]	@ (80037dc <Reset+0xf4>)
- 8003788:	685b      	ldr	r3, [r3, #4]
- 800378a:	b2da      	uxtb	r2, r3
- 800378c:	687b      	ldr	r3, [r7, #4]
- 800378e:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003782:	4b15      	ldr	r3, [pc, #84]	@ (80037d8 <Reset+0xf4>)
+ 8003784:	685b      	ldr	r3, [r3, #4]
+ 8003786:	b2da      	uxtb	r2, r3
+ 8003788:	687b      	ldr	r3, [r7, #4]
+ 800378a:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
 
     StepperContext->mm_per_turn = MM_PER_TURN;
- 8003792:	687b      	ldr	r3, [r7, #4]
- 8003794:	f04f 4281 	mov.w	r2, #1082130432	@ 0x40800000
- 8003798:	635a      	str	r2, [r3, #52]	@ 0x34
+ 800378e:	687b      	ldr	r3, [r7, #4]
+ 8003790:	f04f 4281 	mov.w	r2, #1082130432	@ 0x40800000
+ 8003794:	635a      	str	r2, [r3, #52]	@ 0x34
     StepperContext->steps_per_turn = (float)(1 << (StepperContext->step_mode + 2));
- 800379a:	687b      	ldr	r3, [r7, #4]
- 800379c:	f893 3025 	ldrb.w	r3, [r3, #37]	@ 0x25
- 80037a0:	3302      	adds	r3, #2
- 80037a2:	2201      	movs	r2, #1
- 80037a4:	fa02 f303 	lsl.w	r3, r2, r3
- 80037a8:	ee07 3a90 	vmov	s15, r3
- 80037ac:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 80037b0:	687b      	ldr	r3, [r7, #4]
- 80037b2:	edc3 7a0e 	vstr	s15, [r3, #56]	@ 0x38
+ 8003796:	687b      	ldr	r3, [r7, #4]
+ 8003798:	f893 3025 	ldrb.w	r3, [r3, #37]	@ 0x25
+ 800379c:	3302      	adds	r3, #2
+ 800379e:	2201      	movs	r2, #1
+ 80037a0:	fa02 f303 	lsl.w	r3, r2, r3
+ 80037a4:	ee07 3a90 	vmov	s15, r3
+ 80037a8:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 80037ac:	687b      	ldr	r3, [r7, #4]
+ 80037ae:	edc3 7a0e 	vstr	s15, [r3, #56]	@ 0x38
     StepperContext->mm_per_step = StepperContext->mm_per_turn / StepperContext->steps_per_turn;
- 80037b6:	687b      	ldr	r3, [r7, #4]
- 80037b8:	edd3 6a0d 	vldr	s13, [r3, #52]	@ 0x34
- 80037bc:	687b      	ldr	r3, [r7, #4]
- 80037be:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
- 80037c2:	eec6 7a87 	vdiv.f32	s15, s13, s14
- 80037c6:	687b      	ldr	r3, [r7, #4]
- 80037c8:	edc3 7a0f 	vstr	s15, [r3, #60]	@ 0x3c
+ 80037b2:	687b      	ldr	r3, [r7, #4]
+ 80037b4:	edd3 6a0d 	vldr	s13, [r3, #52]	@ 0x34
+ 80037b8:	687b      	ldr	r3, [r7, #4]
+ 80037ba:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
+ 80037be:	eec6 7a87 	vdiv.f32	s15, s13, s14
+ 80037c2:	687b      	ldr	r3, [r7, #4]
+ 80037c4:	edc3 7a0f 	vstr	s15, [r3, #60]	@ 0x3c
 
     return result;
- 80037cc:	697b      	ldr	r3, [r7, #20]
+ 80037c8:	697b      	ldr	r3, [r7, #20]
 }
- 80037ce:	4618      	mov	r0, r3
- 80037d0:	3718      	adds	r7, #24
- 80037d2:	46bd      	mov	sp, r7
- 80037d4:	bd80      	pop	{r7, pc}
- 80037d6:	bf00      	nop
- 80037d8:	08018e70 	.word	0x08018e70
- 80037dc:	20000000 	.word	0x20000000
+ 80037ca:	4618      	mov	r0, r3
+ 80037cc:	3718      	adds	r7, #24
+ 80037ce:	46bd      	mov	sp, r7
+ 80037d0:	bd80      	pop	{r7, pc}
+ 80037d2:	bf00      	nop
+ 80037d4:	08018e70 	.word	0x08018e70
+ 80037d8:	20000000 	.word	0x20000000
 
-080037e0 <Reference>:
+080037dc <Reference>:
 // Finished but maybe look at it again
 static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 {
- 80037e0:	b580      	push	{r7, lr}
- 80037e2:	b08c      	sub	sp, #48	@ 0x30
- 80037e4:	af00      	add	r7, sp, #0
- 80037e6:	60f8      	str	r0, [r7, #12]
- 80037e8:	60b9      	str	r1, [r7, #8]
- 80037ea:	607a      	str	r2, [r7, #4]
+ 80037dc:	b580      	push	{r7, lr}
+ 80037de:	b08c      	sub	sp, #48	@ 0x30
+ 80037e0:	af00      	add	r7, sp, #0
+ 80037e2:	60f8      	str	r0, [r7, #12]
+ 80037e4:	60b9      	str	r1, [r7, #8]
+ 80037e6:	607a      	str	r2, [r7, #4]
     // Allow reference from REF state only
     if (!(StepperContext->state == scs.REF))
- 80037ec:	68fb      	ldr	r3, [r7, #12]
- 80037ee:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
- 80037f2:	461a      	mov	r2, r3
- 80037f4:	4ba8      	ldr	r3, [pc, #672]	@ (8003a98 <Reference+0x2b8>)
- 80037f6:	685b      	ldr	r3, [r3, #4]
- 80037f8:	429a      	cmp	r2, r3
- 80037fa:	d005      	beq.n	8003808 <Reference+0x28>
+ 80037e8:	68fb      	ldr	r3, [r7, #12]
+ 80037ea:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
+ 80037ee:	461a      	mov	r2, r3
+ 80037f0:	4ba8      	ldr	r3, [pc, #672]	@ (8003a94 <Reference+0x2b8>)
+ 80037f2:	685b      	ldr	r3, [r3, #4]
+ 80037f4:	429a      	cmp	r2, r3
+ 80037f6:	d005      	beq.n	8003804 <Reference+0x28>
     {
         printf("Reference run not allowed in current state\r\n");
- 80037fc:	48a7      	ldr	r0, [pc, #668]	@ (8003a9c <Reference+0x2bc>)
- 80037fe:	f010 fe69 	bl	80144d4 <puts>
+ 80037f8:	48a7      	ldr	r0, [pc, #668]	@ (8003a98 <Reference+0x2bc>)
+ 80037fa:	f010 fe6b 	bl	80144d4 <puts>
         return -1;
- 8003802:	f04f 33ff 	mov.w	r3, #4294967295
- 8003806:	e168      	b.n	8003ada <Reference+0x2fa>
+ 80037fe:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003802:	e168      	b.n	8003ad6 <Reference+0x2fa>
     }
     int step_amt = 0;
- 8003808:	2300      	movs	r3, #0
- 800380a:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 8003804:	2300      	movs	r3, #0
+ 8003806:	62fb      	str	r3, [r7, #44]	@ 0x2c
     uint32_t track_timer_stop = 0;
- 800380c:	2300      	movs	r3, #0
- 800380e:	623b      	str	r3, [r7, #32]
+ 8003808:	2300      	movs	r3, #0
+ 800380a:	623b      	str	r3, [r7, #32]
     int result = 0;
- 8003810:	2300      	movs	r3, #0
- 8003812:	61fb      	str	r3, [r7, #28]
+ 800380c:	2300      	movs	r3, #0
+ 800380e:	61fb      	str	r3, [r7, #28]
     int poweroutput = 0;
- 8003814:	2300      	movs	r3, #0
- 8003816:	62bb      	str	r3, [r7, #40]	@ 0x28
+ 8003810:	2300      	movs	r3, #0
+ 8003812:	62bb      	str	r3, [r7, #40]	@ 0x28
     uint32_t timeout_ms = 0;
- 8003818:	2300      	movs	r3, #0
- 800381a:	627b      	str	r3, [r7, #36]	@ 0x24
+ 8003814:	2300      	movs	r3, #0
+ 8003816:	627b      	str	r3, [r7, #36]	@ 0x24
     if (argc == 2)
- 800381c:	68bb      	ldr	r3, [r7, #8]
- 800381e:	2b02      	cmp	r3, #2
- 8003820:	d133      	bne.n	800388a <Reference+0xaa>
+ 8003818:	68bb      	ldr	r3, [r7, #8]
+ 800381a:	2b02      	cmp	r3, #2
+ 800381c:	d133      	bne.n	8003886 <Reference+0xaa>
     {
         if (strcmp(argv[1], "-s") == 0)
- 8003822:	687b      	ldr	r3, [r7, #4]
- 8003824:	3304      	adds	r3, #4
- 8003826:	681b      	ldr	r3, [r3, #0]
- 8003828:	499d      	ldr	r1, [pc, #628]	@ (8003aa0 <Reference+0x2c0>)
- 800382a:	4618      	mov	r0, r3
- 800382c:	f7fc fcf0 	bl	8000210 <strcmp>
- 8003830:	4603      	mov	r3, r0
- 8003832:	2b00      	cmp	r3, #0
- 8003834:	d110      	bne.n	8003858 <Reference+0x78>
+ 800381e:	687b      	ldr	r3, [r7, #4]
+ 8003820:	3304      	adds	r3, #4
+ 8003822:	681b      	ldr	r3, [r3, #0]
+ 8003824:	499d      	ldr	r1, [pc, #628]	@ (8003a9c <Reference+0x2c0>)
+ 8003826:	4618      	mov	r0, r3
+ 8003828:	f7fc fcf2 	bl	8000210 <strcmp>
+ 800382c:	4603      	mov	r3, r0
+ 800382e:	2b00      	cmp	r3, #0
+ 8003830:	d110      	bne.n	8003854 <Reference+0x78>
         {
             StepperContext->is_referenced = 1;
- 8003836:	68fb      	ldr	r3, [r7, #12]
- 8003838:	2201      	movs	r2, #1
- 800383a:	609a      	str	r2, [r3, #8]
+ 8003832:	68fb      	ldr	r3, [r7, #12]
+ 8003834:	2201      	movs	r2, #1
+ 8003836:	609a      	str	r2, [r3, #8]
             L6474_SetAbsolutePosition(StepperContext->h, 0);
- 800383c:	68fb      	ldr	r3, [r7, #12]
- 800383e:	681b      	ldr	r3, [r3, #0]
- 8003840:	2100      	movs	r1, #0
- 8003842:	4618      	mov	r0, r3
- 8003844:	f002 f9ed 	bl	8005c22 <L6474_SetAbsolutePosition>
+ 8003838:	68fb      	ldr	r3, [r7, #12]
+ 800383a:	681b      	ldr	r3, [r3, #0]
+ 800383c:	2100      	movs	r1, #0
+ 800383e:	4618      	mov	r0, r3
+ 8003840:	f002 f9ef 	bl	8005c22 <L6474_SetAbsolutePosition>
             StepperContext->state = scs.DIS; // REF -> DIS
- 8003848:	4b93      	ldr	r3, [pc, #588]	@ (8003a98 <Reference+0x2b8>)
- 800384a:	689b      	ldr	r3, [r3, #8]
- 800384c:	b2da      	uxtb	r2, r3
- 800384e:	68fb      	ldr	r3, [r7, #12]
- 8003850:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003844:	4b93      	ldr	r3, [pc, #588]	@ (8003a94 <Reference+0x2b8>)
+ 8003846:	689b      	ldr	r3, [r3, #8]
+ 8003848:	b2da      	uxtb	r2, r3
+ 800384a:	68fb      	ldr	r3, [r7, #12]
+ 800384c:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
             return result;
- 8003854:	69fb      	ldr	r3, [r7, #28]
- 8003856:	e140      	b.n	8003ada <Reference+0x2fa>
+ 8003850:	69fb      	ldr	r3, [r7, #28]
+ 8003852:	e140      	b.n	8003ad6 <Reference+0x2fa>
         }
         else if (strcmp(argv[1], "-e") == 0)
- 8003858:	687b      	ldr	r3, [r7, #4]
- 800385a:	3304      	adds	r3, #4
- 800385c:	681b      	ldr	r3, [r3, #0]
- 800385e:	4991      	ldr	r1, [pc, #580]	@ (8003aa4 <Reference+0x2c4>)
- 8003860:	4618      	mov	r0, r3
- 8003862:	f7fc fcd5 	bl	8000210 <strcmp>
- 8003866:	4603      	mov	r3, r0
- 8003868:	2b00      	cmp	r3, #0
- 800386a:	d108      	bne.n	800387e <Reference+0x9e>
+ 8003854:	687b      	ldr	r3, [r7, #4]
+ 8003856:	3304      	adds	r3, #4
+ 8003858:	681b      	ldr	r3, [r3, #0]
+ 800385a:	4991      	ldr	r1, [pc, #580]	@ (8003aa0 <Reference+0x2c4>)
+ 800385c:	4618      	mov	r0, r3
+ 800385e:	f7fc fcd7 	bl	8000210 <strcmp>
+ 8003862:	4603      	mov	r3, r0
+ 8003864:	2b00      	cmp	r3, #0
+ 8003866:	d108      	bne.n	800387a <Reference+0x9e>
         {
             poweroutput = 1;
- 800386c:	2301      	movs	r3, #1
- 800386e:	62bb      	str	r3, [r7, #40]	@ 0x28
+ 8003868:	2301      	movs	r3, #1
+ 800386a:	62bb      	str	r3, [r7, #40]	@ 0x28
             StepperContext->state = scs.ENA; // REF -> ENA
- 8003870:	4b89      	ldr	r3, [pc, #548]	@ (8003a98 <Reference+0x2b8>)
- 8003872:	68db      	ldr	r3, [r3, #12]
- 8003874:	b2da      	uxtb	r2, r3
- 8003876:	68fb      	ldr	r3, [r7, #12]
- 8003878:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
- 800387c:	e025      	b.n	80038ca <Reference+0xea>
+ 800386c:	4b89      	ldr	r3, [pc, #548]	@ (8003a94 <Reference+0x2b8>)
+ 800386e:	68db      	ldr	r3, [r3, #12]
+ 8003870:	b2da      	uxtb	r2, r3
+ 8003872:	68fb      	ldr	r3, [r7, #12]
+ 8003874:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003878:	e025      	b.n	80038c6 <Reference+0xea>
         }
         else
         {
             printf("Invalid argument for reference\r\n");
- 800387e:	488a      	ldr	r0, [pc, #552]	@ (8003aa8 <Reference+0x2c8>)
- 8003880:	f010 fe28 	bl	80144d4 <puts>
+ 800387a:	488a      	ldr	r0, [pc, #552]	@ (8003aa4 <Reference+0x2c8>)
+ 800387c:	f010 fe2a 	bl	80144d4 <puts>
             return -1;
- 8003884:	f04f 33ff 	mov.w	r3, #4294967295
- 8003888:	e127      	b.n	8003ada <Reference+0x2fa>
+ 8003880:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003884:	e127      	b.n	8003ad6 <Reference+0x2fa>
         }
     }
     else if (argc == 3)
- 800388a:	68bb      	ldr	r3, [r7, #8]
- 800388c:	2b03      	cmp	r3, #3
- 800388e:	d11c      	bne.n	80038ca <Reference+0xea>
+ 8003886:	68bb      	ldr	r3, [r7, #8]
+ 8003888:	2b03      	cmp	r3, #3
+ 800388a:	d11c      	bne.n	80038c6 <Reference+0xea>
     {
         if (strcmp(argv[1], "-t") == 0)
- 8003890:	687b      	ldr	r3, [r7, #4]
- 8003892:	3304      	adds	r3, #4
- 8003894:	681b      	ldr	r3, [r3, #0]
- 8003896:	4985      	ldr	r1, [pc, #532]	@ (8003aac <Reference+0x2cc>)
- 8003898:	4618      	mov	r0, r3
- 800389a:	f7fc fcb9 	bl	8000210 <strcmp>
- 800389e:	4603      	mov	r3, r0
- 80038a0:	2b00      	cmp	r3, #0
- 80038a2:	d10c      	bne.n	80038be <Reference+0xde>
+ 800388c:	687b      	ldr	r3, [r7, #4]
+ 800388e:	3304      	adds	r3, #4
+ 8003890:	681b      	ldr	r3, [r3, #0]
+ 8003892:	4985      	ldr	r1, [pc, #532]	@ (8003aa8 <Reference+0x2cc>)
+ 8003894:	4618      	mov	r0, r3
+ 8003896:	f7fc fcbb 	bl	8000210 <strcmp>
+ 800389a:	4603      	mov	r3, r0
+ 800389c:	2b00      	cmp	r3, #0
+ 800389e:	d10c      	bne.n	80038ba <Reference+0xde>
         {
             timeout_ms = atoi(argv[2]) * 1000; // s to ms
- 80038a4:	687b      	ldr	r3, [r7, #4]
- 80038a6:	3308      	adds	r3, #8
- 80038a8:	681b      	ldr	r3, [r3, #0]
- 80038aa:	4618      	mov	r0, r3
- 80038ac:	f00e fc91 	bl	80121d2 <atoi>
- 80038b0:	4603      	mov	r3, r0
- 80038b2:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
- 80038b6:	fb02 f303 	mul.w	r3, r2, r3
- 80038ba:	627b      	str	r3, [r7, #36]	@ 0x24
- 80038bc:	e005      	b.n	80038ca <Reference+0xea>
+ 80038a0:	687b      	ldr	r3, [r7, #4]
+ 80038a2:	3308      	adds	r3, #8
+ 80038a4:	681b      	ldr	r3, [r3, #0]
+ 80038a6:	4618      	mov	r0, r3
+ 80038a8:	f00e fc93 	bl	80121d2 <atoi>
+ 80038ac:	4603      	mov	r3, r0
+ 80038ae:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
+ 80038b2:	fb02 f303 	mul.w	r3, r2, r3
+ 80038b6:	627b      	str	r3, [r7, #36]	@ 0x24
+ 80038b8:	e005      	b.n	80038c6 <Reference+0xea>
         }
         else
         {
             printf("Invalid argument for reference time\r\n");
- 80038be:	487c      	ldr	r0, [pc, #496]	@ (8003ab0 <Reference+0x2d0>)
- 80038c0:	f010 fe08 	bl	80144d4 <puts>
+ 80038ba:	487c      	ldr	r0, [pc, #496]	@ (8003aac <Reference+0x2d0>)
+ 80038bc:	f010 fe0a 	bl	80144d4 <puts>
             return -1;
- 80038c4:	f04f 33ff 	mov.w	r3, #4294967295
- 80038c8:	e107      	b.n	8003ada <Reference+0x2fa>
+ 80038c0:	f04f 33ff 	mov.w	r3, #4294967295
+ 80038c4:	e107      	b.n	8003ad6 <Reference+0x2fa>
         }
     }
 
     const uint32_t start_time = HAL_GetTick();
- 80038ca:	f003 fdaf 	bl	800742c <HAL_GetTick>
- 80038ce:	61b8      	str	r0, [r7, #24]
+ 80038c6:	f003 fdb1 	bl	800742c <HAL_GetTick>
+ 80038ca:	61b8      	str	r0, [r7, #24]
     result |= L6474_SetPowerOutputs(StepperContext->h, 1);
- 80038d0:	68fb      	ldr	r3, [r7, #12]
- 80038d2:	681b      	ldr	r3, [r3, #0]
- 80038d4:	2101      	movs	r1, #1
- 80038d6:	4618      	mov	r0, r3
- 80038d8:	f002 f91a 	bl	8005b10 <L6474_SetPowerOutputs>
- 80038dc:	4602      	mov	r2, r0
- 80038de:	69fb      	ldr	r3, [r7, #28]
- 80038e0:	4313      	orrs	r3, r2
- 80038e2:	61fb      	str	r3, [r7, #28]
+ 80038cc:	68fb      	ldr	r3, [r7, #12]
+ 80038ce:	681b      	ldr	r3, [r3, #0]
+ 80038d0:	2101      	movs	r1, #1
+ 80038d2:	4618      	mov	r0, r3
+ 80038d4:	f002 f91c 	bl	8005b10 <L6474_SetPowerOutputs>
+ 80038d8:	4602      	mov	r2, r0
+ 80038da:	69fb      	ldr	r3, [r7, #28]
+ 80038dc:	4313      	orrs	r3, r2
+ 80038de:	61fb      	str	r3, [r7, #28]
 
     // is switch already pressed?
     if (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
- 80038e4:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 80038e8:	4872      	ldr	r0, [pc, #456]	@ (8003ab4 <Reference+0x2d4>)
- 80038ea:	f004 fc2f 	bl	800814c <HAL_GPIO_ReadPin>
- 80038ee:	4603      	mov	r3, r0
- 80038f0:	2b00      	cmp	r3, #0
- 80038f2:	d153      	bne.n	800399c <Reference+0x1bc>
+ 80038e0:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 80038e4:	4872      	ldr	r0, [pc, #456]	@ (8003ab0 <Reference+0x2d4>)
+ 80038e6:	f004 fc31 	bl	800814c <HAL_GPIO_ReadPin>
+ 80038ea:	4603      	mov	r3, r0
+ 80038ec:	2b00      	cmp	r3, #0
+ 80038ee:	d153      	bne.n	8003998 <Reference+0x1bc>
     {
         // if yes, move away from it as long as it is pressed
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
- 80038f4:	e022      	b.n	800393c <Reference+0x15c>
+ 80038f0:	e022      	b.n	8003938 <Reference+0x15c>
         {
             // if still pressed, wait
             L6474_StepIncremental(StepperContext->h, 1);
- 80038f6:	68fb      	ldr	r3, [r7, #12]
- 80038f8:	681b      	ldr	r3, [r3, #0]
- 80038fa:	2101      	movs	r1, #1
- 80038fc:	4618      	mov	r0, r3
- 80038fe:	f002 fad1 	bl	8005ea4 <L6474_StepIncremental>
+ 80038f2:	68fb      	ldr	r3, [r7, #12]
+ 80038f4:	681b      	ldr	r3, [r3, #0]
+ 80038f6:	2101      	movs	r1, #1
+ 80038f8:	4618      	mov	r0, r3
+ 80038fa:	f002 fad3 	bl	8005ea4 <L6474_StepIncremental>
             if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
- 8003902:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
- 8003904:	2b00      	cmp	r3, #0
- 8003906:	d019      	beq.n	800393c <Reference+0x15c>
- 8003908:	f003 fd90 	bl	800742c <HAL_GetTick>
- 800390c:	4602      	mov	r2, r0
- 800390e:	69bb      	ldr	r3, [r7, #24]
- 8003910:	1ad3      	subs	r3, r2, r3
- 8003912:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
- 8003914:	429a      	cmp	r2, r3
- 8003916:	d211      	bcs.n	800393c <Reference+0x15c>
+ 80038fe:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8003900:	2b00      	cmp	r3, #0
+ 8003902:	d019      	beq.n	8003938 <Reference+0x15c>
+ 8003904:	f003 fd92 	bl	800742c <HAL_GetTick>
+ 8003908:	4602      	mov	r2, r0
+ 800390a:	69bb      	ldr	r3, [r7, #24]
+ 800390c:	1ad3      	subs	r3, r2, r3
+ 800390e:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
+ 8003910:	429a      	cmp	r2, r3
+ 8003912:	d211      	bcs.n	8003938 <Reference+0x15c>
             {
                 StepTimerCancelAsync(NULL);
- 8003918:	2000      	movs	r0, #0
- 800391a:	f7ff febb 	bl	8003694 <StepTimerCancelAsync>
+ 8003914:	2000      	movs	r0, #0
+ 8003916:	f7ff febb 	bl	8003690 <StepTimerCancelAsync>
                 printf("Timeout while moving away from the switch\r\n");
- 800391e:	4866      	ldr	r0, [pc, #408]	@ (8003ab8 <Reference+0x2d8>)
- 8003920:	f010 fdd8 	bl	80144d4 <puts>
+ 800391a:	4866      	ldr	r0, [pc, #408]	@ (8003ab4 <Reference+0x2d8>)
+ 800391c:	f010 fdda 	bl	80144d4 <puts>
                 StepperContext->error_code = 1;
- 8003924:	68fb      	ldr	r3, [r7, #12]
- 8003926:	2201      	movs	r2, #1
- 8003928:	611a      	str	r2, [r3, #16]
+ 8003920:	68fb      	ldr	r3, [r7, #12]
+ 8003922:	2201      	movs	r2, #1
+ 8003924:	611a      	str	r2, [r3, #16]
                 StepperContext->state = scs.FLT;
- 800392a:	4b5b      	ldr	r3, [pc, #364]	@ (8003a98 <Reference+0x2b8>)
- 800392c:	691b      	ldr	r3, [r3, #16]
- 800392e:	b2da      	uxtb	r2, r3
- 8003930:	68fb      	ldr	r3, [r7, #12]
- 8003932:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003926:	4b5b      	ldr	r3, [pc, #364]	@ (8003a94 <Reference+0x2b8>)
+ 8003928:	691b      	ldr	r3, [r3, #16]
+ 800392a:	b2da      	uxtb	r2, r3
+ 800392c:	68fb      	ldr	r3, [r7, #12]
+ 800392e:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
                 return -1;
- 8003936:	f04f 33ff 	mov.w	r3, #4294967295
- 800393a:	e0ce      	b.n	8003ada <Reference+0x2fa>
+ 8003932:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003936:	e0ce      	b.n	8003ad6 <Reference+0x2fa>
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
- 800393c:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 8003940:	485c      	ldr	r0, [pc, #368]	@ (8003ab4 <Reference+0x2d4>)
- 8003942:	f004 fc03 	bl	800814c <HAL_GPIO_ReadPin>
- 8003946:	4603      	mov	r3, r0
- 8003948:	2b00      	cmp	r3, #0
- 800394a:	d0d4      	beq.n	80038f6 <Reference+0x116>
+ 8003938:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 800393c:	485c      	ldr	r0, [pc, #368]	@ (8003ab0 <Reference+0x2d4>)
+ 800393e:	f004 fc05 	bl	800814c <HAL_GPIO_ReadPin>
+ 8003942:	4603      	mov	r3, r0
+ 8003944:	2b00      	cmp	r3, #0
+ 8003946:	d0d4      	beq.n	80038f2 <Reference+0x116>
             }
         }
         StepTimerCancelAsync(NULL);
- 800394c:	2000      	movs	r0, #0
- 800394e:	f7ff fea1 	bl	8003694 <StepTimerCancelAsync>
+ 8003948:	2000      	movs	r0, #0
+ 800394a:	f7ff fea1 	bl	8003690 <StepTimerCancelAsync>
     }
     // move to reference switch
     while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) != GPIO_PIN_RESET)
- 8003952:	e023      	b.n	800399c <Reference+0x1bc>
+ 800394e:	e023      	b.n	8003998 <Reference+0x1bc>
     {
         L6474_StepIncremental(StepperContext->h, -1);
- 8003954:	68fb      	ldr	r3, [r7, #12]
- 8003956:	681b      	ldr	r3, [r3, #0]
- 8003958:	f04f 31ff 	mov.w	r1, #4294967295
- 800395c:	4618      	mov	r0, r3
- 800395e:	f002 faa1 	bl	8005ea4 <L6474_StepIncremental>
+ 8003950:	68fb      	ldr	r3, [r7, #12]
+ 8003952:	681b      	ldr	r3, [r3, #0]
+ 8003954:	f04f 31ff 	mov.w	r1, #4294967295
+ 8003958:	4618      	mov	r0, r3
+ 800395a:	f002 faa3 	bl	8005ea4 <L6474_StepIncremental>
         if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
- 8003962:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
- 8003964:	2b00      	cmp	r3, #0
- 8003966:	d019      	beq.n	800399c <Reference+0x1bc>
- 8003968:	f003 fd60 	bl	800742c <HAL_GetTick>
- 800396c:	4602      	mov	r2, r0
- 800396e:	69bb      	ldr	r3, [r7, #24]
- 8003970:	1ad3      	subs	r3, r2, r3
- 8003972:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
- 8003974:	429a      	cmp	r2, r3
- 8003976:	d211      	bcs.n	800399c <Reference+0x1bc>
+ 800395e:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8003960:	2b00      	cmp	r3, #0
+ 8003962:	d019      	beq.n	8003998 <Reference+0x1bc>
+ 8003964:	f003 fd62 	bl	800742c <HAL_GetTick>
+ 8003968:	4602      	mov	r2, r0
+ 800396a:	69bb      	ldr	r3, [r7, #24]
+ 800396c:	1ad3      	subs	r3, r2, r3
+ 800396e:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
+ 8003970:	429a      	cmp	r2, r3
+ 8003972:	d211      	bcs.n	8003998 <Reference+0x1bc>
         {
             StepTimerCancelAsync(NULL);
- 8003978:	2000      	movs	r0, #0
- 800397a:	f7ff fe8b 	bl	8003694 <StepTimerCancelAsync>
+ 8003974:	2000      	movs	r0, #0
+ 8003976:	f7ff fe8b 	bl	8003690 <StepTimerCancelAsync>
             printf("Timeout while waiting for reference switch\r\n");
- 800397e:	484f      	ldr	r0, [pc, #316]	@ (8003abc <Reference+0x2dc>)
- 8003980:	f010 fda8 	bl	80144d4 <puts>
+ 800397a:	484f      	ldr	r0, [pc, #316]	@ (8003ab8 <Reference+0x2dc>)
+ 800397c:	f010 fdaa 	bl	80144d4 <puts>
             StepperContext->error_code = 2;
- 8003984:	68fb      	ldr	r3, [r7, #12]
- 8003986:	2202      	movs	r2, #2
- 8003988:	611a      	str	r2, [r3, #16]
+ 8003980:	68fb      	ldr	r3, [r7, #12]
+ 8003982:	2202      	movs	r2, #2
+ 8003984:	611a      	str	r2, [r3, #16]
             StepperContext->state = scs.FLT;
- 800398a:	4b43      	ldr	r3, [pc, #268]	@ (8003a98 <Reference+0x2b8>)
- 800398c:	691b      	ldr	r3, [r3, #16]
- 800398e:	b2da      	uxtb	r2, r3
- 8003990:	68fb      	ldr	r3, [r7, #12]
- 8003992:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003986:	4b43      	ldr	r3, [pc, #268]	@ (8003a94 <Reference+0x2b8>)
+ 8003988:	691b      	ldr	r3, [r3, #16]
+ 800398a:	b2da      	uxtb	r2, r3
+ 800398c:	68fb      	ldr	r3, [r7, #12]
+ 800398e:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
             return -1;
- 8003996:	f04f 33ff 	mov.w	r3, #4294967295
- 800399a:	e09e      	b.n	8003ada <Reference+0x2fa>
+ 8003992:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003996:	e09e      	b.n	8003ad6 <Reference+0x2fa>
     while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) != GPIO_PIN_RESET)
- 800399c:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 80039a0:	4844      	ldr	r0, [pc, #272]	@ (8003ab4 <Reference+0x2d4>)
- 80039a2:	f004 fbd3 	bl	800814c <HAL_GPIO_ReadPin>
- 80039a6:	4603      	mov	r3, r0
- 80039a8:	2b00      	cmp	r3, #0
- 80039aa:	d1d3      	bne.n	8003954 <Reference+0x174>
+ 8003998:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 800399c:	4844      	ldr	r0, [pc, #272]	@ (8003ab0 <Reference+0x2d4>)
+ 800399e:	f004 fbd5 	bl	800814c <HAL_GPIO_ReadPin>
+ 80039a2:	4603      	mov	r3, r0
+ 80039a4:	2b00      	cmp	r3, #0
+ 80039a6:	d1d3      	bne.n	8003950 <Reference+0x174>
         }
     }
     StepTimerCancelAsync(NULL);
- 80039ac:	2000      	movs	r0, #0
- 80039ae:	f7ff fe71 	bl	8003694 <StepTimerCancelAsync>
+ 80039a8:	2000      	movs	r0, #0
+ 80039aa:	f7ff fe71 	bl	8003690 <StepTimerCancelAsync>
     // move to limit switch from reference switch
     const uint32_t track_timer_start = HAL_GetTick();
- 80039b2:	f003 fd3b 	bl	800742c <HAL_GetTick>
- 80039b6:	6178      	str	r0, [r7, #20]
+ 80039ae:	f003 fd3d 	bl	800742c <HAL_GetTick>
+ 80039b2:	6178      	str	r0, [r7, #20]
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
- 80039b8:	e025      	b.n	8003a06 <Reference+0x226>
+ 80039b4:	e025      	b.n	8003a02 <Reference+0x226>
     {
         L6474_StepIncremental(StepperContext->h, 1);
- 80039ba:	68fb      	ldr	r3, [r7, #12]
- 80039bc:	681b      	ldr	r3, [r3, #0]
- 80039be:	2101      	movs	r1, #1
- 80039c0:	4618      	mov	r0, r3
- 80039c2:	f002 fa6f 	bl	8005ea4 <L6474_StepIncremental>
+ 80039b6:	68fb      	ldr	r3, [r7, #12]
+ 80039b8:	681b      	ldr	r3, [r3, #0]
+ 80039ba:	2101      	movs	r1, #1
+ 80039bc:	4618      	mov	r0, r3
+ 80039be:	f002 fa71 	bl	8005ea4 <L6474_StepIncremental>
         step_amt += 1;
- 80039c6:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 80039c8:	3301      	adds	r3, #1
- 80039ca:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 80039c2:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 80039c4:	3301      	adds	r3, #1
+ 80039c6:	62fb      	str	r3, [r7, #44]	@ 0x2c
         if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
- 80039cc:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
- 80039ce:	2b00      	cmp	r3, #0
- 80039d0:	d019      	beq.n	8003a06 <Reference+0x226>
- 80039d2:	f003 fd2b 	bl	800742c <HAL_GetTick>
- 80039d6:	4602      	mov	r2, r0
- 80039d8:	69bb      	ldr	r3, [r7, #24]
- 80039da:	1ad3      	subs	r3, r2, r3
- 80039dc:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
- 80039de:	429a      	cmp	r2, r3
- 80039e0:	d211      	bcs.n	8003a06 <Reference+0x226>
+ 80039c8:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 80039ca:	2b00      	cmp	r3, #0
+ 80039cc:	d019      	beq.n	8003a02 <Reference+0x226>
+ 80039ce:	f003 fd2d 	bl	800742c <HAL_GetTick>
+ 80039d2:	4602      	mov	r2, r0
+ 80039d4:	69bb      	ldr	r3, [r7, #24]
+ 80039d6:	1ad3      	subs	r3, r2, r3
+ 80039d8:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
+ 80039da:	429a      	cmp	r2, r3
+ 80039dc:	d211      	bcs.n	8003a02 <Reference+0x226>
         {
             StepTimerCancelAsync(NULL);
- 80039e2:	2000      	movs	r0, #0
- 80039e4:	f7ff fe56 	bl	8003694 <StepTimerCancelAsync>
+ 80039de:	2000      	movs	r0, #0
+ 80039e0:	f7ff fe56 	bl	8003690 <StepTimerCancelAsync>
             printf("Timeout while moving to limit switch\r\n");
- 80039e8:	4835      	ldr	r0, [pc, #212]	@ (8003ac0 <Reference+0x2e0>)
- 80039ea:	f010 fd73 	bl	80144d4 <puts>
+ 80039e4:	4835      	ldr	r0, [pc, #212]	@ (8003abc <Reference+0x2e0>)
+ 80039e6:	f010 fd75 	bl	80144d4 <puts>
             StepperContext->error_code = 2;
- 80039ee:	68fb      	ldr	r3, [r7, #12]
- 80039f0:	2202      	movs	r2, #2
- 80039f2:	611a      	str	r2, [r3, #16]
+ 80039ea:	68fb      	ldr	r3, [r7, #12]
+ 80039ec:	2202      	movs	r2, #2
+ 80039ee:	611a      	str	r2, [r3, #16]
             StepperContext->state = scs.FLT;
- 80039f4:	4b28      	ldr	r3, [pc, #160]	@ (8003a98 <Reference+0x2b8>)
- 80039f6:	691b      	ldr	r3, [r3, #16]
- 80039f8:	b2da      	uxtb	r2, r3
- 80039fa:	68fb      	ldr	r3, [r7, #12]
- 80039fc:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 80039f0:	4b28      	ldr	r3, [pc, #160]	@ (8003a94 <Reference+0x2b8>)
+ 80039f2:	691b      	ldr	r3, [r3, #16]
+ 80039f4:	b2da      	uxtb	r2, r3
+ 80039f6:	68fb      	ldr	r3, [r7, #12]
+ 80039f8:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
             return -1;
- 8003a00:	f04f 33ff 	mov.w	r3, #4294967295
- 8003a04:	e069      	b.n	8003ada <Reference+0x2fa>
+ 80039fc:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003a00:	e069      	b.n	8003ad6 <Reference+0x2fa>
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
- 8003a06:	f44f 7100 	mov.w	r1, #512	@ 0x200
- 8003a0a:	482a      	ldr	r0, [pc, #168]	@ (8003ab4 <Reference+0x2d4>)
- 8003a0c:	f004 fb9e 	bl	800814c <HAL_GPIO_ReadPin>
- 8003a10:	4603      	mov	r3, r0
- 8003a12:	2b00      	cmp	r3, #0
- 8003a14:	d1d1      	bne.n	80039ba <Reference+0x1da>
+ 8003a02:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 8003a06:	482a      	ldr	r0, [pc, #168]	@ (8003ab0 <Reference+0x2d4>)
+ 8003a08:	f004 fba0 	bl	800814c <HAL_GPIO_ReadPin>
+ 8003a0c:	4603      	mov	r3, r0
+ 8003a0e:	2b00      	cmp	r3, #0
+ 8003a10:	d1d1      	bne.n	80039b6 <Reference+0x1da>
         }
     }
     track_timer_stop = HAL_GetTick();
- 8003a16:	f003 fd09 	bl	800742c <HAL_GetTick>
- 8003a1a:	6238      	str	r0, [r7, #32]
+ 8003a12:	f003 fd0b 	bl	800742c <HAL_GetTick>
+ 8003a16:	6238      	str	r0, [r7, #32]
     StepTimerCancelAsync(NULL);
- 8003a1c:	2000      	movs	r0, #0
- 8003a1e:	f7ff fe39 	bl	8003694 <StepTimerCancelAsync>
+ 8003a18:	2000      	movs	r0, #0
+ 8003a1a:	f7ff fe39 	bl	8003690 <StepTimerCancelAsync>
 
     // calc parameters from full run
     StepperContext->mm_per_step = (TRACKLENGTH / step_amt);
- 8003a22:	f240 1227 	movw	r2, #295	@ 0x127
- 8003a26:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 8003a28:	fb92 f3f3 	sdiv	r3, r2, r3
- 8003a2c:	ee07 3a90 	vmov	s15, r3
- 8003a30:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 8003a34:	68fb      	ldr	r3, [r7, #12]
- 8003a36:	edc3 7a0f 	vstr	s15, [r3, #60]	@ 0x3c
+ 8003a1e:	f240 1227 	movw	r2, #295	@ 0x127
+ 8003a22:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 8003a24:	fb92 f3f3 	sdiv	r3, r2, r3
+ 8003a28:	ee07 3a90 	vmov	s15, r3
+ 8003a2c:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 8003a30:	68fb      	ldr	r3, [r7, #12]
+ 8003a32:	edc3 7a0f 	vstr	s15, [r3, #60]	@ 0x3c
     StepperContext->mm_per_sec = (TRACKLENGTH / ((track_timer_stop - track_timer_start) * 1000.0f));
- 8003a3a:	6a3a      	ldr	r2, [r7, #32]
- 8003a3c:	697b      	ldr	r3, [r7, #20]
- 8003a3e:	1ad3      	subs	r3, r2, r3
- 8003a40:	ee07 3a90 	vmov	s15, r3
- 8003a44:	eef8 7a67 	vcvt.f32.u32	s15, s15
- 8003a48:	ed9f 7a1e 	vldr	s14, [pc, #120]	@ 8003ac4 <Reference+0x2e4>
- 8003a4c:	ee27 7a87 	vmul.f32	s14, s15, s14
- 8003a50:	eddf 6a1d 	vldr	s13, [pc, #116]	@ 8003ac8 <Reference+0x2e8>
- 8003a54:	eec6 7a87 	vdiv.f32	s15, s13, s14
- 8003a58:	68fb      	ldr	r3, [r7, #12]
- 8003a5a:	edc3 7a10 	vstr	s15, [r3, #64]	@ 0x40
+ 8003a36:	6a3a      	ldr	r2, [r7, #32]
+ 8003a38:	697b      	ldr	r3, [r7, #20]
+ 8003a3a:	1ad3      	subs	r3, r2, r3
+ 8003a3c:	ee07 3a90 	vmov	s15, r3
+ 8003a40:	eef8 7a67 	vcvt.f32.u32	s15, s15
+ 8003a44:	ed9f 7a1e 	vldr	s14, [pc, #120]	@ 8003ac0 <Reference+0x2e4>
+ 8003a48:	ee27 7a87 	vmul.f32	s14, s15, s14
+ 8003a4c:	eddf 6a1d 	vldr	s13, [pc, #116]	@ 8003ac4 <Reference+0x2e8>
+ 8003a50:	eec6 7a87 	vdiv.f32	s15, s13, s14
+ 8003a54:	68fb      	ldr	r3, [r7, #12]
+ 8003a56:	edc3 7a10 	vstr	s15, [r3, #64]	@ 0x40
     StepperContext->is_referenced = 1;
- 8003a5e:	68fb      	ldr	r3, [r7, #12]
- 8003a60:	2201      	movs	r2, #1
- 8003a62:	609a      	str	r2, [r3, #8]
+ 8003a5a:	68fb      	ldr	r3, [r7, #12]
+ 8003a5c:	2201      	movs	r2, #1
+ 8003a5e:	609a      	str	r2, [r3, #8]
 
     L6474_SetAbsolutePosition(StepperContext->h, 0);
- 8003a64:	68fb      	ldr	r3, [r7, #12]
- 8003a66:	681b      	ldr	r3, [r3, #0]
- 8003a68:	2100      	movs	r1, #0
- 8003a6a:	4618      	mov	r0, r3
- 8003a6c:	f002 f8d9 	bl	8005c22 <L6474_SetAbsolutePosition>
+ 8003a60:	68fb      	ldr	r3, [r7, #12]
+ 8003a62:	681b      	ldr	r3, [r3, #0]
+ 8003a64:	2100      	movs	r1, #0
+ 8003a66:	4618      	mov	r0, r3
+ 8003a68:	f002 f8db 	bl	8005c22 <L6474_SetAbsolutePosition>
     result |= L6474_SetPowerOutputs(StepperContext->h, poweroutput); // set power output if -e flag was set
- 8003a70:	68fb      	ldr	r3, [r7, #12]
- 8003a72:	681b      	ldr	r3, [r3, #0]
- 8003a74:	6ab9      	ldr	r1, [r7, #40]	@ 0x28
- 8003a76:	4618      	mov	r0, r3
- 8003a78:	f002 f84a 	bl	8005b10 <L6474_SetPowerOutputs>
- 8003a7c:	4602      	mov	r2, r0
- 8003a7e:	69fb      	ldr	r3, [r7, #28]
- 8003a80:	4313      	orrs	r3, r2
- 8003a82:	61fb      	str	r3, [r7, #28]
+ 8003a6c:	68fb      	ldr	r3, [r7, #12]
+ 8003a6e:	681b      	ldr	r3, [r3, #0]
+ 8003a70:	6ab9      	ldr	r1, [r7, #40]	@ 0x28
+ 8003a72:	4618      	mov	r0, r3
+ 8003a74:	f002 f84c 	bl	8005b10 <L6474_SetPowerOutputs>
+ 8003a78:	4602      	mov	r2, r0
+ 8003a7a:	69fb      	ldr	r3, [r7, #28]
+ 8003a7c:	4313      	orrs	r3, r2
+ 8003a7e:	61fb      	str	r3, [r7, #28]
     StepperContext->is_powered = poweroutput;
- 8003a84:	68fb      	ldr	r3, [r7, #12]
- 8003a86:	6aba      	ldr	r2, [r7, #40]	@ 0x28
- 8003a88:	605a      	str	r2, [r3, #4]
+ 8003a80:	68fb      	ldr	r3, [r7, #12]
+ 8003a82:	6aba      	ldr	r2, [r7, #40]	@ 0x28
+ 8003a84:	605a      	str	r2, [r3, #4]
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
- 8003a8a:	6abb      	ldr	r3, [r7, #40]	@ 0x28
- 8003a8c:	2b00      	cmp	r3, #0
- 8003a8e:	d01d      	beq.n	8003acc <Reference+0x2ec>
- 8003a90:	4b01      	ldr	r3, [pc, #4]	@ (8003a98 <Reference+0x2b8>)
- 8003a92:	68db      	ldr	r3, [r3, #12]
- 8003a94:	b2db      	uxtb	r3, r3
- 8003a96:	e01c      	b.n	8003ad2 <Reference+0x2f2>
- 8003a98:	20000000 	.word	0x20000000
- 8003a9c:	08018e84 	.word	0x08018e84
- 8003aa0:	08018eb0 	.word	0x08018eb0
- 8003aa4:	08018eb4 	.word	0x08018eb4
- 8003aa8:	08018eb8 	.word	0x08018eb8
- 8003aac:	08018ed8 	.word	0x08018ed8
- 8003ab0:	08018edc 	.word	0x08018edc
- 8003ab4:	40020400 	.word	0x40020400
- 8003ab8:	08018f04 	.word	0x08018f04
- 8003abc:	08018f30 	.word	0x08018f30
- 8003ac0:	08018f5c 	.word	0x08018f5c
- 8003ac4:	447a0000 	.word	0x447a0000
- 8003ac8:	43938000 	.word	0x43938000
- 8003acc:	4b05      	ldr	r3, [pc, #20]	@ (8003ae4 <Reference+0x304>)
- 8003ace:	689b      	ldr	r3, [r3, #8]
- 8003ad0:	b2db      	uxtb	r3, r3
- 8003ad2:	68fa      	ldr	r2, [r7, #12]
- 8003ad4:	f882 3024 	strb.w	r3, [r2, #36]	@ 0x24
+ 8003a86:	6abb      	ldr	r3, [r7, #40]	@ 0x28
+ 8003a88:	2b00      	cmp	r3, #0
+ 8003a8a:	d01d      	beq.n	8003ac8 <Reference+0x2ec>
+ 8003a8c:	4b01      	ldr	r3, [pc, #4]	@ (8003a94 <Reference+0x2b8>)
+ 8003a8e:	68db      	ldr	r3, [r3, #12]
+ 8003a90:	b2db      	uxtb	r3, r3
+ 8003a92:	e01c      	b.n	8003ace <Reference+0x2f2>
+ 8003a94:	20000000 	.word	0x20000000
+ 8003a98:	08018e84 	.word	0x08018e84
+ 8003a9c:	08018eb0 	.word	0x08018eb0
+ 8003aa0:	08018eb4 	.word	0x08018eb4
+ 8003aa4:	08018eb8 	.word	0x08018eb8
+ 8003aa8:	08018ed8 	.word	0x08018ed8
+ 8003aac:	08018edc 	.word	0x08018edc
+ 8003ab0:	40020400 	.word	0x40020400
+ 8003ab4:	08018f04 	.word	0x08018f04
+ 8003ab8:	08018f30 	.word	0x08018f30
+ 8003abc:	08018f5c 	.word	0x08018f5c
+ 8003ac0:	447a0000 	.word	0x447a0000
+ 8003ac4:	43938000 	.word	0x43938000
+ 8003ac8:	4b05      	ldr	r3, [pc, #20]	@ (8003ae0 <Reference+0x304>)
+ 8003aca:	689b      	ldr	r3, [r3, #8]
+ 8003acc:	b2db      	uxtb	r3, r3
+ 8003ace:	68fa      	ldr	r2, [r7, #12]
+ 8003ad0:	f882 3024 	strb.w	r3, [r2, #36]	@ 0x24
     return result;
- 8003ad8:	69fb      	ldr	r3, [r7, #28]
+ 8003ad4:	69fb      	ldr	r3, [r7, #28]
 }
- 8003ada:	4618      	mov	r0, r3
- 8003adc:	3730      	adds	r7, #48	@ 0x30
- 8003ade:	46bd      	mov	sp, r7
- 8003ae0:	bd80      	pop	{r7, pc}
- 8003ae2:	bf00      	nop
- 8003ae4:	20000000 	.word	0x20000000
+ 8003ad6:	4618      	mov	r0, r3
+ 8003ad8:	3730      	adds	r7, #48	@ 0x30
+ 8003ada:	46bd      	mov	sp, r7
+ 8003adc:	bd80      	pop	{r7, pc}
+ 8003ade:	bf00      	nop
+ 8003ae0:	20000000 	.word	0x20000000
 
-08003ae8 <Position>:
+08003ae4 <Position>:
 // WIP kind of done
 static int Position(StepperContext_t *StepperContext, int argc, char **argv)
 {
- 8003ae8:	b580      	push	{r7, lr}
- 8003aea:	b086      	sub	sp, #24
- 8003aec:	af00      	add	r7, sp, #0
- 8003aee:	60f8      	str	r0, [r7, #12]
- 8003af0:	60b9      	str	r1, [r7, #8]
- 8003af2:	607a      	str	r2, [r7, #4]
+ 8003ae4:	b580      	push	{r7, lr}
+ 8003ae6:	b086      	sub	sp, #24
+ 8003ae8:	af00      	add	r7, sp, #0
+ 8003aea:	60f8      	str	r0, [r7, #12]
+ 8003aec:	60b9      	str	r1, [r7, #8]
+ 8003aee:	607a      	str	r2, [r7, #4]
     if (StepperContext->state == scs.FLT)
- 8003af4:	68fb      	ldr	r3, [r7, #12]
- 8003af6:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
- 8003afa:	461a      	mov	r2, r3
- 8003afc:	4b0d      	ldr	r3, [pc, #52]	@ (8003b34 <Position+0x4c>)
- 8003afe:	691b      	ldr	r3, [r3, #16]
- 8003b00:	429a      	cmp	r2, r3
- 8003b02:	d105      	bne.n	8003b10 <Position+0x28>
+ 8003af0:	68fb      	ldr	r3, [r7, #12]
+ 8003af2:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
+ 8003af6:	461a      	mov	r2, r3
+ 8003af8:	4b0d      	ldr	r3, [pc, #52]	@ (8003b30 <Position+0x4c>)
+ 8003afa:	691b      	ldr	r3, [r3, #16]
+ 8003afc:	429a      	cmp	r2, r3
+ 8003afe:	d105      	bne.n	8003b0c <Position+0x28>
     {
         printf("Stepper in fault state\r\n");
- 8003b04:	480c      	ldr	r0, [pc, #48]	@ (8003b38 <Position+0x50>)
- 8003b06:	f010 fce5 	bl	80144d4 <puts>
+ 8003b00:	480c      	ldr	r0, [pc, #48]	@ (8003b34 <Position+0x50>)
+ 8003b02:	f010 fce7 	bl	80144d4 <puts>
         return -1;
- 8003b0a:	f04f 33ff 	mov.w	r3, #4294967295
- 8003b0e:	e00d      	b.n	8003b2c <Position+0x44>
+ 8003b06:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003b0a:	e00d      	b.n	8003b28 <Position+0x44>
     }
     int position;
     L6474_GetAbsolutePosition(StepperContext->h, &position);
- 8003b10:	68fb      	ldr	r3, [r7, #12]
- 8003b12:	681b      	ldr	r3, [r3, #0]
- 8003b14:	f107 0214 	add.w	r2, r7, #20
- 8003b18:	4611      	mov	r1, r2
- 8003b1a:	4618      	mov	r0, r3
- 8003b1c:	f002 f838 	bl	8005b90 <L6474_GetAbsolutePosition>
+ 8003b0c:	68fb      	ldr	r3, [r7, #12]
+ 8003b0e:	681b      	ldr	r3, [r3, #0]
+ 8003b10:	f107 0214 	add.w	r2, r7, #20
+ 8003b14:	4611      	mov	r1, r2
+ 8003b16:	4618      	mov	r0, r3
+ 8003b18:	f002 f83a 	bl	8005b90 <L6474_GetAbsolutePosition>
     printf("Current position: %d\n\r", (position));
- 8003b20:	697b      	ldr	r3, [r7, #20]
- 8003b22:	4619      	mov	r1, r3
- 8003b24:	4805      	ldr	r0, [pc, #20]	@ (8003b3c <Position+0x54>)
- 8003b26:	f010 fc65 	bl	80143f4 <iprintf>
+ 8003b1c:	697b      	ldr	r3, [r7, #20]
+ 8003b1e:	4619      	mov	r1, r3
+ 8003b20:	4805      	ldr	r0, [pc, #20]	@ (8003b38 <Position+0x54>)
+ 8003b22:	f010 fc67 	bl	80143f4 <iprintf>
     return 0;
- 8003b2a:	2300      	movs	r3, #0
+ 8003b26:	2300      	movs	r3, #0
 }
- 8003b2c:	4618      	mov	r0, r3
- 8003b2e:	3718      	adds	r7, #24
- 8003b30:	46bd      	mov	sp, r7
- 8003b32:	bd80      	pop	{r7, pc}
- 8003b34:	20000000 	.word	0x20000000
- 8003b38:	08018f84 	.word	0x08018f84
- 8003b3c:	08018f9c 	.word	0x08018f9c
+ 8003b28:	4618      	mov	r0, r3
+ 8003b2a:	3718      	adds	r7, #24
+ 8003b2c:	46bd      	mov	sp, r7
+ 8003b2e:	bd80      	pop	{r7, pc}
+ 8003b30:	20000000 	.word	0x20000000
+ 8003b34:	08018f84 	.word	0x08018f84
+ 8003b38:	08018f9c 	.word	0x08018f9c
 
-08003b40 <Status>:
+08003b3c <Status>:
 // WIP kind of done
 static int Status(StepperContext_t *StepperContext, int argc, char **argv)
 {
- 8003b40:	b580      	push	{r7, lr}
- 8003b42:	b088      	sub	sp, #32
- 8003b44:	af00      	add	r7, sp, #0
- 8003b46:	60f8      	str	r0, [r7, #12]
- 8003b48:	60b9      	str	r1, [r7, #8]
- 8003b4a:	607a      	str	r2, [r7, #4]
+ 8003b3c:	b580      	push	{r7, lr}
+ 8003b3e:	b088      	sub	sp, #32
+ 8003b40:	af00      	add	r7, sp, #0
+ 8003b42:	60f8      	str	r0, [r7, #12]
+ 8003b44:	60b9      	str	r1, [r7, #8]
+ 8003b46:	607a      	str	r2, [r7, #4]
     L6474_Status_t driverStatus;
     L6474_GetStatus(StepperContext->h, &driverStatus);
- 8003b4c:	68fb      	ldr	r3, [r7, #12]
- 8003b4e:	681b      	ldr	r3, [r3, #0]
- 8003b50:	f107 0210 	add.w	r2, r7, #16
- 8003b54:	4611      	mov	r1, r2
- 8003b56:	4618      	mov	r0, r3
- 8003b58:	f002 f916 	bl	8005d88 <L6474_GetStatus>
+ 8003b48:	68fb      	ldr	r3, [r7, #12]
+ 8003b4a:	681b      	ldr	r3, [r3, #0]
+ 8003b4c:	f107 0210 	add.w	r2, r7, #16
+ 8003b50:	4611      	mov	r1, r2
+ 8003b52:	4618      	mov	r0, r3
+ 8003b54:	f002 f918 	bl	8005d88 <L6474_GetStatus>
 
     unsigned int statusBits = 0;
- 8003b5c:	2300      	movs	r3, #0
- 8003b5e:	61fb      	str	r3, [r7, #28]
+ 8003b58:	2300      	movs	r3, #0
+ 8003b5a:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.DIR ? (1 << 0) : 0);
- 8003b60:	7c7b      	ldrb	r3, [r7, #17]
- 8003b62:	2b00      	cmp	r3, #0
- 8003b64:	d001      	beq.n	8003b6a <Status+0x2a>
- 8003b66:	2301      	movs	r3, #1
- 8003b68:	e000      	b.n	8003b6c <Status+0x2c>
- 8003b6a:	2300      	movs	r3, #0
- 8003b6c:	69fa      	ldr	r2, [r7, #28]
- 8003b6e:	4313      	orrs	r3, r2
- 8003b70:	61fb      	str	r3, [r7, #28]
+ 8003b5c:	7c7b      	ldrb	r3, [r7, #17]
+ 8003b5e:	2b00      	cmp	r3, #0
+ 8003b60:	d001      	beq.n	8003b66 <Status+0x2a>
+ 8003b62:	2301      	movs	r3, #1
+ 8003b64:	e000      	b.n	8003b68 <Status+0x2c>
+ 8003b66:	2300      	movs	r3, #0
+ 8003b68:	69fa      	ldr	r2, [r7, #28]
+ 8003b6a:	4313      	orrs	r3, r2
+ 8003b6c:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.HIGHZ ? (1 << 1) : 0);
- 8003b72:	7c3b      	ldrb	r3, [r7, #16]
- 8003b74:	2b00      	cmp	r3, #0
- 8003b76:	d001      	beq.n	8003b7c <Status+0x3c>
- 8003b78:	2302      	movs	r3, #2
- 8003b7a:	e000      	b.n	8003b7e <Status+0x3e>
- 8003b7c:	2300      	movs	r3, #0
- 8003b7e:	69fa      	ldr	r2, [r7, #28]
- 8003b80:	4313      	orrs	r3, r2
- 8003b82:	61fb      	str	r3, [r7, #28]
+ 8003b6e:	7c3b      	ldrb	r3, [r7, #16]
+ 8003b70:	2b00      	cmp	r3, #0
+ 8003b72:	d001      	beq.n	8003b78 <Status+0x3c>
+ 8003b74:	2302      	movs	r3, #2
+ 8003b76:	e000      	b.n	8003b7a <Status+0x3e>
+ 8003b78:	2300      	movs	r3, #0
+ 8003b7a:	69fa      	ldr	r2, [r7, #28]
+ 8003b7c:	4313      	orrs	r3, r2
+ 8003b7e:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.NOTPERF_CMD ? (1 << 2) : 0);
- 8003b84:	7cbb      	ldrb	r3, [r7, #18]
- 8003b86:	2b00      	cmp	r3, #0
- 8003b88:	d001      	beq.n	8003b8e <Status+0x4e>
- 8003b8a:	2304      	movs	r3, #4
- 8003b8c:	e000      	b.n	8003b90 <Status+0x50>
- 8003b8e:	2300      	movs	r3, #0
- 8003b90:	69fa      	ldr	r2, [r7, #28]
- 8003b92:	4313      	orrs	r3, r2
- 8003b94:	61fb      	str	r3, [r7, #28]
+ 8003b80:	7cbb      	ldrb	r3, [r7, #18]
+ 8003b82:	2b00      	cmp	r3, #0
+ 8003b84:	d001      	beq.n	8003b8a <Status+0x4e>
+ 8003b86:	2304      	movs	r3, #4
+ 8003b88:	e000      	b.n	8003b8c <Status+0x50>
+ 8003b8a:	2300      	movs	r3, #0
+ 8003b8c:	69fa      	ldr	r2, [r7, #28]
+ 8003b8e:	4313      	orrs	r3, r2
+ 8003b90:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.OCD ? (1 << 3) : 0);
- 8003b96:	7dfb      	ldrb	r3, [r7, #23]
- 8003b98:	2b00      	cmp	r3, #0
- 8003b9a:	d001      	beq.n	8003ba0 <Status+0x60>
- 8003b9c:	2308      	movs	r3, #8
- 8003b9e:	e000      	b.n	8003ba2 <Status+0x62>
- 8003ba0:	2300      	movs	r3, #0
- 8003ba2:	69fa      	ldr	r2, [r7, #28]
- 8003ba4:	4313      	orrs	r3, r2
- 8003ba6:	61fb      	str	r3, [r7, #28]
+ 8003b92:	7dfb      	ldrb	r3, [r7, #23]
+ 8003b94:	2b00      	cmp	r3, #0
+ 8003b96:	d001      	beq.n	8003b9c <Status+0x60>
+ 8003b98:	2308      	movs	r3, #8
+ 8003b9a:	e000      	b.n	8003b9e <Status+0x62>
+ 8003b9c:	2300      	movs	r3, #0
+ 8003b9e:	69fa      	ldr	r2, [r7, #28]
+ 8003ba0:	4313      	orrs	r3, r2
+ 8003ba2:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.ONGOING ? (1 << 4) : 0);
- 8003ba8:	7e3b      	ldrb	r3, [r7, #24]
- 8003baa:	2b00      	cmp	r3, #0
- 8003bac:	d001      	beq.n	8003bb2 <Status+0x72>
- 8003bae:	2310      	movs	r3, #16
- 8003bb0:	e000      	b.n	8003bb4 <Status+0x74>
- 8003bb2:	2300      	movs	r3, #0
- 8003bb4:	69fa      	ldr	r2, [r7, #28]
- 8003bb6:	4313      	orrs	r3, r2
- 8003bb8:	61fb      	str	r3, [r7, #28]
+ 8003ba4:	7e3b      	ldrb	r3, [r7, #24]
+ 8003ba6:	2b00      	cmp	r3, #0
+ 8003ba8:	d001      	beq.n	8003bae <Status+0x72>
+ 8003baa:	2310      	movs	r3, #16
+ 8003bac:	e000      	b.n	8003bb0 <Status+0x74>
+ 8003bae:	2300      	movs	r3, #0
+ 8003bb0:	69fa      	ldr	r2, [r7, #28]
+ 8003bb2:	4313      	orrs	r3, r2
+ 8003bb4:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.TH_SD ? (1 << 5) : 0);
- 8003bba:	7dbb      	ldrb	r3, [r7, #22]
- 8003bbc:	2b00      	cmp	r3, #0
- 8003bbe:	d001      	beq.n	8003bc4 <Status+0x84>
- 8003bc0:	2320      	movs	r3, #32
- 8003bc2:	e000      	b.n	8003bc6 <Status+0x86>
- 8003bc4:	2300      	movs	r3, #0
- 8003bc6:	69fa      	ldr	r2, [r7, #28]
- 8003bc8:	4313      	orrs	r3, r2
- 8003bca:	61fb      	str	r3, [r7, #28]
+ 8003bb6:	7dbb      	ldrb	r3, [r7, #22]
+ 8003bb8:	2b00      	cmp	r3, #0
+ 8003bba:	d001      	beq.n	8003bc0 <Status+0x84>
+ 8003bbc:	2320      	movs	r3, #32
+ 8003bbe:	e000      	b.n	8003bc2 <Status+0x86>
+ 8003bc0:	2300      	movs	r3, #0
+ 8003bc2:	69fa      	ldr	r2, [r7, #28]
+ 8003bc4:	4313      	orrs	r3, r2
+ 8003bc6:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.TH_WARN ? (1 << 6) : 0);
- 8003bcc:	7d7b      	ldrb	r3, [r7, #21]
- 8003bce:	2b00      	cmp	r3, #0
- 8003bd0:	d001      	beq.n	8003bd6 <Status+0x96>
- 8003bd2:	2340      	movs	r3, #64	@ 0x40
- 8003bd4:	e000      	b.n	8003bd8 <Status+0x98>
- 8003bd6:	2300      	movs	r3, #0
- 8003bd8:	69fa      	ldr	r2, [r7, #28]
- 8003bda:	4313      	orrs	r3, r2
- 8003bdc:	61fb      	str	r3, [r7, #28]
+ 8003bc8:	7d7b      	ldrb	r3, [r7, #21]
+ 8003bca:	2b00      	cmp	r3, #0
+ 8003bcc:	d001      	beq.n	8003bd2 <Status+0x96>
+ 8003bce:	2340      	movs	r3, #64	@ 0x40
+ 8003bd0:	e000      	b.n	8003bd4 <Status+0x98>
+ 8003bd2:	2300      	movs	r3, #0
+ 8003bd4:	69fa      	ldr	r2, [r7, #28]
+ 8003bd6:	4313      	orrs	r3, r2
+ 8003bd8:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.UVLO ? (1 << 7) : 0);
- 8003bde:	7d3b      	ldrb	r3, [r7, #20]
- 8003be0:	2b00      	cmp	r3, #0
- 8003be2:	d001      	beq.n	8003be8 <Status+0xa8>
- 8003be4:	2380      	movs	r3, #128	@ 0x80
- 8003be6:	e000      	b.n	8003bea <Status+0xaa>
- 8003be8:	2300      	movs	r3, #0
- 8003bea:	69fa      	ldr	r2, [r7, #28]
- 8003bec:	4313      	orrs	r3, r2
- 8003bee:	61fb      	str	r3, [r7, #28]
+ 8003bda:	7d3b      	ldrb	r3, [r7, #20]
+ 8003bdc:	2b00      	cmp	r3, #0
+ 8003bde:	d001      	beq.n	8003be4 <Status+0xa8>
+ 8003be0:	2380      	movs	r3, #128	@ 0x80
+ 8003be2:	e000      	b.n	8003be6 <Status+0xaa>
+ 8003be4:	2300      	movs	r3, #0
+ 8003be6:	69fa      	ldr	r2, [r7, #28]
+ 8003be8:	4313      	orrs	r3, r2
+ 8003bea:	61fb      	str	r3, [r7, #28]
     statusBits |= (driverStatus.WRONG_CMD ? (1 << 8) : 0);
- 8003bf0:	7cfb      	ldrb	r3, [r7, #19]
- 8003bf2:	2b00      	cmp	r3, #0
- 8003bf4:	d002      	beq.n	8003bfc <Status+0xbc>
- 8003bf6:	f44f 7380 	mov.w	r3, #256	@ 0x100
- 8003bfa:	e000      	b.n	8003bfe <Status+0xbe>
- 8003bfc:	2300      	movs	r3, #0
- 8003bfe:	69fa      	ldr	r2, [r7, #28]
- 8003c00:	4313      	orrs	r3, r2
- 8003c02:	61fb      	str	r3, [r7, #28]
+ 8003bec:	7cfb      	ldrb	r3, [r7, #19]
+ 8003bee:	2b00      	cmp	r3, #0
+ 8003bf0:	d002      	beq.n	8003bf8 <Status+0xbc>
+ 8003bf2:	f44f 7380 	mov.w	r3, #256	@ 0x100
+ 8003bf6:	e000      	b.n	8003bfa <Status+0xbe>
+ 8003bf8:	2300      	movs	r3, #0
+ 8003bfa:	69fa      	ldr	r2, [r7, #28]
+ 8003bfc:	4313      	orrs	r3, r2
+ 8003bfe:	61fb      	str	r3, [r7, #28]
 
     printf("0x%01X\r\n", StepperContext->state);
- 8003c04:	68fb      	ldr	r3, [r7, #12]
- 8003c06:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
- 8003c0a:	4619      	mov	r1, r3
- 8003c0c:	4808      	ldr	r0, [pc, #32]	@ (8003c30 <Status+0xf0>)
- 8003c0e:	f010 fbf1 	bl	80143f4 <iprintf>
+ 8003c00:	68fb      	ldr	r3, [r7, #12]
+ 8003c02:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
+ 8003c06:	4619      	mov	r1, r3
+ 8003c08:	4808      	ldr	r0, [pc, #32]	@ (8003c2c <Status+0xf0>)
+ 8003c0a:	f010 fbf3 	bl	80143f4 <iprintf>
     printf("0x%04X\r\n", statusBits);
- 8003c12:	69f9      	ldr	r1, [r7, #28]
- 8003c14:	4807      	ldr	r0, [pc, #28]	@ (8003c34 <Status+0xf4>)
- 8003c16:	f010 fbed 	bl	80143f4 <iprintf>
+ 8003c0e:	69f9      	ldr	r1, [r7, #28]
+ 8003c10:	4807      	ldr	r0, [pc, #28]	@ (8003c30 <Status+0xf4>)
+ 8003c12:	f010 fbef 	bl	80143f4 <iprintf>
     printf("%d\r\n", StepperContext->is_running);
- 8003c1a:	68fb      	ldr	r3, [r7, #12]
- 8003c1c:	68db      	ldr	r3, [r3, #12]
- 8003c1e:	4619      	mov	r1, r3
- 8003c20:	4805      	ldr	r0, [pc, #20]	@ (8003c38 <Status+0xf8>)
- 8003c22:	f010 fbe7 	bl	80143f4 <iprintf>
+ 8003c16:	68fb      	ldr	r3, [r7, #12]
+ 8003c18:	68db      	ldr	r3, [r3, #12]
+ 8003c1a:	4619      	mov	r1, r3
+ 8003c1c:	4805      	ldr	r0, [pc, #20]	@ (8003c34 <Status+0xf8>)
+ 8003c1e:	f010 fbe9 	bl	80143f4 <iprintf>
 
     return 0;
- 8003c26:	2300      	movs	r3, #0
+ 8003c22:	2300      	movs	r3, #0
 }
- 8003c28:	4618      	mov	r0, r3
- 8003c2a:	3720      	adds	r7, #32
- 8003c2c:	46bd      	mov	sp, r7
- 8003c2e:	bd80      	pop	{r7, pc}
- 8003c30:	08018fb4 	.word	0x08018fb4
- 8003c34:	08018fc0 	.word	0x08018fc0
- 8003c38:	08018fcc 	.word	0x08018fcc
+ 8003c24:	4618      	mov	r0, r3
+ 8003c26:	3720      	adds	r7, #32
+ 8003c28:	46bd      	mov	sp, r7
+ 8003c2a:	bd80      	pop	{r7, pc}
+ 8003c2c:	08018fb4 	.word	0x08018fb4
+ 8003c30:	08018fc0 	.word	0x08018fc0
+ 8003c34:	08018fcc 	.word	0x08018fcc
 
-08003c3c <Move>:
+08003c38 <Move>:
 // WIP
 static int Move(StepperContext_t *StepperContext, int argc, char **argv)
 {
- 8003c3c:	b580      	push	{r7, lr}
- 8003c3e:	b092      	sub	sp, #72	@ 0x48
- 8003c40:	af00      	add	r7, sp, #0
- 8003c42:	60f8      	str	r0, [r7, #12]
- 8003c44:	60b9      	str	r1, [r7, #8]
- 8003c46:	607a      	str	r2, [r7, #4]
+ 8003c38:	b580      	push	{r7, lr}
+ 8003c3a:	b092      	sub	sp, #72	@ 0x48
+ 8003c3c:	af00      	add	r7, sp, #0
+ 8003c3e:	60f8      	str	r0, [r7, #12]
+ 8003c40:	60b9      	str	r1, [r7, #8]
+ 8003c42:	607a      	str	r2, [r7, #4]
     // Preconditions
     if (StepperContext->state != scs.ENA)
- 8003c48:	68fb      	ldr	r3, [r7, #12]
- 8003c4a:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
- 8003c4e:	461a      	mov	r2, r3
- 8003c50:	4bac      	ldr	r3, [pc, #688]	@ (8003f04 <Move+0x2c8>)
- 8003c52:	68db      	ldr	r3, [r3, #12]
- 8003c54:	429a      	cmp	r2, r3
- 8003c56:	d009      	beq.n	8003c6c <Move+0x30>
+ 8003c44:	68fb      	ldr	r3, [r7, #12]
+ 8003c46:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
+ 8003c4a:	461a      	mov	r2, r3
+ 8003c4c:	4bac      	ldr	r3, [pc, #688]	@ (8003f00 <Move+0x2c8>)
+ 8003c4e:	68db      	ldr	r3, [r3, #12]
+ 8003c50:	429a      	cmp	r2, r3
+ 8003c52:	d009      	beq.n	8003c68 <Move+0x30>
     {
         printf("Error: Stepper not enabled (state=%d)\r\n", StepperContext->state);
- 8003c58:	68fb      	ldr	r3, [r7, #12]
- 8003c5a:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
- 8003c5e:	4619      	mov	r1, r3
- 8003c60:	48a9      	ldr	r0, [pc, #676]	@ (8003f08 <Move+0x2cc>)
- 8003c62:	f010 fbc7 	bl	80143f4 <iprintf>
+ 8003c54:	68fb      	ldr	r3, [r7, #12]
+ 8003c56:	f893 3024 	ldrb.w	r3, [r3, #36]	@ 0x24
+ 8003c5a:	4619      	mov	r1, r3
+ 8003c5c:	48a9      	ldr	r0, [pc, #676]	@ (8003f04 <Move+0x2cc>)
+ 8003c5e:	f010 fbc9 	bl	80143f4 <iprintf>
         return -1;
- 8003c66:	f04f 33ff 	mov.w	r3, #4294967295
- 8003c6a:	e190      	b.n	8003f8e <Move+0x352>
+ 8003c62:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003c66:	e190      	b.n	8003f8a <Move+0x352>
     }
     if (StepperContext->is_powered != 1)
- 8003c6c:	68fb      	ldr	r3, [r7, #12]
- 8003c6e:	685b      	ldr	r3, [r3, #4]
- 8003c70:	2b01      	cmp	r3, #1
- 8003c72:	d005      	beq.n	8003c80 <Move+0x44>
+ 8003c68:	68fb      	ldr	r3, [r7, #12]
+ 8003c6a:	685b      	ldr	r3, [r3, #4]
+ 8003c6c:	2b01      	cmp	r3, #1
+ 8003c6e:	d005      	beq.n	8003c7c <Move+0x44>
     {
         printf("Error: Stepper not powered\r\n");
- 8003c74:	48a5      	ldr	r0, [pc, #660]	@ (8003f0c <Move+0x2d0>)
- 8003c76:	f010 fc2d 	bl	80144d4 <puts>
+ 8003c70:	48a5      	ldr	r0, [pc, #660]	@ (8003f08 <Move+0x2d0>)
+ 8003c72:	f010 fc2f 	bl	80144d4 <puts>
         return -1;
- 8003c7a:	f04f 33ff 	mov.w	r3, #4294967295
- 8003c7e:	e186      	b.n	8003f8e <Move+0x352>
+ 8003c76:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003c7a:	e186      	b.n	8003f8a <Move+0x352>
     }
     if (StepperContext->is_referenced != 1)
- 8003c80:	68fb      	ldr	r3, [r7, #12]
- 8003c82:	689b      	ldr	r3, [r3, #8]
- 8003c84:	2b01      	cmp	r3, #1
- 8003c86:	d005      	beq.n	8003c94 <Move+0x58>
+ 8003c7c:	68fb      	ldr	r3, [r7, #12]
+ 8003c7e:	689b      	ldr	r3, [r3, #8]
+ 8003c80:	2b01      	cmp	r3, #1
+ 8003c82:	d005      	beq.n	8003c90 <Move+0x58>
     {
         printf("Error: Stepper not referenced\r\n");
- 8003c88:	48a1      	ldr	r0, [pc, #644]	@ (8003f10 <Move+0x2d4>)
- 8003c8a:	f010 fc23 	bl	80144d4 <puts>
+ 8003c84:	48a1      	ldr	r0, [pc, #644]	@ (8003f0c <Move+0x2d4>)
+ 8003c86:	f010 fc25 	bl	80144d4 <puts>
         return -1;
- 8003c8e:	f04f 33ff 	mov.w	r3, #4294967295
- 8003c92:	e17c      	b.n	8003f8e <Move+0x352>
+ 8003c8a:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003c8e:	e17c      	b.n	8003f8a <Move+0x352>
     }
     if (argc < 2)
- 8003c94:	68bb      	ldr	r3, [r7, #8]
- 8003c96:	2b01      	cmp	r3, #1
- 8003c98:	dc05      	bgt.n	8003ca6 <Move+0x6a>
+ 8003c90:	68bb      	ldr	r3, [r7, #8]
+ 8003c92:	2b01      	cmp	r3, #1
+ 8003c94:	dc05      	bgt.n	8003ca2 <Move+0x6a>
     {
         printf("Error: Invalid number of arguments\r\n");
- 8003c9a:	489e      	ldr	r0, [pc, #632]	@ (8003f14 <Move+0x2d8>)
- 8003c9c:	f010 fc1a 	bl	80144d4 <puts>
+ 8003c96:	489e      	ldr	r0, [pc, #632]	@ (8003f10 <Move+0x2d8>)
+ 8003c98:	f010 fc1c 	bl	80144d4 <puts>
         return -1;
- 8003ca0:	f04f 33ff 	mov.w	r3, #4294967295
- 8003ca4:	e173      	b.n	8003f8e <Move+0x352>
+ 8003c9c:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003ca0:	e173      	b.n	8003f8a <Move+0x352>
     }
 
     // Parse arguments
     float target_position = atof(argv[1]);
- 8003ca6:	687b      	ldr	r3, [r7, #4]
- 8003ca8:	3304      	adds	r3, #4
- 8003caa:	681b      	ldr	r3, [r3, #0]
- 8003cac:	4618      	mov	r0, r3
- 8003cae:	f00e fa8d 	bl	80121cc <atof>
- 8003cb2:	ec53 2b10 	vmov	r2, r3, d0
- 8003cb6:	4610      	mov	r0, r2
- 8003cb8:	4619      	mov	r1, r3
- 8003cba:	f7fc ffc5 	bl	8000c48 <__aeabi_d2f>
- 8003cbe:	4603      	mov	r3, r0
- 8003cc0:	633b      	str	r3, [r7, #48]	@ 0x30
+ 8003ca2:	687b      	ldr	r3, [r7, #4]
+ 8003ca4:	3304      	adds	r3, #4
+ 8003ca6:	681b      	ldr	r3, [r3, #0]
+ 8003ca8:	4618      	mov	r0, r3
+ 8003caa:	f00e fa8f 	bl	80121cc <atof>
+ 8003cae:	ec53 2b10 	vmov	r2, r3, d0
+ 8003cb2:	4610      	mov	r0, r2
+ 8003cb4:	4619      	mov	r1, r3
+ 8003cb6:	f7fc ffc7 	bl	8000c48 <__aeabi_d2f>
+ 8003cba:	4603      	mov	r3, r0
+ 8003cbc:	633b      	str	r3, [r7, #48]	@ 0x30
     int speed = 1000; // Default speed in mm/min
- 8003cc2:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
- 8003cc6:	647b      	str	r3, [r7, #68]	@ 0x44
+ 8003cbe:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 8003cc2:	647b      	str	r3, [r7, #68]	@ 0x44
     int is_relative = 0;
- 8003cc8:	2300      	movs	r3, #0
- 8003cca:	643b      	str	r3, [r7, #64]	@ 0x40
+ 8003cc4:	2300      	movs	r3, #0
+ 8003cc6:	643b      	str	r3, [r7, #64]	@ 0x40
     int is_async = 0;
- 8003ccc:	2300      	movs	r3, #0
- 8003cce:	63fb      	str	r3, [r7, #60]	@ 0x3c
+ 8003cc8:	2300      	movs	r3, #0
+ 8003cca:	63fb      	str	r3, [r7, #60]	@ 0x3c
 
     for (int i = 2; i < argc;)
- 8003cd0:	2302      	movs	r3, #2
- 8003cd2:	63bb      	str	r3, [r7, #56]	@ 0x38
- 8003cd4:	e054      	b.n	8003d80 <Move+0x144>
+ 8003ccc:	2302      	movs	r3, #2
+ 8003cce:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8003cd0:	e054      	b.n	8003d7c <Move+0x144>
     {
         if (strcmp(argv[i], "-s") == 0)
- 8003cd6:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003cd8:	009b      	lsls	r3, r3, #2
- 8003cda:	687a      	ldr	r2, [r7, #4]
- 8003cdc:	4413      	add	r3, r2
- 8003cde:	681b      	ldr	r3, [r3, #0]
- 8003ce0:	498d      	ldr	r1, [pc, #564]	@ (8003f18 <Move+0x2dc>)
- 8003ce2:	4618      	mov	r0, r3
- 8003ce4:	f7fc fa94 	bl	8000210 <strcmp>
- 8003ce8:	4603      	mov	r3, r0
- 8003cea:	2b00      	cmp	r3, #0
- 8003cec:	d118      	bne.n	8003d20 <Move+0xe4>
+ 8003cd2:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003cd4:	009b      	lsls	r3, r3, #2
+ 8003cd6:	687a      	ldr	r2, [r7, #4]
+ 8003cd8:	4413      	add	r3, r2
+ 8003cda:	681b      	ldr	r3, [r3, #0]
+ 8003cdc:	498d      	ldr	r1, [pc, #564]	@ (8003f14 <Move+0x2dc>)
+ 8003cde:	4618      	mov	r0, r3
+ 8003ce0:	f7fc fa96 	bl	8000210 <strcmp>
+ 8003ce4:	4603      	mov	r3, r0
+ 8003ce6:	2b00      	cmp	r3, #0
+ 8003ce8:	d118      	bne.n	8003d1c <Move+0xe4>
         {
             if (i == argc - 1)
- 8003cee:	68bb      	ldr	r3, [r7, #8]
- 8003cf0:	3b01      	subs	r3, #1
- 8003cf2:	6bba      	ldr	r2, [r7, #56]	@ 0x38
- 8003cf4:	429a      	cmp	r2, r3
- 8003cf6:	d105      	bne.n	8003d04 <Move+0xc8>
+ 8003cea:	68bb      	ldr	r3, [r7, #8]
+ 8003cec:	3b01      	subs	r3, #1
+ 8003cee:	6bba      	ldr	r2, [r7, #56]	@ 0x38
+ 8003cf0:	429a      	cmp	r2, r3
+ 8003cf2:	d105      	bne.n	8003d00 <Move+0xc8>
             {
                 printf("Error: Missing speed value after -s flag\r\n");
- 8003cf8:	4888      	ldr	r0, [pc, #544]	@ (8003f1c <Move+0x2e0>)
- 8003cfa:	f010 fbeb 	bl	80144d4 <puts>
+ 8003cf4:	4888      	ldr	r0, [pc, #544]	@ (8003f18 <Move+0x2e0>)
+ 8003cf6:	f010 fbed 	bl	80144d4 <puts>
                 return -1;
- 8003cfe:	f04f 33ff 	mov.w	r3, #4294967295
- 8003d02:	e144      	b.n	8003f8e <Move+0x352>
+ 8003cfa:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003cfe:	e144      	b.n	8003f8a <Move+0x352>
             }
             speed = atoi(argv[i + 1]);
- 8003d04:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d06:	3301      	adds	r3, #1
- 8003d08:	009b      	lsls	r3, r3, #2
- 8003d0a:	687a      	ldr	r2, [r7, #4]
- 8003d0c:	4413      	add	r3, r2
- 8003d0e:	681b      	ldr	r3, [r3, #0]
- 8003d10:	4618      	mov	r0, r3
- 8003d12:	f00e fa5e 	bl	80121d2 <atoi>
- 8003d16:	6478      	str	r0, [r7, #68]	@ 0x44
+ 8003d00:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d02:	3301      	adds	r3, #1
+ 8003d04:	009b      	lsls	r3, r3, #2
+ 8003d06:	687a      	ldr	r2, [r7, #4]
+ 8003d08:	4413      	add	r3, r2
+ 8003d0a:	681b      	ldr	r3, [r3, #0]
+ 8003d0c:	4618      	mov	r0, r3
+ 8003d0e:	f00e fa60 	bl	80121d2 <atoi>
+ 8003d12:	6478      	str	r0, [r7, #68]	@ 0x44
             i += 2;
- 8003d18:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d1a:	3302      	adds	r3, #2
- 8003d1c:	63bb      	str	r3, [r7, #56]	@ 0x38
- 8003d1e:	e02f      	b.n	8003d80 <Move+0x144>
+ 8003d14:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d16:	3302      	adds	r3, #2
+ 8003d18:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8003d1a:	e02f      	b.n	8003d7c <Move+0x144>
         }
         else if (strcmp(argv[i], "-r") == 0)
- 8003d20:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d22:	009b      	lsls	r3, r3, #2
- 8003d24:	687a      	ldr	r2, [r7, #4]
- 8003d26:	4413      	add	r3, r2
- 8003d28:	681b      	ldr	r3, [r3, #0]
- 8003d2a:	497d      	ldr	r1, [pc, #500]	@ (8003f20 <Move+0x2e4>)
- 8003d2c:	4618      	mov	r0, r3
- 8003d2e:	f7fc fa6f 	bl	8000210 <strcmp>
- 8003d32:	4603      	mov	r3, r0
- 8003d34:	2b00      	cmp	r3, #0
- 8003d36:	d105      	bne.n	8003d44 <Move+0x108>
+ 8003d1c:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d1e:	009b      	lsls	r3, r3, #2
+ 8003d20:	687a      	ldr	r2, [r7, #4]
+ 8003d22:	4413      	add	r3, r2
+ 8003d24:	681b      	ldr	r3, [r3, #0]
+ 8003d26:	497d      	ldr	r1, [pc, #500]	@ (8003f1c <Move+0x2e4>)
+ 8003d28:	4618      	mov	r0, r3
+ 8003d2a:	f7fc fa71 	bl	8000210 <strcmp>
+ 8003d2e:	4603      	mov	r3, r0
+ 8003d30:	2b00      	cmp	r3, #0
+ 8003d32:	d105      	bne.n	8003d40 <Move+0x108>
         {
             is_relative = 1;
- 8003d38:	2301      	movs	r3, #1
- 8003d3a:	643b      	str	r3, [r7, #64]	@ 0x40
+ 8003d34:	2301      	movs	r3, #1
+ 8003d36:	643b      	str	r3, [r7, #64]	@ 0x40
             i++;
- 8003d3c:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d3e:	3301      	adds	r3, #1
- 8003d40:	63bb      	str	r3, [r7, #56]	@ 0x38
- 8003d42:	e01d      	b.n	8003d80 <Move+0x144>
+ 8003d38:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d3a:	3301      	adds	r3, #1
+ 8003d3c:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8003d3e:	e01d      	b.n	8003d7c <Move+0x144>
         }
         else if (strcmp(argv[i], "-a") == 0)
- 8003d44:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d46:	009b      	lsls	r3, r3, #2
- 8003d48:	687a      	ldr	r2, [r7, #4]
- 8003d4a:	4413      	add	r3, r2
- 8003d4c:	681b      	ldr	r3, [r3, #0]
- 8003d4e:	4975      	ldr	r1, [pc, #468]	@ (8003f24 <Move+0x2e8>)
- 8003d50:	4618      	mov	r0, r3
- 8003d52:	f7fc fa5d 	bl	8000210 <strcmp>
- 8003d56:	4603      	mov	r3, r0
- 8003d58:	2b00      	cmp	r3, #0
- 8003d5a:	d105      	bne.n	8003d68 <Move+0x12c>
+ 8003d40:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d42:	009b      	lsls	r3, r3, #2
+ 8003d44:	687a      	ldr	r2, [r7, #4]
+ 8003d46:	4413      	add	r3, r2
+ 8003d48:	681b      	ldr	r3, [r3, #0]
+ 8003d4a:	4975      	ldr	r1, [pc, #468]	@ (8003f20 <Move+0x2e8>)
+ 8003d4c:	4618      	mov	r0, r3
+ 8003d4e:	f7fc fa5f 	bl	8000210 <strcmp>
+ 8003d52:	4603      	mov	r3, r0
+ 8003d54:	2b00      	cmp	r3, #0
+ 8003d56:	d105      	bne.n	8003d64 <Move+0x12c>
         {
             is_async = 1;
- 8003d5c:	2301      	movs	r3, #1
- 8003d5e:	63fb      	str	r3, [r7, #60]	@ 0x3c
+ 8003d58:	2301      	movs	r3, #1
+ 8003d5a:	63fb      	str	r3, [r7, #60]	@ 0x3c
             i++;
- 8003d60:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d62:	3301      	adds	r3, #1
- 8003d64:	63bb      	str	r3, [r7, #56]	@ 0x38
- 8003d66:	e00b      	b.n	8003d80 <Move+0x144>
+ 8003d5c:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d5e:	3301      	adds	r3, #1
+ 8003d60:	63bb      	str	r3, [r7, #56]	@ 0x38
+ 8003d62:	e00b      	b.n	8003d7c <Move+0x144>
         }
         else
         {
             printf("Error: Invalid flag '%s'\r\n", argv[i]);
- 8003d68:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
- 8003d6a:	009b      	lsls	r3, r3, #2
- 8003d6c:	687a      	ldr	r2, [r7, #4]
- 8003d6e:	4413      	add	r3, r2
- 8003d70:	681b      	ldr	r3, [r3, #0]
- 8003d72:	4619      	mov	r1, r3
- 8003d74:	486c      	ldr	r0, [pc, #432]	@ (8003f28 <Move+0x2ec>)
- 8003d76:	f010 fb3d 	bl	80143f4 <iprintf>
+ 8003d64:	6bbb      	ldr	r3, [r7, #56]	@ 0x38
+ 8003d66:	009b      	lsls	r3, r3, #2
+ 8003d68:	687a      	ldr	r2, [r7, #4]
+ 8003d6a:	4413      	add	r3, r2
+ 8003d6c:	681b      	ldr	r3, [r3, #0]
+ 8003d6e:	4619      	mov	r1, r3
+ 8003d70:	486c      	ldr	r0, [pc, #432]	@ (8003f24 <Move+0x2ec>)
+ 8003d72:	f010 fb3f 	bl	80143f4 <iprintf>
             return -1;
- 8003d7a:	f04f 33ff 	mov.w	r3, #4294967295
- 8003d7e:	e106      	b.n	8003f8e <Move+0x352>
+ 8003d76:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003d7a:	e106      	b.n	8003f8a <Move+0x352>
     for (int i = 2; i < argc;)
- 8003d80:	6bba      	ldr	r2, [r7, #56]	@ 0x38
- 8003d82:	68bb      	ldr	r3, [r7, #8]
- 8003d84:	429a      	cmp	r2, r3
- 8003d86:	dba6      	blt.n	8003cd6 <Move+0x9a>
+ 8003d7c:	6bba      	ldr	r2, [r7, #56]	@ 0x38
+ 8003d7e:	68bb      	ldr	r3, [r7, #8]
+ 8003d80:	429a      	cmp	r2, r3
+ 8003d82:	dba6      	blt.n	8003cd2 <Move+0x9a>
         }
     }
 
     // Cap speed to valid mechanical limits
     if (speed < 1)
- 8003d88:	6c7b      	ldr	r3, [r7, #68]	@ 0x44
- 8003d8a:	2b00      	cmp	r3, #0
- 8003d8c:	dc05      	bgt.n	8003d9a <Move+0x15e>
+ 8003d84:	6c7b      	ldr	r3, [r7, #68]	@ 0x44
+ 8003d86:	2b00      	cmp	r3, #0
+ 8003d88:	dc05      	bgt.n	8003d96 <Move+0x15e>
     {
         printf("Error: Speed too low\r\n");
- 8003d8e:	4867      	ldr	r0, [pc, #412]	@ (8003f2c <Move+0x2f0>)
- 8003d90:	f010 fba0 	bl	80144d4 <puts>
+ 8003d8a:	4867      	ldr	r0, [pc, #412]	@ (8003f28 <Move+0x2f0>)
+ 8003d8c:	f010 fba2 	bl	80144d4 <puts>
         return -1;
- 8003d94:	f04f 33ff 	mov.w	r3, #4294967295
- 8003d98:	e0f9      	b.n	8003f8e <Move+0x352>
+ 8003d90:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003d94:	e0f9      	b.n	8003f8a <Move+0x352>
     }
     int max_speed = (int)(StepperContext->mm_per_sec * 60); // Convert mm/sec to mm/min
- 8003d9a:	68fb      	ldr	r3, [r7, #12]
- 8003d9c:	edd3 7a10 	vldr	s15, [r3, #64]	@ 0x40
- 8003da0:	ed9f 7a63 	vldr	s14, [pc, #396]	@ 8003f30 <Move+0x2f4>
- 8003da4:	ee67 7a87 	vmul.f32	s15, s15, s14
- 8003da8:	eefd 7ae7 	vcvt.s32.f32	s15, s15
- 8003dac:	ee17 3a90 	vmov	r3, s15
- 8003db0:	62fb      	str	r3, [r7, #44]	@ 0x2c
+ 8003d96:	68fb      	ldr	r3, [r7, #12]
+ 8003d98:	edd3 7a10 	vldr	s15, [r3, #64]	@ 0x40
+ 8003d9c:	ed9f 7a63 	vldr	s14, [pc, #396]	@ 8003f2c <Move+0x2f4>
+ 8003da0:	ee67 7a87 	vmul.f32	s15, s15, s14
+ 8003da4:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+ 8003da8:	ee17 3a90 	vmov	r3, s15
+ 8003dac:	62fb      	str	r3, [r7, #44]	@ 0x2c
     if (speed > max_speed)
- 8003db2:	6c7a      	ldr	r2, [r7, #68]	@ 0x44
- 8003db4:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 8003db6:	429a      	cmp	r2, r3
- 8003db8:	dd05      	ble.n	8003dc6 <Move+0x18a>
+ 8003dae:	6c7a      	ldr	r2, [r7, #68]	@ 0x44
+ 8003db0:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 8003db2:	429a      	cmp	r2, r3
+ 8003db4:	dd05      	ble.n	8003dc2 <Move+0x18a>
     {
         printf("Warning: Speed capped to maximum (%d mm/min)\r\n", max_speed);
- 8003dba:	6af9      	ldr	r1, [r7, #44]	@ 0x2c
- 8003dbc:	485d      	ldr	r0, [pc, #372]	@ (8003f34 <Move+0x2f8>)
- 8003dbe:	f010 fb19 	bl	80143f4 <iprintf>
+ 8003db6:	6af9      	ldr	r1, [r7, #44]	@ 0x2c
+ 8003db8:	485d      	ldr	r0, [pc, #372]	@ (8003f30 <Move+0x2f8>)
+ 8003dba:	f010 fb1b 	bl	80143f4 <iprintf>
         speed = max_speed;
- 8003dc2:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
- 8003dc4:	647b      	str	r3, [r7, #68]	@ 0x44
+ 8003dbe:	6afb      	ldr	r3, [r7, #44]	@ 0x2c
+ 8003dc0:	647b      	str	r3, [r7, #68]	@ 0x44
     }
 
     // Calculate steps per second
     float steps_per_second = (speed * StepperContext->steps_per_turn) / (60.0f * StepperContext->mm_per_turn);
- 8003dc6:	6c7b      	ldr	r3, [r7, #68]	@ 0x44
- 8003dc8:	ee07 3a90 	vmov	s15, r3
- 8003dcc:	eeb8 7ae7 	vcvt.f32.s32	s14, s15
- 8003dd0:	68fb      	ldr	r3, [r7, #12]
- 8003dd2:	edd3 7a0e 	vldr	s15, [r3, #56]	@ 0x38
- 8003dd6:	ee67 6a27 	vmul.f32	s13, s14, s15
- 8003dda:	68fb      	ldr	r3, [r7, #12]
- 8003ddc:	edd3 7a0d 	vldr	s15, [r3, #52]	@ 0x34
- 8003de0:	ed9f 7a53 	vldr	s14, [pc, #332]	@ 8003f30 <Move+0x2f4>
- 8003de4:	ee27 7a87 	vmul.f32	s14, s15, s14
- 8003de8:	eec6 7a87 	vdiv.f32	s15, s13, s14
- 8003dec:	edc7 7a0a 	vstr	s15, [r7, #40]	@ 0x28
+ 8003dc2:	6c7b      	ldr	r3, [r7, #68]	@ 0x44
+ 8003dc4:	ee07 3a90 	vmov	s15, r3
+ 8003dc8:	eeb8 7ae7 	vcvt.f32.s32	s14, s15
+ 8003dcc:	68fb      	ldr	r3, [r7, #12]
+ 8003dce:	edd3 7a0e 	vldr	s15, [r3, #56]	@ 0x38
+ 8003dd2:	ee67 6a27 	vmul.f32	s13, s14, s15
+ 8003dd6:	68fb      	ldr	r3, [r7, #12]
+ 8003dd8:	edd3 7a0d 	vldr	s15, [r3, #52]	@ 0x34
+ 8003ddc:	ed9f 7a53 	vldr	s14, [pc, #332]	@ 8003f2c <Move+0x2f4>
+ 8003de0:	ee27 7a87 	vmul.f32	s14, s15, s14
+ 8003de4:	eec6 7a87 	vdiv.f32	s15, s13, s14
+ 8003de8:	edc7 7a0a 	vstr	s15, [r7, #40]	@ 0x28
     SetSpeed(StepperContext, (int)steps_per_second);
- 8003df0:	edd7 7a0a 	vldr	s15, [r7, #40]	@ 0x28
- 8003df4:	eefd 7ae7 	vcvt.s32.f32	s15, s15
- 8003df8:	ee17 1a90 	vmov	r1, s15
- 8003dfc:	68f8      	ldr	r0, [r7, #12]
- 8003dfe:	f000 fbf3 	bl	80045e8 <SetSpeed>
+ 8003dec:	edd7 7a0a 	vldr	s15, [r7, #40]	@ 0x28
+ 8003df0:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+ 8003df4:	ee17 1a90 	vmov	r1, s15
+ 8003df8:	68f8      	ldr	r0, [r7, #12]
+ 8003dfa:	f000 fbf5 	bl	80045e8 <SetSpeed>
 
     // Get current position
     int current_steps;
     L6474_GetAbsolutePosition(StepperContext->h, &current_steps);
- 8003e02:	68fb      	ldr	r3, [r7, #12]
- 8003e04:	681b      	ldr	r3, [r3, #0]
- 8003e06:	f107 0214 	add.w	r2, r7, #20
- 8003e0a:	4611      	mov	r1, r2
- 8003e0c:	4618      	mov	r0, r3
- 8003e0e:	f001 febf 	bl	8005b90 <L6474_GetAbsolutePosition>
+ 8003dfe:	68fb      	ldr	r3, [r7, #12]
+ 8003e00:	681b      	ldr	r3, [r3, #0]
+ 8003e02:	f107 0214 	add.w	r2, r7, #20
+ 8003e06:	4611      	mov	r1, r2
+ 8003e08:	4618      	mov	r0, r3
+ 8003e0a:	f001 fec1 	bl	8005b90 <L6474_GetAbsolutePosition>
     float current_position = (current_steps * StepperContext->mm_per_turn) / StepperContext->steps_per_turn;
- 8003e12:	697b      	ldr	r3, [r7, #20]
- 8003e14:	ee07 3a90 	vmov	s15, r3
- 8003e18:	eeb8 7ae7 	vcvt.f32.s32	s14, s15
- 8003e1c:	68fb      	ldr	r3, [r7, #12]
- 8003e1e:	edd3 7a0d 	vldr	s15, [r3, #52]	@ 0x34
- 8003e22:	ee67 6a27 	vmul.f32	s13, s14, s15
- 8003e26:	68fb      	ldr	r3, [r7, #12]
- 8003e28:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
- 8003e2c:	eec6 7a87 	vdiv.f32	s15, s13, s14
- 8003e30:	edc7 7a09 	vstr	s15, [r7, #36]	@ 0x24
+ 8003e0e:	697b      	ldr	r3, [r7, #20]
+ 8003e10:	ee07 3a90 	vmov	s15, r3
+ 8003e14:	eeb8 7ae7 	vcvt.f32.s32	s14, s15
+ 8003e18:	68fb      	ldr	r3, [r7, #12]
+ 8003e1a:	edd3 7a0d 	vldr	s15, [r3, #52]	@ 0x34
+ 8003e1e:	ee67 6a27 	vmul.f32	s13, s14, s15
+ 8003e22:	68fb      	ldr	r3, [r7, #12]
+ 8003e24:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
+ 8003e28:	eec6 7a87 	vdiv.f32	s15, s13, s14
+ 8003e2c:	edc7 7a09 	vstr	s15, [r7, #36]	@ 0x24
 
     // Calculate target position
     float final_position = is_relative ? current_position + target_position : target_position;
- 8003e34:	6c3b      	ldr	r3, [r7, #64]	@ 0x40
- 8003e36:	2b00      	cmp	r3, #0
- 8003e38:	d006      	beq.n	8003e48 <Move+0x20c>
- 8003e3a:	ed97 7a09 	vldr	s14, [r7, #36]	@ 0x24
- 8003e3e:	edd7 7a0c 	vldr	s15, [r7, #48]	@ 0x30
- 8003e42:	ee77 7a27 	vadd.f32	s15, s14, s15
- 8003e46:	e001      	b.n	8003e4c <Move+0x210>
- 8003e48:	edd7 7a0c 	vldr	s15, [r7, #48]	@ 0x30
- 8003e4c:	edc7 7a08 	vstr	s15, [r7, #32]
+ 8003e30:	6c3b      	ldr	r3, [r7, #64]	@ 0x40
+ 8003e32:	2b00      	cmp	r3, #0
+ 8003e34:	d006      	beq.n	8003e44 <Move+0x20c>
+ 8003e36:	ed97 7a09 	vldr	s14, [r7, #36]	@ 0x24
+ 8003e3a:	edd7 7a0c 	vldr	s15, [r7, #48]	@ 0x30
+ 8003e3e:	ee77 7a27 	vadd.f32	s15, s14, s15
+ 8003e42:	e001      	b.n	8003e48 <Move+0x210>
+ 8003e44:	edd7 7a0c 	vldr	s15, [r7, #48]	@ 0x30
+ 8003e48:	edc7 7a08 	vstr	s15, [r7, #32]
     if (final_position < StepperContext->pos_min || final_position > StepperContext->pos_max)
- 8003e50:	68fb      	ldr	r3, [r7, #12]
- 8003e52:	6a9b      	ldr	r3, [r3, #40]	@ 0x28
- 8003e54:	ee07 3a90 	vmov	s15, r3
- 8003e58:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 8003e5c:	ed97 7a08 	vldr	s14, [r7, #32]
- 8003e60:	eeb4 7ae7 	vcmpe.f32	s14, s15
- 8003e64:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003e68:	d40c      	bmi.n	8003e84 <Move+0x248>
- 8003e6a:	68fb      	ldr	r3, [r7, #12]
- 8003e6c:	6adb      	ldr	r3, [r3, #44]	@ 0x2c
- 8003e6e:	ee07 3a90 	vmov	s15, r3
- 8003e72:	eef8 7ae7 	vcvt.f32.s32	s15, s15
- 8003e76:	ed97 7a08 	vldr	s14, [r7, #32]
- 8003e7a:	eeb4 7ae7 	vcmpe.f32	s14, s15
- 8003e7e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8003e82:	dd05      	ble.n	8003e90 <Move+0x254>
+ 8003e4c:	68fb      	ldr	r3, [r7, #12]
+ 8003e4e:	6a9b      	ldr	r3, [r3, #40]	@ 0x28
+ 8003e50:	ee07 3a90 	vmov	s15, r3
+ 8003e54:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 8003e58:	ed97 7a08 	vldr	s14, [r7, #32]
+ 8003e5c:	eeb4 7ae7 	vcmpe.f32	s14, s15
+ 8003e60:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8003e64:	d40c      	bmi.n	8003e80 <Move+0x248>
+ 8003e66:	68fb      	ldr	r3, [r7, #12]
+ 8003e68:	6adb      	ldr	r3, [r3, #44]	@ 0x2c
+ 8003e6a:	ee07 3a90 	vmov	s15, r3
+ 8003e6e:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 8003e72:	ed97 7a08 	vldr	s14, [r7, #32]
+ 8003e76:	eeb4 7ae7 	vcmpe.f32	s14, s15
+ 8003e7a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8003e7e:	dd05      	ble.n	8003e8c <Move+0x254>
     {
         printf("Error: Target position out of range\r\n");
- 8003e84:	482c      	ldr	r0, [pc, #176]	@ (8003f38 <Move+0x2fc>)
- 8003e86:	f010 fb25 	bl	80144d4 <puts>
+ 8003e80:	482c      	ldr	r0, [pc, #176]	@ (8003f34 <Move+0x2fc>)
+ 8003e82:	f010 fb27 	bl	80144d4 <puts>
         return -1;
- 8003e8a:	f04f 33ff 	mov.w	r3, #4294967295
- 8003e8e:	e07e      	b.n	8003f8e <Move+0x352>
+ 8003e86:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003e8a:	e07e      	b.n	8003f8a <Move+0x352>
     }
 
     // Calculate steps to move
     int target_steps = (int)((final_position * StepperContext->steps_per_turn) / StepperContext->mm_per_turn);
- 8003e90:	68fb      	ldr	r3, [r7, #12]
- 8003e92:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
- 8003e96:	edd7 7a08 	vldr	s15, [r7, #32]
- 8003e9a:	ee67 6a27 	vmul.f32	s13, s14, s15
- 8003e9e:	68fb      	ldr	r3, [r7, #12]
- 8003ea0:	ed93 7a0d 	vldr	s14, [r3, #52]	@ 0x34
- 8003ea4:	eec6 7a87 	vdiv.f32	s15, s13, s14
- 8003ea8:	eefd 7ae7 	vcvt.s32.f32	s15, s15
- 8003eac:	ee17 3a90 	vmov	r3, s15
- 8003eb0:	61fb      	str	r3, [r7, #28]
+ 8003e8c:	68fb      	ldr	r3, [r7, #12]
+ 8003e8e:	ed93 7a0e 	vldr	s14, [r3, #56]	@ 0x38
+ 8003e92:	edd7 7a08 	vldr	s15, [r7, #32]
+ 8003e96:	ee67 6a27 	vmul.f32	s13, s14, s15
+ 8003e9a:	68fb      	ldr	r3, [r7, #12]
+ 8003e9c:	ed93 7a0d 	vldr	s14, [r3, #52]	@ 0x34
+ 8003ea0:	eec6 7a87 	vdiv.f32	s15, s13, s14
+ 8003ea4:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+ 8003ea8:	ee17 3a90 	vmov	r3, s15
+ 8003eac:	61fb      	str	r3, [r7, #28]
     int steps_to_move = target_steps - current_steps;
- 8003eb2:	697b      	ldr	r3, [r7, #20]
- 8003eb4:	69fa      	ldr	r2, [r7, #28]
- 8003eb6:	1ad3      	subs	r3, r2, r3
- 8003eb8:	61bb      	str	r3, [r7, #24]
+ 8003eae:	697b      	ldr	r3, [r7, #20]
+ 8003eb0:	69fa      	ldr	r2, [r7, #28]
+ 8003eb2:	1ad3      	subs	r3, r2, r3
+ 8003eb4:	61bb      	str	r3, [r7, #24]
 
     if (steps_to_move == 0)
- 8003eba:	69bb      	ldr	r3, [r7, #24]
- 8003ebc:	2b00      	cmp	r3, #0
- 8003ebe:	d104      	bne.n	8003eca <Move+0x28e>
+ 8003eb6:	69bb      	ldr	r3, [r7, #24]
+ 8003eb8:	2b00      	cmp	r3, #0
+ 8003eba:	d104      	bne.n	8003ec6 <Move+0x28e>
     {
         printf("No movement required\r\n");
- 8003ec0:	481e      	ldr	r0, [pc, #120]	@ (8003f3c <Move+0x300>)
- 8003ec2:	f010 fb07 	bl	80144d4 <puts>
+ 8003ebc:	481e      	ldr	r0, [pc, #120]	@ (8003f38 <Move+0x300>)
+ 8003ebe:	f010 fb09 	bl	80144d4 <puts>
         return 0;
- 8003ec6:	2300      	movs	r3, #0
- 8003ec8:	e061      	b.n	8003f8e <Move+0x352>
+ 8003ec2:	2300      	movs	r3, #0
+ 8003ec4:	e061      	b.n	8003f8a <Move+0x352>
     }
 
     // Prevent multiple asynchronous commands
     if (is_async && StepperContext->is_running)
- 8003eca:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
- 8003ecc:	2b00      	cmp	r3, #0
- 8003ece:	d009      	beq.n	8003ee4 <Move+0x2a8>
- 8003ed0:	68fb      	ldr	r3, [r7, #12]
- 8003ed2:	68db      	ldr	r3, [r3, #12]
- 8003ed4:	2b00      	cmp	r3, #0
- 8003ed6:	d005      	beq.n	8003ee4 <Move+0x2a8>
+ 8003ec6:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
+ 8003ec8:	2b00      	cmp	r3, #0
+ 8003eca:	d009      	beq.n	8003ee0 <Move+0x2a8>
+ 8003ecc:	68fb      	ldr	r3, [r7, #12]
+ 8003ece:	68db      	ldr	r3, [r3, #12]
+ 8003ed0:	2b00      	cmp	r3, #0
+ 8003ed2:	d005      	beq.n	8003ee0 <Move+0x2a8>
     {
         printf("Error: Stepper is already moving asynchronously\r\n");
- 8003ed8:	4819      	ldr	r0, [pc, #100]	@ (8003f40 <Move+0x304>)
- 8003eda:	f010 fafb 	bl	80144d4 <puts>
+ 8003ed4:	4819      	ldr	r0, [pc, #100]	@ (8003f3c <Move+0x304>)
+ 8003ed6:	f010 fafd 	bl	80144d4 <puts>
         return -1;
- 8003ede:	f04f 33ff 	mov.w	r3, #4294967295
- 8003ee2:	e054      	b.n	8003f8e <Move+0x352>
+ 8003eda:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003ede:	e054      	b.n	8003f8a <Move+0x352>
     }
 
     // Perform movement
     int result = 0;
- 8003ee4:	2300      	movs	r3, #0
- 8003ee6:	637b      	str	r3, [r7, #52]	@ 0x34
+ 8003ee0:	2300      	movs	r3, #0
+ 8003ee2:	637b      	str	r3, [r7, #52]	@ 0x34
     StepperContext->is_running = 1; // Mark stepper as running
- 8003ee8:	68fb      	ldr	r3, [r7, #12]
- 8003eea:	2201      	movs	r2, #1
- 8003eec:	60da      	str	r2, [r3, #12]
+ 8003ee4:	68fb      	ldr	r3, [r7, #12]
+ 8003ee6:	2201      	movs	r2, #1
+ 8003ee8:	60da      	str	r2, [r3, #12]
     if (is_async)
- 8003eee:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
- 8003ef0:	2b00      	cmp	r3, #0
- 8003ef2:	d027      	beq.n	8003f44 <Move+0x308>
+ 8003eea:	6bfb      	ldr	r3, [r7, #60]	@ 0x3c
+ 8003eec:	2b00      	cmp	r3, #0
+ 8003eee:	d027      	beq.n	8003f40 <Move+0x308>
     {
         result = L6474_StepIncremental(StepperContext->h, steps_to_move);
- 8003ef4:	68fb      	ldr	r3, [r7, #12]
- 8003ef6:	681b      	ldr	r3, [r3, #0]
- 8003ef8:	69b9      	ldr	r1, [r7, #24]
- 8003efa:	4618      	mov	r0, r3
- 8003efc:	f001 ffd2 	bl	8005ea4 <L6474_StepIncremental>
- 8003f00:	6378      	str	r0, [r7, #52]	@ 0x34
- 8003f02:	e02e      	b.n	8003f62 <Move+0x326>
- 8003f04:	20000000 	.word	0x20000000
- 8003f08:	08018fd4 	.word	0x08018fd4
- 8003f0c:	08018ffc 	.word	0x08018ffc
- 8003f10:	08019018 	.word	0x08019018
- 8003f14:	08019038 	.word	0x08019038
- 8003f18:	08018eb0 	.word	0x08018eb0
- 8003f1c:	0801905c 	.word	0x0801905c
- 8003f20:	08019088 	.word	0x08019088
- 8003f24:	0801908c 	.word	0x0801908c
- 8003f28:	08019090 	.word	0x08019090
- 8003f2c:	080190ac 	.word	0x080190ac
- 8003f30:	42700000 	.word	0x42700000
- 8003f34:	080190c4 	.word	0x080190c4
- 8003f38:	080190f4 	.word	0x080190f4
- 8003f3c:	0801911c 	.word	0x0801911c
- 8003f40:	08019134 	.word	0x08019134
+ 8003ef0:	68fb      	ldr	r3, [r7, #12]
+ 8003ef2:	681b      	ldr	r3, [r3, #0]
+ 8003ef4:	69b9      	ldr	r1, [r7, #24]
+ 8003ef6:	4618      	mov	r0, r3
+ 8003ef8:	f001 ffd4 	bl	8005ea4 <L6474_StepIncremental>
+ 8003efc:	6378      	str	r0, [r7, #52]	@ 0x34
+ 8003efe:	e02e      	b.n	8003f5e <Move+0x326>
+ 8003f00:	20000000 	.word	0x20000000
+ 8003f04:	08018fd4 	.word	0x08018fd4
+ 8003f08:	08018ffc 	.word	0x08018ffc
+ 8003f0c:	08019018 	.word	0x08019018
+ 8003f10:	08019038 	.word	0x08019038
+ 8003f14:	08018eb0 	.word	0x08018eb0
+ 8003f18:	0801905c 	.word	0x0801905c
+ 8003f1c:	08019088 	.word	0x08019088
+ 8003f20:	0801908c 	.word	0x0801908c
+ 8003f24:	08019090 	.word	0x08019090
+ 8003f28:	080190ac 	.word	0x080190ac
+ 8003f2c:	42700000 	.word	0x42700000
+ 8003f30:	080190c4 	.word	0x080190c4
+ 8003f34:	080190f4 	.word	0x080190f4
+ 8003f38:	0801911c 	.word	0x0801911c
+ 8003f3c:	08019134 	.word	0x08019134
     }
     else
     {
         result = L6474_StepIncremental(StepperContext->h, steps_to_move);
- 8003f44:	68fb      	ldr	r3, [r7, #12]
- 8003f46:	681b      	ldr	r3, [r3, #0]
- 8003f48:	69b9      	ldr	r1, [r7, #24]
- 8003f4a:	4618      	mov	r0, r3
- 8003f4c:	f001 ffaa 	bl	8005ea4 <L6474_StepIncremental>
- 8003f50:	6378      	str	r0, [r7, #52]	@ 0x34
+ 8003f40:	68fb      	ldr	r3, [r7, #12]
+ 8003f42:	681b      	ldr	r3, [r3, #0]
+ 8003f44:	69b9      	ldr	r1, [r7, #24]
+ 8003f46:	4618      	mov	r0, r3
+ 8003f48:	f001 ffac 	bl	8005ea4 <L6474_StepIncremental>
+ 8003f4c:	6378      	str	r0, [r7, #52]	@ 0x34
         while (StepperContext->is_running)
- 8003f52:	e002      	b.n	8003f5a <Move+0x31e>
+ 8003f4e:	e002      	b.n	8003f56 <Move+0x31e>
         {
             StepLibraryDelay(1); // Wait for movement to complete
- 8003f54:	2001      	movs	r0, #1
- 8003f56:	f7ff fb2f 	bl	80035b8 <StepLibraryDelay>
+ 8003f50:	2001      	movs	r0, #1
+ 8003f52:	f7ff fb2f 	bl	80035b4 <StepLibraryDelay>
         while (StepperContext->is_running)
- 8003f5a:	68fb      	ldr	r3, [r7, #12]
- 8003f5c:	68db      	ldr	r3, [r3, #12]
- 8003f5e:	2b00      	cmp	r3, #0
- 8003f60:	d1f8      	bne.n	8003f54 <Move+0x318>
+ 8003f56:	68fb      	ldr	r3, [r7, #12]
+ 8003f58:	68db      	ldr	r3, [r3, #12]
+ 8003f5a:	2b00      	cmp	r3, #0
+ 8003f5c:	d1f8      	bne.n	8003f50 <Move+0x318>
         }
     }
 
     // Check for errors
     if (result != 0)
- 8003f62:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
- 8003f64:	2b00      	cmp	r3, #0
- 8003f66:	d009      	beq.n	8003f7c <Move+0x340>
+ 8003f5e:	6b7b      	ldr	r3, [r7, #52]	@ 0x34
+ 8003f60:	2b00      	cmp	r3, #0
+ 8003f62:	d009      	beq.n	8003f78 <Move+0x340>
     {
         printf("Error: Movement failed\r\n");
- 8003f68:	480b      	ldr	r0, [pc, #44]	@ (8003f98 <Move+0x35c>)
- 8003f6a:	f010 fab3 	bl	80144d4 <puts>
+ 8003f64:	480b      	ldr	r0, [pc, #44]	@ (8003f94 <Move+0x35c>)
+ 8003f66:	f010 fab5 	bl	80144d4 <puts>
         StepperContext->state = scsFLT;
- 8003f6e:	68fb      	ldr	r3, [r7, #12]
- 8003f70:	2204      	movs	r2, #4
- 8003f72:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
+ 8003f6a:	68fb      	ldr	r3, [r7, #12]
+ 8003f6c:	2204      	movs	r2, #4
+ 8003f6e:	f883 2024 	strb.w	r2, [r3, #36]	@ 0x24
         return -1;
- 8003f76:	f04f 33ff 	mov.w	r3, #4294967295
- 8003f7a:	e008      	b.n	8003f8e <Move+0x352>
+ 8003f72:	f04f 33ff 	mov.w	r3, #4294967295
+ 8003f76:	e008      	b.n	8003f8a <Move+0x352>
     }
 
     printf("Movement completed. Final position: %.2f mm\r\n", final_position);
- 8003f7c:	6a38      	ldr	r0, [r7, #32]
- 8003f7e:	f7fc fb13 	bl	80005a8 <__aeabi_f2d>
- 8003f82:	4602      	mov	r2, r0
- 8003f84:	460b      	mov	r3, r1
- 8003f86:	4805      	ldr	r0, [pc, #20]	@ (8003f9c <Move+0x360>)
- 8003f88:	f010 fa34 	bl	80143f4 <iprintf>
+ 8003f78:	6a38      	ldr	r0, [r7, #32]
+ 8003f7a:	f7fc fb15 	bl	80005a8 <__aeabi_f2d>
+ 8003f7e:	4602      	mov	r2, r0
+ 8003f80:	460b      	mov	r3, r1
+ 8003f82:	4805      	ldr	r0, [pc, #20]	@ (8003f98 <Move+0x360>)
+ 8003f84:	f010 fa36 	bl	80143f4 <iprintf>
     return 0;
- 8003f8c:	2300      	movs	r3, #0
+ 8003f88:	2300      	movs	r3, #0
 }
- 8003f8e:	4618      	mov	r0, r3
- 8003f90:	3748      	adds	r7, #72	@ 0x48
- 8003f92:	46bd      	mov	sp, r7
- 8003f94:	bd80      	pop	{r7, pc}
- 8003f96:	bf00      	nop
- 8003f98:	08019168 	.word	0x08019168
- 8003f9c:	08019180 	.word	0x08019180
+ 8003f8a:	4618      	mov	r0, r3
+ 8003f8c:	3748      	adds	r7, #72	@ 0x48
+ 8003f8e:	46bd      	mov	sp, r7
+ 8003f90:	bd80      	pop	{r7, pc}
+ 8003f92:	bf00      	nop
+ 8003f94:	08019168 	.word	0x08019168
+ 8003f98:	08019180 	.word	0x08019180
+ 8003f9c:	00000000 	.word	0x00000000
 
 08003fa0 <Config>:
 // WIP
@@ -9285,7 +9285,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
  8004780:	68ba      	ldr	r2, [r7, #8]
  8004782:	68f9      	ldr	r1, [r7, #12]
  8004784:	6938      	ldr	r0, [r7, #16]
- 8004786:	f7ff fa59 	bl	8003c3c <Move>
+ 8004786:	f7ff fa57 	bl	8003c38 <Move>
  800478a:	6178      	str	r0, [r7, #20]
  800478c:	e061      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9301,7 +9301,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
     {
         result = Reset(StepperContext);
  80047a0:	6938      	ldr	r0, [r7, #16]
- 80047a2:	f7fe ffa1 	bl	80036e8 <Reset>
+ 80047a2:	f7fe ff9f 	bl	80036e4 <Reset>
  80047a6:	6178      	str	r0, [r7, #20]
  80047a8:	e053      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9337,7 +9337,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
  80047dc:	68ba      	ldr	r2, [r7, #8]
  80047de:	68f9      	ldr	r1, [r7, #12]
  80047e0:	6938      	ldr	r0, [r7, #16]
- 80047e2:	f7fe fffd 	bl	80037e0 <Reference>
+ 80047e2:	f7fe fffb 	bl	80037dc <Reference>
  80047e6:	6178      	str	r0, [r7, #20]
  80047e8:	e033      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9353,7 +9353,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
     {
         result = StepTimerCancelAsync(NULL);
  80047fc:	2000      	movs	r0, #0
- 80047fe:	f7fe ff49 	bl	8003694 <StepTimerCancelAsync>
+ 80047fe:	f7fe ff47 	bl	8003690 <StepTimerCancelAsync>
  8004802:	6178      	str	r0, [r7, #20]
  8004804:	e025      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9371,7 +9371,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
  8004818:	68ba      	ldr	r2, [r7, #8]
  800481a:	68f9      	ldr	r1, [r7, #12]
  800481c:	6938      	ldr	r0, [r7, #16]
- 800481e:	f7ff f963 	bl	8003ae8 <Position>
+ 800481e:	f7ff f961 	bl	8003ae4 <Position>
  8004822:	6178      	str	r0, [r7, #20]
  8004824:	e015      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9389,7 +9389,7 @@ static int StepperHandler(int argc, char **argv, void *ctx)
  8004838:	68ba      	ldr	r2, [r7, #8]
  800483a:	68f9      	ldr	r1, [r7, #12]
  800483c:	6938      	ldr	r0, [r7, #16]
- 800483e:	f7ff f97f 	bl	8003b40 <Status>
+ 800483e:	f7ff f97d 	bl	8003b3c <Status>
  8004842:	6178      	str	r0, [r7, #20]
  8004844:	e005      	b.n	8004852 <StepperHandler+0x10a>
     }
@@ -9561,13 +9561,13 @@ void InitStepper(ConsoleHandle_t hconsole, SPI_HandleTypeDef *hspi1,
  8004972:	bf00      	nop
  8004974:	40020c00 	.word	0x40020c00
  8004978:	20000294 	.word	0x20000294
- 800497c:	080034d5 	.word	0x080034d5
- 8004980:	080034ed 	.word	0x080034ed
- 8004984:	08003505 	.word	0x08003505
- 8004988:	08003589 	.word	0x08003589
- 800498c:	080035b9 	.word	0x080035b9
- 8004990:	08003649 	.word	0x08003649
- 8004994:	08003695 	.word	0x08003695
+ 800497c:	080034d1 	.word	0x080034d1
+ 8004980:	080034e9 	.word	0x080034e9
+ 8004984:	08003501 	.word	0x08003501
+ 8004988:	08003585 	.word	0x08003585
+ 800498c:	080035b5 	.word	0x080035b5
+ 8004990:	08003645 	.word	0x08003645
+ 8004994:	08003691 	.word	0x08003691
  8004998:	200002b0 	.word	0x200002b0
  800499c:	20000000 	.word	0x20000000
  80049a0:	08004749 	.word	0x08004749
@@ -11159,7 +11159,7 @@ static int L6474_GetParamCommand(L6474_Handle_t h, int addr)
  80053a6:	46bd      	mov	sp, r7
  80053a8:	bd90      	pop	{r4, r7, pc}
  80053aa:	bf00      	nop
- 80053ac:	08019dfc 	.word	0x08019dfc
+ 80053ac:	08019ddc 	.word	0x08019ddc
 
 080053b0 <L6474_SetParamCommand>:
 
@@ -11396,7 +11396,7 @@ static int L6474_SetParamCommand(L6474_Handle_t h, int addr, int value)
  8005522:	372c      	adds	r7, #44	@ 0x2c
  8005524:	46bd      	mov	sp, r7
  8005526:	bd90      	pop	{r4, r7, pc}
- 8005528:	08019dfc 	.word	0x08019dfc
+ 8005528:	08019ddc 	.word	0x08019ddc
 
 0800552c <L6474_EnableCommand>:
 
@@ -14989,7 +14989,7 @@ void assert_failed(uint8_t *file, uint32_t line)
  80069d2:	bf00      	nop
  80069d4:	08019628 	.word	0x08019628
  80069d8:	08019640 	.word	0x08019640
- 80069dc:	08019fec 	.word	0x08019fec
+ 80069dc:	08019fcc 	.word	0x08019fcc
  80069e0:	08019644 	.word	0x08019644
 
 080069e4 <initialise_monitor_handles>:
@@ -16846,7 +16846,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8007378:	20000224 	.word	0x20000224
   ldr r2, =_sidata
- 800737c:	0801a4ec 	.word	0x0801a4ec
+ 800737c:	0801a4cc 	.word	0x0801a4cc
   ldr r2, =_sbss
  8007380:	20000224 	.word	0x20000224
   ldr r4, =_ebss
@@ -20565,7 +20565,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8008bd2:	bf00      	nop
  8008bd4:	080197b0 	.word	0x080197b0
  8008bd8:	40023800 	.word	0x40023800
- 8008bdc:	08019ffc 	.word	0x08019ffc
+ 8008bdc:	08019fdc 	.word	0x08019fdc
  8008be0:	2000004c 	.word	0x2000004c
  8008be4:	20000050 	.word	0x20000050
 
@@ -20820,7 +20820,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8008da8:	4618      	mov	r0, r3
  8008daa:	bd80      	pop	{r7, pc}
  8008dac:	40023800 	.word	0x40023800
- 8008db0:	0801a00c 	.word	0x0801a00c
+ 8008db0:	08019fec 	.word	0x08019fec
 
 08008db4 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -20846,7 +20846,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8008dd0:	4618      	mov	r0, r3
  8008dd2:	bd80      	pop	{r7, pc}
  8008dd4:	40023800 	.word	0x40023800
- 8008dd8:	0801a00c 	.word	0x0801a00c
+ 8008dd8:	08019fec 	.word	0x08019fec
 
 08008ddc <HAL_RCCEx_PeriphCLKConfig>:
   *         the backup registers) are set to their reset values.
@@ -38109,7 +38109,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  800fe3e:	46bd      	mov	sp, r7
  800fe40:	bd80      	pop	{r7, pc}
  800fe42:	bf00      	nop
- 800fe44:	08019988 	.word	0x08019988
+ 800fe44:	08019980 	.word	0x08019980
  800fe48:	20000670 	.word	0x20000670
  800fe4c:	200006d8 	.word	0x200006d8
  800fe50:	20000740 	.word	0x20000740
@@ -38565,7 +38565,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  80100c4:	200005d4 	.word	0x200005d4
  80100c8:	200005ec 	.word	0x200005ec
  80100cc:	20000614 	.word	0x20000614
- 80100d0:	08019988 	.word	0x08019988
+ 80100d0:	08019980 	.word	0x08019980
  80100d4:	e000ed04 	.word	0xe000ed04
 
 080100d8 <vTaskDelay>:
@@ -38652,7 +38652,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  8010140:	46bd      	mov	sp, r7
  8010142:	bd80      	pop	{r7, pc}
  8010144:	20000614 	.word	0x20000614
- 8010148:	08019988 	.word	0x08019988
+ 8010148:	08019980 	.word	0x08019980
  801014c:	e000ed04 	.word	0xe000ed04
 
 08010150 <eTaskGetState>:
@@ -38869,7 +38869,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  801024a:	3728      	adds	r7, #40	@ 0x28
  801024c:	46bd      	mov	sp, r7
  801024e:	bd80      	pop	{r7, pc}
- 8010250:	08019988 	.word	0x08019988
+ 8010250:	08019980 	.word	0x08019980
  8010254:	200004ec 	.word	0x200004ec
  8010258:	200005a4 	.word	0x200005a4
  801025c:	200005a8 	.word	0x200005a8
@@ -39001,7 +39001,7 @@ static BaseType_t prvCreateIdleTasks( void )
  80102f2:	46bd      	mov	sp, r7
  80102f4:	bd80      	pop	{r7, pc}
  80102f6:	bf00      	nop
- 80102f8:	08019a04 	.word	0x08019a04
+ 80102f8:	080199f4 	.word	0x080199f4
  80102fc:	08010ea9 	.word	0x08010ea9
  8010300:	20000610 	.word	0x20000610
 
@@ -39128,8 +39128,8 @@ void vTaskStartScheduler( void )
  801039c:	2000060c 	.word	0x2000060c
  80103a0:	200005f8 	.word	0x200005f8
  80103a4:	200005f0 	.word	0x200005f0
- 80103a8:	08019988 	.word	0x08019988
- 80103ac:	0801a014 	.word	0x0801a014
+ 80103a8:	08019980 	.word	0x08019980
+ 80103ac:	08019ff4 	.word	0x08019ff4
 
 080103b0 <vTaskSuspendAll>:
     traceRETURN_vTaskEndScheduler();
@@ -39515,7 +39515,7 @@ BaseType_t xTaskResumeAll( void )
  80105c0:	bd80      	pop	{r7, pc}
  80105c2:	bf00      	nop
  80105c4:	20000614 	.word	0x20000614
- 80105c8:	08019988 	.word	0x08019988
+ 80105c8:	08019980 	.word	0x08019980
  80105cc:	200005ec 	.word	0x200005ec
  80105d0:	200005ac 	.word	0x200005ac
  80105d4:	200005f4 	.word	0x200005f4
@@ -40136,7 +40136,7 @@ BaseType_t xTaskIncrementTick( void )
  8010940:	20000614 	.word	0x20000614
  8010944:	200005f0 	.word	0x200005f0
  8010948:	200005a4 	.word	0x200005a4
- 801094c:	08019988 	.word	0x08019988
+ 801094c:	08019980 	.word	0x08019980
  8010950:	200005a8 	.word	0x200005a8
  8010954:	20000604 	.word	0x20000604
  8010958:	2000060c 	.word	0x2000060c
@@ -40332,7 +40332,7 @@ BaseType_t xTaskIncrementTick( void )
  8010ab8:	200004ec 	.word	0x200004ec
  8010abc:	200005f4 	.word	0x200005f4
  8010ac0:	200004f0 	.word	0x200004f0
- 8010ac4:	08019988 	.word	0x08019988
+ 8010ac4:	08019980 	.word	0x08019980
  8010ac8:	200001d4 	.word	0x200001d4
 
 08010acc <vTaskPlaceOnEventList>:
@@ -40390,7 +40390,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList,
  8010b16:	3710      	adds	r7, #16
  8010b18:	46bd      	mov	sp, r7
  8010b1a:	bd80      	pop	{r7, pc}
- 8010b1c:	08019988 	.word	0x08019988
+ 8010b1c:	08019980 	.word	0x08019980
  8010b20:	200004ec 	.word	0x200004ec
 
 08010b24 <vTaskPlaceOnEventListRestricted>:
@@ -40490,7 +40490,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList,
  8010bb2:	46bd      	mov	sp, r7
  8010bb4:	bd80      	pop	{r7, pc}
  8010bb6:	bf00      	nop
- 8010bb8:	08019988 	.word	0x08019988
+ 8010bb8:	08019980 	.word	0x08019980
  8010bbc:	200004ec 	.word	0x200004ec
 
 08010bc0 <xTaskRemoveFromEventList>:
@@ -40747,7 +40747,7 @@ BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList )
  8010d5a:	3728      	adds	r7, #40	@ 0x28
  8010d5c:	46bd      	mov	sp, r7
  8010d5e:	bd80      	pop	{r7, pc}
- 8010d60:	08019988 	.word	0x08019988
+ 8010d60:	08019980 	.word	0x08019980
  8010d64:	20000614 	.word	0x20000614
  8010d68:	200005f4 	.word	0x200005f4
  8010d6c:	200004f0 	.word	0x200004f0
@@ -40949,7 +40949,7 @@ BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut,
  8010e7e:	46bd      	mov	sp, r7
  8010e80:	bd80      	pop	{r7, pc}
  8010e82:	bf00      	nop
- 8010e84:	08019988 	.word	0x08019988
+ 8010e84:	08019980 	.word	0x08019980
  8010e88:	200005f0 	.word	0x200005f0
  8010e8c:	20000604 	.word	0x20000604
 
@@ -42205,7 +42205,7 @@ static void prvResetNextTaskUnblockTime( void )
  80114c8:	bd80      	pop	{r7, pc}
  80114ca:	bf00      	nop
  80114cc:	200004ec 	.word	0x200004ec
- 80114d0:	08019988 	.word	0x08019988
+ 80114d0:	08019980 	.word	0x08019980
  80114d4:	200005f4 	.word	0x200005f4
  80114d8:	200004f0 	.word	0x200004f0
 
@@ -42472,7 +42472,7 @@ static void prvResetNextTaskUnblockTime( void )
  801165a:	46bd      	mov	sp, r7
  801165c:	bd80      	pop	{r7, pc}
  801165e:	bf00      	nop
- 8011660:	08019988 	.word	0x08019988
+ 8011660:	08019980 	.word	0x08019980
  8011664:	200004ec 	.word	0x200004ec
  8011668:	200004f0 	.word	0x200004f0
  801166c:	200005f4 	.word	0x200005f4
@@ -42766,9 +42766,9 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
  8011802:	bd80      	pop	{r7, pc}
  8011804:	20000650 	.word	0x20000650
  8011808:	20000654 	.word	0x20000654
- 801180c:	08019a34 	.word	0x08019a34
+ 801180c:	08019a24 	.word	0x08019a24
  8011810:	080118bd 	.word	0x080118bd
- 8011814:	08019a3c 	.word	0x08019a3c
+ 8011814:	08019a2c 	.word	0x08019a2c
 
 08011818 <prvReloadTimer>:
 /*-----------------------------------------------------------*/
@@ -43522,7 +43522,7 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
  8011c1a:	3720      	adds	r7, #32
  8011c1c:	46bd      	mov	sp, r7
  8011c1e:	bd80      	pop	{r7, pc}
- 8011c20:	08019a3c 	.word	0x08019a3c
+ 8011c20:	08019a2c 	.word	0x08019a2c
  8011c24:	20000650 	.word	0x20000650
 
 08011c28 <prvSwitchTimerLists>:
@@ -43792,7 +43792,7 @@ static void prvTaskExitError( void )
  8011d8c:	bd80      	pop	{r7, pc}
  8011d8e:	bf00      	nop
  8011d90:	20000058 	.word	0x20000058
- 8011d94:	08019ab8 	.word	0x08019ab8
+ 8011d94:	08019aa0 	.word	0x08019aa0
 	...
 
 08011da0 <SVC_Handler>:
@@ -44145,7 +44145,7 @@ BaseType_t xPortStartScheduler( void )
  8011f82:	bd80      	pop	{r7, pc}
  8011f84:	e000ed08 	.word	0xe000ed08
  8011f88:	08011da1 	.word	0x08011da1
- 8011f8c:	08019ab8 	.word	0x08019ab8
+ 8011f8c:	08019aa0 	.word	0x08019aa0
  8011f90:	08012081 	.word	0x08012081
  8011f94:	e000e400 	.word	0xe000e400
  8011f98:	2000065c 	.word	0x2000065c
@@ -44220,7 +44220,7 @@ void vPortEnterCritical( void )
  8012012:	bd80      	pop	{r7, pc}
  8012014:	20000058 	.word	0x20000058
  8012018:	e000ed04 	.word	0xe000ed04
- 801201c:	08019ab8 	.word	0x08019ab8
+ 801201c:	08019aa0 	.word	0x08019aa0
 
 08012020 <vPortExitCritical>:
 /*-----------------------------------------------------------*/
@@ -44285,7 +44285,7 @@ portFORCE_INLINE static void vPortSetBASEPRI( uint32_t ulNewMaskValue )
  8012074:	bd80      	pop	{r7, pc}
  8012076:	bf00      	nop
  8012078:	20000058 	.word	0x20000058
- 801207c:	08019ab8 	.word	0x08019ab8
+ 801207c:	08019aa0 	.word	0x08019aa0
 
 08012080 <PendSV_Handler>:
 
@@ -44485,9 +44485,9 @@ static void vPortEnableVFP( void )
  80121b8:	e7f3      	b.n	80121a2 <__assert_func+0x12>
  80121ba:	bf00      	nop
  80121bc:	200001d4 	.word	0x200001d4
- 80121c0:	0801a018 	.word	0x0801a018
- 80121c4:	0801a025 	.word	0x0801a025
- 80121c8:	0801a053 	.word	0x0801a053
+ 80121c0:	08019ff8 	.word	0x08019ff8
+ 80121c4:	0801a005 	.word	0x0801a005
+ 80121c8:	0801a033 	.word	0x0801a033
 
 080121cc <atof>:
  80121cc:	2100      	movs	r1, #0
@@ -45048,8 +45048,8 @@ static void vPortEnableVFP( void )
  80126e0:	e782      	b.n	80125e8 <_strtod_l+0x190>
  80126e2:	f04f 0c01 	mov.w	ip, #1
  80126e6:	e7f8      	b.n	80126da <_strtod_l+0x282>
- 80126e8:	0801a25c 	.word	0x0801a25c
- 80126ec:	0801a054 	.word	0x0801a054
+ 80126e8:	0801a23c 	.word	0x0801a23c
+ 80126ec:	0801a034 	.word	0x0801a034
  80126f0:	7ff00000 	.word	0x7ff00000
  80126f4:	9a19      	ldr	r2, [sp, #100]	@ 0x64
  80126f6:	1c51      	adds	r1, r2, #1
@@ -45339,13 +45339,13 @@ static void vPortEnableVFP( void )
  80129cc:	f04f 0b00 	mov.w	fp, #0
  80129d0:	6013      	str	r3, [r2, #0]
  80129d2:	e76b      	b.n	80128ac <_strtod_l+0x454>
- 80129d4:	0801a063 	.word	0x0801a063
- 80129d8:	0801a248 	.word	0x0801a248
- 80129dc:	0801a05b 	.word	0x0801a05b
- 80129e0:	0801a10b 	.word	0x0801a10b
- 80129e4:	0801a053 	.word	0x0801a053
- 80129e8:	0801a3d0 	.word	0x0801a3d0
- 80129ec:	0801a3a8 	.word	0x0801a3a8
+ 80129d4:	0801a043 	.word	0x0801a043
+ 80129d8:	0801a228 	.word	0x0801a228
+ 80129dc:	0801a03b 	.word	0x0801a03b
+ 80129e0:	0801a0eb 	.word	0x0801a0eb
+ 80129e4:	0801a033 	.word	0x0801a033
+ 80129e8:	0801a3b0 	.word	0x0801a3b0
+ 80129ec:	0801a388 	.word	0x0801a388
  80129f0:	7ff00000 	.word	0x7ff00000
  80129f4:	7ca00000 	.word	0x7ca00000
  80129f8:	7fefffff 	.word	0x7fefffff
@@ -45631,7 +45631,7 @@ static void vPortEnableVFP( void )
  8012ca6:	2322      	movs	r3, #34	@ 0x22
  8012ca8:	6013      	str	r3, [r2, #0]
  8012caa:	e603      	b.n	80128b4 <_strtod_l+0x45c>
- 8012cac:	0801a270 	.word	0x0801a270
+ 8012cac:	0801a250 	.word	0x0801a250
  8012cb0:	fffffc02 	.word	0xfffffc02
  8012cb4:	39500000 	.word	0x39500000
  8012cb8:	7ff00000 	.word	0x7ff00000
@@ -46068,7 +46068,7 @@ static void vPortEnableVFP( void )
  801312c:	d1f6      	bne.n	801311c <_strtol_l.isra.0+0xd8>
  801312e:	f8c8 1000 	str.w	r1, [r8]
  8013132:	e794      	b.n	801305e <_strtol_l.isra.0+0x1a>
- 8013134:	0801a299 	.word	0x0801a299
+ 8013134:	0801a279 	.word	0x0801a279
 
 08013138 <_strtol_r>:
  8013138:	f7ff bf84 	b.w	8013044 <_strtol_l.isra.0>
@@ -46629,11 +46629,11 @@ static void vPortEnableVFP( void )
  8013698:	e7ee      	b.n	8013678 <_printf_float+0x2a4>
  801369a:	bf00      	nop
  801369c:	7fefffff 	.word	0x7fefffff
- 80136a0:	0801a05a 	.word	0x0801a05a
- 80136a4:	0801a056 	.word	0x0801a056
- 80136a8:	0801a062 	.word	0x0801a062
- 80136ac:	0801a05e 	.word	0x0801a05e
- 80136b0:	0801a066 	.word	0x0801a066
+ 80136a0:	0801a03a 	.word	0x0801a03a
+ 80136a4:	0801a036 	.word	0x0801a036
+ 80136a8:	0801a042 	.word	0x0801a042
+ 80136ac:	0801a03e 	.word	0x0801a03e
+ 80136b0:	0801a046 	.word	0x0801a046
  80136b4:	6da3      	ldr	r3, [r4, #88]	@ 0x58
  80136b6:	f8dd a028 	ldr.w	sl, [sp, #40]	@ 0x28
  80136ba:	4553      	cmp	r3, sl
@@ -47111,8 +47111,8 @@ static void vPortEnableVFP( void )
  8013b30:	2500      	movs	r5, #0
  8013b32:	f104 0619 	add.w	r6, r4, #25
  8013b36:	e7f5      	b.n	8013b24 <_printf_i+0x220>
- 8013b38:	0801a068 	.word	0x0801a068
- 8013b3c:	0801a079 	.word	0x0801a079
+ 8013b38:	0801a048 	.word	0x0801a048
+ 8013b3c:	0801a059 	.word	0x0801a059
 
 08013b40 <_scanf_float>:
  8013b40:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -47507,8 +47507,8 @@ static void vPortEnableVFP( void )
  8013f4e:	2700      	movs	r7, #0
  8013f50:	e62e      	b.n	8013bb0 <_scanf_float+0x70>
  8013f52:	bf00      	nop
- 8013f54:	0801a08a 	.word	0x0801a08a
- 8013f58:	0801a053 	.word	0x0801a053
+ 8013f54:	0801a06a 	.word	0x0801a06a
+ 8013f58:	0801a033 	.word	0x0801a033
 
 08013f5c <_fclose_r>:
  8013f5c:	b570      	push	{r4, r5, r6, lr}
@@ -48644,8 +48644,8 @@ static void vPortEnableVFP( void )
  801495c:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
  8014960:	f000 b806 	b.w	8014970 <__strtok_r>
  8014964:	200001d4 	.word	0x200001d4
- 8014968:	0801a08f 	.word	0x0801a08f
- 801496c:	0801a0a6 	.word	0x0801a0a6
+ 8014968:	0801a06f 	.word	0x0801a06f
+ 801496c:	0801a086 	.word	0x0801a086
 
 08014970 <__strtok_r>:
  8014970:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -48875,10 +48875,10 @@ static void vPortEnableVFP( void )
  8014b4e:	4798      	blx	r3
  8014b50:	3601      	adds	r6, #1
  8014b52:	e7f2      	b.n	8014b3a <__libc_init_array+0x1e>
- 8014b54:	0801a4e0 	.word	0x0801a4e0
- 8014b58:	0801a4e0 	.word	0x0801a4e0
- 8014b5c:	0801a4e0 	.word	0x0801a4e0
- 8014b60:	0801a4e8 	.word	0x0801a4e8
+ 8014b54:	0801a4c0 	.word	0x0801a4c0
+ 8014b58:	0801a4c0 	.word	0x0801a4c0
+ 8014b5c:	0801a4c0 	.word	0x0801a4c0
+ 8014b60:	0801a4c8 	.word	0x0801a4c8
 
 08014b64 <__retarget_lock_init_recursive>:
  8014b64:	4770      	bx	lr
@@ -49311,15 +49311,15 @@ static void vPortEnableVFP( void )
  8014f8c:	3fc68a28 	.word	0x3fc68a28
  8014f90:	509f79fb 	.word	0x509f79fb
  8014f94:	3fd34413 	.word	0x3fd34413
- 8014f98:	0801a08f 	.word	0x0801a08f
- 8014f9c:	0801a115 	.word	0x0801a115
+ 8014f98:	0801a06f 	.word	0x0801a06f
+ 8014f9c:	0801a0f5 	.word	0x0801a0f5
  8014fa0:	7ff00000 	.word	0x7ff00000
- 8014fa4:	0801a067 	.word	0x0801a067
+ 8014fa4:	0801a047 	.word	0x0801a047
  8014fa8:	3ff80000 	.word	0x3ff80000
- 8014fac:	0801a3d0 	.word	0x0801a3d0
- 8014fb0:	0801a16d 	.word	0x0801a16d
- 8014fb4:	0801a111 	.word	0x0801a111
- 8014fb8:	0801a066 	.word	0x0801a066
+ 8014fac:	0801a3b0 	.word	0x0801a3b0
+ 8014fb0:	0801a14d 	.word	0x0801a14d
+ 8014fb4:	0801a0f1 	.word	0x0801a0f1
+ 8014fb8:	0801a046 	.word	0x0801a046
  8014fbc:	f8d9 301c 	ldr.w	r3, [r9, #28]
  8014fc0:	6018      	str	r0, [r3, #0]
  8014fc2:	9b03      	ldr	r3, [sp, #12]
@@ -49548,8 +49548,8 @@ static void vPortEnableVFP( void )
  8015240:	e9cd 0104 	strd	r0, r1, [sp, #16]
  8015244:	e7c4      	b.n	80151d0 <_dtoa_r+0x508>
  8015246:	bf00      	nop
- 8015248:	0801a3d0 	.word	0x0801a3d0
- 801524c:	0801a3a8 	.word	0x0801a3a8
+ 8015248:	0801a3b0 	.word	0x0801a3b0
+ 801524c:	0801a388 	.word	0x0801a388
  8015250:	3ff00000 	.word	0x3ff00000
  8015254:	40240000 	.word	0x40240000
  8015258:	401c0000 	.word	0x401c0000
@@ -50178,8 +50178,8 @@ static void vPortEnableVFP( void )
  8015858:	f000 fc32 	bl	80160c0 <__multadd>
  801585c:	9002      	str	r0, [sp, #8]
  801585e:	e7eb      	b.n	8015838 <_dtoa_r+0xb70>
- 8015860:	0801a16d 	.word	0x0801a16d
- 8015864:	0801a108 	.word	0x0801a108
+ 8015860:	0801a14d 	.word	0x0801a14d
+ 8015864:	0801a0e8 	.word	0x0801a0e8
 
 08015868 <_free_r>:
  8015868:	b538      	push	{r3, r4, r5, lr}
@@ -50619,9 +50619,9 @@ static void vPortEnableVFP( void )
  8015c76:	2b00      	cmp	r3, #0
  8015c78:	d1dd      	bne.n	8015c36 <__gethex+0x26a>
  8015c7a:	e7ee      	b.n	8015c5a <__gethex+0x28e>
- 8015c7c:	0801a054 	.word	0x0801a054
- 8015c80:	0801a16d 	.word	0x0801a16d
- 8015c84:	0801a17e 	.word	0x0801a17e
+ 8015c7c:	0801a034 	.word	0x0801a034
+ 8015c80:	0801a14d 	.word	0x0801a14d
+ 8015c84:	0801a15e 	.word	0x0801a15e
  8015c88:	1e6f      	subs	r7, r5, #1
  8015c8a:	f1b9 0f00 	cmp.w	r9, #0
  8015c8e:	d130      	bne.n	8015cf2 <__gethex+0x326>
@@ -50756,7 +50756,7 @@ static void vPortEnableVFP( void )
  8015de2:	42b0      	cmp	r0, r6
  8015de4:	dbe7      	blt.n	8015db6 <__gethex+0x3ea>
  8015de6:	e7f0      	b.n	8015dca <__gethex+0x3fe>
- 8015de8:	0801a16d 	.word	0x0801a16d
+ 8015de8:	0801a14d 	.word	0x0801a14d
 
 08015dec <L_shift>:
  8015dec:	f1c2 0208 	rsb	r2, r2, #8
@@ -51041,8 +51041,8 @@ static void vPortEnableVFP( void )
  801606c:	e9c0 3303 	strd	r3, r3, [r0, #12]
  8016070:	e7f7      	b.n	8016062 <_Balloc+0x66>
  8016072:	bf00      	nop
- 8016074:	0801a08f 	.word	0x0801a08f
- 8016078:	0801a1de 	.word	0x0801a1de
+ 8016074:	0801a06f 	.word	0x0801a06f
+ 8016078:	0801a1be 	.word	0x0801a1be
 
 0801607c <_Bfree>:
  801607c:	b570      	push	{r4, r5, r6, lr}
@@ -51070,8 +51070,8 @@ static void vPortEnableVFP( void )
  80160b0:	6021      	str	r1, [r4, #0]
  80160b2:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
  80160b6:	bd70      	pop	{r4, r5, r6, pc}
- 80160b8:	0801a08f 	.word	0x0801a08f
- 80160bc:	0801a1de 	.word	0x0801a1de
+ 80160b8:	0801a06f 	.word	0x0801a06f
+ 80160bc:	0801a1be 	.word	0x0801a1be
 
 080160c0 <__multadd>:
  80160c0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -51125,8 +51125,8 @@ static void vPortEnableVFP( void )
  801613c:	6125      	str	r5, [r4, #16]
  801613e:	4620      	mov	r0, r4
  8016140:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 8016144:	0801a16d 	.word	0x0801a16d
- 8016148:	0801a1de 	.word	0x0801a1de
+ 8016144:	0801a14d 	.word	0x0801a14d
+ 8016148:	0801a1be 	.word	0x0801a1be
 
 0801614c <__s2b>:
  801614c:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -51187,8 +51187,8 @@ static void vPortEnableVFP( void )
  80161d0:	f7ff ff76 	bl	80160c0 <__multadd>
  80161d4:	e7ee      	b.n	80161b4 <__s2b+0x68>
  80161d6:	bf00      	nop
- 80161d8:	0801a16d 	.word	0x0801a16d
- 80161dc:	0801a1de 	.word	0x0801a1de
+ 80161d8:	0801a14d 	.word	0x0801a14d
+ 80161dc:	0801a1be 	.word	0x0801a1be
 
 080161e0 <__hi0bits>:
  80161e0:	f5b0 3f80 	cmp.w	r0, #65536	@ 0x10000
@@ -51278,8 +51278,8 @@ static void vPortEnableVFP( void )
  8016296:	6103      	str	r3, [r0, #16]
  8016298:	bd10      	pop	{r4, pc}
  801629a:	bf00      	nop
- 801629c:	0801a16d 	.word	0x0801a16d
- 80162a0:	0801a1de 	.word	0x0801a1de
+ 801629c:	0801a14d 	.word	0x0801a14d
+ 80162a0:	0801a1be 	.word	0x0801a1be
 
 080162a4 <__multiply>:
  80162a4:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -51398,8 +51398,8 @@ static void vPortEnableVFP( void )
  80163da:	e79f      	b.n	801631c <__multiply+0x78>
  80163dc:	3e01      	subs	r6, #1
  80163de:	e7a1      	b.n	8016324 <__multiply+0x80>
- 80163e0:	0801a16d 	.word	0x0801a16d
- 80163e4:	0801a1de 	.word	0x0801a1de
+ 80163e0:	0801a14d 	.word	0x0801a14d
+ 80163e4:	0801a1be 	.word	0x0801a1be
 
 080163e8 <__pow5mult>:
  80163e8:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -51467,9 +51467,9 @@ static void vPortEnableVFP( void )
  8016488:	4630      	mov	r0, r6
  801648a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  801648e:	bf00      	nop
- 8016490:	0801a39c 	.word	0x0801a39c
- 8016494:	0801a08f 	.word	0x0801a08f
- 8016498:	0801a1de 	.word	0x0801a1de
+ 8016490:	0801a37c 	.word	0x0801a37c
+ 8016494:	0801a06f 	.word	0x0801a06f
+ 8016498:	0801a1be 	.word	0x0801a1be
 
 0801649c <__lshift>:
  801649c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -51548,8 +51548,8 @@ static void vPortEnableVFP( void )
  8016566:	d8f9      	bhi.n	801655c <__lshift+0xc0>
  8016568:	e7ea      	b.n	8016540 <__lshift+0xa4>
  801656a:	bf00      	nop
- 801656c:	0801a16d 	.word	0x0801a16d
- 8016570:	0801a1de 	.word	0x0801a1de
+ 801656c:	0801a14d 	.word	0x0801a14d
+ 8016570:	0801a1be 	.word	0x0801a1be
 
 08016574 <__mcmp>:
  8016574:	690a      	ldr	r2, [r1, #16]
@@ -51685,8 +51685,8 @@ static void vPortEnableVFP( void )
  80166c6:	3f01      	subs	r7, #1
  80166c8:	e7e7      	b.n	801669a <__mdiff+0xee>
  80166ca:	bf00      	nop
- 80166cc:	0801a16d 	.word	0x0801a16d
- 80166d0:	0801a1de 	.word	0x0801a1de
+ 80166cc:	0801a14d 	.word	0x0801a14d
+ 80166d0:	0801a1be 	.word	0x0801a1be
 
 080166d4 <__ulp>:
  80166d4:	b082      	sub	sp, #8
@@ -51836,8 +51836,8 @@ static void vPortEnableVFP( void )
  8016852:	f7ff fcc5 	bl	80161e0 <__hi0bits>
  8016856:	ebc0 1042 	rsb	r0, r0, r2, lsl #5
  801685a:	e7e5      	b.n	8016828 <__d2b+0x74>
- 801685c:	0801a16d 	.word	0x0801a16d
- 8016860:	0801a1de 	.word	0x0801a1de
+ 801685c:	0801a14d 	.word	0x0801a14d
+ 8016860:	0801a1be 	.word	0x0801a1be
 
 08016864 <__ratio>:
  8016864:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -52261,11 +52261,11 @@ static void vPortEnableVFP( void )
  8016c58:	4638      	mov	r0, r7
  8016c5a:	f7fc fe53 	bl	8013904 <_printf_i>
  8016c5e:	e7ed      	b.n	8016c3c <_svfiprintf_r+0x1c0>
- 8016c60:	0801a237 	.word	0x0801a237
- 8016c64:	0801a241 	.word	0x0801a241
+ 8016c60:	0801a217 	.word	0x0801a217
+ 8016c64:	0801a221 	.word	0x0801a221
  8016c68:	080133d5 	.word	0x080133d5
  8016c6c:	080169c7 	.word	0x080169c7
- 8016c70:	0801a23d 	.word	0x0801a23d
+ 8016c70:	0801a21d 	.word	0x0801a21d
 
 08016c74 <__sfputc_r>:
  8016c74:	6893      	ldr	r3, [r2, #8]
@@ -52531,11 +52531,11 @@ static void vPortEnableVFP( void )
  8016edc:	4630      	mov	r0, r6
  8016ede:	f7fc fd11 	bl	8013904 <_printf_i>
  8016ee2:	e7e4      	b.n	8016eae <_vfiprintf_r+0x1e6>
- 8016ee4:	0801a237 	.word	0x0801a237
- 8016ee8:	0801a241 	.word	0x0801a241
+ 8016ee4:	0801a217 	.word	0x0801a217
+ 8016ee8:	0801a221 	.word	0x0801a221
  8016eec:	080133d5 	.word	0x080133d5
  8016ef0:	08016ca3 	.word	0x08016ca3
- 8016ef4:	0801a23d 	.word	0x0801a23d
+ 8016ef4:	0801a21d 	.word	0x0801a21d
 
 08016ef8 <_getc_r>:
  8016ef8:	b538      	push	{r3, r4, r5, lr}
@@ -53758,11 +53758,11 @@ static void vPortEnableVFP( void )
  8017b3c:	43400000 	.word	0x43400000
  8017b40:	0003988e 	.word	0x0003988e
  8017b44:	000bb679 	.word	0x000bb679
- 8017b48:	0801a4b8 	.word	0x0801a4b8
+ 8017b48:	0801a498 	.word	0x0801a498
  8017b4c:	3ff00000 	.word	0x3ff00000
  8017b50:	40080000 	.word	0x40080000
- 8017b54:	0801a498 	.word	0x0801a498
- 8017b58:	0801a4a8 	.word	0x0801a4a8
+ 8017b54:	0801a478 	.word	0x0801a478
+ 8017b58:	0801a488 	.word	0x0801a488
  8017b5c:	4602      	mov	r2, r0
  8017b5e:	460b      	mov	r3, r1
  8017b60:	e9dd 0106 	ldrd	r0, r1, [sp, #24]
@@ -54333,8 +54333,8 @@ static void vPortEnableVFP( void )
  801816a:	f023 0501 	bic.w	r5, r3, #1
  801816e:	e7de      	b.n	801812e <__ieee754_sqrt+0x15e>
  8018170:	7ff00000 	.word	0x7ff00000
- 8018174:	0801a4d0 	.word	0x0801a4d0
- 8018178:	0801a4c8 	.word	0x0801a4c8
+ 8018174:	0801a4b0 	.word	0x0801a4b0
+ 8018178:	0801a4a8 	.word	0x0801a4a8
 
 0801817c <_init>:
  801817c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}

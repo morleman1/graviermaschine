@@ -76,7 +76,7 @@ void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim)
 
   spindleContext.handle= SPINDLE_CreateInstance(4 * configMINIMAL_STACK_SIZE,
                                          configMAX_PRIORITIES - 3,
-                                         *consoleHandle, &s);
+                                         consoleHandle, &s);
 
   if (spindleContext.handle == NULL)
   {
