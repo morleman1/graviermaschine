@@ -6956,20 +6956,20 @@ static int Reset(StepperContext_t *StepperContext)
     param.stepMode = smMICRO16;
  80036ec:	2304      	movs	r3, #4
  80036ee:	733b      	strb	r3, [r7, #12]
-    param.OcdTh = ocdth6000mA; // 3000mA ? cause requirements
+    param.OcdTh = ocdth6000mA;
  80036f0:	230f      	movs	r3, #15
  80036f2:	737b      	strb	r3, [r7, #13]
-    param.TimeOnMin = 0x29;
- 80036f4:	2329      	movs	r3, #41	@ 0x29
+    param.TimeOnMin = 0x23;
+ 80036f4:	2323      	movs	r3, #35	@ 0x23
  80036f6:	73bb      	strb	r3, [r7, #14]
-    param.TimeOffMin = 0x29;
- 80036f8:	2329      	movs	r3, #41	@ 0x29
+    param.TimeOffMin = 0x23;
+ 80036f8:	2323      	movs	r3, #35	@ 0x23
  80036fa:	73fb      	strb	r3, [r7, #15]
-    param.TorqueVal = 0x26;
- 80036fc:	2326      	movs	r3, #38	@ 0x26
+    param.TorqueVal = 0x24;
+ 80036fc:	2324      	movs	r3, #36	@ 0x24
  80036fe:	743b      	strb	r3, [r7, #16]
-    param.TFast = 0x19;
- 8003700:	2319      	movs	r3, #25
+    param.TFast = 0x18;
+ 8003700:	2318      	movs	r3, #24
  8003702:	747b      	strb	r3, [r7, #17]
     int result = 0;
  8003704:	2300      	movs	r3, #0
@@ -13417,11 +13417,11 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
  80060b2:	9317      	str	r3, [sp, #92]	@ 0x5c
  80060b4:	2301      	movs	r3, #1
  80060b6:	9316      	str	r3, [sp, #88]	@ 0x58
- 80060b8:	2300      	movs	r3, #0
+ 80060b8:	2301      	movs	r3, #1
  80060ba:	9315      	str	r3, [sp, #84]	@ 0x54
- 80060bc:	2300      	movs	r3, #0
+ 80060bc:	2301      	movs	r3, #1
  80060be:	9314      	str	r3, [sp, #80]	@ 0x50
- 80060c0:	2300      	movs	r3, #0
+ 80060c0:	2301      	movs	r3, #1
  80060c2:	9313      	str	r3, [sp, #76]	@ 0x4c
  80060c4:	2301      	movs	r3, #1
  80060c6:	9312      	str	r3, [sp, #72]	@ 0x48
@@ -13441,7 +13441,7 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
  80060e2:	930b      	str	r3, [sp, #44]	@ 0x2c
  80060e4:	2301      	movs	r3, #1
  80060e6:	930a      	str	r3, [sp, #40]	@ 0x28
- 80060e8:	2300      	movs	r3, #0
+ 80060e8:	2301      	movs	r3, #1
  80060ea:	9309      	str	r3, [sp, #36]	@ 0x24
  80060ec:	2301      	movs	r3, #1
  80060ee:	9308      	str	r3, [sp, #32]
@@ -13466,8 +13466,8 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
  8006114:	2101      	movs	r1, #1
  8006116:	4804      	ldr	r0, [pc, #16]	@ (8006128 <CapabilityFunc+0x84>)
  8006118:	f00e f9ac 	bl	8014474 <iprintf>
-         0, // has stepper config posmin
-         0, // has stepper config posref
+         1, // has stepper config posmin
+         1, // has stepper config posref
          1, // has stepper config stepsperturn
          1  // has stepper cancel
   );

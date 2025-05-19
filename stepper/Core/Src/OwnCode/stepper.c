@@ -174,11 +174,11 @@ static int Reset(StepperContext_t *StepperContext)
 {
     L6474_BaseParameter_t param;
     param.stepMode = smMICRO16;
-    param.OcdTh = ocdth6000mA; // 3000mA ? cause requirements
-    param.TimeOnMin = 0x29;
-    param.TimeOffMin = 0x29;
-    param.TorqueVal = 0x26;
-    param.TFast = 0x19;
+    param.OcdTh = ocdth6000mA;
+    param.TimeOnMin = 0x23;
+    param.TimeOffMin = 0x23;
+    param.TorqueVal = 0x24;
+    param.TFast = 0x18;
     int result = 0;
 
     // result |= L6474_SetBaseParameter(&param); // changable
