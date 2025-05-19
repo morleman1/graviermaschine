@@ -293,7 +293,7 @@
 		<link>
 			<name>Core/Src/Stepper/LibL6474x.c</name>
 			<type>1</type>
-			<location>C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibL6474/src/LibL6474x.c</location>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/libs/LibL6474/src/LibL6474x.c</locationURI>
 		</link>
 		<link>
 			<name>FreeRTOS-Kernel/portable/Common/mpu_wrappers.c</name>

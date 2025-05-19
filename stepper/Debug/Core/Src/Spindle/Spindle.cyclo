@@ -1,6 +1,6 @@
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	28
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	3
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	4
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	9
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	1
-C:/Users/Max/Documents/local_projects/graviermaschine/graviermaschine/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	25
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:110:13:SpindleFunction	28
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:216:26:GetCommandEvent	3
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:240:13:ReleaseCommandEvent	4
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:261:12:SpindleConsoleFunction	9
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:344:13:SpindleRegisterBasicCommands	1
+C:/Users/maxor/Documents/local_projects/HW-nahes_Programmieren/Graviermaschine/libs/LibSpindle/src/Spindle.c:352:17:SPINDLE_CreateInstance	25

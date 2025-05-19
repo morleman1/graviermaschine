@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00017fc4  080001d0  080001d0  000011d0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00002340  08018198  08018198  00019198  2**3
+  2 .rodata       00002360  08018198  08018198  00019198  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0801a4d8  0801a4d8  0001c224  2**0
+  3 .ARM.extab    00000000  0801a4f8  0801a4f8  0001c224  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000008  0801a4d8  0801a4d8  0001b4d8  2**2
+  4 .ARM          00000008  0801a4f8  0801a4f8  0001b4f8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  0801a4e0  0801a4e0  0001c224  2**0
+  5 .preinit_array 00000000  0801a500  0801a500  0001c224  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000008  0801a4e0  0801a4e0  0001b4e0  2**2
+  6 .init_array   00000008  0801a500  0801a500  0001b500  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0801a4e8  0801a4e8  0001b4e8  2**2
+  7 .fini_array   00000004  0801a508  0801a508  0001b508  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000224  20000000  0801a4ec  0001c000  2**2
+  8 .data         00000224  20000000  0801a50c  0001c000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000005b8  20000224  0801a710  0001c224  2**2
+  9 .bss          000005b8  20000224  0801a730  0001c224  2**2
                   ALLOC
- 10 ._user_heap_stack 00038004  200007dc  0801a710  0001c7dc  2**0
+ 10 ._user_heap_stack 00038004  200007dc  0801a730  0001c7dc  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0001c224  2**0
                   CONTENTS, READONLY
@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0002b5f6  00000000  00000000  0004169e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000232c5  00000000  00000000  0006cc94  2**0
+ 17 .debug_line   00024558  00000000  00000000  0006cc94  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0010baa2  00000000  00000000  0008ff59  2**0
+ 18 .debug_str    0010baf3  00000000  00000000  000911ec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0019b9fb  2**0
+ 19 .comment      00000043  00000000  00000000  0019ccdf  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00008600  00000000  00000000  0019ba40  2**2
+ 20 .debug_frame  00008600  00000000  00000000  0019cd24  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000007c  00000000  00000000  001a4040  2**0
+ 21 .debug_line_str 00000085  00000000  00000000  001a5324  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3441,7 +3441,7 @@ static void ConsoleFunction( void * arg )
 					lineBuff[lbPtr] = ctrlC0_NUL;
  8001eca:	e7f2      	b.n	8001eb2 <ConsoleFunction+0x27e>
  8001ecc:	080181e8 	.word	0x080181e8
- 8001ed0:	08019b4c 	.word	0x08019b4c
+ 8001ed0:	08019b6c 	.word	0x08019b6c
  8001ed4:	08018228 	.word	0x08018228
  8001ed8:	08018238 	.word	0x08018238
  8001edc:	08018244 	.word	0x08018244
@@ -11159,7 +11159,7 @@ static int L6474_GetParamCommand(L6474_Handle_t h, int addr)
  80053a6:	46bd      	mov	sp, r7
  80053a8:	bd90      	pop	{r4, r7, pc}
  80053aa:	bf00      	nop
- 80053ac:	08019dfc 	.word	0x08019dfc
+ 80053ac:	08019e1c 	.word	0x08019e1c
 
 080053b0 <L6474_SetParamCommand>:
 
@@ -11396,7 +11396,7 @@ static int L6474_SetParamCommand(L6474_Handle_t h, int addr, int value)
  8005522:	372c      	adds	r7, #44	@ 0x2c
  8005524:	46bd      	mov	sp, r7
  8005526:	bd90      	pop	{r4, r7, pc}
- 8005528:	08019dfc 	.word	0x08019dfc
+ 8005528:	08019e1c 	.word	0x08019e1c
 
 0800552c <L6474_EnableCommand>:
 
@@ -14989,7 +14989,7 @@ void assert_failed(uint8_t *file, uint32_t line)
  80069d2:	bf00      	nop
  80069d4:	08019628 	.word	0x08019628
  80069d8:	08019640 	.word	0x08019640
- 80069dc:	08019fec 	.word	0x08019fec
+ 80069dc:	0801a00c 	.word	0x0801a00c
  80069e0:	08019644 	.word	0x08019644
 
 080069e4 <initialise_monitor_handles>:
@@ -16846,7 +16846,7 @@ LoopFillZerobss:
   ldr r1, =_edata
  8007378:	20000224 	.word	0x20000224
   ldr r2, =_sidata
- 800737c:	0801a4ec 	.word	0x0801a4ec
+ 800737c:	0801a50c 	.word	0x0801a50c
   ldr r2, =_sbss
  8007380:	20000224 	.word	0x20000224
   ldr r4, =_ebss
@@ -20565,7 +20565,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8008bd2:	bf00      	nop
  8008bd4:	080197b0 	.word	0x080197b0
  8008bd8:	40023800 	.word	0x40023800
- 8008bdc:	08019ffc 	.word	0x08019ffc
+ 8008bdc:	0801a01c 	.word	0x0801a01c
  8008be0:	2000004c 	.word	0x2000004c
  8008be4:	20000050 	.word	0x20000050
 
@@ -20820,7 +20820,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8008da8:	4618      	mov	r0, r3
  8008daa:	bd80      	pop	{r7, pc}
  8008dac:	40023800 	.word	0x40023800
- 8008db0:	0801a00c 	.word	0x0801a00c
+ 8008db0:	0801a02c 	.word	0x0801a02c
 
 08008db4 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -20846,7 +20846,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8008dd0:	4618      	mov	r0, r3
  8008dd2:	bd80      	pop	{r7, pc}
  8008dd4:	40023800 	.word	0x40023800
- 8008dd8:	0801a00c 	.word	0x0801a00c
+ 8008dd8:	0801a02c 	.word	0x0801a02c
 
 08008ddc <HAL_RCCEx_PeriphCLKConfig>:
   *         the backup registers) are set to their reset values.
@@ -38109,7 +38109,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  800fe3e:	46bd      	mov	sp, r7
  800fe40:	bd80      	pop	{r7, pc}
  800fe42:	bf00      	nop
- 800fe44:	08019988 	.word	0x08019988
+ 800fe44:	08019990 	.word	0x08019990
  800fe48:	20000670 	.word	0x20000670
  800fe4c:	200006d8 	.word	0x200006d8
  800fe50:	20000740 	.word	0x20000740
@@ -38565,7 +38565,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  80100c4:	200005d4 	.word	0x200005d4
  80100c8:	200005ec 	.word	0x200005ec
  80100cc:	20000614 	.word	0x20000614
- 80100d0:	08019988 	.word	0x08019988
+ 80100d0:	08019990 	.word	0x08019990
  80100d4:	e000ed04 	.word	0xe000ed04
 
 080100d8 <vTaskDelay>:
@@ -38652,7 +38652,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  8010140:	46bd      	mov	sp, r7
  8010142:	bd80      	pop	{r7, pc}
  8010144:	20000614 	.word	0x20000614
- 8010148:	08019988 	.word	0x08019988
+ 8010148:	08019990 	.word	0x08019990
  801014c:	e000ed04 	.word	0xe000ed04
 
 08010150 <eTaskGetState>:
@@ -38869,7 +38869,7 @@ static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
  801024a:	3728      	adds	r7, #40	@ 0x28
  801024c:	46bd      	mov	sp, r7
  801024e:	bd80      	pop	{r7, pc}
- 8010250:	08019988 	.word	0x08019988
+ 8010250:	08019990 	.word	0x08019990
  8010254:	200004ec 	.word	0x200004ec
  8010258:	200005a4 	.word	0x200005a4
  801025c:	200005a8 	.word	0x200005a8
@@ -39001,7 +39001,7 @@ static BaseType_t prvCreateIdleTasks( void )
  80102f2:	46bd      	mov	sp, r7
  80102f4:	bd80      	pop	{r7, pc}
  80102f6:	bf00      	nop
- 80102f8:	08019a04 	.word	0x08019a04
+ 80102f8:	08019a14 	.word	0x08019a14
  80102fc:	08010ea9 	.word	0x08010ea9
  8010300:	20000610 	.word	0x20000610
 
@@ -39128,8 +39128,8 @@ void vTaskStartScheduler( void )
  801039c:	2000060c 	.word	0x2000060c
  80103a0:	200005f8 	.word	0x200005f8
  80103a4:	200005f0 	.word	0x200005f0
- 80103a8:	08019988 	.word	0x08019988
- 80103ac:	0801a014 	.word	0x0801a014
+ 80103a8:	08019990 	.word	0x08019990
+ 80103ac:	0801a034 	.word	0x0801a034
 
 080103b0 <vTaskSuspendAll>:
     traceRETURN_vTaskEndScheduler();
@@ -39515,7 +39515,7 @@ BaseType_t xTaskResumeAll( void )
  80105c0:	bd80      	pop	{r7, pc}
  80105c2:	bf00      	nop
  80105c4:	20000614 	.word	0x20000614
- 80105c8:	08019988 	.word	0x08019988
+ 80105c8:	08019990 	.word	0x08019990
  80105cc:	200005ec 	.word	0x200005ec
  80105d0:	200005ac 	.word	0x200005ac
  80105d4:	200005f4 	.word	0x200005f4
@@ -40136,7 +40136,7 @@ BaseType_t xTaskIncrementTick( void )
  8010940:	20000614 	.word	0x20000614
  8010944:	200005f0 	.word	0x200005f0
  8010948:	200005a4 	.word	0x200005a4
- 801094c:	08019988 	.word	0x08019988
+ 801094c:	08019990 	.word	0x08019990
  8010950:	200005a8 	.word	0x200005a8
  8010954:	20000604 	.word	0x20000604
  8010958:	2000060c 	.word	0x2000060c
@@ -40332,7 +40332,7 @@ BaseType_t xTaskIncrementTick( void )
  8010ab8:	200004ec 	.word	0x200004ec
  8010abc:	200005f4 	.word	0x200005f4
  8010ac0:	200004f0 	.word	0x200004f0
- 8010ac4:	08019988 	.word	0x08019988
+ 8010ac4:	08019990 	.word	0x08019990
  8010ac8:	200001d4 	.word	0x200001d4
 
 08010acc <vTaskPlaceOnEventList>:
@@ -40390,7 +40390,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList,
  8010b16:	3710      	adds	r7, #16
  8010b18:	46bd      	mov	sp, r7
  8010b1a:	bd80      	pop	{r7, pc}
- 8010b1c:	08019988 	.word	0x08019988
+ 8010b1c:	08019990 	.word	0x08019990
  8010b20:	200004ec 	.word	0x200004ec
 
 08010b24 <vTaskPlaceOnEventListRestricted>:
@@ -40490,7 +40490,7 @@ void vTaskPlaceOnEventList( List_t * const pxEventList,
  8010bb2:	46bd      	mov	sp, r7
  8010bb4:	bd80      	pop	{r7, pc}
  8010bb6:	bf00      	nop
- 8010bb8:	08019988 	.word	0x08019988
+ 8010bb8:	08019990 	.word	0x08019990
  8010bbc:	200004ec 	.word	0x200004ec
 
 08010bc0 <xTaskRemoveFromEventList>:
@@ -40747,7 +40747,7 @@ BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList )
  8010d5a:	3728      	adds	r7, #40	@ 0x28
  8010d5c:	46bd      	mov	sp, r7
  8010d5e:	bd80      	pop	{r7, pc}
- 8010d60:	08019988 	.word	0x08019988
+ 8010d60:	08019990 	.word	0x08019990
  8010d64:	20000614 	.word	0x20000614
  8010d68:	200005f4 	.word	0x200005f4
  8010d6c:	200004f0 	.word	0x200004f0
@@ -40949,7 +40949,7 @@ BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut,
  8010e7e:	46bd      	mov	sp, r7
  8010e80:	bd80      	pop	{r7, pc}
  8010e82:	bf00      	nop
- 8010e84:	08019988 	.word	0x08019988
+ 8010e84:	08019990 	.word	0x08019990
  8010e88:	200005f0 	.word	0x200005f0
  8010e8c:	20000604 	.word	0x20000604
 
@@ -42205,7 +42205,7 @@ static void prvResetNextTaskUnblockTime( void )
  80114c8:	bd80      	pop	{r7, pc}
  80114ca:	bf00      	nop
  80114cc:	200004ec 	.word	0x200004ec
- 80114d0:	08019988 	.word	0x08019988
+ 80114d0:	08019990 	.word	0x08019990
  80114d4:	200005f4 	.word	0x200005f4
  80114d8:	200004f0 	.word	0x200004f0
 
@@ -42472,7 +42472,7 @@ static void prvResetNextTaskUnblockTime( void )
  801165a:	46bd      	mov	sp, r7
  801165c:	bd80      	pop	{r7, pc}
  801165e:	bf00      	nop
- 8011660:	08019988 	.word	0x08019988
+ 8011660:	08019990 	.word	0x08019990
  8011664:	200004ec 	.word	0x200004ec
  8011668:	200004f0 	.word	0x200004f0
  801166c:	200005f4 	.word	0x200005f4
@@ -42766,9 +42766,9 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
  8011802:	bd80      	pop	{r7, pc}
  8011804:	20000650 	.word	0x20000650
  8011808:	20000654 	.word	0x20000654
- 801180c:	08019a34 	.word	0x08019a34
+ 801180c:	08019a44 	.word	0x08019a44
  8011810:	080118bd 	.word	0x080118bd
- 8011814:	08019a3c 	.word	0x08019a3c
+ 8011814:	08019a4c 	.word	0x08019a4c
 
 08011818 <prvReloadTimer>:
 /*-----------------------------------------------------------*/
@@ -43522,7 +43522,7 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
  8011c1a:	3720      	adds	r7, #32
  8011c1c:	46bd      	mov	sp, r7
  8011c1e:	bd80      	pop	{r7, pc}
- 8011c20:	08019a3c 	.word	0x08019a3c
+ 8011c20:	08019a4c 	.word	0x08019a4c
  8011c24:	20000650 	.word	0x20000650
 
 08011c28 <prvSwitchTimerLists>:
@@ -43792,7 +43792,7 @@ static void prvTaskExitError( void )
  8011d8c:	bd80      	pop	{r7, pc}
  8011d8e:	bf00      	nop
  8011d90:	20000058 	.word	0x20000058
- 8011d94:	08019ab8 	.word	0x08019ab8
+ 8011d94:	08019ad0 	.word	0x08019ad0
 	...
 
 08011da0 <SVC_Handler>:
@@ -44145,7 +44145,7 @@ BaseType_t xPortStartScheduler( void )
  8011f82:	bd80      	pop	{r7, pc}
  8011f84:	e000ed08 	.word	0xe000ed08
  8011f88:	08011da1 	.word	0x08011da1
- 8011f8c:	08019ab8 	.word	0x08019ab8
+ 8011f8c:	08019ad0 	.word	0x08019ad0
  8011f90:	08012081 	.word	0x08012081
  8011f94:	e000e400 	.word	0xe000e400
  8011f98:	2000065c 	.word	0x2000065c
@@ -44220,7 +44220,7 @@ void vPortEnterCritical( void )
  8012012:	bd80      	pop	{r7, pc}
  8012014:	20000058 	.word	0x20000058
  8012018:	e000ed04 	.word	0xe000ed04
- 801201c:	08019ab8 	.word	0x08019ab8
+ 801201c:	08019ad0 	.word	0x08019ad0
 
 08012020 <vPortExitCritical>:
 /*-----------------------------------------------------------*/
@@ -44285,7 +44285,7 @@ portFORCE_INLINE static void vPortSetBASEPRI( uint32_t ulNewMaskValue )
  8012074:	bd80      	pop	{r7, pc}
  8012076:	bf00      	nop
  8012078:	20000058 	.word	0x20000058
- 801207c:	08019ab8 	.word	0x08019ab8
+ 801207c:	08019ad0 	.word	0x08019ad0
 
 08012080 <PendSV_Handler>:
 
@@ -44485,9 +44485,9 @@ static void vPortEnableVFP( void )
  80121b8:	e7f3      	b.n	80121a2 <__assert_func+0x12>
  80121ba:	bf00      	nop
  80121bc:	200001d4 	.word	0x200001d4
- 80121c0:	0801a018 	.word	0x0801a018
- 80121c4:	0801a025 	.word	0x0801a025
- 80121c8:	0801a053 	.word	0x0801a053
+ 80121c0:	0801a038 	.word	0x0801a038
+ 80121c4:	0801a045 	.word	0x0801a045
+ 80121c8:	0801a073 	.word	0x0801a073
 
 080121cc <atof>:
  80121cc:	2100      	movs	r1, #0
@@ -45048,8 +45048,8 @@ static void vPortEnableVFP( void )
  80126e0:	e782      	b.n	80125e8 <_strtod_l+0x190>
  80126e2:	f04f 0c01 	mov.w	ip, #1
  80126e6:	e7f8      	b.n	80126da <_strtod_l+0x282>
- 80126e8:	0801a25c 	.word	0x0801a25c
- 80126ec:	0801a054 	.word	0x0801a054
+ 80126e8:	0801a27c 	.word	0x0801a27c
+ 80126ec:	0801a074 	.word	0x0801a074
  80126f0:	7ff00000 	.word	0x7ff00000
  80126f4:	9a19      	ldr	r2, [sp, #100]	@ 0x64
  80126f6:	1c51      	adds	r1, r2, #1
@@ -45339,13 +45339,13 @@ static void vPortEnableVFP( void )
  80129cc:	f04f 0b00 	mov.w	fp, #0
  80129d0:	6013      	str	r3, [r2, #0]
  80129d2:	e76b      	b.n	80128ac <_strtod_l+0x454>
- 80129d4:	0801a063 	.word	0x0801a063
- 80129d8:	0801a248 	.word	0x0801a248
- 80129dc:	0801a05b 	.word	0x0801a05b
- 80129e0:	0801a10b 	.word	0x0801a10b
- 80129e4:	0801a053 	.word	0x0801a053
- 80129e8:	0801a3d0 	.word	0x0801a3d0
- 80129ec:	0801a3a8 	.word	0x0801a3a8
+ 80129d4:	0801a083 	.word	0x0801a083
+ 80129d8:	0801a268 	.word	0x0801a268
+ 80129dc:	0801a07b 	.word	0x0801a07b
+ 80129e0:	0801a12b 	.word	0x0801a12b
+ 80129e4:	0801a073 	.word	0x0801a073
+ 80129e8:	0801a3f0 	.word	0x0801a3f0
+ 80129ec:	0801a3c8 	.word	0x0801a3c8
  80129f0:	7ff00000 	.word	0x7ff00000
  80129f4:	7ca00000 	.word	0x7ca00000
  80129f8:	7fefffff 	.word	0x7fefffff
@@ -45631,7 +45631,7 @@ static void vPortEnableVFP( void )
  8012ca6:	2322      	movs	r3, #34	@ 0x22
  8012ca8:	6013      	str	r3, [r2, #0]
  8012caa:	e603      	b.n	80128b4 <_strtod_l+0x45c>
- 8012cac:	0801a270 	.word	0x0801a270
+ 8012cac:	0801a290 	.word	0x0801a290
  8012cb0:	fffffc02 	.word	0xfffffc02
  8012cb4:	39500000 	.word	0x39500000
  8012cb8:	7ff00000 	.word	0x7ff00000
@@ -46068,7 +46068,7 @@ static void vPortEnableVFP( void )
  801312c:	d1f6      	bne.n	801311c <_strtol_l.isra.0+0xd8>
  801312e:	f8c8 1000 	str.w	r1, [r8]
  8013132:	e794      	b.n	801305e <_strtol_l.isra.0+0x1a>
- 8013134:	0801a299 	.word	0x0801a299
+ 8013134:	0801a2b9 	.word	0x0801a2b9
 
 08013138 <_strtol_r>:
  8013138:	f7ff bf84 	b.w	8013044 <_strtol_l.isra.0>
@@ -46629,11 +46629,11 @@ static void vPortEnableVFP( void )
  8013698:	e7ee      	b.n	8013678 <_printf_float+0x2a4>
  801369a:	bf00      	nop
  801369c:	7fefffff 	.word	0x7fefffff
- 80136a0:	0801a05a 	.word	0x0801a05a
- 80136a4:	0801a056 	.word	0x0801a056
- 80136a8:	0801a062 	.word	0x0801a062
- 80136ac:	0801a05e 	.word	0x0801a05e
- 80136b0:	0801a066 	.word	0x0801a066
+ 80136a0:	0801a07a 	.word	0x0801a07a
+ 80136a4:	0801a076 	.word	0x0801a076
+ 80136a8:	0801a082 	.word	0x0801a082
+ 80136ac:	0801a07e 	.word	0x0801a07e
+ 80136b0:	0801a086 	.word	0x0801a086
  80136b4:	6da3      	ldr	r3, [r4, #88]	@ 0x58
  80136b6:	f8dd a028 	ldr.w	sl, [sp, #40]	@ 0x28
  80136ba:	4553      	cmp	r3, sl
@@ -47111,8 +47111,8 @@ static void vPortEnableVFP( void )
  8013b30:	2500      	movs	r5, #0
  8013b32:	f104 0619 	add.w	r6, r4, #25
  8013b36:	e7f5      	b.n	8013b24 <_printf_i+0x220>
- 8013b38:	0801a068 	.word	0x0801a068
- 8013b3c:	0801a079 	.word	0x0801a079
+ 8013b38:	0801a088 	.word	0x0801a088
+ 8013b3c:	0801a099 	.word	0x0801a099
 
 08013b40 <_scanf_float>:
  8013b40:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -47507,8 +47507,8 @@ static void vPortEnableVFP( void )
  8013f4e:	2700      	movs	r7, #0
  8013f50:	e62e      	b.n	8013bb0 <_scanf_float+0x70>
  8013f52:	bf00      	nop
- 8013f54:	0801a08a 	.word	0x0801a08a
- 8013f58:	0801a053 	.word	0x0801a053
+ 8013f54:	0801a0aa 	.word	0x0801a0aa
+ 8013f58:	0801a073 	.word	0x0801a073
 
 08013f5c <_fclose_r>:
  8013f5c:	b570      	push	{r4, r5, r6, lr}
@@ -48644,8 +48644,8 @@ static void vPortEnableVFP( void )
  801495c:	e8bd 41f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, lr}
  8014960:	f000 b806 	b.w	8014970 <__strtok_r>
  8014964:	200001d4 	.word	0x200001d4
- 8014968:	0801a08f 	.word	0x0801a08f
- 801496c:	0801a0a6 	.word	0x0801a0a6
+ 8014968:	0801a0af 	.word	0x0801a0af
+ 801496c:	0801a0c6 	.word	0x0801a0c6
 
 08014970 <__strtok_r>:
  8014970:	b5f0      	push	{r4, r5, r6, r7, lr}
@@ -48875,10 +48875,10 @@ static void vPortEnableVFP( void )
  8014b4e:	4798      	blx	r3
  8014b50:	3601      	adds	r6, #1
  8014b52:	e7f2      	b.n	8014b3a <__libc_init_array+0x1e>
- 8014b54:	0801a4e0 	.word	0x0801a4e0
- 8014b58:	0801a4e0 	.word	0x0801a4e0
- 8014b5c:	0801a4e0 	.word	0x0801a4e0
- 8014b60:	0801a4e8 	.word	0x0801a4e8
+ 8014b54:	0801a500 	.word	0x0801a500
+ 8014b58:	0801a500 	.word	0x0801a500
+ 8014b5c:	0801a500 	.word	0x0801a500
+ 8014b60:	0801a508 	.word	0x0801a508
 
 08014b64 <__retarget_lock_init_recursive>:
  8014b64:	4770      	bx	lr
@@ -49311,15 +49311,15 @@ static void vPortEnableVFP( void )
  8014f8c:	3fc68a28 	.word	0x3fc68a28
  8014f90:	509f79fb 	.word	0x509f79fb
  8014f94:	3fd34413 	.word	0x3fd34413
- 8014f98:	0801a08f 	.word	0x0801a08f
- 8014f9c:	0801a115 	.word	0x0801a115
+ 8014f98:	0801a0af 	.word	0x0801a0af
+ 8014f9c:	0801a135 	.word	0x0801a135
  8014fa0:	7ff00000 	.word	0x7ff00000
- 8014fa4:	0801a067 	.word	0x0801a067
+ 8014fa4:	0801a087 	.word	0x0801a087
  8014fa8:	3ff80000 	.word	0x3ff80000
- 8014fac:	0801a3d0 	.word	0x0801a3d0
- 8014fb0:	0801a16d 	.word	0x0801a16d
- 8014fb4:	0801a111 	.word	0x0801a111
- 8014fb8:	0801a066 	.word	0x0801a066
+ 8014fac:	0801a3f0 	.word	0x0801a3f0
+ 8014fb0:	0801a18d 	.word	0x0801a18d
+ 8014fb4:	0801a131 	.word	0x0801a131
+ 8014fb8:	0801a086 	.word	0x0801a086
  8014fbc:	f8d9 301c 	ldr.w	r3, [r9, #28]
  8014fc0:	6018      	str	r0, [r3, #0]
  8014fc2:	9b03      	ldr	r3, [sp, #12]
@@ -49548,8 +49548,8 @@ static void vPortEnableVFP( void )
  8015240:	e9cd 0104 	strd	r0, r1, [sp, #16]
  8015244:	e7c4      	b.n	80151d0 <_dtoa_r+0x508>
  8015246:	bf00      	nop
- 8015248:	0801a3d0 	.word	0x0801a3d0
- 801524c:	0801a3a8 	.word	0x0801a3a8
+ 8015248:	0801a3f0 	.word	0x0801a3f0
+ 801524c:	0801a3c8 	.word	0x0801a3c8
  8015250:	3ff00000 	.word	0x3ff00000
  8015254:	40240000 	.word	0x40240000
  8015258:	401c0000 	.word	0x401c0000
@@ -50178,8 +50178,8 @@ static void vPortEnableVFP( void )
  8015858:	f000 fc32 	bl	80160c0 <__multadd>
  801585c:	9002      	str	r0, [sp, #8]
  801585e:	e7eb      	b.n	8015838 <_dtoa_r+0xb70>
- 8015860:	0801a16d 	.word	0x0801a16d
- 8015864:	0801a108 	.word	0x0801a108
+ 8015860:	0801a18d 	.word	0x0801a18d
+ 8015864:	0801a128 	.word	0x0801a128
 
 08015868 <_free_r>:
  8015868:	b538      	push	{r3, r4, r5, lr}
@@ -50619,9 +50619,9 @@ static void vPortEnableVFP( void )
  8015c76:	2b00      	cmp	r3, #0
  8015c78:	d1dd      	bne.n	8015c36 <__gethex+0x26a>
  8015c7a:	e7ee      	b.n	8015c5a <__gethex+0x28e>
- 8015c7c:	0801a054 	.word	0x0801a054
- 8015c80:	0801a16d 	.word	0x0801a16d
- 8015c84:	0801a17e 	.word	0x0801a17e
+ 8015c7c:	0801a074 	.word	0x0801a074
+ 8015c80:	0801a18d 	.word	0x0801a18d
+ 8015c84:	0801a19e 	.word	0x0801a19e
  8015c88:	1e6f      	subs	r7, r5, #1
  8015c8a:	f1b9 0f00 	cmp.w	r9, #0
  8015c8e:	d130      	bne.n	8015cf2 <__gethex+0x326>
@@ -50756,7 +50756,7 @@ static void vPortEnableVFP( void )
  8015de2:	42b0      	cmp	r0, r6
  8015de4:	dbe7      	blt.n	8015db6 <__gethex+0x3ea>
  8015de6:	e7f0      	b.n	8015dca <__gethex+0x3fe>
- 8015de8:	0801a16d 	.word	0x0801a16d
+ 8015de8:	0801a18d 	.word	0x0801a18d
 
 08015dec <L_shift>:
  8015dec:	f1c2 0208 	rsb	r2, r2, #8
@@ -51041,8 +51041,8 @@ static void vPortEnableVFP( void )
  801606c:	e9c0 3303 	strd	r3, r3, [r0, #12]
  8016070:	e7f7      	b.n	8016062 <_Balloc+0x66>
  8016072:	bf00      	nop
- 8016074:	0801a08f 	.word	0x0801a08f
- 8016078:	0801a1de 	.word	0x0801a1de
+ 8016074:	0801a0af 	.word	0x0801a0af
+ 8016078:	0801a1fe 	.word	0x0801a1fe
 
 0801607c <_Bfree>:
  801607c:	b570      	push	{r4, r5, r6, lr}
@@ -51070,8 +51070,8 @@ static void vPortEnableVFP( void )
  80160b0:	6021      	str	r1, [r4, #0]
  80160b2:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
  80160b6:	bd70      	pop	{r4, r5, r6, pc}
- 80160b8:	0801a08f 	.word	0x0801a08f
- 80160bc:	0801a1de 	.word	0x0801a1de
+ 80160b8:	0801a0af 	.word	0x0801a0af
+ 80160bc:	0801a1fe 	.word	0x0801a1fe
 
 080160c0 <__multadd>:
  80160c0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -51125,8 +51125,8 @@ static void vPortEnableVFP( void )
  801613c:	6125      	str	r5, [r4, #16]
  801613e:	4620      	mov	r0, r4
  8016140:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
- 8016144:	0801a16d 	.word	0x0801a16d
- 8016148:	0801a1de 	.word	0x0801a1de
+ 8016144:	0801a18d 	.word	0x0801a18d
+ 8016148:	0801a1fe 	.word	0x0801a1fe
 
 0801614c <__s2b>:
  801614c:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -51187,8 +51187,8 @@ static void vPortEnableVFP( void )
  80161d0:	f7ff ff76 	bl	80160c0 <__multadd>
  80161d4:	e7ee      	b.n	80161b4 <__s2b+0x68>
  80161d6:	bf00      	nop
- 80161d8:	0801a16d 	.word	0x0801a16d
- 80161dc:	0801a1de 	.word	0x0801a1de
+ 80161d8:	0801a18d 	.word	0x0801a18d
+ 80161dc:	0801a1fe 	.word	0x0801a1fe
 
 080161e0 <__hi0bits>:
  80161e0:	f5b0 3f80 	cmp.w	r0, #65536	@ 0x10000
@@ -51278,8 +51278,8 @@ static void vPortEnableVFP( void )
  8016296:	6103      	str	r3, [r0, #16]
  8016298:	bd10      	pop	{r4, pc}
  801629a:	bf00      	nop
- 801629c:	0801a16d 	.word	0x0801a16d
- 80162a0:	0801a1de 	.word	0x0801a1de
+ 801629c:	0801a18d 	.word	0x0801a18d
+ 80162a0:	0801a1fe 	.word	0x0801a1fe
 
 080162a4 <__multiply>:
  80162a4:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -51398,8 +51398,8 @@ static void vPortEnableVFP( void )
  80163da:	e79f      	b.n	801631c <__multiply+0x78>
  80163dc:	3e01      	subs	r6, #1
  80163de:	e7a1      	b.n	8016324 <__multiply+0x80>
- 80163e0:	0801a16d 	.word	0x0801a16d
- 80163e4:	0801a1de 	.word	0x0801a1de
+ 80163e0:	0801a18d 	.word	0x0801a18d
+ 80163e4:	0801a1fe 	.word	0x0801a1fe
 
 080163e8 <__pow5mult>:
  80163e8:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -51467,9 +51467,9 @@ static void vPortEnableVFP( void )
  8016488:	4630      	mov	r0, r6
  801648a:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
  801648e:	bf00      	nop
- 8016490:	0801a39c 	.word	0x0801a39c
- 8016494:	0801a08f 	.word	0x0801a08f
- 8016498:	0801a1de 	.word	0x0801a1de
+ 8016490:	0801a3bc 	.word	0x0801a3bc
+ 8016494:	0801a0af 	.word	0x0801a0af
+ 8016498:	0801a1fe 	.word	0x0801a1fe
 
 0801649c <__lshift>:
  801649c:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -51548,8 +51548,8 @@ static void vPortEnableVFP( void )
  8016566:	d8f9      	bhi.n	801655c <__lshift+0xc0>
  8016568:	e7ea      	b.n	8016540 <__lshift+0xa4>
  801656a:	bf00      	nop
- 801656c:	0801a16d 	.word	0x0801a16d
- 8016570:	0801a1de 	.word	0x0801a1de
+ 801656c:	0801a18d 	.word	0x0801a18d
+ 8016570:	0801a1fe 	.word	0x0801a1fe
 
 08016574 <__mcmp>:
  8016574:	690a      	ldr	r2, [r1, #16]
@@ -51685,8 +51685,8 @@ static void vPortEnableVFP( void )
  80166c6:	3f01      	subs	r7, #1
  80166c8:	e7e7      	b.n	801669a <__mdiff+0xee>
  80166ca:	bf00      	nop
- 80166cc:	0801a16d 	.word	0x0801a16d
- 80166d0:	0801a1de 	.word	0x0801a1de
+ 80166cc:	0801a18d 	.word	0x0801a18d
+ 80166d0:	0801a1fe 	.word	0x0801a1fe
 
 080166d4 <__ulp>:
  80166d4:	b082      	sub	sp, #8
@@ -51836,8 +51836,8 @@ static void vPortEnableVFP( void )
  8016852:	f7ff fcc5 	bl	80161e0 <__hi0bits>
  8016856:	ebc0 1042 	rsb	r0, r0, r2, lsl #5
  801685a:	e7e5      	b.n	8016828 <__d2b+0x74>
- 801685c:	0801a16d 	.word	0x0801a16d
- 8016860:	0801a1de 	.word	0x0801a1de
+ 801685c:	0801a18d 	.word	0x0801a18d
+ 8016860:	0801a1fe 	.word	0x0801a1fe
 
 08016864 <__ratio>:
  8016864:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -52261,11 +52261,11 @@ static void vPortEnableVFP( void )
  8016c58:	4638      	mov	r0, r7
  8016c5a:	f7fc fe53 	bl	8013904 <_printf_i>
  8016c5e:	e7ed      	b.n	8016c3c <_svfiprintf_r+0x1c0>
- 8016c60:	0801a237 	.word	0x0801a237
- 8016c64:	0801a241 	.word	0x0801a241
+ 8016c60:	0801a257 	.word	0x0801a257
+ 8016c64:	0801a261 	.word	0x0801a261
  8016c68:	080133d5 	.word	0x080133d5
  8016c6c:	080169c7 	.word	0x080169c7
- 8016c70:	0801a23d 	.word	0x0801a23d
+ 8016c70:	0801a25d 	.word	0x0801a25d
 
 08016c74 <__sfputc_r>:
  8016c74:	6893      	ldr	r3, [r2, #8]
@@ -52531,11 +52531,11 @@ static void vPortEnableVFP( void )
  8016edc:	4630      	mov	r0, r6
  8016ede:	f7fc fd11 	bl	8013904 <_printf_i>
  8016ee2:	e7e4      	b.n	8016eae <_vfiprintf_r+0x1e6>
- 8016ee4:	0801a237 	.word	0x0801a237
- 8016ee8:	0801a241 	.word	0x0801a241
+ 8016ee4:	0801a257 	.word	0x0801a257
+ 8016ee8:	0801a261 	.word	0x0801a261
  8016eec:	080133d5 	.word	0x080133d5
  8016ef0:	08016ca3 	.word	0x08016ca3
- 8016ef4:	0801a23d 	.word	0x0801a23d
+ 8016ef4:	0801a25d 	.word	0x0801a25d
 
 08016ef8 <_getc_r>:
  8016ef8:	b538      	push	{r3, r4, r5, lr}
@@ -53758,11 +53758,11 @@ static void vPortEnableVFP( void )
  8017b3c:	43400000 	.word	0x43400000
  8017b40:	0003988e 	.word	0x0003988e
  8017b44:	000bb679 	.word	0x000bb679
- 8017b48:	0801a4b8 	.word	0x0801a4b8
+ 8017b48:	0801a4d8 	.word	0x0801a4d8
  8017b4c:	3ff00000 	.word	0x3ff00000
  8017b50:	40080000 	.word	0x40080000
- 8017b54:	0801a498 	.word	0x0801a498
- 8017b58:	0801a4a8 	.word	0x0801a4a8
+ 8017b54:	0801a4b8 	.word	0x0801a4b8
+ 8017b58:	0801a4c8 	.word	0x0801a4c8
  8017b5c:	4602      	mov	r2, r0
  8017b5e:	460b      	mov	r3, r1
  8017b60:	e9dd 0106 	ldrd	r0, r1, [sp, #24]
@@ -54333,8 +54333,8 @@ static void vPortEnableVFP( void )
  801816a:	f023 0501 	bic.w	r5, r3, #1
  801816e:	e7de      	b.n	801812e <__ieee754_sqrt+0x15e>
  8018170:	7ff00000 	.word	0x7ff00000
- 8018174:	0801a4d0 	.word	0x0801a4d0
- 8018178:	0801a4c8 	.word	0x0801a4c8
+ 8018174:	0801a4f0 	.word	0x0801a4f0
+ 8018178:	0801a4e8 	.word	0x0801a4e8
 
 0801817c <_init>:
  801817c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
