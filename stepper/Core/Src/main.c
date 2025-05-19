@@ -133,12 +133,12 @@ static int CapabilityFunc(int argc, char **argv, void *ctx)
   printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\r\nOK",
          0, // has spindle
          0, // has spindle status
-         0, // has stepper
+         1, // has stepper
          0, // has stepper move relative
          0, // has stepper move speed
          0, // has stepper move async
          0, // has stepper status
-         0, // has stepper refrun
+         1, // has stepper refrun
          0, // has stepper refrun timeout
          0, // has stepper refrun skip
          0, // has stepper refrun stay enabled
@@ -174,8 +174,7 @@ int main(void)
 
   /* USER CODE END 1 */
 
-  /* MPU Configuration--------------------------------------------------------*/
-  MPU_Config();
+  /* MPU Configuration--------------------------------------------------------*/  MPU_Config();
 
   /* MCU Configuration--------------------------------------------------------*/
 
