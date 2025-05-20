@@ -79,9 +79,6 @@ void TimerStart(unsigned int pulses);
 L6474x_Platform_t p;
 StepperContext_t StepperContext;
 
-static int CalcStepParams()
-{
-}
 //---------Basic---Functions--------------
 static void *StepLibraryMalloc(unsigned int size)
 {
@@ -169,7 +166,7 @@ static int Step(void *pPWM, int dir, unsigned int numPulses)
     return 0;
 }
 */
-// WIP kind of done, parameters need to  be looked at
+
 static int Reset(StepperContext_t *StepperContext)
 {
     L6474_BaseParameter_t param;
@@ -181,7 +178,8 @@ static int Reset(StepperContext_t *StepperContext)
     param.TFast = 0x18;
     int result = 0;
 
-    // result |= L6474_SetBaseParameter(&param); // changable
+    ///////
+    result |= L6474_SetBaseParameter(&param); // needs to be tested
     result |= L6474_ResetStandBy(StepperContext->h);
     result |= L6474_Initialize(StepperContext->h, &param);
     result |= L6474_SetPowerOutputs(StepperContext->h, 0);
@@ -207,7 +205,7 @@ static int Reset(StepperContext_t *StepperContext)
 
     return result;
 }
-// Finished but maybe look at it again
+
 static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
 {
     // Allow reference from REF state only
@@ -216,7 +214,6 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         printf("Reference run not allowed in current state\r\n");
         return -1;
     }
-    int step_amt = 0;
     uint32_t track_timer_stop = 0;
     int result = 0;
     int poweroutput = 0;
@@ -280,8 +277,9 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     // is ref switch already pressed? wenn == 0 wird er gedrückt
     if (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
     {
+        printf("At reference switch, moving away before reference run...\r\n");
         // already at reference
-        L6474_StepIncremental(StepperContext->h, 100000000);
+        L6474_StepIncremental(StepperContext->h, 5000);
         while (HAL_GPIO_ReadPin(REFERENCE_MARK_GPIO_Port, REFERENCE_MARK_Pin) == GPIO_PIN_RESET)
         {
             if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
@@ -306,7 +304,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-    L6474_SetAbsolutePosition(StepperContext->h, 800);
+    L6474_SetAbsolutePosition(StepperContext->h, 800); //offset in microsteps--> calculated  throw testing
     StepperContext->pos_min = 800; // set reference position
     StepperContext->pos_ref = 800;
     // move to limit switch from reference switch
@@ -314,7 +312,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     L6474_StepIncremental(StepperContext->h, 1000000000);
     while (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) != GPIO_PIN_RESET)
     {
-        step_amt += 1;
+
         if (timeout_ms > 0 && HAL_GetTick() - start_time > timeout_ms)
         {
             StepTimerCancelAsync(NULL);
@@ -336,9 +334,9 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     StepperContext->is_powered = poweroutput;
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
-    return 0; // davor war da result
+    return result; //reverted from return 0 to return result
 }
-// WIP kind of done
+
 static int Position(StepperContext_t *StepperContext, int argc, char **argv)
 {
     if (StepperContext->state == scs.FLT)
@@ -353,7 +351,6 @@ static int Position(StepperContext_t *StepperContext, int argc, char **argv)
     return 0;
 }
 
-// WIP kind of done
 static int Status(StepperContext_t *StepperContext, int argc, char **argv)
 {
     L6474_Status_t driverStatus;
@@ -376,7 +373,7 @@ static int Status(StepperContext_t *StepperContext, int argc, char **argv)
 
     return 0;
 }
-// WIP
+
 static int Move(StepperContext_t *StepperContext, int argc, char **argv)
 {
     // Preconditions
@@ -516,7 +513,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
     printf("Movement completed.\r\n");
     return 0;
 }
-// WIP
+
 static int Config(StepperContext_t *StepperContext, int argc, char **argv)
 {
     if (argc < 2)
@@ -712,7 +709,6 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     return result;
 }
 
-// WIP kind of very done
 int SetPower(int ena)
 {
     if ((StepperContext.state != scs.ENA) && (StepperContext.state != scs.DIS))
@@ -728,7 +724,7 @@ int SetPower(int ena)
     StepperContext.is_powered = ena;
     return L6474_SetPowerOutputs(StepperContext.h, ena);
 }
-// WIP kind of done
+
 void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec)
 {
     // Get the system clock frequency (e.g., 72 MHz)
@@ -755,7 +751,7 @@ void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec)
     // ARR = Auto-reload register, we set it to 50% duty cycle
     StepperContext->htim4->Instance->CCR4 = StepperContext->htim4->Instance->ARR / 2;
 }
-// WIP kind of done
+
 void TimerStart(unsigned int pulse_count)
 {
     // Limit the number of pulses to a maximum of 16 bit
@@ -776,7 +772,7 @@ void TimerStart(unsigned int pulse_count)
         StepperContext.done_callback(StepperContext.h);
     }
 }
-// WIP kind of done
+
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
     // check if pulse is finished
