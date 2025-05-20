@@ -526,22 +526,22 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
 
     int result = 0;
-    int pos = -1;
+    int configure = -1;
 
     for (int i = 0; i < argc; i++)
     {
         if (strcmp(argv[i], "-v") == 0)
         {
-            pos = i;
+            configure = i;
             break;
         }
     }
 
     if (strcmp(argv[1], "powerena") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
-            int ena = atoi(argv[pos + 1]);
+            int ena = atoi(argv[configure + 1]);
             result = SetPower(ena);
             if (ena)
             {
@@ -559,9 +559,9 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "torque") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
-            result = L6474_SetProperty(StepperContext->h, L6474_PROP_TORQUE, atoi(argv[pos + 1]));
+            result = L6474_SetProperty(StepperContext->h, L6474_PROP_TORQUE, atoi(argv[configure + 1]));
         }
         else
         {
@@ -572,9 +572,9 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "throvercurr") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
-            result = L6474_SetProperty(StepperContext->h, L6474_PROP_OCDTH, atoi(argv[pos + 1]));
+            result = L6474_SetProperty(StepperContext->h, L6474_PROP_OCDTH, atoi(argv[configure + 1]));
         }
         else
         {
@@ -585,10 +585,10 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "stepmode") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
             L6474x_StepMode_t step_mode_l;
-            switch (atoi(argv[pos + 1]))
+            switch (atoi(argv[configure + 1]))
             {
             case 1:
                 step_mode_l = smFULL;
@@ -639,14 +639,14 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
         {
             property = L6474_PROP_TFAST;
         }
-        if (pos != -1)
+        if (configure != -1)
         {
             if (StepperContext->state == scs.ENA)
             {
                 printf("Error: Parameter can not be changed in scsENA!\n\r");
                 return -1;
             }
-            result = L6474_SetProperty(StepperContext->h, property, atoi(argv[pos + 1]));
+            result = L6474_SetProperty(StepperContext->h, property, atoi(argv[configure + 1]));
         }
         else
         {
@@ -657,9 +657,9 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "mmperturn") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
-            StepperContext->mm_per_turn = atof(argv[pos + 1]);
+            StepperContext->mm_per_turn = atof(argv[configure + 1]);
         }
         else
         {
@@ -668,9 +668,9 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "stepsperturn") == 0)
     {
-        if (pos != -1)
+        if (configure != -1)
         {
-            StepperContext->steps_per_turn = atof(argv[pos + 1]);
+            StepperContext->steps_per_turn = atof(argv[configure + 1]);
         }
         else
         {
@@ -693,9 +693,9 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             position_steps = &StepperContext->pos_ref;
         }
 
-        if (pos != -1)
+        if (configure != -1)
         {
-            float input = atof(argv[pos + 1]);
+            float input = atof(argv[configure + 1]);
             *position_steps = (int)((input * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn);
         }
         else
