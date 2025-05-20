@@ -1,5 +1,11 @@
 # Prerequisites
 *.d
+/.vs/
+/.settings/
+.project
+.xml
+settings.xml
+/Debug/
 
 # Compiled Object files
 *.slo
