@@ -539,7 +539,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
 
     if (strcmp(argv[1], "powerena") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             int ena = atoi(argv[configure + 1]);
             result = SetPower(ena);
@@ -559,7 +559,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "torque") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             result = L6474_SetProperty(StepperContext->h, L6474_PROP_TORQUE, atoi(argv[configure + 1]));
         }
@@ -572,7 +572,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "throvercurr") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             result = L6474_SetProperty(StepperContext->h, L6474_PROP_OCDTH, atoi(argv[configure + 1]));
         }
@@ -585,7 +585,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "stepmode") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             L6474x_StepMode_t step_mode_l;
             switch (atoi(argv[configure + 1]))
@@ -639,7 +639,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
         {
             property = L6474_PROP_TFAST;
         }
-        if (configure != -1)
+        if (configure >= 0)
         {
             if (StepperContext->state == scs.ENA)
             {
@@ -657,7 +657,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "mmperturn") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             StepperContext->mm_per_turn = atof(argv[configure + 1]);
         }
@@ -668,7 +668,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
     }
     else if (strcmp(argv[1], "stepsperturn") == 0)
     {
-        if (configure != -1)
+        if (configure >= 0)
         {
             StepperContext->steps_per_turn = atof(argv[configure + 1]);
         }
@@ -693,7 +693,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
             position_steps = &StepperContext->pos_ref;
         }
 
-        if (configure != -1)
+        if (configure >= 0)
         {
             float input = atof(argv[configure + 1]);
             *position_steps = (int)((input * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn);
