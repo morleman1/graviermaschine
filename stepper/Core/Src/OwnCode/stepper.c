@@ -348,7 +348,7 @@ static int Position(StepperContext_t *StepperContext, int argc, char **argv)
     int position;
     L6474_GetAbsolutePosition(StepperContext->h, &position);
     float mm_position_float = (position - StepperContext->pos_min) * StepperContext->mm_per_step;
-    int mm_position = (int)roundf(mm_position_float);
+    int mm_position = (int)floorf(mm_position_float);
     printf("Current position: %d\n\r", (mm_position));
     return 0;
 }
