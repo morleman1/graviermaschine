@@ -197,14 +197,16 @@ static int Reset(StepperContext_t *StepperContext)
     StepperContext->is_referenced = 0;
     StepperContext->is_running = 0;
     StepperContext->error_code = 0;
-    StepperContext->pos_min = 0;
+    StepperContext->pos_min = 800;
+    StepperContext->pos_ref = 800;
     StepperContext->pos_max = 234200;
     StepperContext->state = scs.REF; // Transition INIT -> REF
-
+    StepperContext->mm_per_sec = 0; //change to real value
     StepperContext->mm_per_turn = MM_PER_TURN;
     StepperContext->steps_per_turn = STEPS_PER_TURN;
-    StepperContext->mm_per_step = StepperContext->mm_per_turn / (StepperContext->steps_per_turn * StepperContext->resolution);
     StepperContext->resolution = 16.0f;
+    StepperContext->mm_per_step = StepperContext->mm_per_turn / (StepperContext->steps_per_turn * StepperContext->resolution);
+
 
     return result;
 }
@@ -257,7 +259,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     const uint32_t start_time = HAL_GetTick();
     result |= L6474_SetPowerOutputs(StepperContext->h, 1);
     StepperContext->is_powered = 1;
-    SetSpeed(StepperContext, 3000);
+    SetSpeed(StepperContext, 5000); //prev. 3000
 
     // If at limit switch, move away from it first
     if (HAL_GPIO_ReadPin(LIMIT_SWITCH_GPIO_Port, LIMIT_SWITCH_Pin) == GPIO_PIN_RESET)
