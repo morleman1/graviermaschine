@@ -406,7 +406,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
     float target_position = atof(argv[1]);
     int help_pos = 0;
     float help_pos_float = 0;
-    int speed = 2000; // Default speed in mm/min
+    int speed = 1000; // Default speed in mm/min
     int is_relative = 0;
     int is_async = 0;
 

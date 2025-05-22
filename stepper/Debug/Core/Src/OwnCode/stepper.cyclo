@@ -1,4 +1,3 @@
-../Core/Src/OwnCode/stepper.c:82:12:CalcStepParams	1
 ../Core/Src/OwnCode/stepper.c:86:14:StepLibraryMalloc	1
 ../Core/Src/OwnCode/stepper.c:91:13:StepLibraryFree	1
 ../Core/Src/OwnCode/stepper.c:96:12:StepDriverSpiTransfer	3
@@ -7,15 +6,15 @@
 ../Core/Src/OwnCode/stepper.c:123:12:StepTimerAsync	1
 ../Core/Src/OwnCode/stepper.c:136:12:StepTimerCancelAsync	3
 ../Core/Src/OwnCode/stepper.c:173:12:Reset	2
-../Core/Src/OwnCode/stepper.c:211:12:Reference	22
-../Core/Src/OwnCode/stepper.c:342:12:Position	2
-../Core/Src/OwnCode/stepper.c:357:12:Status	10
-../Core/Src/OwnCode/stepper.c:380:12:Move	22
-../Core/Src/OwnCode/stepper.c:520:12:Config	36
+../Core/Src/OwnCode/stepper.c:212:12:Reference	22
+../Core/Src/OwnCode/stepper.c:343:12:Position	2
+../Core/Src/OwnCode/stepper.c:358:12:Status	10
+../Core/Src/OwnCode/stepper.c:381:12:Move	21
+../Core/Src/OwnCode/stepper.c:521:12:Config	36
 ../Core/Src/OwnCode/stepper.c:716:5:SetPower	5
 ../Core/Src/OwnCode/stepper.c:732:6:SetSpeed	2
 ../Core/Src/OwnCode/stepper.c:759:6:TimerStart	2
 ../Core/Src/OwnCode/stepper.c:780:6:HAL_TIM_PWM_PulseFinishedCallback	4
 ../Core/Src/OwnCode/stepper.c:800:6:UpdateStepperLEDs	5
-../Core/Src/OwnCode/stepper.c:844:12:StepperHandler	10
-../Core/Src/OwnCode/stepper.c:901:6:InitStepper	1
+../Core/Src/OwnCode/stepper.c:844:12:StepperHandler	11
+../Core/Src/OwnCode/stepper.c:906:6:InitStepper	1
