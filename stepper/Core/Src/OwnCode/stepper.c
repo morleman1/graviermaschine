@@ -80,6 +80,8 @@ void TimerStart(unsigned int pulses);
 L6474x_Platform_t p;
 StepperContext_t StepperContext;
 
+int global_move_flag = 0;
+
 //---------Basic---Functions--------------
 static void *StepLibraryMalloc(unsigned int size)
 {
@@ -305,8 +307,8 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-    L6474_SetAbsolutePosition(StepperContext->h, 800); //offset in microsteps--> calculated  throw testing
-    StepperContext->pos_min = 800; // set reference position
+    L6474_SetAbsolutePosition(StepperContext->h, 800); // offset in microsteps--> calculated  throw testing
+    StepperContext->pos_min = 800;                     // set reference position
     StepperContext->pos_ref = 800;
     // move to limit switch from reference switch
     const uint32_t track_timer_start = HAL_GetTick();
@@ -335,7 +337,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     StepperContext->is_powered = poweroutput;
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
-    return result; //reverted from return 0 to return result
+    return result; // reverted from return 0 to return result
 }
 
 static int Position(StepperContext_t *StepperContext, int argc, char **argv)
@@ -699,7 +701,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
         }
         else
         {
-            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / (StepperContext->steps_per_turn* StepperContext->resolution));
+            printf("%f\r\n", (*position_steps * StepperContext->mm_per_turn) / (StepperContext->steps_per_turn * StepperContext->resolution));
         }
     }
     else
@@ -853,6 +855,11 @@ static int StepperHandler(int argc, char **argv, void *ctx)
     }
     if (strcmp(argv[0], "move") == 0)
     {
+        if (global_move_flag == 0)
+        {
+            global_move_flag = 1;
+            result = Move(StepperContext, argc, argv);
+        }
         result = Move(StepperContext, argc, argv);
     }
     else if (strcmp(argv[0], "reset") == 0)
