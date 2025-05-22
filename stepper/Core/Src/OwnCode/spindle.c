@@ -60,6 +60,11 @@ void SPINDLE_EnaPWM(SpindleHandle_t h, void *context, int ena)
       HAL_TIM_PWM_Start(&spindleContext.timer, TIM_CHANNEL_3);
       HAL_TIM_PWM_Start(&spindleContext.timer, TIM_CHANNEL_4);
   }
+  else
+  {
+	  HAL_TIM_PWM_Stop(&spindleContext.timer, TIM_CHANNEL_3);
+	  HAL_TIM_PWM_Stop(&spindleContext.timer, TIM_CHANNEL_4);
+  }
 }
 
 void InitSpindle(ConsoleHandle_t* consoleHandle, TIM_HandleTypeDef* htim)
