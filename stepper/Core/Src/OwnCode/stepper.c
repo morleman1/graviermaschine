@@ -10,7 +10,7 @@
 
 #define TRACKLENGTH 295 // mm
 
-// defined parameters for stepmode MICRO16
+// defined parameters needed for a stepper motor: https://www.circuitist.com/how-to-calculate-steps-per-mm-lead-screw-and-gt2-timing-belt/
 
 #define STEPS_PER_TURN 200
 #define RESOLUTION 16 // microsteps per turn
@@ -39,7 +39,7 @@ static struct
 typedef struct
 {
     L6474_Handle_t h;
-    int is_powered; // change
+    int is_powered;
     int is_referenced;
     int is_running;
     int error_code;
@@ -181,7 +181,6 @@ static int Reset(StepperContext_t *StepperContext)
     param.TFast = 0x18;
     int result = 0;
 
-    ///////
     result |= L6474_SetBaseParameter(&param); // needs to be tested
     result |= L6474_ResetStandBy(StepperContext->h);
     result |= L6474_Initialize(StepperContext->h, &param);
@@ -309,8 +308,8 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
         }
     }
     StepTimerCancelAsync(NULL);
-    L6474_SetAbsolutePosition(StepperContext->h, 800); // offset in microsteps--> calculated  throw testing
-    StepperContext->pos_min = 800;                     // set reference position
+    L6474_SetAbsolutePosition(StepperContext->h, 800); // offset in microsteps -> determined through testing to account for inacccuracy
+    StepperContext->pos_min = 800;                    
     StepperContext->pos_ref = 800;
     // move to limit switch from reference switch
     const uint32_t track_timer_start = HAL_GetTick();
@@ -454,7 +453,7 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
         speed = max_speed;
     }*/
 
-    // Calculate steps per second
+    // Calculate steps per second: https://electronicsgb.com/stepper-motor-calculator/
     float steps_per_second = (speed * StepperContext->steps_per_turn * StepperContext->resolution) / (60.0f * StepperContext->mm_per_turn);
     SetSpeed(StepperContext, steps_per_second);
     // total steps to move from 0 to target
@@ -699,7 +698,7 @@ static int Config(StepperContext_t *StepperContext, int argc, char **argv)
         if (configure >= 0)
         {
             float input = atof(argv[configure + 1]);
-            *position_steps = (int)((input * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn);
+            *position_steps = (int)((input * StepperContext->steps_per_turn * StepperContext->resolution) / StepperContext->mm_per_turn); //calc number of steps from mm
         }
         else
         {
@@ -733,17 +732,16 @@ int SetPower(int ena)
 
 void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec)
 {
-    // Get the system clock frequency (e.g., 72 MHz)
+    // Get system clock frequency
     int clk = HAL_RCC_GetHCLKFreq();
 
     // Calculate the timer period for the desired step frequency
     // Multiply by 2 because the timer toggles once for the rising edge and once for the falling edge
     int timer_period = clk / (steps_per_sec * 2);
 
-    // Initialize the prescaler to 0
-    int i = 0;
+    int i = 0; //i = Prescaler
 
-    // make upscaler bigger until reload value is <= 16 bit
+    // make upscaler fit a 16 bit value
     while ((timer_period / (i + 1)) > 65535)
         i++;
 
@@ -757,6 +755,7 @@ void SetSpeed(StepperContext_t *StepperContext, int steps_per_sec)
     // ARR = Auto-reload register, we set it to 50% duty cycle
     StepperContext->htim4->Instance->CCR4 = StepperContext->htim4->Instance->ARR / 2;
 }
+
 
 void TimerStart(unsigned int pulse_count)
 {
@@ -781,7 +780,7 @@ void TimerStart(unsigned int pulse_count)
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
-    // check if pulse is finished
+    // check if callback is there && check if SR is 2 meaning channel 2 has interrupt
     if ((StepperContext.done_callback != 0) && ((htim->Instance->SR & (1 << 2)) == 0))
     {
         StepperContext.steps_done++;
