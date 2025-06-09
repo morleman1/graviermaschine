@@ -189,8 +189,9 @@ static int Reset(StepperContext_t *StepperContext)
     if (result != 0)
     {
         printf("Failed to reset\r\n");
-        return -1;
         StepperContext->state = scs.FLT;
+        return -1;
+        
     }
     StepperContext->is_powered = 0;
     StepperContext->is_referenced = 0;
