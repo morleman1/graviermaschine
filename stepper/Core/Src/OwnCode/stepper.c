@@ -339,7 +339,7 @@ static int Reference(StepperContext_t *StepperContext, int argc, char **argv)
     StepperContext->is_powered = poweroutput;
     // After reference, go to DIS or ENA depending on poweroutput
     StepperContext->state = poweroutput ? scs.ENA : scs.DIS;
-    return result; // reverted from return 0 to return result
+    return result;
 }
 
 static int Position(StepperContext_t *StepperContext, int argc, char **argv)
@@ -447,12 +447,6 @@ static int Move(StepperContext_t *StepperContext, int argc, char **argv)
         printf("Error: Speed too low\r\n");
         return -1;
     }
-    /*int max_speed = (int)(StepperContext->mm_per_sec * 60); // Convert mm/sec to mm/min
-    if (speed > max_speed)
-    {
-        printf("Warning: Speed capped to maximum (%d mm/min)\r\n", max_speed);
-        speed = max_speed;
-    }*/
 
     // Calculate steps per second: https://electronicsgb.com/stepper-motor-calculator/
     float steps_per_second = (speed * StepperContext->steps_per_turn * StepperContext->resolution) / (60.0f * StepperContext->mm_per_turn);
